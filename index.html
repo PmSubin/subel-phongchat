@@ -12,7 +12,7 @@
 :root, [data-theme="muc"] {
   --bg: #14110f; --panel: #1a1613; --card: #221c18; --card2: #2c2520; --line: #3a312a; --line2: #4c4037;
   --text: #ede3d1; --muted: #ab9c8c; --dim: #7d6f62;
-  --accent: #c9463a; --accent2: #e0675a; --on-accent: #fff4ea; --gold: #e7cfa4; --violet: #c9b6ec; --q: #f7ebd5;
+  --accent: #c9463a; --accent2: #e0675a; --on-accent: #fff4ea; --gold: #e7cfa4; --violet: #c9b6ec; --q: #f7ebd5; --narr: #c3a6f2; --ooc: #f2a259;
   --user: #251e1a; --glow: rgba(201, 70, 58, 0.13); --glow2: rgba(231, 207, 164, 0.06);
   --mount: #241d19; --mount2: #1d1815; --sun: rgba(201, 70, 58, 0.22); --petal: #e9a3ab;
   --shadow: 0 14px 36px rgba(0, 0, 0, 0.5); --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.3);
@@ -22,7 +22,7 @@
 [data-theme="giay"] {
   --bg: #f2e9d6; --panel: #ebe0c9; --card: #fbf6ea; --card2: #efe4cd; --line: #d8c7a6; --line2: #c4af88;
   --text: #2c2219; --muted: #6c5a48; --dim: #958169;
-  --accent: #b23a2d; --accent2: #c94c3e; --on-accent: #fff6ec; --gold: #8b5a1e; --violet: #6b4c9e; --q: #3a2717;
+  --accent: #b23a2d; --accent2: #c94c3e; --on-accent: #fff6ec; --gold: #8b5a1e; --violet: #6b4c9e; --q: #3a2717; --narr: #6b43a8; --ooc: #a34b07;
   --user: #f7efdf; --glow: rgba(178, 58, 45, 0.08); --glow2: rgba(139, 90, 30, 0.08);
   --mount: #e2d4b6; --mount2: #e9ddc3; --sun: rgba(178, 58, 45, 0.16); --petal: #d9848f;
   --shadow: 0 14px 32px rgba(80, 55, 25, 0.2); --shadow-sm: 0 6px 16px rgba(80, 55, 25, 0.12);
@@ -32,7 +32,7 @@
 [data-theme="dem"] {
   --bg: #0e1120; --panel: #13172b; --card: #1a1f3a; --card2: #232a4c; --line: #2d3560; --line2: #3d4780;
   --text: #e6e8f6; --muted: #a6abd0; --dim: #747ba8;
-  --accent: #d9576b; --accent2: #ee7486; --on-accent: #fff2f4; --gold: #f1d68e; --violet: #bba8ff; --q: #f3f0ff;
+  --accent: #d9576b; --accent2: #ee7486; --on-accent: #fff2f4; --gold: #f1d68e; --violet: #bba8ff; --q: #f3f0ff; --narr: #ab90ff; --ooc: #ffad66;
   --user: #181d38; --glow: rgba(217, 87, 107, 0.12); --glow2: rgba(187, 168, 255, 0.08);
   --mount: #161b35; --mount2: #121630; --sun: rgba(241, 214, 142, 0.2); --petal: #c9b8ff;
   --shadow: 0 14px 36px rgba(0, 0, 0, 0.55); --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.35);
@@ -42,7 +42,7 @@
 [data-theme="dao"] {
   --bg: #fbf0f0; --panel: #f5e2e4; --card: #fffafa; --card2: #f8e6e8; --line: #ebcdd2; --line2: #dcaeb7;
   --text: #3b2329; --muted: #7c5761; --dim: #a5828c;
-  --accent: #cc5068; --accent2: #de647b; --on-accent: #fff5f7; --gold: #9c4a2c; --violet: #7a4a9e; --q: #4a2a31;
+  --accent: #cc5068; --accent2: #de647b; --on-accent: #fff5f7; --gold: #9c4a2c; --violet: #7a4a9e; --q: #4a2a31; --narr: #7a3fa8; --ooc: #a8480f;
   --user: #fdf2f3; --glow: rgba(204, 80, 104, 0.1); --glow2: rgba(156, 74, 44, 0.06);
   --mount: #f2dade; --mount2: #f6e5e7; --sun: rgba(204, 80, 104, 0.15); --petal: #ef9fb0;
   --shadow: 0 14px 32px rgba(120, 50, 65, 0.16); --shadow-sm: 0 6px 16px rgba(120, 50, 65, 0.1);
@@ -211,6 +211,12 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 .md strong { color: var(--gold); font-weight: 600; }
 .md em { color: var(--violet); }
 .md .q { color: var(--q); }
+/* Trong truyện (cả tin người chơi lẫn AI): lời dẫn tím, lời thoại sáng, phần trong ngoặc cam */
+.turn .body { color: var(--narr); }
+.turn .body :is(em, strong) { color: inherit; }
+.turn .body .q { color: var(--q); }
+.turn .body .pa, .turn .body .pa .q { color: var(--ooc); }
+.turn .body .errbox { color: var(--text); }
 .md hr { border: 0; height: 1px; margin: 1.5em 0 1.1em; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
 .md ul, .md ol { margin: 0 0 0.95em; padding-left: 1.4em; }
 .md li { margin: 0.15em 0; }
@@ -1141,6 +1147,15 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 
   /* ================= Markdown gọn, an toàn ================= */
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  /* Thẻ mở và đóng phải khớp thì mới bọc cả đoạn vào một span */
+  function tagsBalanced(h) {
+    const st = [];
+    for (const m of h.matchAll(/<(\/?)(\w+)[^>]*>/g)) {
+      if (!m[1]) st.push(m[2]);
+      else if (st.pop() !== m[2]) return false;
+    }
+    return !st.length;
+  }
   function inline(src) {
     const codes = [];
     let s = esc(src).replace(/`([^`\n]+)`/g, (m, c) => { codes.push(c); return '\u0000' + (codes.length - 1) + '\u0000'; });
@@ -1151,6 +1166,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       .replace(/~~([^\n]+?)~~/g, '<del>$1</del>');
     s = s.replace(/“[^”\n]{0,800}”/g, '<span class="q">$&</span>')
       .replace(/&quot;(?:(?!&quot;)[^\n]){0,800}?&quot;/g, '<span class="q">$&</span>');
+    s = s.replace(/\((?:[^()\n]|\([^()\n]*\))*\)|（[^（）\n]*）/g, (m) => (tagsBalanced(m) ? '<span class="pa">' + m + '</span>' : m));
     return s.replace(/\u0000(\d+)\u0000/g, (m, i) => '<code>' + codes[+i] + '</code>');
   }
   function md(src) {
