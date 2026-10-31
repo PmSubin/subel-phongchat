@@ -578,6 +578,11 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 #veil { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.42); opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 20; }
 #veil.on { opacity: 1; pointer-events: auto; }
 .modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; background: rgba(0, 0, 0, 0.5); }
+#ask { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, 0.5); }
+#ask .abox { width: min(440px, 100%); display: flex; flex-direction: column; gap: 14px; padding: 18px; background: var(--panel); border: 1px solid var(--line2); border-radius: 18px; box-shadow: inset 0 1px 0 var(--hi), var(--shadow); }
+#ask p { margin: 0; line-height: 1.6; white-space: pre-line; }
+#ask .arow { display: flex; gap: 8px; justify-content: flex-end; }
+#ask .arow .btn { min-width: 84px; }
 .mbox { width: min(1100px, 100%); height: min(88vh, 1000px); display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line2); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; }
 .mhead { display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 20px; border-bottom: 1px solid var(--line); }
 .mhead b { color: var(--gold); font-size: 15px; }
@@ -937,7 +942,39 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     if (text != null) e.textContent = text;
     return e;
   };
-  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  /* Hộp hỏi vẽ trong trang, thay confirm() / prompt(): trình xem file trên điện thoại hay chặn hộp thoại của trình duyệt.
+     Không có input thì trả true / false; có input (chuỗi mặc định) thì trả chữ đã gõ, hoặc null khi bấm Hủy. */
+  function ask(msg, { ok = 'Đồng ý', input = null } = {}) {
+    return new Promise((done) => {
+      const wrap = el('div');
+      wrap.id = 'ask';
+      const box = el('div', 'abox');
+      box.setAttribute('role', 'dialog');
+      box.setAttribute('aria-modal', 'true');
+      box.append(el('p', '', msg));
+      let inp = null;
+      if (input !== null) { inp = el('input', 'inp'); inp.value = input; box.append(inp); }
+      const row = el('div', 'arow');
+      const no = el('button', 'btn', 'Hủy');
+      const yes = el('button', 'btn red', ok);
+      no.type = yes.type = 'button';
+      row.append(no, yes);
+      box.append(row);
+      wrap.append(box);
+      document.body.append(wrap);
+      const key = (e) => {
+        if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); no.click(); }
+        else if (e.key === 'Enter' && inp && document.activeElement === inp) { e.preventDefault(); e.stopPropagation(); yes.click(); }
+      };
+      const finish = (v) => { document.removeEventListener('keydown', key, true); wrap.remove(); done(v); };
+      no.onclick = () => finish(inp ? null : false);
+      yes.onclick = () => finish(inp ? inp.value : true);
+      wrap.addEventListener('mousedown', (e) => { if (e.target === wrap) no.click(); });
+      document.addEventListener('keydown', key, true);
+      (inp || yes).focus();
+    });
+  }
+  const uid =() => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
   const k = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2) + 'M' : n >= 1000 ? (n / 1000).toFixed(1) + 'K' : String(n || 0));
   const num = (n) => Number(n || 0).toLocaleString('vi-VN');
   const estTokens = (s) => Math.round((s || '').length / 3.2);
@@ -1295,7 +1332,8 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   }
   async function removeSession(s) {
     if (gen && s === cur) return;
-    if (!confirm('Xóa phiên “' + titleOf(s) + '”?\nKhông lấy lại được, trừ khi anh đã Sao lưu.')) return;
+    if (!(await ask('Xóa phiên “' + titleOf(s) + '”?\nKhông lấy lại được, trừ khi anh đã Sao lưu.', { ok: 'Xóa' }))) return;
+    if (gen && s === cur) return;
     await store.del('sessions', s.id).catch(() => {});
     sessions = sessions.filter((x) => x !== s);
     if (pendingSave === s) { clearTimeout(saveTimer); pendingSave = null; }
@@ -1373,7 +1411,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     try { await store.put('lib', item); } catch (e) { toast('Không lưu được vào thư viện', { err: true }); }
   }
   async function removeLib(item) {
-    if (!confirm('Xóa “' + item.title + '” khỏi thư viện?')) return;
+    if (!(await ask('Xóa “' + item.title + '” khỏi thư viện?', { ok: 'Xóa' }))) return;
     lib = lib.filter((x) => x !== item);
     await store.del('lib', item.id).catch(() => {});
     renderLibSel();
@@ -1967,10 +2005,10 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     renderMsgs();
     renderCast();
   }
-  function removeNpc(c) {
+  async function removeNpc(c) {
     if (c.code) { c.hidden = true; toast('Đã ẩn ' + c.name + '. Người có mã trong Sổ chỉ ẩn, không xóa.'); }
     else {
-      if (!confirm('Xóa “' + c.name + '” khỏi dàn nhân vật?')) return;
+      if (!(await ask('Xóa “' + c.name + '” khỏi dàn nhân vật?', { ok: 'Xóa' }))) return;
       cur.cast = cur.cast.filter((x) => x !== c);
     }
     castChanged();
@@ -2707,9 +2745,9 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     if (t.role === 'user') {
       const rerun = el('button', 'btn', 'Lưu và chạy lại từ đây');
       rerun.type = 'button';
-      rerun.onclick = () => {
+      rerun.onclick = async () => {
         const i = cur.turns.indexOf(t);
-        if (cur.turns.length > i + 1 && !confirm('Các lượt phía sau tin này sẽ bị xóa để AI viết lại. Tiếp tục?')) return;
+        if (cur.turns.length > i + 1 && !(await ask('Các lượt phía sau tin này sẽ bị xóa để AI viết lại. Tiếp tục?', { ok: 'Chạy lại' }))) return;
         applyEdit();
         cur.turns.splice(i + 1);
         persist();
@@ -3506,28 +3544,28 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       e.target.value = '';
       if (!f) return;
       const text = (await f.text()).replace(/^﻿/, '');
-      if ((cur.system || '').trim() && !confirm('Thay hướng dẫn hệ thống hiện tại bằng nội dung file “' + f.name + '”?')) return;
+      if ((cur.system || '').trim() && !(await ask('Thay hướng dẫn hệ thống hiện tại bằng nội dung file “' + f.name + '”?', { ok: 'Thay' }))) return;
       setSystem(text);
       toast('Đã nạp ' + f.name + ' (' + num(text.length) + ' ký tự)');
     });
-    $('#sysClear').onclick = () => {
-      if (!(cur.system || '').trim() || !confirm('Xóa toàn bộ hướng dẫn hệ thống của phiên này?')) return;
+    $('#sysClear').onclick = async () => {
+      if (!(cur.system || '').trim() || !(await ask('Xóa toàn bộ hướng dẫn hệ thống của phiên này?', { ok: 'Xóa' }))) return;
       setSystem('');
     };
-    $('#libSave').onclick = () => {
+    $('#libSave').onclick = async () => {
       const t = (cur.system || '').trim();
       if (!t) { toast('Hướng dẫn đang trống', { err: true }); return; }
       const same = lib.find((x) => x.kind === 'prompt' && x.text === cur.system);
       if (same) { toast('Prompt này đã có trong thư viện: ' + same.title); return; }
-      const name = prompt('Đặt tên cho prompt này:', guessPromptName(t));
+      const name = await ask('Đặt tên cho prompt này:', { ok: 'Lưu', input: guessPromptName(t) });
       if (!name || !name.trim()) return;
       const item = { id: uid(), kind: 'prompt', title: name.trim().slice(0, 80), text: cur.system, created: Date.now() };
       putLib(item).then(() => { renderLibSel(); $('#libSel').value = item.id; toast('Đã lưu “' + item.title + '” vào thư viện'); });
     };
-    $('#libLoad').onclick = () => {
+    $('#libLoad').onclick = async () => {
       const p = lib.find((x) => x.id === $('#libSel').value);
       if (!p) return;
-      if ((cur.system || '').trim() && cur.system !== p.text && !confirm('Thay hướng dẫn của phiên này bằng “' + p.title + '”?')) return;
+      if ((cur.system || '').trim() && cur.system !== p.text && !(await ask('Thay hướng dẫn của phiên này bằng “' + p.title + '”?', { ok: 'Thay' }))) return;
       setSystem(p.text);
       toast('Đã nạp “' + p.title + '”');
     };
@@ -3583,8 +3621,8 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#castGo').onclick = () => searchImages($('#castQ').value);
     $('#castQ').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); searchImages($('#castQ').value); } });
     $('#castFromPrompt').onclick = castFromPrompt;
-    $('#castAdd').onclick = () => {
-      const name = prompt('Tên nhân vật (như cách truyện gọi):');
+    $('#castAdd').onclick = async () => {
+      const name = await ask('Tên nhân vật (như cách truyện gọi):', { ok: 'Thêm', input: '' });
       if (!name || !name.trim()) return;
       const c = { id: uid(), name: name.trim(), alias: '', code: '', img: '', note: '' };
       cur.cast.push(c);
@@ -3618,11 +3656,11 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#gArt').onclick = galleryArt;
     $('#gCopyBridge').onclick = () => copyText(BRIDGE_SRC);
     $('#gRetryBridge').onclick = () => { bridge.ok = false; galleryArt(); };
-    $('#gTagEdit').onclick = () => {
+    $('#gTagEdit').onclick = async () => {
       const c = gal.c;
       if (!c || gal.busy) return;
-      const v = prompt('Thẻ của ' + c.name + ' trên Safebooru / Konachan: chữ thường, nối bằng dấu gạch dưới, ví dụ hyuuga_hinata. Để trống để tự tìm lại.', c.tag || (gal.art && gal.art.tag) || '');
-      if (v === null) return;
+      const v = await ask('Thẻ của ' + c.name + ' trên Safebooru / Konachan: chữ thường, nối bằng dấu gạch dưới, ví dụ hyuuga_hinata. Để trống để tự tìm lại.', { ok: 'Đổi thẻ', input: c.tag || (gal.art && gal.art.tag) || '' });
+      if (v === null || gal.c !== c) return;
       const tag = v.trim().toLowerCase().replace(/\s+/g, '_');
       if (tag) c.tag = tag; else delete c.tag;
       saveCast();
