@@ -894,9 +894,10 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       <label class="castseries">Bộ đang chơi <input id="castSeries" class="inp" spellcheck="false" aria-label="Bộ anime đang chơi"></label>
       <div id="castTarget" class="target" hidden></div>
       <div id="castResults" class="results"></div>
-      <div id="castHint" class="hint">Ảnh avatar lấy từ AniList, lọc theo bộ đang chơi. Gõ tên gốc (Nhật hoặc Anh) dễ ra hơn. Bấm vào một ảnh để thêm nhân vật đó. Bấm vào khung ảnh của một người để mở bộ sưu tập ảnh.</div>
+      <div id="castHint" class="hint">Tra tên trên AniList để chọn đúng người (lọc theo bộ đang chơi), rồi trang tự lấy tranh vẽ đẹp nhất trên Danbooru làm avatar. Gõ tên gốc (Nhật hoặc Anh) dễ ra hơn. Bấm vào khung ảnh của một người để mở bộ sưu tập và chọn thêm tranh.</div>
       <div class="sub">Dàn nhân vật của phiên</div>
       <div class="tools" style="margin-top:0">
+        <button id="castBeautify" class="btn red sm" type="button" title="Lấy tranh vẽ đẹp nhất trên Danbooru cho từng người và đặt làm avatar; ảnh cũ vẫn giữ trong bộ sưu tập"><i data-ic="spark"></i>Tranh đẹp cho cả dàn</button>
         <button id="castFromPrompt" class="btn sm" type="button">Lấy danh sách từ prompt</button>
         <button id="castAdd" class="btn sm" type="button"><i data-ic="plus"></i>Thêm tay</button>
         <button id="castShowHidden" class="btn sm ghost" type="button" hidden></button>
@@ -994,8 +995,8 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     <div id="gHint" class="hint" style="text-align:center"></div>
     <div id="gTag" class="gtag" hidden><span>Đang tìm theo thẻ <code id="gTagName"></code></span><button id="gTagEdit" class="btn sm ghost" type="button">Sai người? Đổi thẻ</button></div>
     <div id="gBridge" class="gbridge" hidden>
-      <b>Cài cầu nối ảnh một lần để lấy tranh đẹp</b>
-      <div>Wallhaven, Konachan và Safebooru có rất nhiều tranh vẽ đẹp, nhưng không cho trang khác đọc danh sách ảnh. Một tập lệnh nhỏ trong Tampermonkey sẽ đọc giúp. Tập lệnh chỉ đọc ba trang ảnh ấy, không gửi gì của anh đi đâu.</div>
+      <b>Cách lấy tranh đẹp khi mở file từ máy</b>
+      <div>Dễ nhất: mở Phòng Chat bằng link web <a href="https://pmsubin.github.io/subel-phongchat/" target="_blank" rel="noopener">pmsubin.github.io/subel-phongchat</a> (giống trên iPhone) là có tranh Danbooru ngay. Muốn thêm tranh từ Wallhaven, Konachan, Safebooru thì cài một tập lệnh nhỏ trong Tampermonkey; tập lệnh chỉ đọc ba trang ảnh ấy, không gửi gì của anh đi đâu.</div>
       <ol>
         <li>Cài tiện ích <a href="https://www.tampermonkey.net/" target="_blank" rel="noopener">Tampermonkey</a> cho Chrome hoặc Edge.</li>
         <li>Mở trang tiện ích (gõ <i>chrome://extensions</i> hoặc <i>edge://extensions</i> vào thanh địa chỉ), bấm <i>Chi tiết</i> ở Tampermonkey, bật <i>Cho phép truy cập vào URL của tệp</i> (Allow access to file URLs) và <i>Cho phép tập lệnh người dùng</i> (Allow User Scripts) nếu có. Edge: bật thêm <i>Chế độ nhà phát triển</i>.</li>
@@ -2031,7 +2032,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       const im = el('img');
       im.alt = c.name;
       im.loading = 'lazy';
-      im.referrerPolicy = 'no-referrer';
+      imgRef(im, c.img);
       im.onerror = () => { im.remove(); box.prepend(initial(c.name)); };
       im.src = c.img;
       box.append(im);
@@ -2342,24 +2343,29 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     }
     castTarget = null;
     $('#castResults').textContent = '';
-    $('#castHint').textContent = 'Đã đặt ảnh cho ' + c.name + '. Tra tên khác để thêm người nữa.';
+    $('#castHint').textContent = 'Đã thêm ' + c.name + (localFile ? '' : ', đang lấy tranh đẹp làm avatar') + '. Tra tên khác để thêm người nữa.';
     syncTarget();
     castChanged();
     focusNpc(c.id);
+    if (!localFile) artForCast([c], true);
   }
   function castFromPrompt() {
     const table = codeTable();
     const codes = Object.keys(table);
     if (!codes.length) { toast('Prompt của phiên này không có bảng mã nhân vật (dạng | N01 | Tên |)', { err: true }); return; }
     let n = 0;
+    const fresh = [];
     for (const code of codes) {
       const old = cur.cast.find((c) => c.code === code);
       if (old) { if (old.hidden) { old.hidden = false; n++; } continue; }
-      cur.cast.push({ id: uid(), name: table[code], alias: '', code, img: '', note: '' });
+      const c = { id: uid(), name: table[code], alias: '', code, img: '', note: '' };
+      cur.cast.push(c);
+      fresh.push(c);
       n++;
     }
     castChanged();
-    toast(n ? 'Đã thêm ' + n + ' nhân vật từ prompt. Bấm vào khung ảnh của từng người để tìm ảnh.' : 'Mọi nhân vật trong prompt đã có sẵn');
+    toast(n ? 'Đã thêm ' + n + ' nhân vật từ prompt.' + (fresh.length && !localFile ? ' Đang lấy tranh đẹp làm avatar cho từng người…' : ' Bấm vào khung ảnh của từng người để tìm ảnh.') : 'Mọi nhân vật trong prompt đã có sẵn', { ms: 6000 });
+    if (fresh.length && !localFile) artForCast(fresh, true);
   }
   /* Bộ sưu tập ảnh: xem lớn, đặt avatar, tìm thêm ảnh trên wiki Fandom của bộ đang chơi, Pinterest, kéo thả */
   let gal = { c: null, i: 0, found: [], terms: null, ti: 0, offset: 0, busy: false, art: null };
@@ -2368,7 +2374,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     'one piece': 'onepiece', 'jujutsu kaisen': 'jujutsu-kaisen', 'kimetsu no yaiba': 'kimetsu-no-yaiba',
     'shingeki no kyojin': 'attackontitan', 'genshin impact': 'genshin-impact', 'honkai star rail': 'honkai-star-rail',
   };
-  const isImgUrl = (u) => /^https?:\/\/\S+$/i.test(u) && (/\.(jpe?g|png|webp|gif|avif)(\?|#|$)/i.test(u) || /i\.pinimg\.com|static\.wikia\.nocookie\.net|anilist\.co|myanimelist\.net|pbs\.twimg\.com|googleusercontent\.com|konachan\.net|safebooru\.org|wallhaven\.cc/i.test(u));
+  const isImgUrl = (u) => /^https?:\/\/\S+$/i.test(u) && (/\.(jpe?g|png|webp|gif|avif)(\?|#|$)/i.test(u) || /i\.pinimg\.com|static\.wikia\.nocookie\.net|anilist\.co|myanimelist\.net|pbs\.twimg\.com|googleusercontent\.com|konachan\.net|safebooru\.org|wallhaven\.cc|donmai\.us/i.test(u));
   function openGallery(c) {
     hideNpcCard();
     const list = imgsOf(c);
@@ -2379,8 +2385,8 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#gTag').hidden = true;
     $('#gBridge').hidden = true;
     renderGallery();
-    // Chưa có ảnh nào thì tự tìm luôn: có cầu nối thì lấy tranh đẹp, chưa có thì lấy ảnh wiki
-    if (!list.length) bridgePing().then((ok) => { if (gal.c === c && !imgsOf(c).length) (ok ? galleryArt : galleryMore)(); });
+    // Chưa có ảnh, hoặc chỉ có ảnh wiki / AniList: tự lấy tranh đẹp luôn; không có tranh thì mới lấy ảnh wiki
+    if (!list.some(isDan)) galleryArt({ fallback: !list.length });
   }
   function closeGallery() { $('#gallery').hidden = true; gal.c = null; }
   function saveCast() {
@@ -2411,7 +2417,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     const u = list[gal.i];
     if (u) {
       const im = el('img');
-      im.referrerPolicy = 'no-referrer';
+      imgRef(im, u);
       im.alt = c.name;
       im.onerror = () => { big.textContent = ''; big.append(el('div', 'gempty', 'Ảnh này không tải được (link hỏng hoặc trang gốc chặn). Bấm “Bỏ ảnh này”.')); };
       im.src = u;
@@ -2431,7 +2437,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       b.type = 'button';
       const im = el('img');
       im.loading = 'lazy';
-      im.referrerPolicy = 'no-referrer';
+      imgRef(im, url);
       im.src = url;
       b.append(im);
       if (url === c.img) b.append(el('span', 'star', '★'));
@@ -2446,7 +2452,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       b.title = (list.includes(p.url) ? 'Đã có trong bộ sưu tập' : 'Thêm ảnh này') + (p.src ? ' · ' + p.src : '');
       const im = el('img');
       im.loading = 'lazy';
-      im.referrerPolicy = 'no-referrer';
+      imgRef(im, p.thumb);
       im.src = p.thumb;
       b.append(im, el('span', 'plus', list.includes(p.url) ? '✓' : '+'));
       if (p.src) b.append(el('span', 'src', p.src));
@@ -2568,7 +2574,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     });
   }
   /* Bỏ mọi tranh hở hang, máu me, ảnh người thật, truyện tranh, ảnh trắng đen hoặc mờ */
-  const ART_BAD = new Set(['breasts', 'breast', 'nipples', 'nipple', 'nude', 'naked', 'nudity', 'topless', 'bottomless', 'bikini', 'swimsuit', 'swimwear', 'underwear', 'lingerie', 'panties', 'pantyshot', 'bra', 'cleavage', 'sideboob', 'underboob', 'bathing', 'bath', 'onsen', 'towel', 'navel', 'midriff', 'see-through', 'upskirt', 'undressing', 'bondage', 'bdsm', 'ass', 'butt', 'crotch', 'groin', 'thighs', 'wet', 'bed', 'blood', 'guro', 'gore', 'injury', 'corpse', 'death', 'cosplay', 'photo', 'comic', '4koma', 'monochrome', 'greyscale', 'sketch', 'lowres', 'screencap']);
+  const ART_BAD = new Set(['breasts', 'breast', 'nipples', 'nipple', 'nude', 'naked', 'nudity', 'topless', 'bottomless', 'bikini', 'swimsuit', 'swimwear', 'underwear', 'lingerie', 'panties', 'pantyshot', 'bra', 'cleavage', 'sideboob', 'underboob', 'bathing', 'bath', 'onsen', 'towel', 'navel', 'midriff', 'see-through', 'upskirt', 'undressing', 'bondage', 'bdsm', 'ass', 'butt', 'crotch', 'groin', 'thighs', 'wet', 'bed', 'blood', 'guro', 'gore', 'injury', 'corpse', 'death', 'cosplay', 'photo', 'comic', '4koma', 'monochrome', 'greyscale', 'sketch', 'lineart', 'unfinished', 'lowres', 'screencap', 'meme']);
   function artSafe(tags) {
     for (const tg of String(tags || '').toLowerCase().split(/\s+/)) {
       if (!tg) continue;
@@ -2664,36 +2670,161 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#gTag').hidden = false;
     $('#gTagName').textContent = tag || '(chưa có)';
   }
-  async function galleryArt() {
+
+  /* Danbooru: kho tranh lớn nhất và cho trang khác đọc thẳng, nên chạy được cả trên iPhone, không cần cầu nối.
+     Chỉ lấy tranh hạng "general" (an toàn hoàn toàn), xếp theo điểm, lọc thêm bằng ART_BAD.
+     Máy chủ ảnh của Danbooru từ chối yêu cầu không kèm địa chỉ trang gửi: ảnh donmai.us phải tải với referrerPolicy "origin"
+     (đã thử: "no-referrer" bị chặn, "origin" tải được). Mở file trực tiếp (file://) thì trình duyệt không gửi được địa chỉ ấy. */
+  const DAN = 'https://danbooru.donmai.us/';
+  const DAN_ONLY = 'id,rating,score,image_width,image_height,file_ext,file_size,file_url,large_file_url,tag_string_general,media_asset';
+  const localFile = location.protocol === 'file:';
+  const isDan = (u) => /^https:\/\/[^/]*donmai\.us\//i.test(u || '');
+  function imgRef(im, u) { im.referrerPolicy = isDan(u) ? 'origin' : 'no-referrer'; }
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  async function danJson(path) {
+    const r = await fetch(DAN + path);
+    if (r.status === 429) throw new Error('Danbooru đang giới hạn lượt tìm, chờ một chút');
+    if (!r.ok) throw new Error('Danbooru trả lỗi ' + r.status);
+    return r.json();
+  }
+  /* Tìm thẻ nhân vật trên Danbooru: ghép họ tên hai chiều, cộng các thẻ nhân vật chứa từng chữ trong tên,
+     xếp theo số tranh, rồi lấy thẻ đầu tiên mà tranh thuộc đúng bộ đang chơi */
+  async function danTag(c) {
+    const toks = booruSeriesTokens();
+    const cands = new Map();
+    const exact = new Set();
+    for (const n of [c.name].concat((c.alias || '').split(','), VN_ALIAS[c.name.toLowerCase()] || [])) {
+      const w = normName(n).split(' ').filter((x) => x && !/^(san|kun|chan|sama|sensei)$/.test(x));
+      if (w.length >= 2) exact.add(w.join('_')).add(w.slice().reverse().join('_'));
+    }
+    if (exact.size) {
+      const list = await danJson('tags.json?only=name,post_count&limit=20&search[category]=4&search[name_comma]=' + encodeURIComponent([...exact].slice(0, 12).join(',')));
+      for (const t of list) cands.set(t.name, t.post_count);
+    }
+    for (const w of searchTerms(c).slice(0, 2)) {
+      const list = await danJson('tags.json?only=name,post_count&limit=15&search[category]=4&search[order]=count&search[name_or_alias_matches]=' + encodeURIComponent('*' + w + '*'));
+      for (const t of list) if (t.name.split(/[_():]+/).includes(w)) cands.set(t.name, t.post_count);
+    }
+    const ranked = [...cands].filter(([, n]) => n >= 3).sort((a, b) => b[1] - a[1]).map(([x]) => x);
+    if (!toks.length) return ranked.find((x) => exact.has(x)) || ranked[0] || '';
+    for (const x of ranked.slice(0, 5)) {
+      const posts = await danJson('posts.json?limit=20&only=tag_string_copyright&tags=' + encodeURIComponent(x));
+      if (fitsSeries(posts.map((p) => p.tag_string_copyright).join(' '), toks)) return x;
+    }
+    return ranked.find((x) => exact.has(x)) || '';
+  }
+  const hasTag = (p, t) => (' ' + p.tag_string_general + ' ').includes(' ' + t + ' ');
+  function danOk(p) {
+    return p.rating === 'g' && p.file_url && /^(jpe?g|png|webp)$/.test(p.file_ext) && artSafe(p.tag_string_general)
+      && Math.min(p.image_width, p.image_height) >= 600 && !hasTag(p, 'multiple_views') && !hasTag(p, 'text_focus');
+  }
+  /* Ảnh lớn: bản gốc nếu nhẹ, không thì bản mẫu 850px; ảnh nhỏ 360px cho lưới chọn */
+  function danPick(p) {
+    const v = (t) => ((p.media_asset && p.media_asset.variants) || []).find((x) => x.type === t);
+    const thumb = (v('360x360') || v('720x720') || {}).url || p.large_file_url;
+    const url = p.file_ext !== 'png' && p.file_size && p.file_size < 2.6e6 ? p.file_url : p.large_file_url || p.file_url;
+    return { url, thumb, src: 'Danbooru' };
+  }
+  /* Chấm điểm làm avatar: khung avatar là khổ dọc, cắt từ trên xuống, nên ưu tiên tranh một người, khổ dọc, nửa người */
+  function portraitScore(p, rank) {
+    const r = p.image_height / p.image_width;
+    let s = 3 - rank * 0.08;
+    if (hasTag(p, 'solo')) s += 3;
+    if (r >= 1.15 && r <= 2.2) s += 2; else if (r < 0.9) s -= 1.5;
+    if (hasTag(p, 'upper_body') || hasTag(p, 'portrait') || hasTag(p, 'cowboy_shot')) s += 1.5;
+    if (hasTag(p, 'looking_at_viewer')) s += 0.6;
+    if (hasTag(p, 'smile')) s += 0.3;
+    if (hasTag(p, 'chibi') || hasTag(p, 'from_behind') || hasTag(p, 'faceless')) s -= 3;
+    return s;
+  }
+  async function danPage(a) {
+    const list = await danJson('posts.json?limit=60&page=' + a.pg.dn + '&only=' + DAN_ONLY + '&tags=' + encodeURIComponent(a.tag + ' rating:general order:score'));
+    a.pg.dn++;
+    if (list.length < 60 || a.pg.dn > 20) a.end.dn = true;
+    const ok = list.filter(danOk);
+    return ok.filter((p) => hasTag(p, 'solo')).concat(ok.filter((p) => !hasTag(p, 'solo'))).map(danPick);
+  }
+  /* Lấy vài tranh đẹp nhất của một người, đặt tranh hợp làm avatar nhất lên đầu */
+  async function danBest(c, n) {
+    const tag = c.tag || (await danTag(c));
+    if (!tag) return null;
+    if (!c.tag) c.tag = tag;
+    const list = (await danJson('posts.json?limit=40&only=' + DAN_ONLY + '&tags=' + encodeURIComponent(tag + ' rating:general order:score'))).filter(danOk);
+    return list.map((p, i) => ({ p, s: portraitScore(p, i) })).sort((x, y) => y.s - x.s).slice(0, n).map((x) => danPick(x.p).url);
+  }
+  /* Tranh đẹp cho nhiều người một lượt: đặt làm avatar, ảnh cũ vẫn giữ trong bộ sưu tập */
+  let beautifying = false;
+  async function artForCast(people, quiet) {
+    if (beautifying || !people.length) return;
+    if (localFile) { if (!quiet) toast('Mở file trực tiếp từ máy thì Danbooru chặn ảnh. Mở Phòng Chat bằng link web (GitHub Pages) để lấy tranh đẹp.', { err: true, ms: 9000 }); return; }
+    beautifying = true;
+    const btn = $('#castBeautify');
+    btn.disabled = true;
+    let ok = 0;
+    const miss = [];
+    const session = cur;
+    for (let i = 0; i < people.length && cur === session; i++) {
+      const c = people[i];
+      btn.lastChild.textContent = 'Đang lấy tranh ' + (i + 1) + '/' + people.length + '…';
+      try {
+        const urls = await danBest(c, 6);
+        if (!urls || !urls.length) { miss.push(c.name); continue; }
+        c.imgs = urls.concat(imgsOf(c).filter((u) => !urls.includes(u)));
+        c.img = urls[0];
+        ok++;
+        persist(false, true);
+        renderCast();
+        renderHereStrip();
+      } catch (e) {
+        miss.push(c.name);
+        if (/giới hạn/.test(e.message)) await sleep(4000);
+      }
+      await sleep(300);
+    }
+    beautifying = false;
+    btn.disabled = false;
+    btn.lastChild.textContent = 'Tranh đẹp cho cả dàn';
+    if (cur === session) saveCast();
+    toast((ok ? 'Đã đặt tranh đẹp làm avatar cho ' + ok + ' người.' : 'Chưa lấy được tranh nào.') + (miss.length ? ' Chưa tìm ra: ' + miss.slice(0, 4).join(', ') + (miss.length > 4 ? '…' : '') + ' (thêm tên gốc trong phần Sửa rồi thử lại).' : ''), { ms: 9000, err: !ok });
+  }
+
+  async function galleryArt(opt = {}) {
     const c = gal.c;
     if (!c || gal.busy) return;
     const hint = $('#gHint');
     gal.busy = true;
     $('#gArt').disabled = true;
+    let none = false;
     try {
-      if (!(await bridgePing())) {
+      const br = await bridgePing();
+      if (localFile && !br) {
         $('#gBridge').hidden = false;
-        hint.textContent = 'Chưa thấy cầu nối ảnh trong trình duyệt này.';
+        hint.textContent = 'Anh đang mở file trực tiếp từ máy, nên Danbooru chặn ảnh. Mở Phòng Chat bằng link web (GitHub Pages) là có tranh đẹp, hoặc cài cầu nối bên dưới.';
+        none = true;
         return;
       }
       $('#gBridge').hidden = true;
       if (!gal.art) {
-        hint.textContent = 'Đang tìm đúng tên thẻ của ' + c.name + ' trên các trang tranh…';
-        const tag = await booruTag(c);
+        hint.textContent = 'Đang tìm đúng tên của ' + c.name + ' trên các trang tranh…';
+        let tag = c.tag || '';
+        if (!tag && !localFile) { try { tag = await danTag(c); } catch (e) { if (!br) throw e; } }
+        if (!tag && br) tag = await booruTag(c);
         if (gal.c !== c) return;
         if (!tag) {
           showArtTag('');
-          hint.textContent = 'Không tìm ra ' + c.name + ' trên các trang tranh. Bấm “Đổi thẻ” để tự nhập, hoặc thử “Ảnh wiki”, Pinterest.';
+          hint.textContent = 'Không tìm ra ' + c.name + ' trên các trang tranh. Bấm “Đổi thẻ” để tự nhập tên thẻ, hoặc thêm tên gốc (Nhật/Anh) trong phần Sửa.';
+          none = true;
           return;
         }
-        gal.art = { tag, pg: { wh: 1, kc: 1, sb: 0 }, end: {}, solo: true, queue: [] };
+        if (!c.tag) { c.tag = tag; saveCast(); }
+        gal.art = { tag, pg: { dn: 1, wh: 1, kc: 1, sb: 0 }, end: { dn: localFile, wh: !br, kc: !br, sb: !br }, solo: true, queue: [] };
       }
       const a = gal.art;
       showArtTag(a.tag);
-      hint.textContent = 'Đang lấy tranh của ' + c.name + ' từ Wallhaven, Konachan, Safebooru…';
+      hint.textContent = 'Đang lấy tranh của ' + c.name + ' từ ' + (localFile ? '' : 'Danbooru') + (br ? (localFile ? '' : ', ') + 'Wallhaven, Konachan, Safebooru' : '') + '…';
       const errs = [];
       if (a.queue.length < 30) {
-        const jobs = [['wh', whPage], ['kc', kcPage], ['sb', sbPage]].filter(([k]) => !a.end[k]);
+        const jobs = [['dn', danPage], ['wh', whPage], ['kc', kcPage], ['sb', sbPage]].filter(([k]) => !a.end[k]);
         const res = await Promise.allSettled(jobs.map(([, fn]) => fn(a)));
         const lists = [];
         for (const r of res) if (r.status === 'fulfilled') lists.push(r.value); else errs.push((r.reason && r.reason.message) || 'lỗi');
@@ -2710,18 +2841,22 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
         gal.found.push(p);
         added++;
       }
-      const more = a.queue.length > 0 || ['wh', 'kc', 'sb'].some((k) => !a.end[k]);
+      const more = a.queue.length > 0 || ['dn', 'wh', 'kc', 'sb'].some((k) => !a.end[k]);
       const err = errs.length ? ' (Một nguồn bị lỗi: ' + errs[0] + '.)' : '';
+      none = !added && !gal.found.length;
       hint.textContent = added
-        ? 'Bấm vào tranh để thêm vào bộ sưu tập. Đã bỏ tranh hở hang, máu me, ảnh mờ; tranh nhiều người thích xếp trước.' + (more ? ' Bấm “Tranh đẹp” lần nữa để xem thêm.' : ' Đã xem hết tranh.') + err
+        ? 'Bấm vào tranh để thêm vào bộ sưu tập. Chỉ lấy tranh an toàn, tranh một người và nhiều người thích xếp trước.' + (more ? ' Bấm “Tranh đẹp” lần nữa để xem thêm.' : ' Đã xem hết tranh.') + err
         : 'Không còn tranh mới của ' + c.name + '. Thử “Ảnh wiki” hoặc Pinterest.' + err;
       renderGallery();
     } catch (e) {
+      none = !gal.found.length;
       hint.textContent = 'Không lấy được tranh: ' + (e.message || e) + '. Thử lại sau, hoặc dùng “Ảnh wiki”, Pinterest.';
     } finally {
       gal.busy = false;
       $('#gArt').disabled = false;
     }
+    // Lần mở đầu mà không có tranh nào thì lấy tạm ảnh wiki
+    if (none && opt.fallback && gal.c === c) galleryMore();
   }
   function openPinterest() {
     const c = gal.c;
@@ -2758,7 +2893,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     if (!c) return;
     const card = $('#npcCard');
     card.textContent = '';
-    if (c.img) { const im = el('img'); im.referrerPolicy = 'no-referrer'; im.alt = c.name; im.src = c.img; card.append(im); }
+    if (c.img) { const im = el('img'); imgRef(im, c.img); im.alt = c.name; im.src = c.img; card.append(im); }
     else card.append(el('div', 'ph', initial(c.name)));
     card.append(el('b', null, c.name));
     const [now, prev] = S.feel ? feelHistory(2) : [];
@@ -4246,6 +4381,13 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#castGo').onclick = () => searchImages($('#castQ').value);
     $('#castQ').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); searchImages($('#castQ').value); } });
     $('#castFromPrompt').onclick = castFromPrompt;
+    $('#castBeautify').onclick = async () => {
+      const people = cur.cast.filter((c) => !c.hidden);
+      if (!people.length) { toast('Chưa có nhân vật nào. Tra tên hoặc bấm “Lấy danh sách từ prompt” trước.', { err: true }); return; }
+      if (localFile) { artForCast(people); return; }
+      if (!(await ask('Lấy tranh vẽ đẹp nhất trên Danbooru cho ' + people.length + ' nhân vật và đặt làm avatar?\nChỉ lấy tranh an toàn. Ảnh cũ vẫn giữ trong bộ sưu tập của từng người.', { ok: 'Lấy tranh' }))) return;
+      artForCast(people);
+    };
     $('#castAdd').onclick = async () => {
       const name = await ask('Tên nhân vật (như cách truyện gọi):', { ok: 'Thêm', input: '' });
       if (!name || !name.trim()) return;
@@ -4284,7 +4426,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#gTagEdit').onclick = async () => {
       const c = gal.c;
       if (!c || gal.busy) return;
-      const v = await ask('Thẻ của ' + c.name + ' trên Safebooru / Konachan: chữ thường, nối bằng dấu gạch dưới, ví dụ hyuuga_hinata. Để trống để tự tìm lại.', { ok: 'Đổi thẻ', input: c.tag || (gal.art && gal.art.tag) || '' });
+      const v = await ask('Thẻ của ' + c.name + ' trên Danbooru: chữ thường, nối bằng dấu gạch dưới, ví dụ hyuuga_hinata (xem đúng tên trên danbooru.donmai.us). Để trống để tự tìm lại.', { ok: 'Đổi thẻ', input: c.tag || (gal.art && gal.art.tag) || '' });
       if (v === null || gal.c !== c) return;
       const tag = v.trim().toLowerCase().replace(/\s+/g, '_');
       if (tag) c.tag = tag; else delete c.tag;
