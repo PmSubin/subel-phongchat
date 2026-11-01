@@ -311,6 +311,7 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 .steps li::before { content: counter(step); width: 24px; height: 24px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--card2); color: var(--gold); font-size: 12px; font-weight: 600; }
 .steps li.done::before { content: "✓"; background: var(--accent); color: var(--on-accent); }
 .steps li span { flex: 1; }
+.steps li .inp { flex: 0 1 150px; min-width: 0; padding: 6px 10px; font-size: 13px; }
 .steps li.done span { color: var(--muted); }
 .tip { margin: 18px auto 0; max-width: 470px; color: var(--dim); font-size: 12.5px; line-height: 1.65; }
 
@@ -992,9 +993,10 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       <label class="switch"><input id="optStage" type="checkbox"><span>Nhân vật đang có mặt đứng cạnh truyện (màn hình rộng)</span></label>
       <div class="sub">Tên hiển thị</div>
       <div class="grid2">
-        <label class="mini">Người chơi<input id="namePlayer" class="inp" maxlength="24"></label>
+        <label class="mini">Nhân vật của Cậu<input id="namePlayer" class="inp" maxlength="24" placeholder="Tên trong truyện"></label>
         <label class="mini">Người dẫn<input id="nameNarr" class="inp" maxlength="24"></label>
       </div>
+      <div class="hint">Prompt nào viết sẵn cho nhân vật tên Subin thì khi đọc và gửi cho AI, Phòng Chat tự thay “Subin” bằng tên Cậu đặt ở đây.</div>
       <div class="sub">Nút lệnh riêng</div>
       <textarea id="chipText" class="inp" rows="4" spellcheck="false" placeholder="Mỗi dòng một nút, ví dụ:&#10;Túi của tôi&#10;/kho [tên]"></textarea>
       <div class="hint">“Tiếp tục”, “Lưu” và các lệnh /… có trong prompt tự hiện sẵn. Thêm [..] ở cuối nếu lệnh cần gõ tiếp.</div>
@@ -1170,7 +1172,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     key: '', remember: true, model: '', models: [], temperature: 1, maxTokens: 0, safety: 'default', thoughts: false,
     ctxLimit: 0, enterSend: false,
     theme: 'muc', font: 'literata', fontSize: 16, width: 'vua', motion: true, cowOn: true, sound: true, chipsOn: true, soOpen: true,
-    player: 'Subin', narrator: 'Người dẫn', chips: '', panel: true, tab: 'sys', diceN: 1, diceAuto: true, feel: true, fineFeel: true, longLove: true,
+    player: '', narrator: 'Người dẫn', chips: '', panel: true, tab: 'sys', diceN: 1, diceAuto: true, feel: true, fineFeel: true, longLove: true,
     nameAv: true, stage: true,
   };
   const FONTS = { literata: '"Literata", "Noto Serif", Georgia, serif', noto: '"Noto Serif", Georgia, serif', sans: '"Be Vietnam Pro", "Segoe UI", sans-serif' };
@@ -1196,6 +1198,16 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     if (!S.remember) copy.key = '';
     delete copy.sysOpen;
     try { localStorage.setItem(SKEY, JSON.stringify(copy)); } catch (e) { /* bộ nhớ đầy: bỏ qua */ }
+  }
+  /* Tên nhân vật của người chơi. Prompt viết sẵn cho nhân vật tên Subin thì đọc và gửi cho AI với tên người chơi đã đặt */
+  const PROMPT_HERO = 'Subin';
+  const pName = () => (S.player || '').trim();
+  const pLabel = () => pName() || 'Người chơi';
+  const pRef = () => pName() || 'nhân vật của người chơi';
+  function swapHero(text) {
+    const n = pName();
+    if (!text || !n || n === PROMPT_HERO) return text || '';
+    return text.replace(/(?<![\p{L}\p{N}_])(Subin|SUBIN)(?![\p{L}\p{N}_])/gu, (w) => (w === 'SUBIN' ? n.toUpperCase() : n));
   }
 
   /* ================= Lưu trữ: IndexedDB, dự phòng localStorage ================= */
@@ -1701,7 +1713,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     if (fresh.has(t.id)) { wrap.classList.add('enter'); if (!t.pending) fresh.delete(t.id); }
     const main = el('div', 'tmain');
     const head = el('div', 'head');
-    head.append(el('span', 'who', isModel ? S.narrator : S.player), el('span', 'time', fmtTime(t.ts)));
+    head.append(el('span', 'who', isModel ? S.narrator : pLabel()), el('span', 'time', fmtTime(t.ts)));
     if (t.usage) { const u = el('span', 'usage', usageText(t)); u.title = usageTitle(t); head.append(u); }
     if (t.edited) head.append(el('span', 'tag', 'đã sửa'));
     if (t.star) head.append(el('span', 'tag star', '★ đã ghim'));
@@ -1750,12 +1762,12 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       body.innerHTML = md(t.text);
     }
     if (t.note) main.append(el('div', 'note', t.note));
-    wrap.append(el('div', 'avatar', isModel ? '牛' : initial(S.player)), main);
+    wrap.append(el('div', 'avatar', isModel ? '牛' : initial(pLabel())), main);
     return wrap;
   }
   function emptyEl() {
     const e = el('div', 'empty');
-    e.append(el('div', 'seal', '牛'), el('h2', null, 'Mời Cậu nhập cuộc'), el('p', null, 'Ba bước là vào truyện. Mọi thứ lưu ngay trong trình duyệt của Cậu.'));
+    e.append(el('div', 'seal', '牛'), el('h2', null, 'Mời Cậu nhập cuộc'), el('p', null, 'Bốn bước là vào truyện. Mọi thứ lưu ngay trong trình duyệt của Cậu.'));
     const ol = el('ol', 'steps');
     const step = (done, text, label, tab) => {
       const li = el('li', done ? 'done' : '');
@@ -1768,6 +1780,14 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       }
       ol.append(li);
     };
+    const nameLi = el('li', pName() ? 'done' : '');
+    const nameInp = el('input', 'inp');
+    nameInp.maxLength = 24;
+    nameInp.placeholder = 'Tên trong truyện';
+    nameInp.value = pName();
+    nameInp.addEventListener('change', () => { setPlayer(nameInp.value, true); nameLi.classList.toggle('done', !!pName()); });
+    nameLi.append(el('span', null, 'Đặt tên cho nhân vật của Cậu'), nameInp);
+    ol.append(nameLi);
     step(!!S.key && !!S.model, 'Dán API key và chọn model', 'Mở', 'run');
     step(!!(cur.system || '').trim(), 'Dán prompt RP vào Hướng dẫn hệ thống', 'Mở', 'sys');
     step(false, 'Viết tin đầu tiên ở ô bên dưới rồi bấm Gửi');
@@ -1854,7 +1874,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       const b = el('button', 'pinitem');
       b.type = 'button';
       const snip = splitSo(t.text).story.replace(/[*_#>`]/g, '').replace(/\s+/g, ' ').trim();
-      b.append(el('small', null, (t.role === 'user' ? S.player : S.narrator) + ' · ' + fmtDate(t.ts)), el('span', null, snip.slice(0, 150) + (snip.length > 150 ? '…' : '')));
+      b.append(el('small', null, (t.role === 'user' ? pLabel() : S.narrator) + ' · ' + fmtDate(t.ts)), el('span', null, snip.slice(0, 150) + (snip.length > 150 ? '…' : '')));
       b.onclick = () => jumpTo(t);
       pins.append(b);
     }
@@ -1910,22 +1930,24 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   /* Thang tim đầy đủ 15 bậc, bậc cuối là yêu say đắm */
   const LOVE = [
     ['', ''],
-    ['để ý', 'chú ý tới Subin như một người đáng nhớ mặt'],
-    ['tò mò', 'muốn biết Subin là người thế nào, hỏi người khác về Subin'],
-    ['muốn gặp', 'tìm cớ nói chuyện, nhớ chi tiết Subin kể'],
+    ['để ý', 'chú ý tới {P} như một người đáng nhớ mặt'],
+    ['tò mò', 'muốn biết {P} là người thế nào, hỏi người khác về {P}'],
+    ['muốn gặp', 'tìm cớ nói chuyện, nhớ chi tiết {P} kể'],
     ['cảm mến', 'vui khi gặp, hụt hẫng khi bị lạnh nhạt'],
     ['xao xuyến', 'có lúc bối rối không rõ vì sao, bắt đầu tự hỏi lòng mình'],
-    ['rung động', 'nhận ra Subin làm mình rung động, vẫn tự chối'],
+    ['rung động', 'nhận ra {P} làm mình rung động, vẫn tự chối'],
     ['thầm thích', 'biết mình thích, giấu kín với mọi người'],
     ['thích', 'không giấu được bạn thân nữa, biết ghen'],
-    ['thương', 'lo cho Subin như lo cho mình, nhớ khi xa'],
-    ['nhớ nhung', 'nghĩ tới Subin cả lúc không gặp, có chuyện thì tìm Subin trước tiên'],
-    ['yêu', 'sẵn sàng chọn Subin và chấp nhận cái giá'],
-    ['yêu sâu đậm', 'Subin đứng đầu trong mọi tính toán, sợ mất Subin hơn sợ cho mình'],
-    ['gắn bó trọn lòng', 'muốn đi cùng Subin lâu dài, nghĩ về một tương lai có Subin'],
-    ['nguyện cả đời', 'đã tự hứa sẽ ở bên Subin, chịu đổi những điều lớn của đời mình'],
-    ['yêu say đắm', 'toàn tâm toàn ý; vẫn là chính mình, nhưng Subin đã thành một phần không tách khỏi đời mình'],
+    ['thương', 'lo cho {P} như lo cho mình, nhớ khi xa'],
+    ['nhớ nhung', 'nghĩ tới {P} cả lúc không gặp, có chuyện thì tìm {P} trước tiên'],
+    ['yêu', 'sẵn sàng chọn {P} và chấp nhận cái giá'],
+    ['yêu sâu đậm', '{P} đứng đầu trong mọi tính toán, sợ mất {P} hơn sợ cho mình'],
+    ['gắn bó trọn lòng', 'muốn đi cùng {P} lâu dài, nghĩ về một tương lai có {P}'],
+    ['nguyện cả đời', 'đã tự hứa sẽ ở bên {P}, chịu đổi những điều lớn của đời mình'],
+    ['yêu say đắm', 'toàn tâm toàn ý; vẫn là chính mình, nhưng {P} đã thành một phần không tách khỏi đời mình'],
   ];
+  /* {P} trong mô tả là tên nhân vật của người chơi */
+  const loveDesc = (i) => LOVE[i][1].replace(/\{P\}/g, pName() || 'người chơi');
   const FEEL_DEF = {
     pos: ['', 'có thiện cảm', 'dễ chịu', 'quý', 'tin', 'thân', 'gắn bó', 'thân thiết', 'tri kỷ', 'sống chết có nhau', 'như ruột thịt'],
     neg: ['', 'dè chừng', 'lạnh nhạt', 'khó chịu', 'bực ra mặt', 'ghét', 'coi là mối đe dọa', 'thù', 'căm hận', 'muốn trả thù', 'không đội trời chung'],
@@ -1936,8 +1958,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   const feelKind = (c) => (c === '♡' ? 'heart' : c === '+' ? 'pos' : 'neg');
   let scaleMemo = { key: null, sc: null };
   function feelScale() {
-    const sys = (cur && cur.system) || '';
-    const key = (S.feel && S.longLove ? '1|' : '0|') + sys;
+    const sys = swapHero((cur && cur.system) || '');
+    const key = (S.feel && S.longLove ? '1|' : '0|') + (pName() || '-') + '|' + sys;
     if (scaleMemo.key === key) return scaleMemo.sc;
     const sc = { pos: {}, neg: {}, heart: {}, desc: {}, max: { pos: 0, neg: 0, heart: 0 }, base: 3, ext: null, noExt: false };
     for (const line of sys.split('\n')) {
@@ -1983,14 +2005,14 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     for (let i = j + 1; i < LOVE.length && n < FEEL_MAX; i++) {
       n++;
       sc.heart[n] = LOVE[i][0];
-      sc.desc['heart' + n] = LOVE[i][1];
+      sc.desc['heart' + n] = loveDesc(i);
     }
     if (n > top) { sc.ext = { from: top + 1, to: n, base: top }; sc.max.heart = n; }
   }
   /* Số mức hiện trên thang: theo prompt, prompt không định thì 5 */
   const feelTop = (kind) => feelScale().max[kind] || 5;
   const labOf = (kind, n) => feelScale()[kind][n] || FEEL_DEF[kind][n] || '';
-  const descOf = (kind, n) => feelScale().desc[kind + n] || (kind === 'heart' && !feelScale().max.heart && LOVE[n] ? LOVE[n][1] : '');
+  const descOf = (kind, n) => feelScale().desc[kind + n] || (kind === 'heart' && !feelScale().max.heart && LOVE[n] ? loveDesc(n) : '');
   const halfNum = (v) => (v % 1 ? (Math.floor(v) || '') + '½' : String(v));
   const FEEL_RE = /(?:^|[\s·,;|(`])([A-Z]\d{1,2})\s*(♡\s*\d{1,2}(?:[.,]5(?!\d))?|[+\-−–]\s*\d{1,2}(?:[.,]5(?!\d))?)/gu;
   function parseFeel(text) {
@@ -2181,8 +2203,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       'Thang ' + '`♡`' + ' của prompt này dừng ở ' + lv(e.base) + ' ' + (sc.heart[e.base] || '') + '. Phòng Chat nối thêm các bậc phía trên, để một chuyện tình đã thành còn có chỗ lớn lên theo thời gian, tới bậc cuối là yêu say đắm:',
       rows.join(' · ') + '.',
       '- Mọi mức từ ' + lv(1) + ' tới ' + lv(e.base) + ', cùng luật lên xuống, thời gian chờ, khóa và cửa riêng trong prompt, giữ nguyên. Phần nối dài luôn theo khối QUY TẮC TỐI THƯỢNG.',
-      '- Chỉ người đã ở ' + lv(e.base) + ' mới bước lên ' + lv(e.from) + '. Người có khóa, người còn cửa riêng chưa qua hết, và người mà prompt không cho có ' + '`♡`' + ' với Subin không bao giờ vào phần nối dài.',
-      '- Lên mỗi bậc nối dài cần đủ cả bốn điều: đủ thời gian trong truyện (' + waits.join('; ') + '); hai người đã nói ra và cùng chọn nhau; một biến cố chung có cái giá thật mà cả hai cùng đi qua kể từ bậc trước; và suốt khoảng ấy Subin giữ được sự nhất quán bằng việc làm. Không ai lên quá một bậc nối dài trong một tháng.',
+      '- Chỉ người đã ở ' + lv(e.base) + ' mới bước lên ' + lv(e.from) + '. Người có khóa, người còn cửa riêng chưa qua hết, và người mà prompt không cho có ' + '`♡`' + ' với ' + pRef() + ' không bao giờ vào phần nối dài.',
+      '- Lên mỗi bậc nối dài cần đủ cả bốn điều: đủ thời gian trong truyện (' + waits.join('; ') + '); hai người đã nói ra và cùng chọn nhau; một biến cố chung có cái giá thật mà cả hai cùng đi qua kể từ bậc trước; và suốt khoảng ấy ' + pRef() + ' giữ được sự nhất quán bằng việc làm. Không ai lên quá một bậc nối dài trong một tháng.',
       '- Lời nói, quà, sức mạnh, nhảy thời gian hay lệnh ngoài vai không tự đẩy ai lên bậc nối dài. Nhảy thời gian chỉ tính những gì thật sự diễn ra trong khoảng ấy.',
       '- Lùi: nói dối một điều lớn bị lộ, phản bội, bỏ mặc lúc người ấy cần, làm hại người họ thương — lùi ngay một tới hai bậc, có thể rơi xuống dưới ' + lv(e.base) + '. Xa nhau lâu không tin tức: lùi dần, mỗi hai tháng một bậc (có nấc nửa thì mỗi tháng nửa bậc).',
       '- Biểu hiện: người ấy vẫn giữ nguyên lõi tính cách. Tình cảm sâu lộ ra theo cách của chính họ: người lạnh lùng vẫn kiệm lời, người nóng tính vẫn cãi, người bận vẫn có bổn phận, gia đình, bạn bè và việc riêng. Họ vẫn có quyền từ chối, giận, đòi hỏi. Yêu say đắm không biến ai thành người chỉ biết gật đầu.',
@@ -2191,7 +2213,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   }
   /* Hướng dẫn hệ thống gửi cho AI: thêm nấc nửa và thang tim nối dài khi prompt có thang cảm xúc ngầm */
   function systemFor(session) {
-    const sys = session.system || '';
+    const sys = swapHero(session.system || '');
     if (!S.feel || !sys.includes('⚙') || !/`(♡|[+\-−–])\d`/.test(sys)) return sys;
     const sc = session === cur ? feelScale() : null;
     const parts = [];
@@ -3483,10 +3505,24 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     RECITATION: 'Google chặn vì câu trả lời giống văn bản có bản quyền.',
   };
 
+  /* Đặt tên nhân vật của người chơi; keep = đang gõ ở màn chào, không vẽ lại màn chào kẻo mất chỗ gõ */
+  let askedName = false;
+  function setPlayer(v, keep) {
+    S.player = (v || '').trim().slice(0, 24);
+    saveSettings();
+    $('#namePlayer').value = S.player;
+    if (keep) { if (S.tab === 'cast' && panelVisible()) renderCast(); return; }
+    renderMsgs();
+  }
   async function send() {
     if (gen) return;
     if (!S.key) { openPanel('run'); toast('Dán API key trước đã', { err: true }); $('#keyInp').focus(); return; }
     if (!S.model) { openPanel('run'); toast('Chọn model trước đã', { err: true }); return; }
+    if (!pName() && !askedName) {
+      askedName = true;
+      const n = await ask('Nhân vật của Cậu tên là gì? Đổi lại được ở tab Giao diện.', { ok: 'Lưu tên', input: '' });
+      if (n && n.trim()) setPlayer(n);
+    }
     unlockAudio();
     const input = $('#input');
     const text = input.value.trim();
@@ -4774,6 +4810,10 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     if (cowHop(flip ? 480 : 290)) {
       cow.spinning = flip;
       if (!gen) { cow.mode = 'look'; cow.until = t + 1800; }
+    } else if (flip && !cow.on && !cow.drag && !cow.tw && cowMoves()) {
+      /* Đang lơ lửng mà được vuốt đủ 5 lần: bật thêm lên một chút rồi nhào lộn giữa không trung */
+      cow.vy = Math.min(cow.vy, -420);
+      cow.spinning = true;
     }
     cowFx('heart', '♥', { jx: 14, dx: (Math.random() - 0.5) * 22 });
     cowSay(flip ? 'Úi trời, chóng mặt!' : gen ? pick(COW_BUSY) : pick(COW_HI));
@@ -4998,7 +5038,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const lines = ['# ' + titleOf(cur), ''];
     for (const t of cur.turns) {
       if (t.error) continue;
-      lines.push('=== ' + (t.role === 'user' ? S.player : S.narrator) + ' · ' + fmtDate(t.ts) + ' ===', t.text, '');
+      lines.push('=== ' + (t.role === 'user' ? pLabel() : S.narrator) + ' · ' + fmtDate(t.ts) + ' ===', t.text, '');
     }
     download(fileName() + '.txt', '﻿' + lines.join('\r\n'), 'text/plain;charset=utf-8');
   }
@@ -5059,7 +5099,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
         const day = new Date(t.ts).toLocaleDateString('vi-VN');
         if (day !== lastDay) { lastDay = day; body.push('<div class="sep">' + esc(day) + '</div>'); }
         if (t.role === 'user') {
-          body.push('<section class="turn u"><div class="who">' + esc(S.player) + '</div><div class="md">' + md(t.text) + '</div></section>');
+          body.push('<section class="turn u"><div class="who">' + esc(pLabel()) + '</div><div class="md">' + md(t.text) + '</div></section>');
         } else {
           const { story, so } = splitSo(t.text);
           body.push('<section class="turn m"><div class="who">' + esc(S.narrator) + ' · ' + fmtTime(t.ts) + '</div><div class="md">' + md(story) + '</div>'
@@ -5318,7 +5358,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $('#optSound').addEventListener('change', (e) => { S.sound = e.target.checked; saveSettings(); if (S.sound) { unlockAudio(); chime(); } });
     $('#optChips').addEventListener('change', (e) => { S.chipsOn = e.target.checked; saveSettings(); applyLook(); });
     $('#optSo').addEventListener('change', (e) => { S.soOpen = e.target.checked; saveSettings(); renderMsgs(); });
-    $('#namePlayer').addEventListener('change', (e) => { S.player = e.target.value.trim() || 'Người chơi'; e.target.value = S.player; saveSettings(); renderMsgs(); });
+    $('#namePlayer').addEventListener('change', (e) => setPlayer(e.target.value));
     $('#nameNarr').addEventListener('change', (e) => { S.narrator = e.target.value.trim() || 'Người dẫn'; e.target.value = S.narrator; saveSettings(); renderMsgs(); });
     $('#chipText').addEventListener('input', (e) => { S.chips = e.target.value; saveSettings(); renderChips(true); });
 
