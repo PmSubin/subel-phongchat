@@ -24,7 +24,7 @@
   --text: #2c2219; --muted: #6c5a48; --dim: #958169;
   --accent: #b23a2d; --accent2: #c94c3e; --on-accent: #fff6ec; --gold: #8b5a1e; --violet: #6b4c9e; --q: #3a2717; --narr: #6b43a8; --ooc: #a34b07;
   --user: #f7efdf; --glow: rgba(178, 58, 45, 0.08); --glow2: rgba(139, 90, 30, 0.08);
-  --mount: #e2d4b6; --mount2: #e9ddc3; --sun: rgba(178, 58, 45, 0.16); --petal: #d9848f;
+  --mount: #e2d4b6; --mount2: #e9ddc3; --sun: rgba(178, 58, 45, 0.16); --petal: #c99a45;
   --shadow: 0 14px 32px rgba(80, 55, 25, 0.2); --shadow-sm: 0 6px 16px rgba(80, 55, 25, 0.12);
   --glass: rgba(252, 247, 236, 0.8); --hi: rgba(255, 255, 255, 0.65); --mist: rgba(255, 252, 244, 0.55); --moon: rgba(178, 58, 45, 0.16); --grain: 0.09;
   color-scheme: light;
@@ -148,10 +148,29 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 [data-motion="1"] .landscape .m1 { animation: drift 46s ease-in-out infinite alternate; }
 [data-motion="1"] .landscape .m2 { animation: drift 58s ease-in-out infinite alternate-reverse; }
 @keyframes drift { from { transform: translateX(0); } to { transform: translateX(22%); } }
+/* Núi và trăng trôi nhẹ theo vị trí cuộn: cuộn về đoạn cũ thì trăng lên cao, núi lùi xuống */
+[data-motion="1"] .landscape :is(.moon, .r1, .r2, .r3) { transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+[data-motion="1"] .landscape .moon { transform: translateY(calc((1 - var(--pf, 1)) * -46px)); }
+[data-motion="1"] .landscape .r1 { transform: translateY(calc((1 - var(--pf, 1)) * 30px)); }
+[data-motion="1"] .landscape .r2 { transform: translateY(calc((1 - var(--pf, 1)) * 18px)); }
+[data-motion="1"] .landscape .r3 { transform: translateY(calc((1 - var(--pf, 1)) * 8px)); }
 #fx { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
-.petal { position: absolute; top: -24px; width: 10px; height: 7px; border-radius: 70% 0 70% 0; background: var(--petal); opacity: 0; }
-[data-motion="1"] .petal { animation: fall var(--d, 16s) linear infinite; animation-delay: var(--delay, 0s); }
-@keyframes fall { 0% { opacity: 0; transform: translate(0, 0) rotate(0); } 8% { opacity: 0.5; } 90% { opacity: 0.35; } 100% { opacity: 0; transform: translate(var(--dx, -120px), 104vh) rotate(560deg); } }
+/* Cánh hoa, lá: lớp ngoài rơi, lớp trong đung đưa và lật trong không gian */
+.petal { position: absolute; top: -30px; opacity: 0; }
+.petal i { display: block; width: calc(10px * var(--s, 1)); height: calc(7px * var(--s, 1)); border-radius: 70% 0 70% 0; background: var(--petal); }
+.petal.leaf i { width: calc(11px * var(--s, 1)); height: calc(9px * var(--s, 1)); border-radius: 100% 0 60% 40%; background: linear-gradient(135deg, var(--petal), color-mix(in srgb, var(--petal) 70%, #6b4a10)); }
+[data-motion="1"] .petal { animation: fall var(--d, 16s) linear var(--delay, 0s) infinite; }
+[data-motion="1"] .petal i { animation: sway calc(var(--d, 16s) / 5) ease-in-out var(--delay, 0s) infinite alternate; }
+@keyframes fall { 0% { opacity: 0; transform: translate3d(0, 0, 0); } 8% { opacity: var(--o, 0.5); } 86% { opacity: calc(var(--o, 0.5) * 0.7); } 100% { opacity: 0; transform: translate3d(var(--dx, -120px), 104vh, 0); } }
+@keyframes sway { from { transform: translateX(calc(var(--sw, 16px) * -1)) rotate(-25deg) rotateY(0deg); } to { transform: translateX(var(--sw, 16px)) rotate(150deg) rotateY(170deg); } }
+/* Đêm trăng: sao lấp lánh và đom đóm thay cho hoa rơi */
+.star { position: absolute; width: var(--z, 2px); height: var(--z, 2px); border-radius: 50%; background: #fff6d8; opacity: 0.45; box-shadow: 0 0 4px rgba(255, 246, 216, 0.75); }
+[data-motion="1"] .star { animation: twinkle var(--d, 4s) ease-in-out var(--delay, 0s) infinite alternate; }
+@keyframes twinkle { from { opacity: 0.12; transform: scale(0.7); } to { opacity: 0.9; transform: scale(1.15); } }
+.fly { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #f6e7a1; box-shadow: 0 0 6px 2px rgba(246, 231, 161, 0.55), 0 0 18px 5px rgba(246, 231, 161, 0.16); opacity: 0; }
+[data-motion="1"] .fly { animation: roam var(--d, 12s) ease-in-out var(--delay, 0s) infinite alternate, glow calc(var(--d, 12s) / 4) ease-in-out var(--delay, 0s) infinite alternate; }
+@keyframes roam { 0% { transform: translate(0, 0); } 33% { transform: translate(var(--x1), var(--y1)); } 66% { transform: translate(var(--x2), var(--y2)); } 100% { transform: translate(var(--x3), var(--y3)); } }
+@keyframes glow { 0%, 25% { opacity: 0; } 60%, 100% { opacity: 0.9; } }
 
 #top { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 88%, transparent), color-mix(in srgb, var(--bg) 62%, transparent)); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line), 0 12px 28px -24px rgba(0, 0, 0, 0.8); }
 #menuBtn { display: none; }
@@ -174,6 +193,23 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 .turn { display: flex; gap: 14px; margin: 0 0 28px; }
 .turn.enter { animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); filter: blur(3px); } }
+.turn.user.enter { animation-name: rise-r; }
+@keyframes rise-r { from { opacity: 0; transform: translateX(18px) scale(0.98); filter: blur(2px); } }
+/* Nút về tin mới nhất: dính ở đáy vùng cuộn, chỉ hiện khi đã cuộn lên xa */
+.jumpwrap { position: sticky; bottom: 58px; height: 0; display: flex; align-items: flex-start; justify-content: center; z-index: 3; pointer-events: none; }
+.jump { display: inline-flex; align-items: center; gap: 7px; transform: translateY(calc(-100% + 14px)) scale(0.9); opacity: 0; padding: 7px 14px 7px 11px; border-radius: 999px; border: 1px solid var(--line2); background: var(--glass); backdrop-filter: blur(14px); color: var(--gold); font-size: 12.5px; font-weight: 600; box-shadow: inset 0 1px 0 var(--hi), var(--shadow-sm); transition: opacity 0.22s, transform 0.35s cubic-bezier(0.2, 1.4, 0.4, 1); }
+.jump svg.i { width: 15px; height: 15px; }
+.jump.on { opacity: 1; transform: translateY(-100%); pointer-events: auto; }
+.jump.live::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 0 0 var(--accent2); animation: live 1.4s ease-out infinite; }
+@keyframes live { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent2) 60%, transparent); } 100% { box-shadow: 0 0 0 8px transparent; } }
+/* Đoạn đang được đọc thành tiếng */
+.md .reading { background: color-mix(in srgb, var(--gold) 10%, transparent); box-shadow: 0 0 0 7px color-mix(in srgb, var(--gold) 10%, transparent); border-radius: 4px; }
+.md :is(p, li, blockquote, h1, h2, h3, h4) { transition: background-color 0.35s, box-shadow 0.35s; }
+.ib.read.on { color: var(--gold); background: color-mix(in srgb, var(--gold) 14%, transparent); }
+.ib.read.on svg.i { fill: none; }
+[data-motion="1"] .ib.read.on svg.i { animation: speak 0.9s ease-in-out infinite alternate; }
+@keyframes speak { from { transform: scale(1); } to { transform: scale(1.14); } }
+.turn.speaking .acts { opacity: 1; }
 #msgs { position: relative; }
 #msgs::before { content: ""; position: absolute; left: 16px; top: 10px; bottom: 10px; width: 1px; background: linear-gradient(180deg, transparent, var(--line2) 8%, var(--line2) 92%, transparent); opacity: 0.6; pointer-events: none; }
 #msgs:has(> .empty)::before { display: none; }
@@ -252,6 +288,8 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 .so-card > .md strong { color: var(--text); }
 
 .wait { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-style: italic; font-family: var(--story); }
+[data-motion="1"] .wtxt { background: linear-gradient(100deg, var(--muted) 0 38%, var(--gold) 50%, var(--muted) 62% 100%) 0 0 / 260% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 2.4s linear infinite; }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -160% 0; } }
 .elapsed { font-style: normal; font-family: var(--ui); font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums; }
 .dots { display: inline-flex; gap: 4px; }
 .dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); animation: dot 1.2s infinite ease-in-out; }
@@ -332,17 +370,18 @@ body.no-chips .chips { display: none; }
 /* Bò hiệp khách */
 .cowtrack { position: absolute; left: 16px; right: 16px; top: -41px; height: 42px; pointer-events: none; }
 body.no-cow .cowtrack { display: none; }
-.cow { position: absolute; left: 0; bottom: -1px; width: 58px; height: 44px; pointer-events: auto; cursor: pointer; will-change: transform; }
-.cow .flip { width: 58px; height: 44px; transform: scaleX(-1); transition: transform 0.22s; }
+/* Vị trí, bước chân, độ nảy, độ nghiêng do JS tính từng khung hình (vật lý nhỏ); CSS chỉ lo đầu, đuôi, khăn, mắt */
+.cow { position: absolute; left: 0; bottom: -1px; width: 58px; height: 44px; pointer-events: auto; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; will-change: transform; }
+.cow[data-state="held"] { cursor: grabbing; }
+.cowshadow { position: absolute; left: 13px; bottom: 0; width: 32px; height: 4px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.34), transparent); will-change: transform, opacity; }
+.cow .hop { width: 58px; height: 44px; transform-origin: 50% 100%; will-change: transform; }
+.cow .flip { width: 58px; height: 44px; transform: scaleX(-1); transition: transform 0.32s cubic-bezier(0.45, 0, 0.25, 1); }
 .cow[data-dir="1"] .flip { transform: none; }
-.cow .hop { width: 58px; height: 44px; }
-.cow.hopping .hop { animation: hop 0.42s ease-out; }
-@keyframes hop { 0% { transform: translateY(0); } 40% { transform: translateY(-12px) rotate(-5deg); } 100% { transform: translateY(0); } }
-.moo { display: block; width: 58px; height: 44px; overflow: visible; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35)); }
-.moo :is(.leg, .tail, .head, .tassel, .scarf, .eye) { transform-box: fill-box; }
+.moo { display: block; width: 58px; height: 44px; overflow: visible; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)); transform-origin: 50% 100%; }
+.moo :is(.leg, .tail, .head, .nod, .tassel, .scarf, .eye) { transform-box: fill-box; }
 .moo .leg { transform-origin: 50% 0%; }
 .moo .tail { transform-origin: 100% 0%; }
-.moo .head { transform-origin: 12% 85%; }
+.moo :is(.head, .nod) { transform-origin: 12% 85%; }
 .moo .tassel { transform-origin: 0% 0%; }
 .moo .scarf { transform-origin: 100% 20%; }
 .moo .eye { transform-origin: 50% 50%; }
@@ -351,31 +390,44 @@ body.no-cow .cowtrack { display: none; }
 [data-motion="1"] .moo .scarf { animation: flutter 0.9s ease-in-out infinite alternate; }
 [data-motion="1"] .moo .tassel { animation: tassel 1.2s ease-in-out infinite alternate; }
 [data-motion="1"] .moo .eye { animation: c-blink 4.2s infinite; }
-[data-motion="1"] .cow[data-state="walk"] .leg-a { animation: leg 0.42s ease-in-out infinite alternate; }
-[data-motion="1"] .cow[data-state="walk"] .leg-b { animation: leg 0.42s ease-in-out infinite alternate-reverse; }
-[data-motion="1"] .cow[data-state="walk"] .upper { animation: trot 0.21s ease-in-out infinite alternate; }
-[data-motion="1"] .cow[data-state="walk"] .head { animation: headbob 0.42s ease-in-out infinite alternate; }
-[data-motion="1"] .cow[data-state="run"] .leg-a { animation: leg-run 0.17s linear infinite alternate; }
-[data-motion="1"] .cow[data-state="run"] .leg-b { animation: leg-run 0.17s linear infinite alternate-reverse; }
-[data-motion="1"] .cow[data-state="run"] .upper { animation: gallop 0.17s ease-in-out infinite alternate; }
-[data-motion="1"] .cow[data-state="run"] .head { animation: headbob 0.17s ease-in-out infinite alternate; }
-[data-motion="1"] .cow[data-state="run"] .tail { animation: swish 0.2s linear infinite alternate; }
-[data-motion="1"] .cow[data-state="run"] .scarf { animation: flutter 0.14s linear infinite alternate; }
-[data-motion="1"] .cow[data-state="nibble"] .head { animation: graze 2.6s ease-in-out infinite; }
+[data-motion="1"] .cow:is([data-state="graze"], [data-state="look"], [data-state="watch"], [data-state="sleep"], [data-state="think"]) .moo { animation: breathe 3.4s ease-in-out infinite; }
+[data-motion="1"] .cow[data-state="walk"] .tail { animation-duration: 0.7s; }
+[data-motion="1"] .cow:is([data-state="run"], [data-state="held"], [data-state="air"]) .tail { animation: swish 0.2s linear infinite alternate; }
+[data-motion="1"] .cow:is([data-state="run"], [data-state="held"], [data-state="air"]) .scarf { animation: flutter 0.14s linear infinite alternate; }
+[data-motion="1"] .cow[data-state="graze"] .head { animation: graze 2.6s ease-in-out infinite; }
 [data-motion="1"] .cow[data-state="think"] .head { animation: ponder 1.8s ease-in-out infinite; }
-@keyframes leg { from { transform: rotate(-24deg); } to { transform: rotate(24deg); } }
-@keyframes leg-run { from { transform: rotate(-40deg); } to { transform: rotate(36deg); } }
-@keyframes trot { from { transform: translateY(0); } to { transform: translateY(-1.8px); } }
-@keyframes gallop { from { transform: translateY(0) rotate(0); } to { transform: translateY(-4.5px) rotate(-3.5deg); } }
-@keyframes headbob { from { transform: rotate(-4deg); } to { transform: rotate(5deg); } }
+[data-motion="1"] .cow[data-state="look"] .head { animation: look 3.2s ease-in-out infinite; }
+[data-motion="1"] .cow[data-state="watch"] .head { animation: perk 0.8s ease-in-out infinite alternate; }
+[data-motion="1"] .cow[data-state="held"] .head { animation: ponder 0.45s ease-in-out infinite; }
+.cow[data-state="sleep"] .head { transform: rotate(16deg); }
+[data-motion="1"] .cow[data-state="sleep"] .head { animation: doze 3.4s ease-in-out infinite; }
+.cow[data-state="sleep"] .eye { animation: none !important; transform: scaleY(0.12); }
+[data-motion="1"] .cow[data-state="sleep"] :is(.tail, .scarf, .tassel) { animation-duration: 3s; }
 @keyframes graze { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(34deg); } 40% { transform: rotate(29deg); } 55% { transform: rotate(34deg); } 70% { transform: rotate(30deg); } 85% { transform: rotate(0); } }
 @keyframes ponder { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(-12deg) translateY(-1px); } }
+@keyframes look { 0%, 100% { transform: rotate(-3deg); } 30%, 52% { transform: rotate(-15deg); } 76% { transform: rotate(7deg); } }
+@keyframes perk { from { transform: rotate(-9deg); } to { transform: rotate(-14deg) translateY(-0.6px); } }
+@keyframes doze { 0%, 100% { transform: rotate(16deg); } 50% { transform: rotate(20deg); } }
+@keyframes breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(0.992, 1.024); } }
 @keyframes swish { from { transform: rotate(-16deg); } to { transform: rotate(20deg); } }
 @keyframes flutter { from { transform: rotate(-7deg) scaleY(0.9); } to { transform: rotate(9deg) scaleY(1.1); } }
 @keyframes tassel { from { transform: rotate(-12deg); } to { transform: rotate(14deg); } }
 @keyframes c-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
-.cowsay { position: absolute; bottom: 47px; left: 29px; transform: translate(-50%, 5px); white-space: nowrap; padding: 4px 10px; border-radius: 10px; background: var(--card2); border: 1px solid var(--line2); font-size: 12px; color: var(--text); opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none; box-shadow: var(--shadow-sm); }
-.cowsay.on { opacity: 1; transform: translate(-50%, 0); }
+.cowsay { position: absolute; bottom: 47px; left: 29px; transform: translate(-50%, 6px) scale(0.85); transform-origin: 50% 100%; white-space: nowrap; padding: 4px 10px; border-radius: 10px; background: var(--card2); border: 1px solid var(--line2); font-size: 12px; color: var(--text); opacity: 0; transition: opacity 0.2s, transform 0.32s cubic-bezier(0.2, 1.5, 0.4, 1); pointer-events: none; box-shadow: var(--shadow-sm); }
+.cowsay.on { opacity: 1; transform: translate(-50%, 0) scale(1); }
+/* Hạt nhỏ quanh bò: tim, chữ z khi ngủ, dấu chấm than, bụi dưới chân */
+.cfx { position: absolute; pointer-events: none; transform: translateX(-50%); font-weight: 700; line-height: 1; white-space: nowrap; }
+.cfx.heart, .cfx.note, .cfx.drop { font-size: 15px; animation: fx-rise 1.15s ease-out forwards; }
+.cfx.heart { color: var(--accent2); }
+.cfx.note { color: var(--gold); }
+.cfx.drop { color: #7fb2e5; font-size: 13px; }
+.cfx.mark { color: var(--gold); font-size: 18px; animation: fx-pop 0.95s ease-out forwards; }
+.cfx.zz { color: var(--muted); font-size: 12px; font-style: italic; font-family: var(--story); animation: fx-z 2.3s ease-out forwards; }
+.cfx.dust { width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--muted) 42%, transparent); animation: fx-dust 0.65s ease-out forwards; }
+@keyframes fx-rise { 0% { opacity: 0; transform: translate(-50%, 4px) scale(0.5); } 22% { opacity: 1; transform: translate(-50%, -6px) scale(1.15); } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), -40px) scale(0.9); } }
+@keyframes fx-pop { 0% { opacity: 0; transform: translate(-50%, 6px) scale(0.3); } 28% { opacity: 1; transform: translate(-50%, -8px) scale(1.3); } 70% { opacity: 1; transform: translate(-50%, -10px) scale(1); } 100% { opacity: 0; transform: translate(-50%, -14px) scale(1); } }
+@keyframes fx-z { 0% { opacity: 0; transform: translate(-50%, 0) scale(0.6) rotate(-10deg); } 25% { opacity: 0.9; } 100% { opacity: 0; transform: translate(calc(-50% + 20px), -36px) scale(1.5) rotate(8deg); } }
+@keyframes fx-dust { from { opacity: 0.85; transform: translate(-50%, 0) scale(0.5); } to { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), -7px) scale(2.3); } }
 
 /* ================= Bảng bên phải ================= */
 #panel { width: 396px; flex: none; display: flex; flex-direction: column; min-height: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 95%, transparent), color-mix(in srgb, var(--panel) 86%, transparent)); backdrop-filter: blur(16px); border-left: 1px solid var(--line); box-shadow: inset 1px 0 0 var(--hi); z-index: 3; }
@@ -595,8 +647,19 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .mhead span { margin-left: auto; color: var(--dim); font-size: 12px; }
 .mbox textarea { flex: 1; border: 0; outline: none; resize: none; padding: 18px 22px; background: var(--bg); line-height: 1.65; font-size: 13.5px; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
 
-#toast { position: fixed; left: 50%; bottom: 110px; transform: translate(-50%, 10px); opacity: 0; pointer-events: none; padding: 10px 16px; border-radius: 14px; background: var(--glass); backdrop-filter: blur(18px); border: 1px solid var(--line2); box-shadow: inset 0 1px 0 var(--hi), var(--shadow); transition: 0.25s; z-index: 60; display: flex; gap: 14px; align-items: center; max-width: calc(100% - 32px); line-height: 1.5; }
-#toast.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+/* Mở bảng, hộp thoại, đổi tab: hiện ra có đà */
+[data-motion="1"] .pane:not([hidden]) { animation: pane-in 0.34s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes pane-in { from { opacity: 0; transform: translateY(10px); } }
+[data-motion="1"] :is(.modal:not([hidden]), #ask) { animation: fade-in 0.2s ease; }
+[data-motion="1"] :is(.modal:not([hidden]) > div, #ask .abox) { animation: pop-in 0.38s cubic-bezier(0.2, 1.25, 0.4, 1); }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(14px) scale(0.95); } }
+/* Đổi bảng màu: màu mới loang ra từ chỗ bấm (trình duyệt có View Transitions) */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { animation: theme-in 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes theme-in { from { clip-path: circle(0 at var(--vx, 50%) var(--vy, 50%)); } to { clip-path: circle(150vmax at var(--vx, 50%) var(--vy, 50%)); } }
+#toast { position: fixed; left: 50%; bottom: 110px; transform: translate(-50%, 14px) scale(0.94); opacity: 0; pointer-events: none; padding: 10px 16px; border-radius: 14px; background: var(--glass); backdrop-filter: blur(18px); border: 1px solid var(--line2); box-shadow: inset 0 1px 0 var(--hi), var(--shadow); transition: opacity 0.22s, transform 0.42s cubic-bezier(0.2, 1.45, 0.4, 1); z-index: 60; display: flex; gap: 14px; align-items: center; max-width: calc(100% - 32px); line-height: 1.5; }
+#toast.on { opacity: 1; transform: translate(-50%, 0) scale(1); pointer-events: auto; }
 #toast.err { border-color: color-mix(in srgb, var(--accent2) 70%, transparent); }
 #toast button { border: 0; background: none; color: var(--gold); font-weight: 600; padding: 0; white-space: nowrap; }
 
@@ -630,8 +693,9 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 @supports (-webkit-touch-callout: none) {
   input, textarea, select { font-size: 16px !important; }
 }
+/* Công tắc Hiệu ứng động trong trang là thứ quyết định; máy đặt giảm chuyển động thì công tắc mặc định tắt cho người mới */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  [data-motion="0"] *, [data-motion="0"] *::before, [data-motion="0"] *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 </style>
 </head>
@@ -664,16 +728,17 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 
     <div id="scroll">
       <div class="col"><div id="msgs"></div></div>
+      <div class="jumpwrap"><button id="jump" class="jump" type="button" tabindex="-1"><i data-ic="down"></i><span>Mới nhất</span></button></div>
     </div>
 
     <footer id="composer">
       <div class="box">
         <div id="cowTrack" class="cowtrack" aria-hidden="true">
-          <div id="cow" class="cow" data-state="nibble" data-dir="-1" title="Bò hiệp khách">
+          <div id="cow" class="cow" data-state="graze" data-dir="-1" title="Bò hiệp khách: bấm để vuốt ve, kéo để nhấc lên">
             <span id="cowSay" class="cowsay"></span>
+            <span class="cowshadow"></span>
             <div class="hop"><div class="flip">
 <svg class="moo" viewBox="0 0 80 60" focusable="false">
-<ellipse cx="37" cy="56.6" rx="22" ry="2.1" fill="rgba(0,0,0,0.28)"/>
 <g class="leg leg-a"><rect x="26" y="35" width="5.5" height="19" rx="2.6" fill="#d3c6ab" stroke="#1c1612" stroke-width="1.5"/><rect x="26" y="50.5" width="5.5" height="4" rx="1.2" fill="#2a221c"/></g>
 <g class="leg leg-b"><rect x="51" y="35" width="5.5" height="19" rx="2.6" fill="#d3c6ab" stroke="#1c1612" stroke-width="1.5"/><rect x="51" y="50.5" width="5.5" height="4" rx="1.2" fill="#2a221c"/></g>
 <g class="upper">
@@ -689,7 +754,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 <path d="M49.6 24.4 Q54.6 20.6 57.4 22.4 L58.4 31.2 Q53.2 33.4 49.6 33 Z" fill="#efe5cf" stroke="#1c1612" stroke-width="2" stroke-linejoin="round"/>
 <g class="scarf"><path d="M50.4 29 Q43 26.6 37.6 29.8 Q42 31 46 31.2 Q41 33.2 36.8 36.4 Q45 35.4 50.6 31.4 Z" fill="#c8402f"/></g>
 <path d="M49.2 27.2 Q54 31.4 58.2 28.2 L58.8 31.4 Q54 35 49.6 30.8 Z" fill="#c8402f"/>
-<g class="head">
+<g class="nod"><g class="head">
 <path d="M57 14.6 Q57 9.4 61.2 8.2" fill="none" stroke="#d9c39a" stroke-width="2.4" stroke-linecap="round"/>
 <ellipse cx="53.6" cy="18.8" rx="4.1" ry="1.8" fill="#efe5cf" stroke="#1c1612" stroke-width="1.5" transform="rotate(-22 53.6 18.8)"/>
 <path d="M53 16 Q60 11 66 15 Q70.2 18 69.2 24 Q68 30.2 62 31 Q55 31.2 53 25 Q51.2 20 53 16 Z" fill="#efe5cf" stroke="#1c1612" stroke-width="2"/>
@@ -698,7 +763,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 <g class="eye"><path d="M58.8 18.8 L62.6 20" stroke="#1c1612" stroke-width="1.8" stroke-linecap="round"/><circle cx="61" cy="21.8" r="1.1" fill="#1c1612"/></g>
 <path d="M47.6 14.6 Q59 0.6 70.4 14.6 Q59 18.2 47.6 14.6 Z" fill="#2a221c" stroke="#efe5cf" stroke-width="0.8"/>
 <path d="M50.8 13.3 Q59 16.2 67.2 13.3" fill="none" stroke="#c8402f" stroke-width="1.3"/>
-</g>
+</g></g>
 </g>
 <g class="leg leg-b"><rect x="20" y="35" width="6" height="19" rx="2.6" fill="#efe5cf" stroke="#1c1612" stroke-width="1.8"/><rect x="20" y="50.5" width="6" height="4" rx="1.2" fill="#2a221c"/></g>
 <g class="leg leg-a"><rect x="46" y="35" width="6" height="19" rx="2.6" fill="#efe5cf" stroke="#1c1612" stroke-width="1.8"/><rect x="46" y="50.5" width="6" height="4" rx="1.2" fill="#2a221c"/></g>
@@ -853,11 +918,24 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       <div class="sub" style="margin-top:4px">Độ rộng cột truyện</div>
       <div id="widthSeg" class="seg"><button type="button" data-v="hep">Hẹp</button><button type="button" data-v="vua">Vừa</button><button type="button" data-v="rong">Rộng</button></div>
       <div class="sub">Cho vui</div>
-      <label class="switch"><input id="optMotion" type="checkbox"><span>Hiệu ứng động (hoa rơi, ấn triện)</span></label>
+      <label class="switch"><input id="optMotion" type="checkbox"><span>Hiệu ứng động (hoa rơi, đom đóm, ấn triện, cuộn mượt)</span></label>
+      <div id="motionHint" class="hint" style="margin-top:0" hidden>Máy này đang bật “giảm chuyển động” trong cài đặt hệ thống. Phòng Chat vẫn chạy hiệu ứng theo công tắc trên; thấy chóng mặt thì tắt đi.</div>
       <label class="switch"><input id="optCow" type="checkbox"><span>Bò hiệp khách trên ô nhập</span></label>
+      <div class="hint" style="margin-top:0">Bấm vào bò để vuốt ve, bấm liền 5 lần là bò nhào lộn. Giữ và kéo để nhấc bò lên, thả ra là bò rơi. Để yên lâu thì bò ngủ, anh gõ chữ thì bò ngẩng lên xem.</div>
       <label class="switch"><input id="optSound" type="checkbox"><span>Tiếng chuông khi AI viết xong</span></label>
       <label class="switch"><input id="optChips" type="checkbox"><span>Nút lệnh nhanh trên ô nhập</span></label>
       <label class="switch"><input id="optSo" type="checkbox"><span>Mở sẵn khung Sổ trong mỗi lượt</span></label>
+      <div class="sub">Đọc truyện thành tiếng</div>
+      <label class="switch"><input id="optTtsAuto" type="checkbox"><span>Tự đọc mỗi khi AI viết xong</span></label>
+      <div class="field" style="margin:8px 0 12px">
+        <span class="lab">Tốc độ đọc <span id="ttsRateVal" class="val"></span></span>
+        <input id="ttsRate" type="range" min="0.6" max="1.8" step="0.05">
+      </div>
+      <div class="field">
+        <span class="lab">Giọng</span>
+        <div class="line2"><select id="ttsVoice" class="inp" aria-label="Giọng đọc"></select><button id="ttsTest" class="btn" type="button">Nghe thử</button></div>
+        <div class="hint">Bấm biểu tượng loa ở mỗi lượt của AI để nghe. Lời thoại được đọc giọng cao hơn lời dẫn, phần trong ngoặc ( ) được bỏ qua, đoạn đang đọc sẽ sáng lên. Esc để dừng. iPhone chưa có giọng Việt thì vào Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói → Tiếng Việt để tải.</div>
+      </div>
       <div class="sub">Tên hiển thị</div>
       <div class="grid2">
         <label class="mini">Người chơi<input id="namePlayer" class="inp" maxlength="24"></label>
@@ -1018,6 +1096,8 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>',
     users: '<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.6 14.1A4.6 4.6 0 0 1 21 18.6"/>',
     image: '<rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/>',
+    sound: '<path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18.2 6.4a7.8 7.8 0 0 1 0 11.2"/>',
+    down: '<path d="M12 5v14M6 13l6 6 6-6"/>',
   };
   const ic = (name) => '<svg class="i" viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[name] || '') + '</svg>';
   function iconBtn(name, title, fn, cls) {
@@ -1037,6 +1117,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     ctxLimit: 0, enterSend: false,
     theme: 'muc', font: 'literata', fontSize: 16, width: 'vua', motion: true, cowOn: true, sound: true, chipsOn: true, soOpen: true,
     player: 'Subin', narrator: 'Người dẫn', chips: '', panel: true, tab: 'sys', diceN: 1, diceAuto: true, feel: true,
+    ttsAuto: false, ttsRate: 1.05, ttsVoice: '',
   };
   const FONTS = { literata: '"Literata", "Noto Serif", Georgia, serif', noto: '"Noto Serif", Georgia, serif', sans: '"Be Vietnam Pro", "Segoe UI", sans-serif' };
   const WIDTHS = { hep: '660px', vua: '780px', rong: '960px' };
@@ -1049,8 +1130,10 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   let S = loadSettings();
   function loadSettings() {
     try {
-      const s = Object.assign({}, DEF, JSON.parse(localStorage.getItem(SKEY) || '{}'));
+      const saved = localStorage.getItem(SKEY);
+      const s = Object.assign({}, DEF, JSON.parse(saved || '{}'));
       if (!Array.isArray(s.models)) s.models = [];
+      if (!saved && matchMedia('(prefers-reduced-motion: reduce)').matches) s.motion = false;
       return s;
     } catch (e) { return Object.assign({}, DEF); }
   }
@@ -1381,7 +1464,8 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     renderList();
     renderChips();
     stick = true;
-    toBottom(true);
+    toBottom(true, true);
+    parallax();
   }
 
   /* ================= Hướng dẫn hệ thống ================= */
@@ -1568,6 +1652,11 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     }
     if (!t.pending) {
       const acts = el('div', 'acts');
+      if (isModel && !t.error && synth) {
+        const rd = iconBtn('sound', 'Đọc thành tiếng', () => speakTurn(t), 'ib read');
+        if (tts.id === t.id) { rd.classList.add('on'); wrap.classList.add('speaking'); }
+        acts.append(rd);
+      }
       if (!t.error) {
         acts.append(iconBtn('copy', 'Chép', () => copyText(t.text)), iconBtn('edit', 'Sửa', () => editTurn(t)));
         if (isLast) acts.append(iconBtn('redo', 'Viết lại (giữ bản cũ để so)', regenerate));
@@ -1637,6 +1726,10 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     renderHereStrip();
     if (S.tab === 'so' && panelVisible()) renderSoTab();
     if (S.tab === 'cast' && panelVisible()) renderCast();
+    if (tts.id) {
+      if (cur.turns.some((t) => t.id === tts.id)) markReading(tts.bi, true);
+      else stopSpeak();
+    }
   }
   function lastUsage() {
     for (let i = cur.turns.length - 1; i >= 0; i--) if (cur.turns[i].usage) return cur.turns[i].usage;
@@ -1738,7 +1831,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     const node = $('#msgs').querySelector('[data-id="' + t.id + '"]');
     if (!node) return;
     if (mqPanel.matches) closeOverlays();
-    node.scrollIntoView({ block: 'center', behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    node.scrollIntoView({ block: 'center', behavior: motionOn() ? 'smooth' : 'auto' });
     node.classList.remove('flash');
     void node.offsetWidth;
     node.classList.add('flash');
@@ -2009,7 +2102,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     setTimeout(() => {
       const card = $('#castList').querySelector('[data-id="' + id + '"]');
       if (!card) return;
-      card.scrollIntoView({ block: 'center', behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+      card.scrollIntoView({ block: 'center', behavior: motionOn() ? 'smooth' : 'auto' });
       card.classList.remove('flash');
       void card.offsetWidth;
       card.classList.add('flash');
@@ -2685,14 +2778,50 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   function hideNpcCard() { $('#npcCard').classList.remove('on'); }
 
   /* ================= Cuộn ================= */
+  /* Bám đáy khi AI đang viết: trượt dần tới đáy thay vì giật từng khung. Cuộn do trang tự làm thì không tính là người dùng cuộn. */
   let stick = true;
+  let glide = 0;
+  let selfTop = -1;
+  let paraRaf = 0;
+  const motionOn = () => !!S.motion;
   $('#scroll').addEventListener('scroll', () => {
     const sc = $('#scroll');
+    parallax();
+    if (Math.abs(sc.scrollTop - selfTop) < 2) return;
     stick = sc.scrollHeight - sc.scrollTop - sc.clientHeight < 140;
-  });
-  function toBottom(force) {
+    syncJump();
+  }, { passive: true });
+  function setTop(v) { const sc = $('#scroll'); sc.scrollTop = v; selfTop = sc.scrollTop; }
+  function toBottom(force, instant) {
     const sc = $('#scroll');
-    if (force || stick) sc.scrollTop = sc.scrollHeight;
+    if (force) stick = true;
+    if (!stick) { syncJump(); return; }
+    if (instant || !motionOn()) { cancelAnimationFrame(glide); glide = 0; setTop(sc.scrollHeight); syncJump(); return; }
+    if (!glide) glide = requestAnimationFrame(glideStep);
+  }
+  function glideStep() {
+    glide = 0;
+    const sc = $('#scroll');
+    const d = sc.scrollHeight - sc.clientHeight - sc.scrollTop;
+    if (!stick || d <= 0.5) { syncJump(); return; }
+    setTop(sc.scrollTop + Math.max(1, d * 0.17));
+    glide = requestAnimationFrame(glideStep);
+  }
+  function syncJump() {
+    const sc = $('#scroll');
+    const b = $('#jump');
+    b.classList.toggle('on', !stick && sc.scrollHeight - sc.scrollTop - sc.clientHeight > 260);
+    b.classList.toggle('live', !!gen);
+    b.lastChild.textContent = gen ? 'AI đang viết' : 'Mới nhất';
+  }
+  function parallax() {
+    if (paraRaf) return;
+    paraRaf = requestAnimationFrame(() => {
+      paraRaf = 0;
+      const sc = $('#scroll');
+      const max = sc.scrollHeight - sc.clientHeight;
+      $('.landscape').style.setProperty('--pf', (max > 40 ? sc.scrollTop / max : 1).toFixed(3));
+    });
   }
 
   /* ================= Chép, sửa, xóa, ghim, các bản viết lại ================= */
@@ -3023,7 +3152,8 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     }
     renderList();
     if (!turn.error && turn.text && !restored) {
-      doneSignal();
+      doneSignal(turn.text);
+      if (S.ttsAuto && session === cur && !stopped) setTimeout(() => { if (!gen && cur === session) speakTurn(turn); }, 450);
       if (extractSave(turn.text)) toast('Lượt này có BẢN LƯU', { action: 'Cất ngay', fn: () => cacheSave(turn, session), ms: 9000 });
     }
   }
@@ -3032,6 +3162,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#send').disabled = on;
     $('#stop').hidden = !on;
     document.body.classList.toggle('busy', on);
+    syncJump();
     cowKick();
   }
 
@@ -3181,6 +3312,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   }
   function onInput() {
     autosize();
+    cowNotice();
     if (cur) { cur.draft = $('#input').value; persist(false, true); }
     updateMeter();
   }
@@ -3216,7 +3348,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     out.className = 'dice-out rolling';
     const t0 = performance.now();
     const spin = () => {
-      if (performance.now() - t0 < (reduceMotion.matches || !S.motion ? 0 : 560)) {
+      if (performance.now() - t0 < (motionOn() ? 560 : 0)) {
         let v = 0;
         for (let i = 0; i < n; i++) v += rand(sides);
         out.textContent = String(v);
@@ -3251,71 +3383,488 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   }
 
   /* ================= Bò hiệp khách ================= */
-  const cow = { x: null, dir: -1, raf: 0, last: 0, sayTimer: 0 };
-  const COW_HI = ['Mooo~', 'Bò hiệp khách xin chào!', 'Cỏ ở đây ngon ghê', 'Viết tiếp đi anh!', 'Hí hí', 'Kiếm này để cắt cỏ thôi'];
+  /* Bò chạy bằng một chút vật lý: vận tốc tăng giảm dần, bước chân khớp quãng đường đi, kéo thả được, rơi có trọng lực.
+     Đứng yên thì ngừng vòng vẽ và hẹn giờ cho việc kế tiếp, đỡ tốn pin điện thoại. */
+  const COW_W = 58;
+  const COW_WALK = 40, COW_RUN = 150, COW_ACC_WALK = 110, COW_ACC_RUN = 340, COW_G = 1900, COW_NAP = 80000;
+  const clampN = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  const cow = {
+    x: null, v: 0, dir: -1, y: 0, vy: 0, tilt: 0, spin: 0, spinning: false,
+    phase: 0, amp: 0, lean: 0, lie: 0, squash: 0,
+    mode: 'graze', until: 0, goal: null, drag: null, press: null,
+    raf: 0, timer: 0, last: 0, sayTimer: 0, sayW: 0, sayOn: false, dustAt: 0,
+    seenAt: Date.now(), typedAt: -1e9, pets: [],
+  };
+  const COW_HI = ['Mooo~', 'Bò hiệp khách xin chào!', 'Cỏ ở đây ngon ghê', 'Viết tiếp đi anh!', 'Hí hí', 'Kiếm này để cắt cỏ thôi', 'Gãi đúng chỗ rồi ♥'];
   const COW_DONE = ['Xong rồi nè!', 'Mooo~ viết xong!', 'Đọc đi anh!', 'Chạy mệt quá trời'];
-  function cowMoves() { return S.cowOn && S.motion && !reduceMotion.matches; }
+  const COW_BUSY = ['Đang chạy việc, chờ chút!', 'Đừng cản, bò đang chạy!', 'Sắp xong rồi…'];
+  const COW_HELD = ['Ơ ơ, thả bò xuống!', 'Bò bay nè!', 'Cao quá…', 'Mooo!?'];
+  const COW_OUCH = ['Ui da!', 'Mooo… đau ghê', 'Bò không sao…', 'Lần sau nhẹ tay nha'];
+  const COW_TYPE = ['Viết gì đó?', 'Bò hóng nè', 'Hay đó!', 'Gõ nhanh ghê'];
+  const COW_SLEEP = ['Buồn ngủ quá…', 'Bò chợp mắt chút', 'Zzz…'];
+  const COW_WAKE = ['Hả? Bò dậy rồi!', 'Ai gọi bò đó?', 'Mơ thấy cỏ non…'];
+  /* Bò đọc lượt AI vừa viết: chữ nào lặp từ hai lần trở lên thì bò phản ứng theo */
+  const COW_MOOD = [
+    [/máu|chém|đâm|tấn công|kunai|shuriken|chiến đấu|giao chiến|nổ tung|sát khí|đòn đánh/gi, 'mark', '!', ['Căng quá trời!', 'Bò núp đây…', 'Đánh nhau rồi!']],
+    [/hôn|nắm tay|đỏ mặt|ửng hồng|ôm lấy|tim đập|ngượng ngùng|e thẹn/gi, 'heart', '♥', ['Ui, ngọt ghê ♥', 'Bò ngại quá', 'Mooo~ ♥']],
+    [/khóc|nước mắt|nức nở|tang lễ|đau lòng|tuyệt vọng/gi, 'drop', '💧', ['Bò buồn theo…', 'Thương ghê…', '…mooo']],
+    [/ramen|bữa ăn|bữa tối|bữa sáng|ăn uống|bánh|chén trà|đồ ăn/gi, 'note', '♪', ['Đói bụng rồi', 'Có phần bò không?', 'Thơm ghê!']],
+    [/bật cười|cười phá|trêu chọc|đùa giỡn|hài hước/gi, 'note', '♪', ['Hí hí', 'Vui ghê!']],
+  ];
+  const cn = {};
+  function cowNodes() {
+    if (!cn.root) {
+      cn.root = $('#cow');
+      cn.hop = $('#cow .hop');
+      cn.upper = $('#cow .upper');
+      cn.nod = $('#cow .nod');
+      cn.a = $$('#cow .leg-a');
+      cn.b = $$('#cow .leg-b');
+      cn.shadow = $('#cow .cowshadow');
+      cn.say = $('#cowSay');
+      cn.track = $('#cowTrack');
+    }
+    return cn;
+  }
+  function cowMoves() { return S.cowOn && motionOn(); }
+  function cowHome() { return Math.max(0, cowNodes().track.clientWidth - COW_W - 4); }
   function cowKick() {
-    if (!S.cowOn || cow.raf) return;
+    clearTimeout(cow.timer);
+    cow.timer = 0;
+    if (!S.cowOn || cow.raf || document.hidden) return;
     cow.last = 0;
     cow.raf = requestAnimationFrame(cowStep);
   }
+  /* Chọn việc kế tiếp khi việc cũ hết giờ hoặc đã tới nơi */
+  function cowPlan(t, home) {
+    cow.goal = null;
+    if (gen) {
+      if (cow.mode !== 'run') { cow.mode = 'run'; cowFx('mark', '!'); }
+      cow.goal = cow.x > home / 2 ? 0 : home;
+      return;
+    }
+    if (t - cow.typedAt < 1800) { cow.mode = 'watch'; cow.until = cow.typedAt + 1800; return; }
+    if (cow.mode === 'sleep' || Date.now() - cow.seenAt > COW_NAP) {
+      if (cow.mode !== 'sleep') { cow.mode = 'sleep'; cowSay(pick(COW_SLEEP)); } else cowFx('zz', 'z', { y: 22 });
+      cow.until = t + 1800;
+      return;
+    }
+    const r = Math.random();
+    if (r < 0.45) { cow.mode = 'graze'; cow.until = t + 4000 + Math.random() * 7000; return; }
+    if (r < 0.85) {
+      const g = clampN(Math.random() < 0.3 ? home - Math.random() * 50 : cow.x + (Math.random() < 0.5 ? -1 : 1) * (50 + Math.random() * 200), 0, home);
+      if (Math.abs(g - cow.x) > 24) { cow.mode = 'wander'; cow.goal = g; return; }
+    }
+    cow.mode = 'look';
+    cow.until = t + 2200 + Math.random() * 2400;
+  }
   function cowStep(t) {
     cow.raf = 0;
-    const node = $('#cow');
-    const w = $('#cowTrack').clientWidth;
-    if (!w || document.hidden) return;
+    const n = cowNodes();
+    if (!S.cowOn || !n.track.clientWidth || document.hidden) return;
     const dt = cow.last ? Math.min(0.05, (t - cow.last) / 1000) : 0;
     cow.last = t;
-    const home = Math.max(0, w - 62);
+    const home = cowHome();
     if (cow.x == null || cow.x > home) cow.x = home;
-    let state;
-    let moving = true;
     if (!cowMoves()) {
-      cow.x = home;
-      cow.dir = -1;
-      state = gen ? 'think' : 'nibble';
-      moving = false;
-    } else if (gen) {
-      state = 'run';
-      cow.x += cow.dir * 115 * dt;
-      if (cow.x <= 0) { cow.x = 0; cow.dir = 1; }
-      if (cow.x >= home) { cow.x = home; cow.dir = -1; }
-    } else if (Math.abs(cow.x - home) > 1) {
-      state = 'walk';
-      cow.dir = cow.x < home ? 1 : -1;
-      cow.x += cow.dir * 44 * dt;
-      if ((cow.dir > 0 && cow.x >= home) || (cow.dir < 0 && cow.x <= home)) cow.x = home;
-    } else {
-      cow.x = home;
-      cow.dir = -1;
-      state = 'nibble';
-      moving = false;
+      Object.assign(cow, { x: home, v: 0, y: 0, vy: 0, dir: -1, amp: 0, lean: 0, tilt: 0, spin: 0, spinning: false, squash: 0, lie: 0, drag: null, goal: null });
+      cow.mode = gen ? 'think' : 'graze';
+      cowRender();
+      return;
     }
-    node.style.transform = 'translateX(' + cow.x.toFixed(1) + 'px)';
-    node.dataset.state = state;
-    node.dataset.dir = String(cow.dir);
-    if (moving) cow.raf = requestAnimationFrame(cowStep);
+    if (!cow.drag) {
+      if (gen && cow.mode !== 'run') cowPlan(t, home);
+      else if (!gen && cow.mode === 'run') { cow.mode = 'graze'; cow.goal = null; cow.until = t + 2600; }
+      else if (cow.goal == null && t >= cow.until && cow.y === 0) cowPlan(t, home);
+      else if (cow.goal != null && cow.goal > home) cow.goal = home;
+    }
+    /* Ngang: lái tới đích, tới gần thì phanh dần; không có đích thì ma sát cho dừng */
+    const air = cow.y < 0 || cow.vy < 0;
+    let a = 0;
+    if (!cow.drag && !air) {
+      if (cow.goal != null) {
+        const run = cow.mode === 'run';
+        const top = run ? COW_RUN : COW_WALK;
+        const acc = run ? COW_ACC_RUN : COW_ACC_WALK;
+        const d = cow.goal - cow.x;
+        const want = Math.sign(d) * Math.min(top, Math.sqrt(1.7 * acc * Math.abs(d)));
+        a = clampN((want - cow.v) / Math.max(dt, 0.008), -acc, acc);
+        if (Math.abs(d) < 1.5 && Math.abs(cow.v) < 10) {
+          cow.x = cow.goal;
+          cow.v = 0;
+          a = 0;
+          if (run) cowDust(3);
+          cowPlan(t, home);
+        }
+      } else if (cow.v) a = clampN(-cow.v / Math.max(dt, 0.008), -280, 280);
+    }
+    if (!cow.drag) {
+      cow.v += a * dt;
+      cow.x += cow.v * dt;
+      if (cow.x < 0) { cow.x = 0; cow.v = air ? Math.abs(cow.v) * 0.4 : 0; }
+      if (cow.x > home) { cow.x = home; cow.v = air ? -Math.abs(cow.v) * 0.4 : 0; }
+    }
+    /* Dọc: trọng lực, chạm đất thì nảy nhẹ và bẹp xuống một chút */
+    if (!cow.drag && air) {
+      cow.vy += COW_G * dt;
+      cow.y += cow.vy * dt;
+      if (cow.y >= 0 && cow.vy > 0) {
+        const hit = cow.vy;
+        cow.y = 0;
+        cow.vy = hit > 300 ? -hit * 0.3 : 0;
+        cow.squash = Math.max(cow.squash, Math.min(1, hit / 1000));
+        if (hit > 420) cowDust(hit > 800 ? 4 : 2);
+        if (hit > 520) cowSay(pick(COW_OUCH));
+      }
+    }
+    if (cow.spinning) { cow.spin += dt * 900; if (cow.spin >= 360) { cow.spin = 0; cow.spinning = false; } }
+    cow.squash = Math.max(0, cow.squash - dt * 3.2);
+    const leanT = cow.drag || air ? 0 : clampN(a * cow.dir * 0.014, -5, 5);
+    cow.lean += (leanT - cow.lean) * Math.min(1, dt * 8);
+    const tiltT = cow.drag ? clampN(cow.drag.vx * 0.04, -30, 30) : 0;
+    cow.tilt += (tiltT - cow.tilt) * Math.min(1, dt * (cow.drag ? 7 : 10));
+    /* Chân: pha bước tính theo quãng đường đã đi nên không bao giờ trượt chân */
+    const sp = Math.abs(cow.v);
+    let ampT = 0;
+    if (cow.drag) { cow.phase += dt * 3.4; ampT = 24; }
+    else if (!air && sp > 1.5) { cow.phase += (sp * dt) / (sp > 95 ? 48 : 30); ampT = Math.min(38, 9 + sp * 0.2); }
+    cow.amp += (ampT - cow.amp) * Math.min(1, dt * 9);
+    if (!ampT && cow.amp < 0.05) cow.amp = 0;
+    const lieT = cow.mode === 'sleep' && !cow.drag && !air ? 1 : 0;
+    cow.lie += (lieT - cow.lie) * Math.min(1, dt * 2.6);
+    if (Math.abs(lieT - cow.lie) < 0.004) cow.lie = lieT;
+    if (cow.drag) { if (Math.abs(cow.drag.vx) > 60) cow.dir = Math.sign(cow.drag.vx); }
+    else if (sp > 6) cow.dir = Math.sign(cow.v);
+    else if (cow.goal != null && Math.abs(cow.goal - cow.x) > 2) cow.dir = Math.sign(cow.goal - cow.x);
+    else if (cow.mode === 'watch') cow.dir = -1;
+    if (!air && !cow.drag && ((sp > 110 && t - cow.dustAt > 260) || (Math.abs(a) > 250 && sp > 30 && t - cow.dustAt > 120))) { cow.dustAt = t; cowDust(1); }
+    cowRender();
+    const busy = cow.drag || air || cow.goal != null || sp > 0.01 || cow.amp || cow.squash || cow.spinning || cow.lie !== lieT || Math.abs(cow.tilt) > 0.05 || Math.abs(cow.lean) > 0.05;
+    if (busy) cow.raf = requestAnimationFrame(cowStep);
+    else cow.timer = setTimeout(cowKick, Math.max(60, Math.min(cow.until, t + 30000) - t));
+  }
+  function cowState() {
+    if (cow.drag) return 'held';
+    if (cow.y < -2) return 'air';
+    if (cow.mode === 'sleep' && cow.lie > 0.4) return 'sleep';
+    const sp = Math.abs(cow.v);
+    if (sp > 95) return 'run';
+    if (sp > 4 || cow.goal != null) return 'walk';
+    if (cow.mode === 'think' || cow.mode === 'look' || cow.mode === 'watch') return cow.mode;
+    return 'graze';
+  }
+  function cowRender() {
+    const n = cowNodes();
+    const sp = Math.abs(cow.v);
+    const w = Math.sin(cow.phase * Math.PI * 2);
+    const lie = cow.lie;
+    const leg = (ang) => 'translate(0px,' + (9 * lie).toFixed(2) + 'px) rotate(' + (ang * (1 - lie)).toFixed(2) + 'deg) scale(1,' + (1 - 0.68 * lie).toFixed(3) + ')';
+    const la = leg(cow.amp * w);
+    const lb = leg(-cow.amp * w);
+    n.a.forEach((g) => { g.style.transform = la; });
+    n.b.forEach((g) => { g.style.transform = lb; });
+    const bob = Math.abs(w) * Math.min(4, sp * 0.026);
+    const rock = w * Math.min(3, sp * 0.02);
+    n.upper.style.transform = 'translate(0px,' + (9 * lie - bob).toFixed(2) + 'px) rotate(' + (cow.lean + rock).toFixed(2) + 'deg)';
+    n.nod.style.transform = 'rotate(' + (Math.sin(cow.phase * Math.PI * 4) * Math.min(5, sp * 0.05)).toFixed(2) + 'deg)';
+    const s = cow.squash;
+    n.hop.style.transform = 'translate(0px,' + cow.y.toFixed(2) + 'px) translate(0px,-40px) rotate(' + cow.tilt.toFixed(2) + 'deg) translate(0px,18px) rotate(' + cow.spin.toFixed(1) + 'deg) translate(0px,22px) scale(' + (1 + 0.16 * s).toFixed(3) + ',' + (1 - 0.2 * s).toFixed(3) + ')';
+    const lift = Math.min(1, -cow.y / 120);
+    n.shadow.style.transform = 'scale(' + (1 - 0.55 * lift).toFixed(3) + ')';
+    n.shadow.style.opacity = (1 - 0.6 * lift).toFixed(2);
+    n.root.style.transform = 'translate3d(' + cow.x.toFixed(2) + 'px,0,0)';
+    const dir = cow.dir > 0 ? '1' : '-1';
+    if (n.root.dataset.dir !== dir) n.root.dataset.dir = dir;
+    const st = cowState();
+    if (n.root.dataset.state !== st) n.root.dataset.state = st;
+    if (cow.sayOn) cowSayFit();
+  }
+  /* Bóng chữ không được tràn ra ngoài mép ô nhập, và bay theo bò khi bò bị nhấc lên */
+  function cowSayFit() {
+    const n = cowNodes();
+    const w = n.track.clientWidth;
+    const mid = (cow.x || 0) + COW_W / 2;
+    const half = cow.sayW / 2;
+    let shift = 0;
+    if (mid - half < -6) shift = -6 - (mid - half);
+    else if (mid + half > w + 6) shift = w + 6 - (mid + half);
+    n.say.style.marginLeft = shift.toFixed(1) + 'px';
+    n.say.style.bottom = (47 - cow.y).toFixed(1) + 'px';
   }
   function cowSay(text) {
     if (!S.cowOn) return;
-    const b = $('#cowSay');
+    const b = cowNodes().say;
     b.textContent = text;
     b.classList.add('on');
+    cow.sayOn = true;
+    cow.sayW = b.offsetWidth;
+    cowSayFit();
     clearTimeout(cow.sayTimer);
-    cow.sayTimer = setTimeout(() => b.classList.remove('on'), 1900);
+    cow.sayTimer = setTimeout(() => { b.classList.remove('on'); cow.sayOn = false; }, 2300);
   }
-  function cowHop() {
-    const node = $('#cow');
-    node.classList.remove('hopping');
-    void node.offsetWidth;
-    node.classList.add('hopping');
+  function cowFx(kind, text, opt = {}) {
+    if (!cowMoves()) return;
+    const n = cowNodes();
+    const p = el('span', 'cfx ' + kind, text || '');
+    const head = (cow.x || 0) + (cow.dir > 0 ? 45 : 13);
+    p.style.left = ((opt.x != null ? opt.x : head) + (opt.jx || 0) * (Math.random() - 0.5)).toFixed(1) + 'px';
+    p.style.bottom = ((opt.y != null ? opt.y : 32) - cow.y).toFixed(1) + 'px';
+    if (opt.dx) p.style.setProperty('--dx', opt.dx.toFixed(1) + 'px');
+    n.track.append(p);
+    const kill = () => p.remove();
+    p.addEventListener('animationend', kill);
+    setTimeout(kill, 2600);
+  }
+  function cowDust(count) {
+    for (let i = 0; i < count; i++) {
+      cowFx('dust', '', { x: (cow.x || 0) + COW_W / 2 - cow.dir * (12 + Math.random() * 10), y: 1 + Math.random() * 3, dx: -cow.dir * (6 + Math.random() * 14) });
+    }
+  }
+  function cowHop(power) {
+    if (!power || !cowMoves() || cow.drag || cow.y < 0 || cow.vy) return;
+    cow.vy = -power;
+    cowKick();
+  }
+  function cowMood(text) {
+    const story = splitSo(text || '').story;
+    let best = null;
+    let most = 1;
+    for (const m of COW_MOOD) {
+      const c = (story.match(m[0]) || []).length;
+      if (c > most) { most = c; best = m; }
+    }
+    return best;
+  }
+  function cowWake(loud) {
+    cow.mode = 'look';
+    cow.until = performance.now() + 2000;
+    cowFx('mark', '!', { y: 26 });
+    if (loud) cowSay(pick(COW_WAKE));
+    cowKick();
+  }
+  function cowSeen() {
+    cow.seenAt = Date.now();
+    if (cow.mode === 'sleep') cowWake(false);
+  }
+  /* Anh gõ chữ: bò thôi gặm cỏ, ngẩng lên nhìn */
+  function cowNotice() {
+    const t = performance.now();
+    cow.typedAt = t;
+    cowSeen();
+    if (gen || cow.drag || !cowMoves()) return;
+    if (cow.mode !== 'watch') {
+      cow.mode = 'watch';
+      cow.goal = null;
+      if (Math.random() < 0.12) cowSay(pick(COW_TYPE));
+    }
+    cow.until = t + 1800;
+    cowKick();
+  }
+  function cowPet() {
+    const t = performance.now();
+    cow.pets = cow.pets.filter((x) => t - x < 2400);
+    cow.pets.push(t);
+    const flip = cow.pets.length >= 5;
+    if (flip) cow.pets = [];
+    if (cowMoves() && !cow.y && !cow.vy) {
+      cow.vy = flip ? -480 : -290;
+      cow.spinning = flip;
+      if (!gen && cow.goal == null) { cow.mode = 'look'; cow.until = t + 1800; }
+    }
+    cowFx('heart', '♥', { jx: 14, dx: (Math.random() - 0.5) * 22 });
+    cowSay(flip ? 'Úi trời, chóng mặt!' : gen ? pick(COW_BUSY) : pick(COW_HI));
+    cowKick();
+  }
+  /* Kéo thả: nhấc lên thì bò quẫy chân, đung đưa theo tay; thả ra thì rơi theo đà tay ném */
+  function cowDown(e) {
+    if (e.button > 0 || !S.cowOn) return;
+    const now = performance.now();
+    cow.press = { id: e.pointerId, sx: e.clientX, sy: e.clientY, ox: cow.x || 0, oy: cow.y, lx: e.clientX, ly: e.clientY, lt: now, vx: 0, vy: 0, moved: false };
+    try { cowNodes().root.setPointerCapture(e.pointerId); } catch (err) { /* không bắt được con trỏ: bỏ qua */ }
+  }
+  function cowMove(e) {
+    const p = cow.press;
+    if (!p || p.id !== e.pointerId) return;
+    const dx = e.clientX - p.sx;
+    const dy = e.clientY - p.sy;
+    if (!p.moved) {
+      if (Math.hypot(dx, dy) < 6 || !cowMoves()) return;
+      p.moved = true;
+      cow.drag = p;
+      cow.goal = null;
+      cow.spinning = false;
+      cow.spin = 0;
+      cowSay(pick(COW_HELD));
+    }
+    const now = performance.now();
+    const step = Math.max(8, now - p.lt) / 1000;
+    p.vx = p.vx * 0.55 + ((e.clientX - p.lx) / step) * 0.45;
+    p.vy = p.vy * 0.55 + ((e.clientY - p.ly) / step) * 0.45;
+    p.lx = e.clientX;
+    p.ly = e.clientY;
+    p.lt = now;
+    cow.x = clampN(p.ox + dx, 0, cowHome());
+    cow.y = clampN(p.oy + dy, -140, 0);
+    cow.v = 0;
+    cow.vy = 0;
+    cowKick();
+  }
+  function cowUp(e) {
+    const p = cow.press;
+    if (!p || p.id !== e.pointerId) return;
+    cow.press = null;
+    if (!p.moved) { if (e.type === 'pointerup') cowPet(); return; }
+    cow.drag = null;
+    const still = performance.now() - p.lt > 90;
+    cow.v = still ? 0 : clampN(p.vx, -480, 480);
+    cow.vy = still ? 0 : clampN(p.vy, -650, 600);
+    if (cow.y > -0.5 && cow.vy >= 0) { cow.y = 0; cow.vy = 0; }
+    cow.goal = null;
+    cow.mode = 'graze';
+    cow.until = performance.now() + 1800;
+    cowKick();
+  }
+
+  /* ================= Đọc truyện thành tiếng ================= */
+  const synth = window.speechSynthesis || null;
+  const tts = { id: null, bi: -1, run: 0, voices: [], warned: false, unlocked: false };
+  const isVi = (v) => /^vi/i.test(v.lang);
+  function loadVoices() {
+    if (synth) tts.voices = synth.getVoices() || [];
+    fillVoices();
+  }
+  function fillVoices() {
+    const sel = $('#ttsVoice');
+    const keep = S.ttsVoice || '';
+    sel.textContent = '';
+    sel.append(new Option(synth ? 'Tự chọn giọng tiếng Việt' : 'Trình duyệt này không đọc được', ''));
+    const list = tts.voices.slice().sort((a, b) => (isVi(b) - isVi(a)) || a.lang.localeCompare(b.lang) || a.name.localeCompare(b.name));
+    for (const v of list) sel.append(new Option((isVi(v) ? '★ ' : '') + v.name + ' · ' + v.lang, v.voiceURI));
+    sel.value = keep;
+    if (sel.value !== keep) sel.value = '';
+  }
+  function pickVoice() {
+    const vs = tts.voices;
+    if (S.ttsVoice) { const v = vs.find((x) => x.voiceURI === S.ttsVoice); if (v) return v; }
+    const vi = vs.filter(isVi);
+    return vi.find((v) => /natural|online|neural|premium|enhanced/i.test(v.name)) || vi[0] || null;
+  }
+  function utter(text, say, voice) {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = voice ? voice.lang : 'vi-VN';
+    if (voice) u.voice = voice;
+    u.rate = Number(S.ttsRate) || 1;
+    u.pitch = say ? 1.2 : 0.92;
+    return u;
+  }
+  function readBlocks(node) {
+    const body = node && node.querySelector('.body');
+    const out = [];
+    if (!body) return out;
+    for (const c of body.children) {
+      if (c.tagName === 'UL' || c.tagName === 'OL') out.push(...c.children);
+      else if (c.tagName !== 'HR' && c.tagName !== 'PRE') out.push(c);
+    }
+    return out;
+  }
+  /* Tách một đoạn thành các mẩu lời dẫn và lời thoại, bỏ phần trong ngoặc, cắt câu dài để trình đọc không bị tắc */
+  function readParts(block) {
+    const raw = [];
+    const walk = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) {
+      const n = walk.currentNode;
+      if (n.parentElement.closest('.pa, code, .caret')) continue;
+      const say = !!n.parentElement.closest('.q');
+      const last = raw[raw.length - 1];
+      if (last && last.say === say) last.text += n.nodeValue; else raw.push({ say, text: n.nodeValue });
+    }
+    const out = [];
+    for (const r of raw) {
+      const s = r.text.replace(/[*_~#>|`]/g, ' ').replace(/\s+/g, ' ').replace(/ ([?.!,…;:”])/g, '$1').trim();
+      if (!/[\p{L}\p{N}]/u.test(s)) continue;
+      let buf = '';
+      for (const sen of s.replace(/([.!?…])\s+/g, '$1\n').split('\n')) {
+        if (buf && buf.length + sen.length > 220) { out.push({ say: r.say, text: buf }); buf = sen; } else buf = buf ? buf + ' ' + sen : sen;
+      }
+      if (buf) out.push({ say: r.say, text: buf });
+    }
+    return out;
+  }
+  function speakTurn(t) {
+    if (!synth) { toast('Trình duyệt này không đọc thành tiếng được', { err: true }); return; }
+    if (tts.id === t.id) { stopSpeak(); return; }
+    stopSpeak();
+    const voice = pickVoice();
+    const run = ++tts.run;
+    let last = null;
+    readBlocks($('#msgs [data-id="' + t.id + '"]')).forEach((b, bi) => {
+      for (const part of readParts(b)) {
+        const u = utter(part.text, part.say, voice);
+        u.onstart = () => { if (tts.run === run && tts.bi !== bi) markReading(bi); };
+        synth.speak(u);
+        last = u;
+      }
+    });
+    if (!last) { toast('Lượt này không có chữ để đọc'); return; }
+    last.onend = () => { if (tts.run === run) stopSpeak(); };
+    if (!voice && !tts.warned) {
+      tts.warned = true;
+      toast('Máy chưa có giọng tiếng Việt nên đọc bằng giọng mặc định. Cách tải giọng có ở tab Giao diện.', { ms: 8000 });
+    }
+    tts.id = t.id;
+    markReading(0);
+  }
+  function stopSpeak() {
+    tts.run++;
+    const had = tts.id;
+    tts.id = null;
+    tts.bi = -1;
+    if (synth && (synth.speaking || synth.pending)) synth.cancel();
+    $$('#msgs .reading').forEach((x) => x.classList.remove('reading'));
+    if (had) syncReadBtns();
+  }
+  function syncReadBtns() {
+    $$('#msgs .turn').forEach((n) => {
+      const on = n.dataset.id === tts.id;
+      n.classList.toggle('speaking', on);
+      const b = n.querySelector('.ib.read');
+      if (b) { b.classList.toggle('on', on); b.title = on ? 'Dừng đọc' : 'Đọc thành tiếng'; }
+    });
+  }
+  /* Tô sáng đoạn đang đọc; đoạn ấy khuất thì cuộn tới (quiet: chỉ tô lại sau khi vẽ lại các lượt) */
+  function markReading(bi, quiet) {
+    tts.bi = bi;
+    syncReadBtns();
+    const blocks = readBlocks($('#msgs [data-id="' + tts.id + '"]'));
+    blocks.forEach((b, i) => b.classList.toggle('reading', i === bi));
+    const b = blocks[bi];
+    if (!b || quiet) return;
+    const r = b.getBoundingClientRect();
+    const box = $('#scroll').getBoundingClientRect();
+    if (r.top < box.top + 30 || r.bottom > box.bottom - 110) {
+      stick = false;
+      b.scrollIntoView({ block: 'center', behavior: motionOn() ? 'smooth' : 'auto' });
+    }
+  }
+  function ttsTest() {
+    if (!synth) return;
+    stopSpeak();
+    synth.cancel();
+    const voice = pickVoice();
+    synth.speak(utter('Gió lùa qua hàng cây, ánh trăng rọi xuống con đường đá.', false, voice));
+    synth.speak(utter('Anh là ai? Sao lại đứng đây giữa đêm thế này?', true, voice));
+    if (!voice) toast('Chưa có giọng tiếng Việt trên máy này', { err: true });
   }
 
   /* ================= Chuông và báo hiệu ================= */
   let actx = null;
   const BASE_TITLE = document.title;
   function unlockAudio() {
+    /* iPhone chỉ cho đọc thành tiếng sau một lần chạm: nói một câu rỗng ngay lúc anh bấm Gửi để lát nữa tự đọc được */
+    if (S.ttsAuto && synth && !tts.unlocked) {
+      tts.unlocked = true;
+      try { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; synth.speak(u); } catch (e) { /* bỏ qua */ }
+    }
     if (!S.sound || actx) return;
     try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { actx = null; }
   }
@@ -3338,10 +3887,14 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       });
     } catch (e) { /* không phát được: bỏ qua */ }
   }
-  function doneSignal() {
+  function doneSignal(text) {
     chime();
     if (document.hidden) document.title = '✦ Đã viết xong · Phòng Chat';
-    if (S.cowOn) { cowHop(); cowSay(pick(COW_DONE)); }
+    if (!S.cowOn) return;
+    const mood = cowMood(text);
+    cowHop(mood && mood[1] === 'drop' ? 0 : 300);
+    cowSay(mood ? pick(mood[3]) : pick(COW_DONE));
+    if (mood) for (let i = 0; i < 3; i++) setTimeout(() => cowFx(mood[1], mood[2], { jx: 22, dx: (Math.random() - 0.5) * 26 }), 120 + i * 230);
   }
 
   /* ================= Sao lưu, nhập, xuất ================= */
@@ -3454,7 +4007,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   function applyLook() {
     const r = document.documentElement;
     r.dataset.theme = S.theme;
-    r.dataset.motion = S.motion && !reduceMotion.matches ? '1' : '0';
+    r.dataset.motion = motionOn() ? '1' : '0';
     r.style.setProperty('--fs', S.fontSize + 'px');
     r.style.setProperty('--story', FONTS[S.font] || FONTS.literata);
     r.style.setProperty('--col', WIDTHS[S.width] || WIDTHS.vua);
@@ -3464,6 +4017,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $$('#themes .swatch').forEach((b) => b.classList.toggle('on', b.dataset.v === S.theme));
     $$('#fontSeg button').forEach((b) => b.classList.toggle('on', b.dataset.v === S.font));
     $$('#widthSeg button').forEach((b) => b.classList.toggle('on', b.dataset.v === S.width));
+    buildFx();
   }
   function buildThemes() {
     const box = $('#themes');
@@ -3474,18 +4028,55 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       const sw = el('span', 'sw');
       sw.style.background = 'linear-gradient(135deg, ' + bg + ' 0 54%, ' + a + ' 54% 78%, ' + g + ' 78%)';
       b.append(sw, el('span', null, name));
-      b.onclick = () => { S.theme = id; saveSettings(); applyLook(); };
+      b.onclick = (e) => {
+        if (S.theme === id) return;
+        let done = false;
+        const go = () => { if (done) return; done = true; S.theme = id; saveSettings(); applyLook(); };
+        if (!document.startViewTransition || !motionOn()) { go(); return; }
+        const r = document.documentElement;
+        r.style.setProperty('--vx', (e.clientX || innerWidth / 2) + 'px');
+        r.style.setProperty('--vy', (e.clientY || innerHeight / 2) + 'px');
+        try { document.startViewTransition(go); } catch (err) { go(); }
+        setTimeout(go, 400);
+      };
       box.append(b);
     }
   }
-  function buildPetals() {
+  /* Mỗi bảng màu một kiểu hạt: Mực tàu và Hoa đào rơi cánh hoa, Giấy dó rơi lá vàng, Đêm trăng có sao và đom đóm */
+  const FX_KIND = { muc: 'petal', giay: 'leaf', dem: 'night', dao: 'petal' };
+  function buildFx() {
     const fx = $('#fx');
-    for (let i = 0; i < 7; i++) {
-      const p = el('span', 'petal');
-      p.style.left = (8 + Math.random() * 88).toFixed(1) + '%';
-      p.style.setProperty('--d', (13 + Math.random() * 9).toFixed(1) + 's');
-      p.style.setProperty('--delay', (-Math.random() * 20).toFixed(1) + 's');
-      p.style.setProperty('--dx', (-60 - Math.random() * 140).toFixed(0) + 'px');
+    const kind = FX_KIND[S.theme] || 'petal';
+    if (fx.dataset.kind === kind + S.theme) return;
+    fx.dataset.kind = kind + S.theme;
+    fx.textContent = '';
+    const R = (a, b) => a + Math.random() * (b - a);
+    const set = (n, vars) => { for (const [key, v] of Object.entries(vars)) n.style.setProperty(key, v); return n; };
+    if (kind === 'night') {
+      for (let i = 0; i < 26; i++) {
+        const s = set(el('span', 'star'), { '--z': R(1, 2.6).toFixed(1) + 'px', '--d': R(2.4, 6).toFixed(1) + 's', '--delay': (-R(0, 6)).toFixed(1) + 's' });
+        s.style.left = R(1, 99).toFixed(1) + '%';
+        s.style.top = (R(0, 1) ** 1.6 * 46).toFixed(1) + '%';
+        fx.append(s);
+      }
+      const off = () => R(-90, 90).toFixed(0) + 'px';
+      for (let i = 0; i < 10; i++) {
+        const f = set(el('span', 'fly'), { '--d': R(9, 17).toFixed(1) + 's', '--delay': (-R(0, 17)).toFixed(1) + 's', '--x1': off(), '--y1': off(), '--x2': off(), '--y2': off(), '--x3': off(), '--y3': off() });
+        f.style.left = R(4, 96).toFixed(1) + '%';
+        f.style.top = R(42, 90).toFixed(1) + '%';
+        fx.append(f);
+      }
+      return;
+    }
+    const count = kind === 'leaf' ? 8 : S.theme === 'dao' ? 14 : 10;
+    for (let i = 0; i < count; i++) {
+      const depth = R(0.55, 1.3);
+      const p = set(el('span', 'petal' + (kind === 'leaf' ? ' leaf' : '')), {
+        '--s': depth.toFixed(2), '--o': (0.22 + depth * 0.33).toFixed(2), '--d': (R(13, 22) / depth).toFixed(1) + 's',
+        '--delay': (-R(0, 24)).toFixed(1) + 's', '--dx': (-R(40, 210)).toFixed(0) + 'px', '--sw': R(10, 30).toFixed(0) + 'px',
+      });
+      p.style.left = R(3, 97).toFixed(1) + '%';
+      p.append(el('i'));
       fx.append(p);
     }
   }
@@ -3502,6 +4093,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#fsize').value = S.fontSize;
     $('#fsVal').textContent = S.fontSize + 'px';
     $('#optMotion').checked = !!S.motion;
+    $('#motionHint').hidden = !reduceMotion.matches;
     $('#optCow').checked = !!S.cowOn;
     $('#optSound').checked = !!S.sound;
     $('#optChips').checked = !!S.chipsOn;
@@ -3510,6 +4102,9 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     $('#nameNarr').value = S.narrator;
     $('#chipText').value = S.chips || '';
     $('#optFeel').checked = !!S.feel;
+    $('#optTtsAuto').checked = !!S.ttsAuto;
+    $('#ttsRate').value = S.ttsRate;
+    $('#ttsRateVal').textContent = '×' + Number(S.ttsRate).toFixed(2);
   }
 
   /* ================= Gắn sự kiện ================= */
@@ -3528,8 +4123,10 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       else if (!$('#modal').hidden) closeBig();
       else if (!$('#dicePop').hidden) toggleDice(false);
       else if (document.body.classList.contains('pov') || document.body.classList.contains('sov')) closeOverlays();
+      else if (tts.id) stopSpeak();
       else if (gen) gen.ctrl.abort();
     });
+    $('#jump').onclick = () => toBottom(true);
 
     $('#newBtn').onclick = createSession;
     $('#search').addEventListener('input', () => renderList());
@@ -3632,7 +4229,19 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       if (!pop.hidden && !pop.contains(e.target) && !$('#diceBtn').contains(e.target)) toggleDice(false);
     });
 
-    $('#cow').addEventListener('click', () => { cowHop(); cowSay(gen ? 'Đang chạy việc, chờ chút!' : pick(COW_HI)); });
+    const cowEl = $('#cow');
+    cowEl.addEventListener('pointerdown', cowDown);
+    cowEl.addEventListener('pointermove', cowMove);
+    cowEl.addEventListener('pointerup', cowUp);
+    cowEl.addEventListener('pointercancel', cowUp);
+    cowEl.addEventListener('mousedown', (e) => e.preventDefault());
+    document.addEventListener('pointerdown', cowSeen, { capture: true, passive: true });
+    document.addEventListener('keydown', cowSeen, { capture: true, passive: true });
+
+    $('#optTtsAuto').addEventListener('change', (e) => { S.ttsAuto = e.target.checked; saveSettings(); if (S.ttsAuto) unlockAudio(); });
+    $('#ttsRate').addEventListener('input', (e) => { S.ttsRate = Number(e.target.value); $('#ttsRateVal').textContent = '×' + S.ttsRate.toFixed(2); saveSettings(); });
+    $('#ttsVoice').addEventListener('change', (e) => { S.ttsVoice = e.target.value; saveSettings(); });
+    $('#ttsTest').onclick = ttsTest;
 
     $('#castGo').onclick = () => searchImages($('#castQ').value);
     $('#castQ').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); searchImages($('#castQ').value); } });
@@ -3734,10 +4343,12 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   async function start() {
     $$('[data-ic]').forEach((n) => { n.outerHTML = ic(n.dataset.ic); });
     buildThemes();
-    buildPetals();
     buildDice();
     applyLook();
     fillSettings();
+    loadVoices();
+    if (synth && 'onvoiceschanged' in synth) synth.onvoiceschanged = loadVoices;
+    if (!synth) $('#ttsTest').disabled = $('#optTtsAuto').disabled = true;
     fillModels();
     wire();
     document.body.classList.toggle('pin', !!S.panel);
