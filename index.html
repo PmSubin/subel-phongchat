@@ -370,12 +370,12 @@ body.no-chips .chips { display: none; }
 .dice-hist { margin-top: 10px; font-size: 12px; color: var(--dim); line-height: 1.6; min-height: 1em; }
 
 /* Bò hiệp khách */
-.cowtrack { position: absolute; left: 16px; right: 16px; top: -41px; height: 42px; pointer-events: none; }
-body.no-cow .cowtrack { display: none; }
+.cowworld { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
+body.no-cow .cowworld { display: none; }
 /* Vị trí, bước chân, độ nảy, độ nghiêng do JS tính từng khung hình (vật lý nhỏ); CSS chỉ lo đầu, đuôi, khăn, mắt */
-.cow { position: absolute; left: 0; bottom: -1px; width: 58px; height: 44px; pointer-events: auto; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; will-change: transform; }
+.cow { position: absolute; left: 0; top: 0; width: 58px; height: 44px; transform-origin: 29px 41px; pointer-events: auto; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; will-change: transform; }
 .cow[data-state="held"] { cursor: grabbing; }
-.cowshadow { position: absolute; left: 13px; bottom: 0; width: 32px; height: 4px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.34), transparent); will-change: transform, opacity; }
+.cowshadow { position: absolute; left: 0; top: 0; transform-origin: 16px 2px; width: 32px; height: 4px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.34), transparent); will-change: transform, opacity; }
 .cow .hop { width: 58px; height: 44px; transform-origin: 50% 100%; will-change: transform; }
 .cow .flip { width: 58px; height: 44px; transform: scaleX(-1); transition: transform 0.32s cubic-bezier(0.45, 0, 0.25, 1); }
 .cow[data-dir="1"] .flip { transform: none; }
@@ -415,8 +415,8 @@ body.no-cow .cowtrack { display: none; }
 @keyframes flutter { from { transform: rotate(-7deg) scaleY(0.9); } to { transform: rotate(9deg) scaleY(1.1); } }
 @keyframes tassel { from { transform: rotate(-12deg); } to { transform: rotate(14deg); } }
 @keyframes c-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
-.cowsay { position: absolute; bottom: 47px; left: 29px; transform: translate(-50%, 6px) scale(0.85); transform-origin: 50% 100%; white-space: nowrap; padding: 4px 10px; border-radius: 10px; background: var(--card2); border: 1px solid var(--line2); font-size: 12px; color: var(--text); opacity: 0; transition: opacity 0.2s, transform 0.32s cubic-bezier(0.2, 1.5, 0.4, 1); pointer-events: none; box-shadow: var(--shadow-sm); }
-.cowsay.on { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.cowsay { position: absolute; left: 0; top: 0; transform: translateY(6px) scale(0.85); transform-origin: 50% 100%; white-space: nowrap; padding: 4px 10px; border-radius: 10px; background: var(--card2); border: 1px solid var(--line2); font-size: 12px; color: var(--text); opacity: 0; transition: opacity 0.2s, transform 0.32s cubic-bezier(0.2, 1.5, 0.4, 1); pointer-events: none; box-shadow: var(--shadow-sm); }
+.cowsay.on { opacity: 1; transform: none; }
 /* Hạt nhỏ quanh bò: tim, chữ z khi ngủ, dấu chấm than, bụi dưới chân */
 .cfx { position: absolute; pointer-events: none; transform: translateX(-50%); font-weight: 700; line-height: 1; white-space: nowrap; }
 .cfx.heart, .cfx.note, .cfx.drop { font-size: 15px; animation: fx-rise 1.15s ease-out forwards; }
@@ -467,13 +467,36 @@ body.no-cow .cowtrack { display: none; }
 .code { flex: none; font-family: ui-monospace, Consolas, monospace; font-size: 10.5px; padding: 1px 6px; border-radius: 6px; background: var(--card2); color: var(--dim); }
 .here-tag { flex: none; font-size: 10.5px; padding: 1px 7px; border-radius: 999px; background: color-mix(in srgb, var(--gold) 18%, transparent); color: var(--gold); }
 .aff { display: grid; gap: 4px; }
-.affbar { position: relative; height: 8px; border-radius: 999px; background: var(--card2); overflow: hidden; }
-.affbar::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--line2); z-index: 1; }
-.affbar i { position: absolute; top: 0; bottom: 0; transition: width 0.5s ease; }
-.affbar i.pos { left: 50%; border-radius: 0 999px 999px 0; background: linear-gradient(90deg, var(--gold), #f0c04e); }
-.affbar i.neg { right: 50%; border-radius: 999px 0 0 999px; background: linear-gradient(270deg, var(--accent2), var(--accent)); }
-.hearts { display: flex; gap: 3px; font-size: 14px; line-height: 1; color: var(--line2); }
-.hearts .on { color: #e8577a; }
+/* Thang tình cảm chia ô: ác cảm · 0 · thiện cảm · tim */
+.ladder { display: flex; align-items: center; gap: 2px; height: 14px; }
+.ladder i { flex: 1 1 0; min-width: 4px; max-width: 20px; height: 7px; border-radius: 2px; background: var(--card2); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35); font-style: normal; cursor: help; transition: background 0.4s, transform 0.2s; }
+.ladder i:hover { transform: scaleY(1.5); }
+.ladder i.neg.on { background: linear-gradient(270deg, var(--accent2), var(--accent)); box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 45%, transparent); }
+.ladder i.neg.half { background: linear-gradient(270deg, var(--accent2) 50%, var(--card2) 50%); }
+.ladder i.pos.on { background: linear-gradient(90deg, var(--gold), #f0c04e); box-shadow: 0 0 8px color-mix(in srgb, var(--gold) 45%, transparent); }
+.ladder i.pos.half { background: linear-gradient(90deg, #f0c04e 50%, var(--card2) 50%); }
+.ladder i.cur { outline: 1.5px solid color-mix(in srgb, var(--text) 55%, transparent); outline-offset: 1px; }
+.ladder i.h { height: 13px; max-width: 15px; background: none; box-shadow: none; color: var(--line2); font-size: 12px; line-height: 13px; text-align: center; outline: 0; }
+.ladder i.h::before { content: "♥"; }
+.ladder i.h:hover { transform: scale(1.3); }
+.ladder i.h.on { color: #e8577a; text-shadow: 0 0 7px rgba(232, 87, 122, 0.6); }
+.ladder i.h.half { background: linear-gradient(90deg, #e8577a 50%, var(--line2) 50%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+[data-motion="1"] .ladder i.h.cur { animation: beat 1.8s ease-in-out infinite; }
+.ladder b.mid { flex: none; width: 2px; height: 13px; border-radius: 1px; background: var(--line2); margin: 0 2px; cursor: help; }
+.ladder b.mid.cur { background: var(--text); box-shadow: 0 0 6px var(--text); }
+.legend { margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.legend summary { padding: 9px 12px; font-size: 12.5px; color: var(--muted); cursor: pointer; }
+.legend[open] summary { border-bottom: 1px solid var(--line); }
+.legend-body { padding: 8px 12px 12px; display: grid; gap: 10px; }
+.lg-title { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); margin-bottom: 3px; }
+.lg-group.heart .lg-lv { color: #e8577a; }
+.lg-group.pos .lg-lv { color: var(--gold); }
+.lg-group.neg .lg-lv { color: var(--accent2); }
+.lg-row { display: grid; grid-template-columns: 34px 1fr; column-gap: 6px; font-size: 12.5px; line-height: 1.45; padding: 2px 0; }
+.lg-row b { font-weight: 600; }
+.lg-row small { grid-column: 2; color: var(--dim); font-size: 11.5px; }
+.lg-lv { font-family: ui-monospace, Consolas, monospace; font-size: 11.5px; }
+#toast span { white-space: pre-line; }
 .afflab { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--muted); }
 .trend { font-size: 10px; }
 .trend.up { color: #6fbf73; }
@@ -645,13 +668,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
 .npc.here { box-shadow: inset 0 1px 0 var(--hi), 0 0 0 1px color-mix(in srgb, var(--gold) 25%, transparent), 0 10px 26px -18px var(--gold); }
 .portrait { box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.7); }
 .portrait::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.25)); pointer-events: none; }
-.affbar { height: 9px; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35); }
-.affbar i.pos { box-shadow: 0 0 10px color-mix(in srgb, var(--gold) 55%, transparent); }
-.affbar i.neg { box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 55%, transparent); }
-.hearts .on { text-shadow: 0 0 8px rgba(232, 87, 122, 0.6); }
-[data-motion="1"] .hearts .on:last-of-type { animation: beat 1.8s ease-in-out infinite; }
 @keyframes beat { 0%, 70%, 100% { transform: scale(1); } 80% { transform: scale(1.25); } }
-.hearts span { display: inline-block; }
 .res { box-shadow: 0 6px 16px -10px rgba(0, 0, 0, 0.7); transition: border-color 0.15s, transform 0.15s; }
 #npcCard { background: var(--glass); backdrop-filter: blur(18px); box-shadow: inset 0 1px 0 var(--hi), var(--shadow); }
 .thought { box-shadow: inset 0 1px 0 var(--hi); }
@@ -746,28 +763,9 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     <div class="landscape" aria-hidden="true"><i class="moon"></i><i class="ridge r1"></i><i class="mist m1"></i><i class="ridge r2"></i><i class="mist m2"></i><i class="ridge r3"></i></div>
     <div id="fx" aria-hidden="true"></div>
     <div id="stage" hidden></div>
-    <header id="top">
-      <button id="menuBtn" class="icon" type="button" title="Danh sách phiên" aria-label="Danh sách phiên"><i data-ic="menu"></i></button>
-      <span id="sessIcon" aria-hidden="true">🐮</span>
-      <input id="title" class="title" placeholder="Phiên mới" aria-label="Tên phiên">
-      <div id="hereStrip" title="Nhân vật đang có mặt"></div>
-      <span id="ctxPill" class="pill" hidden></span>
-      <label class="modelchip" title="Model đang dùng"><i data-ic="spark"></i><select id="modelSel" aria-label="Model"></select></label>
-      <button id="sysBtn" class="icon" type="button" title="Hướng dẫn hệ thống" aria-label="Hướng dẫn hệ thống"><i data-ic="file"></i></button>
-      <button id="panelBtn" class="icon" type="button" title="Bật / tắt bảng điều khiển" aria-label="Bảng điều khiển"><i data-ic="panel"></i></button>
-    </header>
-
-    <div id="scroll">
-      <div class="col"><div id="msgs"></div></div>
-      <div class="jumpwrap"><button id="jump" class="jump" type="button" tabindex="-1"><i data-ic="down"></i><span>Mới nhất</span></button></div>
-    </div>
-
-    <footer id="composer">
-      <div class="box">
-        <div id="cowTrack" class="cowtrack" aria-hidden="true">
-          <div id="cow" class="cow" data-state="graze" data-dir="-1" title="Bò hiệp khách: bấm để vuốt ve, kéo để nhấc lên">
-            <span id="cowSay" class="cowsay"></span>
-            <span class="cowshadow"></span>
+    <div id="cowWorld" class="cowworld" aria-hidden="true">
+      <span class="cowshadow"></span>
+          <div id="cow" class="cow" data-state="graze" data-dir="-1" title="Bò hiệp khách: bấm để vuốt ve, kéo đi đâu cũng được">
             <div class="hop"><div class="flip">
 <svg class="moo" viewBox="0 0 80 60" focusable="false">
 <g class="leg leg-a"><rect x="26" y="35" width="5.5" height="19" rx="2.6" fill="#d3c6ab" stroke="#1c1612" stroke-width="1.5"/><rect x="26" y="50.5" width="5.5" height="4" rx="1.2" fill="#2a221c"/></g>
@@ -801,7 +799,26 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
 </svg>
             </div></div>
           </div>
-        </div>
+      <span id="cowSay" class="cowsay"></span>
+    </div>
+    <header id="top">
+      <button id="menuBtn" class="icon" type="button" title="Danh sách phiên" aria-label="Danh sách phiên"><i data-ic="menu"></i></button>
+      <span id="sessIcon" aria-hidden="true">🐮</span>
+      <input id="title" class="title" placeholder="Phiên mới" aria-label="Tên phiên">
+      <div id="hereStrip" title="Nhân vật đang có mặt"></div>
+      <span id="ctxPill" class="pill" hidden></span>
+      <label class="modelchip" title="Model đang dùng"><i data-ic="spark"></i><select id="modelSel" aria-label="Model"></select></label>
+      <button id="sysBtn" class="icon" type="button" title="Hướng dẫn hệ thống" aria-label="Hướng dẫn hệ thống"><i data-ic="file"></i></button>
+      <button id="panelBtn" class="icon" type="button" title="Bật / tắt bảng điều khiển" aria-label="Bảng điều khiển"><i data-ic="panel"></i></button>
+    </header>
+
+    <div id="scroll">
+      <div class="col"><div id="msgs"></div></div>
+      <div class="jumpwrap"><button id="jump" class="jump" type="button" tabindex="-1"><i data-ic="down"></i><span>Mới nhất</span></button></div>
+    </div>
+
+    <footer id="composer">
+      <div class="box">
         <div id="chips" class="chips"></div>
         <textarea id="input" rows="1" placeholder="Viết hành động / lời thoại của nhân vật…"></textarea>
         <div class="row">
@@ -941,6 +958,9 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       <div id="castList" class="cast"></div>
       <label class="switch" style="margin-top:16px"><input id="optFeel" type="checkbox"><span>Đọc độ tình cảm từ dòng ⚙ trong Sổ</span></label>
       <div class="hint" style="margin-top:0">Prompt RP giấu cảm xúc ngầm của NPC trong dòng ⚙ bằng mã, ví dụ N03♡1, D02+1. Bật mục này thì thanh tình cảm tự chạy theo truyện, đổi lại anh biết trước điều nhân vật chưa nói ra. Tắt thì anh tự đặt mức trong phần Sửa của từng người. Rê chuột lên tên nhân vật trong truyện để xem ảnh.</div>
+      <label class="switch"><input id="optFineFeel" type="checkbox"><span>Nấc nửa giữa hai mức (+1½, ♡2½)</span></label>
+      <div class="hint" style="margin-top:0">Gửi kèm prompt một đoạn ngắn dặn AI ghi thêm nấc .5 vào dòng ⚙ khi nhân vật đã có lý do để tiến tới mức kế tiếp mà truyện chưa đủ thời gian. Luật lên xuống của prompt giữ nguyên, chỉ thang chi tiết gấp đôi. Chỉ có tác dụng khi đang đọc tình cảm từ Sổ.</div>
+      <details id="feelLegend" class="legend"><summary>Các mức tình cảm của truyện này</summary><div class="legend-body"></div></details>
     </section>
 
     <section class="pane" data-pane="look" role="tabpanel" hidden>
@@ -957,8 +977,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       <div class="sub">Cho vui</div>
       <label class="switch"><input id="optMotion" type="checkbox"><span>Hiệu ứng động (hoa rơi, đom đóm, ấn triện, cuộn mượt)</span></label>
       <div id="motionHint" class="hint" style="margin-top:0" hidden>Máy này đang bật “giảm chuyển động” trong cài đặt hệ thống. Phòng Chat vẫn chạy hiệu ứng theo công tắc trên; thấy chóng mặt thì tắt đi.</div>
-      <label class="switch"><input id="optCow" type="checkbox"><span>Bò hiệp khách trên ô nhập</span></label>
-      <div class="hint" style="margin-top:0">Bấm vào bò để vuốt ve, bấm liền 5 lần là bò nhào lộn. Giữ và kéo để nhấc bò lên, thả ra là bò rơi. Để yên lâu thì bò ngủ, anh gõ chữ thì bò ngẩng lên xem.</div>
+      <label class="switch"><input id="optCow" type="checkbox"><span>Bò hiệp khách đi dạo khắp khung chat</span></label>
+      <div class="hint" style="margin-top:0">Bò đứng trên mép các khung tin nhắn, khung Sổ, ảnh nhân vật; bám cạnh khung để leo lên tụt xuống, đi cả trên hai vách và trần khung chat; cuộn truyện thì bò trôi theo khung đang đứng. Bấm vào bò để vuốt ve, bấm liền 5 lần là bò nhào lộn. Giữ và kéo để đem bò đi đâu cũng được: thả ra là bò rơi xuống mặt gần nhất, thả sát cạnh khung hay ném vào cạnh khung thì bò bám vào đó. Để yên lâu thì bò ngủ, anh gõ chữ thì bò ngẩng lên xem.</div>
       <label class="switch"><input id="optSound" type="checkbox"><span>Tiếng chuông khi AI viết xong</span></label>
       <label class="switch"><input id="optChips" type="checkbox"><span>Nút lệnh nhanh trên ô nhập</span></label>
       <label class="switch"><input id="optSo" type="checkbox"><span>Mở sẵn khung Sổ trong mỗi lượt</span></label>
@@ -1144,7 +1164,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     key: '', remember: true, model: '', models: [], temperature: 1, maxTokens: 0, safety: 'default', thoughts: false,
     ctxLimit: 0, enterSend: false,
     theme: 'muc', font: 'literata', fontSize: 16, width: 'vua', motion: true, cowOn: true, sound: true, chipsOn: true, soOpen: true,
-    player: 'Subin', narrator: 'Người dẫn', chips: '', panel: true, tab: 'sys', diceN: 1, diceAuto: true, feel: true,
+    player: 'Subin', narrator: 'Người dẫn', chips: '', panel: true, tab: 'sys', diceN: 1, diceAuto: true, feel: true, fineFeel: true,
     nameAv: true, stage: true,
   };
   const FONTS = { literata: '"Literata", "Noto Serif", Georgia, serif', noto: '"Noto Serif", Georgia, serif', sans: '"Be Vietnam Pro", "Segoe UI", sans-serif' };
@@ -1878,16 +1898,60 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     'suneo': 'Suneo Honekawa', 'đêkhi': 'Hidetoshi Dekisugi', 'dekhi': 'Hidetoshi Dekisugi', 'dekisugi': 'Hidetoshi Dekisugi',
     'nobita': 'Nobita Nobi', 'shizuka': 'Shizuka Minamoto', 'chaiko': 'Jaiko', 'jaiko': 'Jaiko',
   };
-  const SIGN_LAB = { '-3': 'ghét', '-2': 'khó chịu', '-1': 'dè chừng', '0': 'bình thường', '1': 'có thiện cảm', '2': 'quý', '3': 'thân thiết' };
-  const HEART_LAB = ['', 'để ý', 'tò mò', 'cảm mến', 'thích', 'muốn nói ra'];
-  const FEEL_RE = /(?:^|[\s·,;|(`])([A-Z]\d{1,2})\s*(♡\s*\d|[+\-−–]\s*\d)/gu;
+  /* Thang tình cảm: tên từng mức lấy ngay trong prompt RP (dòng “`+1` có cảm tình · `+2` quý …”);
+     mức nào prompt không định thì dùng thang mặc định 10 bậc mỗi loại. Nấc .5 là chỗ đang dở giữa hai mức. */
+  const FEEL_MAX = 10;
+  const FEEL_DEF = {
+    pos: ['', 'có thiện cảm', 'dễ chịu', 'quý', 'tin', 'thân', 'gắn bó', 'thân thiết', 'tri kỷ', 'sống chết có nhau', 'như ruột thịt'],
+    neg: ['', 'dè chừng', 'lạnh nhạt', 'khó chịu', 'bực ra mặt', 'ghét', 'coi là mối đe dọa', 'thù', 'căm hận', 'muốn trả thù', 'không đội trời chung'],
+    heart: ['', 'để ý', 'tò mò', 'muốn gặp', 'cảm mến', 'rung động', 'thích', 'thương', 'yêu', 'yêu sâu đậm', 'trọn đời'],
+  };
+  const FEEL_NAME = { pos: 'Thiện cảm', neg: 'Ác cảm', heart: 'Tình cảm' };
+  const feelKind = (c) => (c === '♡' ? 'heart' : c === '+' ? 'pos' : 'neg');
+  let scaleMemo = { sys: null, sc: null };
+  function feelScale() {
+    const sys = (cur && cur.system) || '';
+    if (scaleMemo.sys === sys) return scaleMemo.sc;
+    const sc = { pos: {}, neg: {}, heart: {}, desc: {}, max: { pos: 0, neg: 0, heart: 0 }, base: 3 };
+    for (const line of sys.split('\n')) {
+      if (!line.includes('`') || !line.includes('·')) continue;
+      /* Dòng định nghĩa thang: các mức cách nhau bằng “·”, mỗi đoạn mở đầu bằng mã mức rồi tới tên mức */
+      const got = [];
+      line.split('·').forEach((part, i) => {
+        const m = part.match(/`(♡|[+\-−–])\s*(\d{1,2})`\s*([^`]*)/);
+        if (!m || (i > 0 && part.slice(0, m.index).trim())) return;
+        got.push(m);
+      });
+      if (got.length < 2) continue;
+      for (const m of got) {
+        const kind = feelKind(m[1]);
+        const n = +m[2];
+        if (!n || n > FEEL_MAX || sc[kind][n]) continue;
+        const lab = m[3].split(/\s*[(（]/)[0].replace(/[*_]/g, '').replace(/[\s.,;:]+$/, '').trim();
+        if (!lab || lab.length > 40) continue;
+        sc[kind][n] = lab;
+        const d = m[3].match(/\(([^)]{2,180})\)/);
+        if (d) sc.desc[kind + n] = d[1].trim();
+        sc.max[kind] = Math.max(sc.max[kind], n);
+      }
+    }
+    const base = sys.match(/ít nhất ở mức\s*`?\+(\d)/);
+    if (base) sc.base = +base[1];
+    scaleMemo = { sys, sc };
+    return sc;
+  }
+  /* Số mức hiện trên thang: theo prompt, prompt không định thì 5 */
+  const feelTop = (kind) => feelScale().max[kind] || 5;
+  const labOf = (kind, n) => feelScale()[kind][n] || FEEL_DEF[kind][n] || '';
+  const halfNum = (v) => (v % 1 ? (Math.floor(v) || '') + '½' : String(v));
+  const FEEL_RE = /(?:^|[\s·,;|(`])([A-Z]\d{1,2})\s*(♡\s*\d{1,2}(?:[.,]5(?!\d))?|[+\-−–]\s*\d{1,2}(?:[.,]5(?!\d))?)/gu;
   function parseFeel(text) {
     const map = {};
     FEEL_RE.lastIndex = 0;
     let m;
     while ((m = FEEL_RE.exec(text))) {
-      const raw = m[2].replace(/\s/g, '');
-      const n = parseInt(raw.slice(1), 10) || 0;
+      const raw = m[2].replace(/\s/g, '').replace(',', '.');
+      const n = Math.min(FEEL_MAX, parseFloat(raw.slice(1)) || 0);
       map[m[1]] = raw[0] === '♡' ? { heart: n, sign: 0 } : { heart: 0, sign: raw[0] === '+' ? n : -n };
     }
     return map;
@@ -1934,7 +1998,6 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     tableMemo = { sys, map };
     return map;
   }
-  const maxHeart = () => (/♡5/.test(cur.system || '') ? 5 : /♡4/.test(cur.system || '') ? 4 : 3);
   function namesOf(c) {
     return [c.name].concat((c.alias || '').split(',')).map((s) => s.trim()).filter((s) => s.length >= 2 && !isCode(s));
   }
@@ -1952,7 +2015,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     if (added) persist(false, true);
     return added;
   }
-  const affScore = (a) => (!a ? 0 : a.heart ? 10 + a.heart : a.sign);
+  const affScore = (a) => (!a ? 0 : a.heart ? 100 + a.heart : a.sign);
   function affOf(c, now, prev) {
     if (S.feel && c.code && now) {
       const v = now[c.code] || { heart: 0, sign: 0 };
@@ -1962,31 +2025,118 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     if (c.manual) return { heart: c.manual.heart || 0, sign: c.manual.sign || 0, src: 'tay', trend: 0 };
     return null;
   }
-  function affLabel(a) {
-    if (a.heart) return '♡' + a.heart + ' · ' + (HEART_LAB[a.heart] || 'rất thích');
-    const s = Math.max(-3, Math.min(3, a.sign));
-    return (a.sign > 0 ? '+' : '') + a.sign + ' · ' + SIGN_LAB[String(s)];
+  const lvKind = (a) => (a.heart ? 'heart' : a.sign > 0 ? 'pos' : a.sign < 0 ? 'neg' : '');
+  function lvText(a) {
+    if (a.heart) return '♡' + halfNum(a.heart);
+    if (!a.sign) return '0';
+    return (a.sign > 0 ? '+' : '−') + halfNum(Math.abs(a.sign));
+  }
+  /* Tên mức; nấc nửa thì ghi mức đang ở và mức đang tiến tới */
+  function lvName(a) {
+    const kind = lvKind(a);
+    if (!kind) return 'bình thường';
+    const v = a.heart || Math.abs(a.sign);
+    const lo = Math.floor(v);
+    if (v === lo) return labOf(kind, lo) || 'vượt thang';
+    const from = lo ? labOf(kind, lo) : kind === 'heart' ? 'chưa rung động' : 'bình thường';
+    const to = labOf(kind, lo + 1);
+    return to ? from + ' → ' + to : from;
+  }
+  const affLabel = (a) => lvText(a) + ' · ' + lvName(a);
+  /* Thang chia ô: ác cảm bên trái, thiện cảm ở giữa, tim bên phải; rê chuột lên từng ô để xem tên mức */
+  function ladderEl(a) {
+    const lad = el('div', 'ladder');
+    const nNeg = Math.max(feelTop('neg'), a.sign < 0 ? Math.ceil(-a.sign) : 0);
+    const nPos = Math.max(feelTop('pos'), a.sign > 0 ? Math.ceil(a.sign) : 0);
+    const nH = Math.max(feelTop('heart'), Math.ceil(a.heart));
+    const posLv = a.heart ? Math.min(nPos, feelScale().base) : Math.max(0, a.sign);
+    const cell = (kind, i, lv, cls) => {
+      const fill = clampN(lv - i + 1, 0, 1);
+      const here = lvKind(a) === kind && Math.ceil(kind === 'heart' ? a.heart : Math.abs(a.sign)) === i;
+      const c = el('i', cls + (fill >= 1 ? ' on' : fill > 0 ? ' half' : '') + (here ? ' cur' : ''));
+      const sign = kind === 'heart' ? '♡' : kind === 'pos' ? '+' : '−';
+      const d = feelScale().desc[kind + i];
+      c.title = sign + i + ' · ' + labOf(kind, i) + (d ? ' — ' + d : '');
+      return c;
+    };
+    for (let i = nNeg; i >= 1; i--) lad.append(cell('neg', i, a.sign < 0 ? -a.sign : 0, 'neg'));
+    const mid = el('b', 'mid' + (!a.heart && !a.sign ? ' cur' : ''));
+    mid.title = '0 · bình thường';
+    lad.append(mid);
+    for (let i = 1; i <= nPos; i++) lad.append(cell('pos', i, posLv, 'pos'));
+    for (let i = 1; i <= nH; i++) lad.append(cell('heart', i, a.heart, 'h'));
+    return lad;
   }
   function affEl(a) {
     const box = el('div', 'aff');
     if (!a) { box.append(el('div', 'afflab', 'Chưa có số liệu tình cảm')); return box; }
-    if (a.heart) {
-      const h = el('div', 'hearts');
-      const max = Math.max(maxHeart(), a.heart);
-      for (let i = 1; i <= max; i++) h.append(el('span', i <= a.heart ? 'on' : '', i <= a.heart ? '♥' : '♡'));
-      box.append(h);
-    } else {
-      const bar = el('div', 'affbar');
-      const fill = el('i', a.sign >= 0 ? 'pos' : 'neg');
-      fill.style.width = (Math.min(1, Math.abs(a.sign) / 3) * 50) + '%';
-      bar.append(fill);
-      box.append(bar);
-    }
+    box.append(ladderEl(a));
     const lab = el('div', 'afflab', affLabel(a));
+    const d = feelScale().desc[lvKind(a) + (a.heart || Math.abs(a.sign))];
+    if (d) lab.title = d;
     if (a.trend) lab.append(el('span', 'trend ' + (a.trend > 0 ? 'up' : 'down'), a.trend > 0 ? '▲ vừa tăng' : '▼ vừa giảm'));
     if (a.src === 'tay') lab.append(el('span', 'code', 'tự đặt'));
     box.append(lab);
     return box;
+  }
+  /* Bảng các mức của truyện đang mở, ở cuối tab Nhân vật */
+  function renderFeelLegend() {
+    const box = $('#feelLegend .legend-body');
+    if (!box) return;
+    box.textContent = '';
+    const sc = feelScale();
+    for (const kind of ['heart', 'pos', 'neg']) {
+      const n = feelTop(kind);
+      const g = el('div', 'lg-group ' + kind);
+      g.append(el('div', 'lg-title', FEEL_NAME[kind] + (sc.max[kind] ? '' : ' · thang mặc định')));
+      for (let i = 1; i <= n; i++) {
+        const row = el('div', 'lg-row');
+        const sign = kind === 'heart' ? '♡' : kind === 'pos' ? '+' : '−';
+        row.append(el('span', 'lg-lv', sign + i), el('b', null, labOf(kind, i)));
+        const d = sc.desc[kind + i];
+        if (d) row.append(el('small', null, d));
+        g.append(row);
+      }
+      box.append(g);
+    }
+    const tip = S.fineFeel && S.feel
+      ? 'Giữa hai mức còn có nấc nửa (ví dụ +1½, ♡2½): nhân vật đã có lý do để tiến tới mức kế tiếp nhưng truyện chưa đủ thời gian hay chưa tới khoảnh khắc cần có.'
+      : 'Bật “Nấc nửa” ở trên để thang có thêm nấc giữa hai mức.';
+    box.append(el('div', 'hint', tip));
+  }
+  const FINE_NOTE = [
+    '# BỔ SUNG CỦA PHÒNG CHAT — NẤC NỬA TRÊN THANG CẢM XÚC NGẦM',
+    'Thang cảm xúc ngầm trong prompt này giữ nguyên: nghĩa của từng mức, luật lên xuống, thời gian chờ, khóa và cửa riêng của từng người. Phần này chỉ thêm nấc nửa để dòng ⚙ ghi được chỗ đang dở giữa hai mức.',
+    '- Viết nấc nửa bằng .5 ngay sau mức, ví dụ N03+1.5, L02−2.5, D01♡2.5.',
+    '- Nấc nửa nghĩa là người ấy đã có một ghi nhận đủ điều kiện để hướng tới mức kế tiếp (lên hay xuống), nhưng còn thiếu điều kiện khác của mức ấy: chưa đủ thời gian chờ, chưa có khoảnh khắc riêng, chưa qua cửa cần qua.',
+    '- Nấc nửa không bắt buộc: khi một sự kiện đã đủ mọi điều kiện của mức kế tiếp thì ghi thẳng số nguyên như prompt quy định. Ghi nấc nửa không tính là một lần lên mức và không làm thời gian chờ tính lại từ đầu.',
+    '- Nấc nửa không bao giờ vượt khóa hay cửa, không vượt mức cao nhất của thang, và không làm lộ thêm biểu hiện nào: lời dẫn chỉ tả theo mức nguyên người ấy đã đạt.',
+    '- Phai dần, thất hứa, lạnh nhạt có thể làm lùi nửa mức trước khi lùi cả mức, trừ khi luật trong prompt bắt lùi ngay.',
+  ].join('\n');
+  /* Hướng dẫn hệ thống gửi cho AI: thêm đoạn nấc nửa khi prompt có thang cảm xúc ngầm và anh đang bật mục ấy */
+  function systemFor(session) {
+    const sys = session.system || '';
+    if (!S.fineFeel || !S.feel || !sys.includes('⚙') || !/`(♡|[+\-−–])\d`/.test(sys)) return sys;
+    let at = -1;
+    const re = /^#{1,3}\s*QUY TẮC TỐI THƯỢNG/gm;
+    let m;
+    while ((m = re.exec(sys))) at = m.index;
+    return at < 0 ? sys.replace(/\s*$/, '') + '\n\n' + FINE_NOTE + '\n' : sys.slice(0, at) + FINE_NOTE + '\n\n' + sys.slice(at);
+  }
+  /* Sau mỗi lượt AI viết xong: báo ai vừa đổi mức (chỉ khi đang đọc tình cảm từ Sổ) */
+  function feelNews() {
+    if (!S.feel || !cur) return;
+    const [now, prev] = feelHistory(2);
+    if (!now || !prev) return;
+    const out = [];
+    for (const c of cur.cast) {
+      if (c.hidden || !c.code || !(c.code in now || c.code in prev)) continue;
+      const v = now[c.code] || { heart: 0, sign: 0 };
+      const p = prev[c.code] || { heart: 0, sign: 0 };
+      if (affScore(v) === affScore(p)) continue;
+      out.push((affScore(v) > affScore(p) ? '▲ ' : '▼ ') + c.name + ' ' + lvText(p) + ' → ' + lvText(v) + ' · ' + lvName(v));
+    }
+    if (out.length) toast(out.slice(0, 3).join('\n') + (out.length > 3 ? '\n… và ' + (out.length - 3) + ' người nữa' : ''), { ms: 5600, action: 'Xem', fn: () => openPanel('cast') });
   }
   /* Ai đang có mặt: đọc mục “Có mặt:” của Sổ gần nhất, không có Sổ thì đọc lời kể lượt cuối */
   function presentIds() {
@@ -2162,6 +2312,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const items = shown.map((c) => ({ c, a: affOf(c, now, prev), here: here.has(c.id) }));
     items.sort((x, y) => (y.here - x.here) || (affScore(y.a) - affScore(x.a)) || (!!y.c.img - !!x.c.img) || x.c.name.localeCompare(y.c.name));
     for (const it of items) list.append(npcEl(it));
+    renderFeelLegend();
   }
   function npcEl({ c, a, here }) {
     const card = el('div', 'npc' + (here ? ' here' : ''));
@@ -2231,10 +2382,19 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const iImg = field('Link ảnh', local ? '' : c.img, local ? '(đang dùng ảnh tải từ máy)' : 'https://…');
     const lab = el('label', null, 'Mức tình cảm tự đặt (dùng khi không đọc được từ Sổ)');
     const sel = el('select', 'inp');
-    const opts = [['', '— không đặt —']];
-    for (let i = -3; i <= 3; i++) opts.push(['s' + i, (i > 0 ? '+' : '') + i + ' · ' + SIGN_LAB[String(i)]]);
-    for (let i = 1; i <= 5; i++) opts.push(['h' + i, '♡' + i + ' · ' + HEART_LAB[i]]);
-    for (const [v, t] of opts) { const o = el('option', null, t); o.value = v; sel.append(o); }
+    const groups = [['', [['', '— không đặt —']]]];
+    const lv = (heart, sign) => affLabel({ heart, sign });
+    const steps = (n) => { const out = []; for (let i = 1; i <= n * 2; i++) out.push(i / 2); return out; };
+    const topM = (k) => feelScale().max[k] || FEEL_MAX;
+    groups.push(['Tình cảm', steps(topM('heart')).reverse().map((v) => ['h' + v, lv(v, 0)])]);
+    groups.push(['Thiện cảm', steps(topM('pos')).reverse().map((v) => ['s' + v, lv(0, v)])]);
+    groups.push(['', [['s0', lv(0, 0)]]]);
+    groups.push(['Ác cảm', steps(topM('neg')).map((v) => ['s' + -v, lv(0, -v)])]);
+    for (const [name, opts] of groups) {
+      const host = name ? el('optgroup') : sel;
+      if (name) { host.label = name; sel.append(host); }
+      for (const [v, t] of opts) { const o = el('option', null, t); o.value = v; host.append(o); }
+    }
     sel.value = c.manual ? (c.manual.heart ? 'h' + c.manual.heart : 's' + c.manual.sign) : '';
     lab.append(sel);
     f.append(lab);
@@ -3329,7 +3489,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     }, 1000);
 
     const body = { contents, generationConfig: genConfig() };
-    if ((session.system || '').trim()) body.systemInstruction = { parts: [{ text: session.system }] };
+    const sysText = systemFor(session);
+    if (sysText.trim()) body.systemInstruction = { parts: [{ text: sysText }] };
     const safety = safetySettings();
     if (safety) body.safetySettings = safety;
 
@@ -3661,26 +3822,39 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   }
 
   /* ================= Bò hiệp khách ================= */
-  /* Bò chạy bằng một chút vật lý: vận tốc tăng giảm dần, bước chân khớp quãng đường đi, kéo thả được, rơi có trọng lực.
+  /* Bò sống trong cả khung chat như một con thú cưng. Mặt bò đi được: mép trên các khung (bong bóng tin nhắn, lượt truyện,
+     khung Sổ, ảnh nhân vật đứng cạnh truyện), ô nhập làm mặt đất, hai vách và trần của khung chat. Bò leo dọc cạnh khung,
+     vòng qua góc, bước hay nhảy sang khung khác, rơi có trọng lực; đứng trên khung nào thì trôi theo khung ấy khi cuộn truyện.
+     Mỗi mặt là một đoạn thẳng có hướng: s là vị trí dọc theo đoạn, s tăng theo chiều bò nhìn khi dir = 1.
      Đứng yên thì ngừng vòng vẽ và hẹn giờ cho việc kế tiếp, đỡ tốn pin điện thoại. */
-  const COW_W = 58;
-  const COW_WALK = 40, COW_RUN = 150, COW_ACC_WALK = 110, COW_ACC_RUN = 340, COW_G = 1900, COW_NAP = 80000;
+  const FOOT_X = 29, FOOT_Y = 41, COW_HALF = 22, COW_TALL = 40, COW_LEN = 29;
+  const COW_WALK = 40, COW_RUN = 150, COW_CLIMB = 32, COW_ACC_WALK = 110, COW_ACC_RUN = 340, COW_G = 1900, COW_NAP = 80000;
   const clampN = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+  const angDelta = (a, b) => ((((b - a) % 360) + 540) % 360) - 180;
+  /* Xoay dần tới góc đích theo đường ngắn nhất; tới nơi thì gán đúng góc để số đo không cộng dồn qua nhiều vòng */
+  function angTo(target, k) {
+    const d = angDelta(cow.ang, target);
+    cow.ang = Math.abs(d) < 0.05 ? target : cow.ang + d * k;
+  }
   const cow = {
-    x: null, v: 0, dir: -1, y: 0, vy: 0, tilt: 0, spin: 0, spinning: false,
-    phase: 0, amp: 0, lean: 0, lie: 0, squash: 0,
-    mode: 'graze', until: 0, goal: null, drag: null, press: null,
-    raf: 0, timer: 0, last: 0, sayTimer: 0, sayW: 0, sayOn: false, dustAt: 0,
+    on: null, s: 0, v: 0, dir: -1, px: 0, py: 0, vx: 0, vy: 0, ang: 0, ghost: false, born: false, tgt: null,
+    tilt: 0, spin: 0, spinning: false, phase: 0, amp: 0, lean: 0, lie: 0, squash: 0,
+    mode: 'graze', until: 0, route: [], tw: null, drag: null, press: null,
+    raf: 0, timer: 0, last: 0, sayTimer: 0, sayW: 0, sayH: 0, sayOn: false, dustAt: 0, rx: NaN, ry: NaN, ra: NaN,
     seenAt: Date.now(), typedAt: -1e9, pets: [],
   };
   const COW_HI = ['Mooo~', 'Bò hiệp khách xin chào!', 'Cỏ ở đây ngon ghê', 'Viết tiếp đi anh!', 'Hí hí', 'Kiếm này để cắt cỏ thôi', 'Gãi đúng chỗ rồi ♥'];
   const COW_DONE = ['Xong rồi nè!', 'Mooo~ viết xong!', 'Đọc đi anh!', 'Chạy mệt quá trời'];
   const COW_BUSY = ['Đang chạy việc, chờ chút!', 'Đừng cản, bò đang chạy!', 'Sắp xong rồi…'];
-  const COW_HELD = ['Ơ ơ, thả bò xuống!', 'Bò bay nè!', 'Cao quá…', 'Mooo!?'];
+  const COW_HELD = ['Ơ ơ, thả bò xuống!', 'Bò bay nè!', 'Cao quá…', 'Mooo!?', 'Đem bò đi đâu vậy?'];
   const COW_OUCH = ['Ui da!', 'Mooo… đau ghê', 'Bò không sao…', 'Lần sau nhẹ tay nha'];
   const COW_TYPE = ['Viết gì đó?', 'Bò hóng nè', 'Hay đó!', 'Gõ nhanh ghê'];
   const COW_SLEEP = ['Buồn ngủ quá…', 'Bò chợp mắt chút', 'Zzz…'];
   const COW_WAKE = ['Hả? Bò dậy rồi!', 'Ai gọi bò đó?', 'Mơ thấy cỏ non…'];
+  const COW_CLING = ['Bám chắc rồi!', 'Suýt rơi…', 'Bò dính tường nè'];
+  const COW_UPTOP = ['Lên tới nơi rồi!', 'Trên này ngắm truyện đã ghê', 'Bò leo giỏi chưa?'];
+  const COW_CEIL = ['Thế giới lộn ngược!', 'Chóng mặt quá…', 'Đi trên trần nè'];
+  const COW_FALL = ['Á á á!', 'Rơi nè!', 'Mooo~!'];
   /* Bò đọc lượt AI vừa viết: chữ nào lặp từ hai lần trở lên thì bò phản ứng theo */
   const COW_MOOD = [
     [/máu|chém|đâm|tấn công|kunai|shuriken|chiến đấu|giao chiến|nổ tung|sát khí|đòn đánh/gi, 'mark', '!', ['Căng quá trời!', 'Bò núp đây…', 'Đánh nhau rồi!']],
@@ -3692,20 +3866,24 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   const cn = {};
   function cowNodes() {
     if (!cn.root) {
+      cn.world = $('#cowWorld');
       cn.root = $('#cow');
       cn.hop = $('#cow .hop');
       cn.upper = $('#cow .upper');
       cn.nod = $('#cow .nod');
       cn.a = $$('#cow .leg-a');
       cn.b = $$('#cow .leg-b');
-      cn.shadow = $('#cow .cowshadow');
+      cn.shadow = $('#cowWorld .cowshadow');
       cn.say = $('#cowSay');
-      cn.track = $('#cowTrack');
+      cn.main = $('#main');
+      cn.top = $('#top');
+      cn.box = $('#composer .box');
+      cn.msgs = $('#msgs');
+      cn.stage = $('#stage');
     }
     return cn;
   }
   function cowMoves() { return S.cowOn && motionOn(); }
-  function cowHome() { return Math.max(0, cowNodes().track.clientWidth - COW_W - 4); }
   function cowKick() {
     clearTimeout(cow.timer);
     cow.timer = 0;
@@ -3713,91 +3891,159 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     cow.last = 0;
     cow.raf = requestAnimationFrame(cowStep);
   }
-  /* Chọn việc kế tiếp khi việc cũ hết giờ hoặc đã tới nơi */
-  function cowPlan(t, home) {
-    cow.goal = null;
-    if (gen) {
-      if (cow.mode !== 'run') { cow.mode = 'run'; cowFx('mark', '!'); }
-      cow.goal = cow.x > home / 2 ? 0 : home;
-      return;
+
+  /* ---- Địa hình: khung chat, các khung bò đứng được, các mặt bò bám được ---- */
+  let cw = null;
+  function cowWorldBox() {
+    const n = cowNodes();
+    const m = n.main.getBoundingClientRect();
+    const box = n.box.getBoundingClientRect();
+    const ceil = Math.max(0, Math.round(n.top.getBoundingClientRect().bottom - m.top));
+    return { mx: m.left, my: m.top, W: n.main.clientWidth, ceil, floor: Math.max(ceil + 80, Math.round(box.top - m.top) + 1) };
+  }
+  const plat = { list: null, at: 0, dirty: true };
+  const platCache = new Map();
+  function cowDirty() { plat.dirty = true; }
+  function turnPart(turn, part) {
+    return turn.querySelector(part === 'so' ? ':scope > .tmain > .so-card' : part === 'body' ? ':scope > .tmain > .body' : ':scope > .tmain');
+  }
+  function platEl(key) {
+    const hit = platCache.get(key);
+    if (hit && hit.isConnected) return hit;
+    const [kind, a, b] = key.split('|');
+    let e = null;
+    if (kind === 'sp') e = cowNodes().stage.children[+a] || null;
+    else {
+      const turn = cowNodes().msgs.querySelector(':scope > .turn[data-id="' + CSS.escape(a) + '"]');
+      e = turn && turnPart(turn, b);
     }
-    if (t - cow.typedAt < 1800) { cow.mode = 'watch'; cow.until = cow.typedAt + 1800; return; }
-    if (cow.mode === 'sleep' || Date.now() - cow.seenAt > COW_NAP) {
-      if (cow.mode !== 'sleep') { cow.mode = 'sleep'; cowSay(pick(COW_SLEEP)); } else cowFx('zz', 'z', { y: 22 });
-      cow.until = t + 1800;
-      return;
+    if (e) platCache.set(key, e); else platCache.delete(key);
+    return e;
+  }
+  function platRect(e) {
+    const r = e.getBoundingClientRect();
+    if (r.width < 40 || r.height < 12) return null;
+    return { l: r.left - cw.mx, t: r.top - cw.my, r: r.right - cw.mx, b: r.bottom - cw.my };
+  }
+  /* Các khung đang nhìn thấy: tìm nhị phân lượt đầu tiên còn trong màn hình rồi đọc tới lượt cuối còn thấy */
+  function cowPlats(t) {
+    if (!plat.dirty && plat.list && t - plat.at < 150) return plat.list;
+    const out = [];
+    const add = (key, e) => {
+      const r = e && platRect(e);
+      if (!r || r.b <= cw.ceil || r.t >= cw.floor) return;
+      platCache.set(key, e);
+      out.push(Object.assign(r, { key }));
+    };
+    const kids = cowNodes().msgs.children;
+    let lo = 0, hi = kids.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (kids[mid].getBoundingClientRect().bottom - cw.my < cw.ceil) lo = mid + 1; else hi = mid;
     }
-    const r = Math.random();
-    if (r < 0.45) { cow.mode = 'graze'; cow.until = t + 4000 + Math.random() * 7000; return; }
-    if (r < 0.85) {
-      const g = clampN(Math.random() < 0.3 ? home - Math.random() * 50 : cow.x + (Math.random() < 0.5 ? -1 : 1) * (50 + Math.random() * 200), 0, home);
-      if (Math.abs(g - cow.x) > 24) { cow.mode = 'wander'; cow.goal = g; return; }
+    for (let i = lo; i < kids.length; i++) {
+      const k = kids[i];
+      if (k.getBoundingClientRect().top - cw.my > cw.floor) break;
+      const id = k.dataset.id;
+      if (!id || !k.classList.contains('turn')) continue;
+      if (k.classList.contains('user')) add('t|' + id + '|body', turnPart(k, 'body'));
+      else { add('t|' + id + '|main', turnPart(k, 'main')); add('t|' + id + '|so', turnPart(k, 'so')); }
     }
-    cow.mode = 'look';
-    cow.until = t + 2200 + Math.random() * 2400;
+    const st = cowNodes().stage;
+    if (!st.hidden) [...st.children].forEach((e, i) => add('sp|' + i, e));
+    plat.list = out;
+    plat.at = t;
+    plat.dirty = false;
+    return out;
+  }
+  /* up: đứng trên mép trên · L: bám cạnh trái (bò ở ngoài, bên trái) · R: bám cạnh phải · down: treo dưới trần */
+  const SEG_T = { up: { ang: 0 }, L: { ang: -90 }, R: { ang: 90 }, down: { ang: 180 } };
+  /* Với mặt của một khung, s đo từ góc trên bên trái của khung (o là độ lệch), nên cuộn truyện thì bò trôi theo khung */
+  const mkSeg = (type, c, a, b, world, o) => ({ type, c, a, b, world, o: o || 0, ang: SEG_T[type].ang });
+  function segPos(sg, s) {
+    const v = s + sg.o;
+    return sg.type === 'up' ? [v, sg.c] : sg.type === 'L' ? [sg.c, -v] : sg.type === 'R' ? [sg.c, v] : [-v, sg.c];
+  }
+  function cowSeg(ref) {
+    if (!ref) return null;
+    switch (ref.k) {
+      case 'floor': return mkSeg('up', cw.floor, 0, cw.W, true);
+      case 'ceil': return mkSeg('down', cw.ceil, -cw.W, 0, true);
+      case 'wl': return mkSeg('R', 0, cw.ceil, cw.floor, true);
+      case 'wr': return mkSeg('L', cw.W, -cw.floor, -cw.ceil, true);
+    }
+    const e = platEl(ref.p);
+    const r = e && platRect(e);
+    if (!r) return null;
+    const sg = ref.k === 'top' ? mkSeg('up', r.t, 0, r.r - r.l, false, r.l) : ref.k === 'L' ? mkSeg('L', r.l, r.t - r.b, 0, false, -r.t) : mkSeg('R', r.r, 0, r.b - r.t, false, r.t);
+    sg.box = r;
+    return sg;
+  }
+  /* Phần của mặt còn nhìn thấy (không khuất sau thanh trên cùng, không chìm dưới ô nhập) */
+  function segVis(sg) {
+    const lo = cw.ceil + (sg.world ? 0 : 30);
+    const hi = cw.floor;
+    const o = sg.o;
+    let a = sg.a + o;
+    let b = sg.b + o;
+    if (sg.type === 'up') {
+      if (sg.c < cw.ceil + 30 || sg.c > hi + 1) return null;
+      a = Math.max(a, 0);
+      b = Math.min(b, cw.W);
+    } else if (sg.type === 'L') { a = Math.max(a, -hi); b = Math.min(b, -lo); }
+    else if (sg.type === 'R') { a = Math.max(a, lo); b = Math.min(b, hi); }
+    return a <= b ? [a - o, b - o] : null;
+  }
+  /* Đoạn bò đi lại cho vui, chừa mép ra một chút */
+  function cowSpan(sg) {
+    const v = segVis(sg);
+    if (!v) return null;
+    const m = sg.world ? COW_LEN : 16;
+    return v[1] - v[0] > 2 * m ? [v[0] + m, v[1] - m] : [(v[0] + v[1]) / 2, (v[0] + v[1]) / 2];
+  }
+  /* Đầu mút a, b của mỗi mặt nối với mặt nào. Góc khung là góc lồi (bò lật qua mép), góc khung chat là góc lõm (bò rẽ lên vách) */
+  const COW_LINK = {
+    'top:a': ['L', 'b'], 'top:b': ['R', 'a'], 'L:b': ['top', 'a'], 'R:a': ['top', 'b'],
+    'floor:a': ['wl', 'b'], 'floor:b': ['wr', 'a'], 'wl:b': ['floor', 'a'], 'wr:a': ['floor', 'b'],
+    'wl:a': ['ceil', 'b'], 'ceil:b': ['wl', 'a'], 'wr:b': ['ceil', 'a'], 'ceil:a': ['wr', 'b'],
+  };
+  const endS = (sg, end) => (sg.world ? (end === 'a' ? sg.a + COW_LEN : sg.b - COW_LEN) : end === 'a' ? sg.a : sg.b);
+  const upright = (ref) => !!ref && (ref.k === 'top' || ref.k === 'floor');
+
+  /* ---- Vòng vẽ ---- */
+  function cowReset() {
+    cow.born = true;
+    Object.assign(cow, { on: { k: 'floor' }, s: cw.W - 60, v: 0, vx: 0, vy: 0, dir: -1, ang: 0, tw: null, route: [], drag: null, ghost: false, tgt: null, amp: 0, lean: 0, tilt: 0, spin: 0, spinning: false, squash: 0, lie: 0 });
+    [cow.px, cow.py] = segPos(cowSeg(cow.on), cow.s);
   }
   function cowStep(t) {
     cow.raf = 0;
     const n = cowNodes();
-    if (!S.cowOn || !n.track.clientWidth || document.hidden) return;
+    if (!S.cowOn || document.hidden || !n.main.clientWidth) return;
     const dt = cow.last ? Math.min(0.05, (t - cow.last) / 1000) : 0;
     cow.last = t;
-    const home = cowHome();
-    if (cow.x == null || cow.x > home) cow.x = home;
+    cw = cowWorldBox();
+    if (!cow.born) cowReset();
     if (!cowMoves()) {
-      Object.assign(cow, { x: home, v: 0, y: 0, vy: 0, dir: -1, amp: 0, lean: 0, tilt: 0, spin: 0, spinning: false, squash: 0, lie: 0, drag: null, goal: null });
+      cowReset();
       cow.mode = gen ? 'think' : 'graze';
-      cowRender();
+      cowRender(t);
       return;
     }
     if (!cow.drag) {
-      if (gen && cow.mode !== 'run') cowPlan(t, home);
-      else if (!gen && cow.mode === 'run') { cow.mode = 'graze'; cow.goal = null; cow.until = t + 2600; }
-      else if (cow.goal == null && t >= cow.until && cow.y === 0) cowPlan(t, home);
-      else if (cow.goal != null && cow.goal > home) cow.goal = home;
+      if (gen && cow.mode !== 'run') cowGenStart();
+      else if (!gen && cow.mode === 'run') { cow.mode = 'graze'; cow.route = []; cow.until = t + 2600; cow.ghost = false; }
     }
-    /* Ngang: lái tới đích, tới gần thì phanh dần; không có đích thì ma sát cho dừng */
-    const air = cow.y < 0 || cow.vy < 0;
     let a = 0;
-    if (!cow.drag && !air) {
-      if (cow.goal != null) {
-        const run = cow.mode === 'run';
-        const top = run ? COW_RUN : COW_WALK;
-        const acc = run ? COW_ACC_RUN : COW_ACC_WALK;
-        const d = cow.goal - cow.x;
-        const want = Math.sign(d) * Math.min(top, Math.sqrt(1.7 * acc * Math.abs(d)));
-        a = clampN((want - cow.v) / Math.max(dt, 0.008), -acc, acc);
-        if (Math.abs(d) < 1.5 && Math.abs(cow.v) < 10) {
-          cow.x = cow.goal;
-          cow.v = 0;
-          a = 0;
-          if (run) cowDust(3);
-          cowPlan(t, home);
-        }
-      } else if (cow.v) a = clampN(-cow.v / Math.max(dt, 0.008), -280, 280);
-    }
-    if (!cow.drag) {
-      cow.v += a * dt;
-      cow.x += cow.v * dt;
-      if (cow.x < 0) { cow.x = 0; cow.v = air ? Math.abs(cow.v) * 0.4 : 0; }
-      if (cow.x > home) { cow.x = home; cow.v = air ? -Math.abs(cow.v) * 0.4 : 0; }
-    }
-    /* Dọc: trọng lực, chạm đất thì nảy nhẹ và bẹp xuống một chút */
-    if (!cow.drag && air) {
-      cow.vy += COW_G * dt;
-      cow.y += cow.vy * dt;
-      if (cow.y >= 0 && cow.vy > 0) {
-        const hit = cow.vy;
-        cow.y = 0;
-        cow.vy = hit > 300 ? -hit * 0.3 : 0;
-        cow.squash = Math.max(cow.squash, Math.min(1, hit / 1000));
-        if (hit > 420) cowDust(hit > 800 ? 4 : 2);
-        if (hit > 520) cowSay(pick(COW_OUCH));
-      }
-    }
+    cow.tgt = null;
+    if (cow.drag) cowHeld(dt);
+    else if (cow.tw) cowTween(dt, t);
+    else if (!cow.on) cowAir(dt, t);
+    else a = cowWalk(dt, t);
     if (cow.spinning) { cow.spin += dt * 900; if (cow.spin >= 360) { cow.spin = 0; cow.spinning = false; } }
     cow.squash = Math.max(0, cow.squash - dt * 3.2);
-    const leanT = cow.drag || air ? 0 : clampN(a * cow.dir * 0.014, -5, 5);
+    const onSurf = cow.on && !cow.tw && !cow.drag;
+    const leanT = onSurf ? clampN(a * cow.dir * 0.014, -5, 5) : 0;
     cow.lean += (leanT - cow.lean) * Math.min(1, dt * 8);
     const tiltT = cow.drag ? clampN(cow.drag.vx * 0.04, -30, 30) : 0;
     cow.tilt += (tiltT - cow.tilt) * Math.min(1, dt * (cow.drag ? 7 : 10));
@@ -3805,33 +4051,420 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const sp = Math.abs(cow.v);
     let ampT = 0;
     if (cow.drag) { cow.phase += dt * 3.4; ampT = 24; }
-    else if (!air && sp > 1.5) { cow.phase += (sp * dt) / (sp > 95 ? 48 : 30); ampT = Math.min(38, 9 + sp * 0.2); }
+    else if (cow.tw && !cow.tw.air) { cow.phase += dt * 1.8; ampT = 14; }
+    else if (onSurf && sp > 1.5) { cow.phase += (sp * dt) / (sp > 95 ? 48 : 30); ampT = Math.min(38, 9 + sp * 0.2); }
     cow.amp += (ampT - cow.amp) * Math.min(1, dt * 9);
     if (!ampT && cow.amp < 0.05) cow.amp = 0;
-    const lieT = cow.mode === 'sleep' && !cow.drag && !air ? 1 : 0;
+    const lieT = cow.mode === 'sleep' && onSurf && upright(cow.on) ? 1 : 0;
     cow.lie += (lieT - cow.lie) * Math.min(1, dt * 2.6);
     if (Math.abs(lieT - cow.lie) < 0.004) cow.lie = lieT;
     if (cow.drag) { if (Math.abs(cow.drag.vx) > 60) cow.dir = Math.sign(cow.drag.vx); }
-    else if (sp > 6) cow.dir = Math.sign(cow.v);
-    else if (cow.goal != null && Math.abs(cow.goal - cow.x) > 2) cow.dir = Math.sign(cow.goal - cow.x);
-    else if (cow.mode === 'watch') cow.dir = -1;
-    if (!air && !cow.drag && ((sp > 110 && t - cow.dustAt > 260) || (Math.abs(a) > 250 && sp > 30 && t - cow.dustAt > 120))) { cow.dustAt = t; cowDust(1); }
-    cowRender();
-    const busy = cow.drag || air || cow.goal != null || sp > 0.01 || cow.amp || cow.squash || cow.spinning || cow.lie !== lieT || Math.abs(cow.tilt) > 0.05 || Math.abs(cow.lean) > 0.05;
+    else if (!cow.on && !cow.tw) { if (Math.abs(cow.vx) > 40) cow.dir = Math.sign(cow.vx); }
+    else if (onSurf) {
+      if (sp > 6) cow.dir = Math.sign(cow.v);
+      else if (cow.tgt != null && Math.abs(cow.tgt - cow.s) > 2) cow.dir = Math.sign(cow.tgt - cow.s);
+    }
+    if (onSurf && upright(cow.on) && ((sp > 110 && t - cow.dustAt > 260) || (Math.abs(a) > 250 && sp > 30 && t - cow.dustAt > 120))) { cow.dustAt = t; cowDust(1); }
+    const moved = !(Math.abs(cow.px - cow.rx) < 0.05 && Math.abs(cow.py - cow.ry) < 0.05 && Math.abs(cow.ang - cow.ra) < 0.05);
+    cowRender(t);
+    const step = cow.route[0];
+    const busy = cow.drag || cow.tw || !cow.on || moved || (step && step.t !== 'wait') || sp > 0.01 || cow.amp || cow.squash || cow.spinning || cow.lie !== lieT || Math.abs(cow.tilt) > 0.05 || Math.abs(cow.lean) > 0.05;
     if (busy) cow.raf = requestAnimationFrame(cowStep);
-    else cow.timer = setTimeout(cowKick, Math.max(60, Math.min(cow.until, t + 30000) - t));
+    else {
+      const next = step && step.until != null ? step.until : cow.until;
+      cow.timer = setTimeout(cowKick, Math.max(60, Math.min(next, t + 30000) - t));
+    }
   }
+  /* Đi dọc mặt đang bám: lái tới đích, tới gần thì phanh dần; không có đích thì ma sát cho dừng */
+  function cowWalk(dt, t) {
+    const sg = cowSeg(cow.on);
+    if (!sg) { cowLetGo(false, false); return 0; }
+    if (cow.on.k === 'top' && sg.c > cw.floor - 1) { cowToFloor(); return 0; }
+    const vis = segVis(sg);
+    if (!vis) { cowLetGo(false, false); return 0; }
+    if (cow.s < vis[0] || cow.s > vis[1]) {
+      /* Khung trôi khỏi chỗ nhìn thấy: vách chìm xuống dưới ô nhập thì bò xuống đất, còn lại thì trượt theo cho khỏi khuất */
+      if (!sg.world && sg.type !== 'up' && segPos(sg, cow.s)[1] > cw.floor - 1) { cowToFloor(); return 0; }
+      cow.s = clampN(cow.s, vis[0], vis[1]);
+    }
+    if (!cow.route.length && t >= cow.until) { cowPlan(t, sg); if (!cow.on || cow.tw) return 0; }
+    let step = cow.route[0];
+    while (step && step.t !== 'walk' && step.t !== 'over' && step.t !== 'wait') {
+      cow.route.shift();
+      if (cowAction(step, sg, t)) return 0;
+      step = cow.route[0];
+    }
+    let target = null;
+    if (step && step.t === 'wait') {
+      if (step.until == null) { step.until = t + step.ms; if (step.mode) cow.mode = step.mode; }
+      if (t >= step.until) cow.route.shift();
+    } else if (step) {
+      const want = step.t === 'over' ? endS(sg, step.end) : step.s;
+      if (step.t === 'over' && (want < vis[0] - 0.5 || want > vis[1] + 0.5)) { cow.route = []; cow.until = t + 400; }
+      else target = clampN(want, vis[0], vis[1]);
+    }
+    let a = 0;
+    if (target != null) {
+      cow.tgt = target;
+      const run = cow.mode === 'run';
+      /* Đường xa thì bò đi nhanh hơn một chút */
+      const top = run ? COW_RUN : sg.type === 'up' ? (Math.abs(target - cow.s) > 160 ? 72 : COW_WALK) : COW_CLIMB;
+      const acc = run ? COW_ACC_RUN : COW_ACC_WALK;
+      const d = target - cow.s;
+      const want = Math.sign(d) * Math.min(top, Math.sqrt(1.7 * acc * Math.abs(d)));
+      a = clampN((want - cow.v) / Math.max(dt, 0.008), -acc, acc);
+      if (Math.abs(d) < 1.5 && Math.abs(cow.v) < 10) {
+        cow.s = target;
+        cow.v = 0;
+        a = 0;
+        const done = cow.route.shift();
+        if (run) cowDust(3);
+        [cow.px, cow.py] = segPos(sg, cow.s);
+        if (done.t === 'over') { cowCorner(sg, done.end); return 0; }
+      }
+    } else if (cow.v) a = clampN(-cow.v / Math.max(dt, 0.008), -280, 280);
+    cow.v += a * dt;
+    cow.s = clampN(cow.s + cow.v * dt, vis[0], vis[1]);
+    [cow.px, cow.py] = segPos(sg, cow.s);
+    angTo(sg.ang, Math.min(1, dt * 14));
+    return a;
+  }
+  /* Các bước không phải đi bộ trong lộ trình; trả về true khi bò đã rời mặt đang bám */
+  function cowAction(step, sg, t) {
+    if (step.t === 'grab' || step.t === 'hop') {
+      const tsg = cowSeg(step.ref);
+      if (!tsg || !segVis(tsg)) { cow.route = []; cow.until = t + 300; return false; }
+      const [x1, y1] = segPos(tsg, step.s);
+      const rise = cow.py - y1;
+      const dist = Math.hypot(x1 - cow.px, y1 - cow.py);
+      const grab = step.t === 'grab';
+      if (!grab && Math.abs(x1 - cow.px) > 4) cow.dir = Math.sign(x1 - cow.px);
+      cowTweenTo(step.ref, step.s, {
+        d: grab ? 0.34 : clampN(0.36 + dist / 900, 0.4, 0.8),
+        h: grab ? 10 : Math.max(26, rise > 0 ? rise / 2 + 30 : 26),
+        air: true,
+        dir: step.dir,
+      });
+      cowDust(grab ? 1 : 2);
+      return true;
+    }
+    if (step.t === 'leave') { cowLeaveWall(sg, t); return true; }
+    if (step.t === 'drop') { cowLetGo(false, false); if (Math.random() < 0.4) cowSay(pick(COW_FALL)); return true; }
+    if (step.t === 'say' && Math.random() < (step.p || 1)) cowSay(pick(step.lines));
+    return false;
+  }
+  function cowTweenTo(ref, s, opt) {
+    const sg = cowSeg(ref);
+    if (!sg) return false;
+    cow.tw = { k: 0, d: opt.d, x0: cow.px, y0: cow.py, a0: cow.ang, da: angDelta(cow.ang, sg.ang), h: opt.h || 0, air: !!opt.air, ref, s };
+    cow.v = 0;
+    if (opt.dir) cow.dir = opt.dir;
+    return true;
+  }
+  /* Động tác ngắn có điểm đầu, điểm cuối: lật qua góc, nhảy bám vách, bước xuống, nhảy sang khung khác.
+     Điểm cuối đọc lại mỗi khung hình nên khung có cuộn thì bò vẫn đáp đúng chỗ. */
+  function cowTween(dt, t) {
+    const w = cow.tw;
+    const sg = cowSeg(w.ref);
+    if (!sg) { cow.tw = null; cowLetGo(false, false); return; }
+    const [x1, y1] = segPos(sg, w.s);
+    w.k = Math.min(1, w.k + dt / w.d);
+    const e = w.k < 0.5 ? 2 * w.k * w.k : 1 - Math.pow(-2 * w.k + 2, 2) / 2;
+    const m = w.air ? w.k : e;
+    cow.px = w.x0 + (x1 - w.x0) * m;
+    cow.py = w.y0 + (y1 - w.y0) * m - w.h * 4 * w.k * (1 - w.k);
+    cow.ang = w.a0 + w.da * e;
+    if (w.k < 1) return;
+    cow.tw = null;
+    cow.on = w.ref;
+    cow.s = w.s;
+    cow.v = 0;
+    cow.ang = w.a0 + w.da;
+    if (w.air) { cow.squash = Math.max(cow.squash, 0.3); cowDust(1); }
+    if (!cow.route.length) cow.until = t + 500 + Math.random() * 900;
+  }
+  function cowCorner(sg, end) {
+    const link = COW_LINK[cow.on.k + ':' + end];
+    const ref = link && (sg.world ? { k: link[0] } : { k: link[0], p: cow.on.p });
+    const nsg = ref && cowSeg(ref);
+    if (!nsg || !segVis(nsg)) { cow.route = []; return; }
+    cowTweenTo(ref, endS(nsg, link[1]), { d: sg.world ? 0.32 : 0.24, h: 0, air: false, dir: link[1] === 'a' ? 1 : -1 });
+    if (link[0] === 'ceil' && Math.random() < 0.5) cowSay(pick(COW_CEIL));
+  }
+  /* Tới chân vách: có khung ngay bên dưới thì bước xuống, gần đất thì nhảy xuống đất, không thì buông tay rơi */
+  function cowLeaveWall(sg, t) {
+    const [x, y] = segPos(sg, cow.s);
+    if (y > cw.floor - 2) { cowToFloor(); return; }
+    const inward = sg.type === 'L' ? 1 : -1;
+    const fx = x + inward * 14;
+    let best = null;
+    for (const p of cowPlats(t)) {
+      if (p.t < y - 2 || p.t - y > 120 || fx < p.l + 6 || fx > p.r - 6 || p.t < cw.ceil + 30 || p.t > cw.floor - 2) continue;
+      if (!best || p.t < best.t) best = p;
+    }
+    if (best) { cowTweenTo({ k: 'top', p: best.key }, fx - best.l, { d: 0.34, h: 8, air: true, dir: inward }); return; }
+    if (cw.floor - y < 120) { cowTweenTo({ k: 'floor' }, clampN(x - inward * 26, COW_LEN, cw.W - COW_LEN), { d: 0.36, h: 6, air: true }); return; }
+    cowLetGo(false, false);
+  }
+  function cowToFloor() {
+    cow.on = { k: 'floor' };
+    cow.route = [];
+    cow.v = 0;
+    cow.s = clampN(cow.px, COW_LEN, cw.W - COW_LEN);
+    cow.squash = Math.max(cow.squash, 0.4);
+    cow.until = performance.now() + 900;
+  }
+  /* Rời mặt đang bám: đẩy ra khỏi mặt một chút; ghost = rơi thẳng xuống đất, bỏ qua mọi khung (lúc AI đang viết) */
+  function cowLetGo(ghost, hop) {
+    const r = (cow.ang * Math.PI) / 180;
+    const up = upright(cow.on);
+    cow.on = null;
+    cow.tw = null;
+    cow.route = [];
+    cow.v = 0;
+    cow.ghost = !!ghost;
+    cow.vx = Math.sin(r) * 70;
+    cow.vy = up ? (hop ? -200 : 0) : -Math.cos(r) * 70;
+  }
+  function cowGenStart() {
+    cow.mode = 'run';
+    cowFx('mark', '!');
+    if (cow.tw) return;
+    if (!cow.on) { cow.ghost = true; return; }
+    if (cow.on.k !== 'floor') { cowLetGo(true, true); return; }
+    cow.route = [];
+    cow.until = 0;
+  }
+
+  /* ---- Bay, rơi, đáp, bám ---- */
+  function cowAir(dt, t) {
+    const n = Math.max(1, Math.ceil((Math.max(Math.abs(cow.vx), Math.abs(cow.vy) + COW_G * dt) * dt) / 10));
+    for (let i = 0; i < n && !cow.on; i++) cowAirStep(dt / n, t);
+    angTo(0, Math.min(1, dt * 7));
+  }
+  function cowAirStep(h, t) {
+    const ox = cow.px;
+    const oy = cow.py;
+    cow.vy += COW_G * h;
+    cow.px += cow.vx * h;
+    cow.py += cow.vy * h;
+    /* Hai vách khung chat: ném mạnh vào thì bám, không thì nảy lại */
+    if (cow.px - COW_HALF < 0 || cow.px + COW_HALF > cw.W) {
+      const left = cow.px - COW_HALF < 0;
+      if (!cow.ghost && Math.abs(cow.vx) > 170 && cow.py > cw.ceil + 60 && cow.py < cw.floor - 30) {
+        cow.px = left ? 0 : cw.W;
+        if (left) cowCling({ k: 'wl' }, cow.py, -1); else cowCling({ k: 'wr' }, -cow.py, 1);
+        return;
+      }
+      cow.px = left ? COW_HALF : cw.W - COW_HALF;
+      cow.vx = -cow.vx * 0.45;
+    }
+    /* Trần: tung thật mạnh lên thì bò treo ngược luôn */
+    if (cow.vy < 0 && cow.py - COW_TALL < cw.ceil) {
+      if (!cow.ghost && cow.vy < -420) { cow.py = cw.ceil; cowCling({ k: 'ceil' }, -cow.px, cow.vx > 0 ? -1 : 1); return; }
+      cow.py = cw.ceil + COW_TALL;
+      cow.vy = -cow.vy * 0.25;
+    }
+    if (!cow.ghost) {
+      const plats = cowPlats(t);
+      if (cow.vy > 0) {
+        let hit = null;
+        for (const p of plats) {
+          if (oy <= p.t + 0.5 && cow.py >= p.t && cow.px >= p.l + 4 && cow.px <= p.r - 4 && p.t >= cw.ceil + 30 && p.t < cw.floor - 2 && (!hit || p.t < hit.t)) hit = p;
+        }
+        if (hit) { cow.py = hit.t; cowLand({ k: 'top', p: hit.key }, clampN(cow.px - hit.l, 0, hit.r - hit.l)); return; }
+      }
+      /* Bị ném ngang vào cạnh khung: bám vào cạnh ấy */
+      if (Math.abs(cow.vx) > 90) {
+        for (const p of plats) {
+          if (cow.py < p.t + 16 || cow.py > p.b - 4) continue;
+          if (cow.vx > 0 && ox + COW_HALF <= p.l && cow.px + COW_HALF > p.l) { cow.px = p.l; cowCling({ k: 'L', p: p.key }, p.t - cow.py, 1); return; }
+          if (cow.vx < 0 && ox - COW_HALF >= p.r && cow.px - COW_HALF < p.r) { cow.px = p.r; cowCling({ k: 'R', p: p.key }, cow.py - p.t, -1); return; }
+        }
+      }
+    }
+    if (cow.py >= cw.floor) { cow.py = cw.floor; cowLand({ k: 'floor' }, clampN(cow.px, COW_LEN, cw.W - COW_LEN)); }
+  }
+  /* Chạm mặt: rơi mạnh thì nảy, bẹp xuống, tung bụi; nhẹ thì đứng luôn */
+  function cowLand(ref, s) {
+    const hit = cow.vy;
+    cow.squash = Math.max(cow.squash, Math.min(1, hit / 1000));
+    if (hit > 420) cowDust(hit > 800 ? 4 : 2);
+    if (hit > 520) cowSay(pick(COW_OUCH));
+    if (hit > 300) { cow.vy = -hit * 0.3; cow.vx *= 0.7; return; }
+    cow.on = ref;
+    cow.s = s;
+    cow.v = clampN(cow.vx * 0.3, -50, 50);
+    cow.vx = cow.vy = 0;
+    cow.ghost = false;
+    cow.route = [];
+    cow.until = performance.now() + (gen ? 0 : 700);
+    if (cow.mode !== 'run' && cow.mode !== 'sleep') cow.mode = 'look';
+  }
+  function cowCling(ref, s, dir) {
+    cow.on = ref;
+    cow.s = s;
+    cow.v = 0;
+    cow.vx = cow.vy = 0;
+    cow.dir = dir;
+    cow.ghost = false;
+    cow.route = [];
+    cow.until = performance.now() + 700;
+    cow.mode = 'look';
+    cow.squash = Math.max(cow.squash, 0.25);
+    if (Math.random() < 0.6) cowSay(pick(ref.k === 'ceil' ? COW_CEIL : COW_CLING));
+  }
+
+  /* ---- Bò tự nghĩ việc kế tiếp ---- */
+  function cowPlan(t, sg) {
+    cow.route = [];
+    const k = cow.on.k;
+    if (gen) {
+      if (k === 'floor') cow.route = [{ t: 'walk', s: cow.s > cw.W / 2 ? 40 : cw.W - 40 }];
+      else cowLetGo(true, upright(cow.on));
+      return;
+    }
+    if (!upright(cow.on)) { cowPlanWall(sg, t); return; }
+    if (t - cow.typedAt < 1800) { cow.mode = 'watch'; cow.until = cow.typedAt + 1800; return; }
+    if (cow.mode === 'sleep' || Date.now() - cow.seenAt > COW_NAP) {
+      if (cow.mode !== 'sleep') { cow.mode = 'sleep'; cowSay(pick(COW_SLEEP)); } else cowFx('zz', 'z', { up: 22 });
+      cow.until = t + 1800;
+      return;
+    }
+    const span = cowSpan(sg) || [cow.s, cow.s];
+    const floor = k === 'floor';
+    const r = Math.random();
+    if (r < (floor ? 0.34 : 0.26)) { cow.mode = 'graze'; cow.until = t + 4000 + Math.random() * 7000; return; }
+    if (r < (floor ? 0.6 : 0.5)) {
+      const g = clampN(floor && Math.random() < 0.3 ? cw.W - 60 - Math.random() * 50 : cow.s + (Math.random() < 0.5 ? -1 : 1) * (50 + Math.random() * 200), span[0], span[1]);
+      if (Math.abs(g - cow.s) > 24) { cow.mode = 'wander'; cow.route = [{ t: 'walk', s: g }]; return; }
+    }
+    if (r < 0.9 && cowExplore(sg, t)) { cow.mode = 'wander'; return; }
+    cow.mode = 'look';
+    cow.until = t + 2200 + Math.random() * 2400;
+  }
+  function cowExplore(sg, t) {
+    const tries = cow.on.k === 'floor' ? [cowClimbUp, cowClimbUp, cowClimbUp, cowHopAround, cowWallTrip] : [cowClimbUp, cowClimbDown, cowClimbDown, cowHopAround];
+    for (let i = tries.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [tries[i], tries[j]] = [tries[j], tries[i]]; }
+    return tries.some((f) => f(sg, t));
+  }
+  /* Leo lên khung ở ngay phía trên: đi tới dưới góc khung, nhảy bám vào cạnh, leo lên, lật qua mép */
+  function cowClimbUp(sg, t) {
+    const vis = segVis(sg);
+    if (!vis) return false;
+    const cands = [];
+    for (const p of cowPlats(t)) {
+      if (p.key === cow.on.p && cow.on.k === 'top') continue;
+      /* Khung ở trên đầu (đáy cách chỗ đứng không quá 110px), hoặc khung thò xuống ngang chỗ đứng thì bám cạnh ngay tầm */
+      const gap = sg.c - p.b;
+      const beside = gap < -2;
+      if (p.t < cw.ceil + 34 || p.t > sg.c - 40 || gap > 110) continue;
+      for (const side of ['L', 'R']) {
+        if ((side === 'L' ? p.l : cw.W - p.r) < 34) continue;
+        const sx = (beside ? (side === 'L' ? p.l - 18 : p.r + 18) : side === 'L' ? p.l + 10 : p.r - 10) - sg.o;
+        if (sx < vis[0] + 4 || sx > vis[1] - 4) continue;
+        cands.push({ p, side, sx, gap: Math.max(0, gap), beside });
+      }
+    }
+    if (!cands.length) return false;
+    cands.sort((x, y) => x.gap - y.gap);
+    const c = pick(cands.slice(0, 3));
+    const left = c.side === 'L';
+    const grabY = c.beside ? sg.c - 12 : Math.max(c.p.t + 4, c.p.b - 8);
+    const inward = left ? 1 : -1;
+    const w = c.p.r - c.p.l;
+    const room = Math.max(0, w - 50);
+    cow.route = [
+      { t: 'walk', s: c.sx },
+      { t: 'grab', ref: { k: c.side, p: c.p.key }, s: left ? c.p.t - grabY : grabY - c.p.t, dir: left ? 1 : -1 },
+      { t: 'over', end: left ? 'b' : 'a' },
+      { t: 'walk', s: (left ? 0 : w) + inward * (24 + Math.random() * Math.min(180, room)) },
+      { t: 'say', lines: COW_UPTOP, p: 0.3 },
+    ];
+    return true;
+  }
+  /* Xuống khỏi khung đang đứng: lật qua mép, tụt dọc cạnh, tới chân thì bước xuống */
+  function cowClimbDown(sg) {
+    if (cow.on.k !== 'top') return false;
+    const box = sg.box;
+    const sides = ['L', 'R'].filter((side) => (side === 'L' ? box.l : cw.W - box.r) >= 34);
+    if (!sides.length) return false;
+    const left = pick(sides) === 'L';
+    const h = box.b - box.t;
+    cow.route = [{ t: 'over', end: left ? 'a' : 'b' }, { t: 'walk', s: left ? -h : h }, { t: 'leave' }];
+    return true;
+  }
+  /* Nhảy sang khung bên cạnh hoặc nhảy xuống đất */
+  function cowHopAround(sg, t) {
+    const x = cow.px;
+    const y = cow.py;
+    const cands = [];
+    for (const p of cowPlats(t)) {
+      if (p.key === cow.on.p || p.t < cw.ceil + 34 || p.t > cw.floor - 4) continue;
+      if (y - p.t > 120 || p.t - y > 260) continue;
+      if (p.t < y - 10 && x > p.l - 20 && x < p.r + 20) continue;
+      const tx = clampN(x, p.l + 18, p.r - 18);
+      if (Math.abs(tx - x) > 240 || (Math.abs(tx - x) < 30 && Math.abs(p.t - y) < 30)) continue;
+      cands.push({ ref: { k: 'top', p: p.key }, s: tx - p.l });
+    }
+    if (cow.on.k !== 'floor' && cw.floor - y < 260) cands.push({ ref: { k: 'floor' }, s: clampN(x + (Math.random() - 0.5) * 160, COW_LEN, cw.W - COW_LEN) });
+    if (!cands.length) return false;
+    const c = pick(cands);
+    cow.route = [{ t: 'hop', ref: c.ref, s: c.s }];
+    return true;
+  }
+  /* Đi tới góc khung chat rồi leo lên vách */
+  function cowWallTrip() {
+    cow.route = [{ t: 'over', end: Math.random() < 0.5 ? 'a' : 'b' }];
+    return true;
+  }
+  /* Đang bám vách hay trần thì không gặm cỏ: leo tiếp, tụt xuống, hay buông tay */
+  function cowPlanWall(sg, t) {
+    const k = cow.on.k;
+    cow.mode = 'wander';
+    if (k === 'L' || k === 'R') {
+      const box = sg.box;
+      const left = k === 'L';
+      if (box.t >= cw.ceil + 34 && Math.random() < 0.75) {
+        const w = box.r - box.l;
+        const room = Math.max(0, w - 50);
+        cow.route = [
+          { t: 'over', end: left ? 'b' : 'a' },
+          { t: 'walk', s: (left ? 0 : w) + (left ? 1 : -1) * (24 + Math.random() * Math.min(160, room)) },
+          { t: 'say', lines: COW_UPTOP, p: 0.3 },
+        ];
+      } else cow.route = [{ t: 'walk', s: left ? box.t - box.b : box.b - box.t }, { t: 'leave' }];
+      return;
+    }
+    if (k === 'ceil') {
+      cow.route = [{ t: 'walk', s: -(COW_LEN + Math.random() * (cw.W - 2 * COW_LEN)) }, { t: 'wait', ms: 900, mode: 'look' }, { t: 'drop' }];
+      return;
+    }
+    const r = Math.random();
+    const toCeil = k === 'wl' ? 'a' : 'b';
+    if (r < 0.4) cow.route = [{ t: 'walk', s: sg.a + (sg.b - sg.a) * (0.3 + Math.random() * 0.4) }, { t: 'wait', ms: 700, mode: 'look' }, { t: 'over', end: toCeil }];
+    else if (r < 0.8) cow.route = [{ t: 'over', end: toCeil === 'a' ? 'b' : 'a' }];
+    else cow.route = [{ t: 'wait', ms: 1200, mode: 'look' }, { t: 'drop' }];
+  }
+
+  /* ---- Vẽ ---- */
   function cowState() {
     if (cow.drag) return 'held';
-    if (cow.y < -2) return 'air';
+    if (cow.tw ? cow.tw.air : !cow.on) return 'air';
     if (cow.mode === 'sleep' && cow.lie > 0.4) return 'sleep';
     const sp = Math.abs(cow.v);
     if (sp > 95) return 'run';
-    if (sp > 4 || cow.goal != null) return 'walk';
+    if (sp > 4 || cow.tw || cow.tgt != null) return 'walk';
+    if (!upright(cow.on)) return 'look';
     if (cow.mode === 'think' || cow.mode === 'look' || cow.mode === 'watch') return cow.mode;
     return 'graze';
   }
-  function cowRender() {
+  function cowGround(t) {
+    let g = cw.floor;
+    if (!cow.ghost) for (const p of cowPlats(t)) if (p.t >= cow.py - 0.5 && p.t < g && cow.px >= p.l + 4 && cow.px <= p.r - 4 && p.t >= cw.ceil + 30) g = p.t;
+    return g;
+  }
+  function cowRender(t) {
     const n = cowNodes();
     const sp = Math.abs(cow.v);
     const w = Math.sin(cow.phase * Math.PI * 2);
@@ -3846,62 +4479,96 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     n.upper.style.transform = 'translate(0px,' + (9 * lie - bob).toFixed(2) + 'px) rotate(' + (cow.lean + rock).toFixed(2) + 'deg)';
     n.nod.style.transform = 'rotate(' + (Math.sin(cow.phase * Math.PI * 4) * Math.min(5, sp * 0.05)).toFixed(2) + 'deg)';
     const s = cow.squash;
-    n.hop.style.transform = 'translate(0px,' + cow.y.toFixed(2) + 'px) translate(0px,-40px) rotate(' + cow.tilt.toFixed(2) + 'deg) translate(0px,18px) rotate(' + cow.spin.toFixed(1) + 'deg) translate(0px,22px) scale(' + (1 + 0.16 * s).toFixed(3) + ',' + (1 - 0.2 * s).toFixed(3) + ')';
-    const lift = Math.min(1, -cow.y / 120);
-    n.shadow.style.transform = 'scale(' + (1 - 0.55 * lift).toFixed(3) + ')';
-    n.shadow.style.opacity = (1 - 0.6 * lift).toFixed(2);
-    n.root.style.transform = 'translate3d(' + cow.x.toFixed(2) + 'px,0,0)';
+    n.hop.style.transform = 'translate(0px,-40px) rotate(' + cow.tilt.toFixed(2) + 'deg) translate(0px,18px) rotate(' + cow.spin.toFixed(1) + 'deg) translate(0px,22px) scale(' + (1 + 0.16 * s).toFixed(3) + ',' + (1 - 0.2 * s).toFixed(3) + ')';
+    n.root.style.transform = 'translate3d(' + (cow.px - FOOT_X).toFixed(2) + 'px,' + (cow.py - FOOT_Y).toFixed(2) + 'px,0) rotate(' + cow.ang.toFixed(2) + 'deg)';
+    /* Bóng: đứng thì ở dưới chân, bay thì in xuống mặt bên dưới và nhạt dần theo độ cao, bám vách thì không có bóng */
+    let sx = cow.px;
+    let sy = cow.py;
+    let sc = 1;
+    let so;
+    if (cow.drag || !cow.on || (cow.tw && cow.tw.air)) {
+      const g = cowGround(t);
+      const lift = Math.min(1, Math.max(0, g - cow.py) / 160);
+      sy = g;
+      sc = 1 - 0.55 * lift;
+      so = g - cow.py < 320 ? 1 - 0.6 * lift : 0;
+    } else so = Math.max(0, Math.cos((cow.ang * Math.PI) / 180));
+    n.shadow.style.transform = 'translate3d(' + (sx - 16).toFixed(1) + 'px,' + (sy - 2).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+    n.shadow.style.opacity = so.toFixed(2);
     const dir = cow.dir > 0 ? '1' : '-1';
     if (n.root.dataset.dir !== dir) n.root.dataset.dir = dir;
     const st = cowState();
     if (n.root.dataset.state !== st) n.root.dataset.state = st;
     if (cow.sayOn) cowSayFit();
+    cow.rx = cow.px;
+    cow.ry = cow.py;
+    cow.ra = cow.ang;
   }
-  /* Bóng chữ không được tràn ra ngoài mép ô nhập, và bay theo bò khi bò bị nhấc lên */
+  /* Bóng chữ hiện phía lưng bò (bò treo ngược thì ở dưới, bám vách thì ở bên), không tràn ra khỏi khung chat */
   function cowSayFit() {
     const n = cowNodes();
-    const w = n.track.clientWidth;
-    const mid = (cow.x || 0) + COW_W / 2;
-    const half = cow.sayW / 2;
-    let shift = 0;
-    if (mid - half < -6) shift = -6 - (mid - half);
-    else if (mid + half > w + 6) shift = w + 6 - (mid + half);
-    n.say.style.marginLeft = shift.toFixed(1) + 'px';
-    n.say.style.bottom = (47 - cow.y).toFixed(1) + 'px';
+    const r = (cow.ang * Math.PI) / 180;
+    const nx = Math.sin(r);
+    const ny = -Math.cos(r);
+    const w = cow.sayW;
+    const h = cow.sayH;
+    let x;
+    let y;
+    if (Math.abs(ny) >= 0.5) {
+      x = cow.px + nx * 46 - w / 2;
+      y = ny < 0 ? cow.py + ny * 46 - h : cow.py + ny * 46;
+    } else {
+      x = nx > 0 ? cow.px + 46 : cow.px - 46 - w;
+      y = cow.py - h / 2 - 12;
+    }
+    n.say.style.left = clampN(x, 6, cw.W - w - 6).toFixed(1) + 'px';
+    n.say.style.top = clampN(y, cw.ceil + 4, cw.floor - h - 2).toFixed(1) + 'px';
   }
   function cowSay(text) {
     if (!S.cowOn) return;
+    if (!cw) cw = cowWorldBox();
     const b = cowNodes().say;
     b.textContent = text;
     b.classList.add('on');
     cow.sayOn = true;
     cow.sayW = b.offsetWidth;
+    cow.sayH = b.offsetHeight;
     cowSayFit();
     clearTimeout(cow.sayTimer);
     cow.sayTimer = setTimeout(() => { b.classList.remove('on'); cow.sayOn = false; }, 2300);
   }
+  /* Hạt nhỏ quanh bò; up = cách chân bao xa theo hướng lưng bò, fwd = về phía đầu bò */
   function cowFx(kind, text, opt = {}) {
     if (!cowMoves()) return;
     const n = cowNodes();
+    if (!cw) cw = cowWorldBox();
+    const r = (cow.ang * Math.PI) / 180;
+    const up = opt.up != null ? opt.up : 32;
+    const fw = (opt.fwd != null ? opt.fwd : 16) + (opt.jx || 0) * (Math.random() - 0.5);
+    const x = cow.px + Math.sin(r) * up + Math.cos(r) * cow.dir * fw;
+    const y = cow.py - Math.cos(r) * up + Math.sin(r) * cow.dir * fw;
     const p = el('span', 'cfx ' + kind, text || '');
-    const head = (cow.x || 0) + (cow.dir > 0 ? 45 : 13);
-    p.style.left = ((opt.x != null ? opt.x : head) + (opt.jx || 0) * (Math.random() - 0.5)).toFixed(1) + 'px';
-    p.style.bottom = ((opt.y != null ? opt.y : 32) - cow.y).toFixed(1) + 'px';
+    p.style.left = x.toFixed(1) + 'px';
+    p.style.top = (y - 10).toFixed(1) + 'px';
     if (opt.dx) p.style.setProperty('--dx', opt.dx.toFixed(1) + 'px');
-    n.track.append(p);
+    n.world.append(p);
     const kill = () => p.remove();
     p.addEventListener('animationend', kill);
     setTimeout(kill, 2600);
   }
   function cowDust(count) {
-    for (let i = 0; i < count; i++) {
-      cowFx('dust', '', { x: (cow.x || 0) + COW_W / 2 - cow.dir * (12 + Math.random() * 10), y: 1 + Math.random() * 3, dx: -cow.dir * (6 + Math.random() * 14) });
-    }
+    for (let i = 0; i < count; i++) cowFx('dust', '', { up: 1 + Math.random() * 3, fwd: -(12 + Math.random() * 10), dx: -cow.dir * (6 + Math.random() * 14) });
   }
+  /* Nhảy tại chỗ (khi AI viết xong, khi được vuốt ve): chỉ khi đang đứng trên một mặt */
   function cowHop(power) {
-    if (!power || !cowMoves() || cow.drag || cow.y < 0 || cow.vy) return;
+    if (!power || !cowMoves() || cow.drag || cow.tw || !upright(cow.on)) return false;
+    cow.on = null;
+    cow.route = [];
+    cow.vx = 0;
     cow.vy = -power;
+    cow.v = 0;
     cowKick();
+    return true;
   }
   function cowMood(text) {
     const story = splitSo(text || '').story;
@@ -3916,7 +4583,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   function cowWake(loud) {
     cow.mode = 'look';
     cow.until = performance.now() + 2000;
-    cowFx('mark', '!', { y: 26 });
+    cowFx('mark', '!', { up: 26 });
     if (loud) cowSay(pick(COW_WAKE));
     cowKick();
   }
@@ -3924,15 +4591,15 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     cow.seenAt = Date.now();
     if (cow.mode === 'sleep') cowWake(false);
   }
-  /* Anh gõ chữ: bò thôi gặm cỏ, ngẩng lên nhìn */
+  /* Anh gõ chữ: bò đang đứng thì thôi việc đang làm, ngẩng lên nhìn */
   function cowNotice() {
     const t = performance.now();
     cow.typedAt = t;
     cowSeen();
-    if (gen || cow.drag || !cowMoves()) return;
+    if (gen || cow.drag || cow.tw || !cowMoves() || !upright(cow.on)) return;
     if (cow.mode !== 'watch') {
       cow.mode = 'watch';
-      cow.goal = null;
+      cow.route = [];
       if (Math.random() < 0.12) cowSay(pick(COW_TYPE));
     }
     cow.until = t + 1800;
@@ -3944,48 +4611,51 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     cow.pets.push(t);
     const flip = cow.pets.length >= 5;
     if (flip) cow.pets = [];
-    if (cowMoves() && !cow.y && !cow.vy) {
-      cow.vy = flip ? -480 : -290;
+    if (cowHop(flip ? 480 : 290)) {
       cow.spinning = flip;
-      if (!gen && cow.goal == null) { cow.mode = 'look'; cow.until = t + 1800; }
+      if (!gen) { cow.mode = 'look'; cow.until = t + 1800; }
     }
     cowFx('heart', '♥', { jx: 14, dx: (Math.random() - 0.5) * 22 });
     cowSay(flip ? 'Úi trời, chóng mặt!' : gen ? pick(COW_BUSY) : pick(COW_HI));
     cowKick();
   }
-  /* Kéo thả: nhấc lên thì bò quẫy chân, đung đưa theo tay; thả ra thì rơi theo đà tay ném */
+  /* Kéo thả: nhấc lên thì bò quẫy chân, đung đưa theo tay, đem đi đâu trong khung chat cũng được;
+     thả ra thì rơi theo đà tay ném, rơi trúng mép khung thì đứng trên đó, thả sát cạnh khung hay ném vào cạnh thì bám vào */
   function cowDown(e) {
     if (e.button > 0 || !S.cowOn) return;
     const now = performance.now();
-    cow.press = { id: e.pointerId, sx: e.clientX, sy: e.clientY, ox: cow.x || 0, oy: cow.y, lx: e.clientX, ly: e.clientY, lt: now, vx: 0, vy: 0, moved: false };
+    cow.press = { id: e.pointerId, sx: e.clientX, sy: e.clientY, cx: e.clientX, cy: e.clientY, lx: e.clientX, ly: e.clientY, lt: now, vx: 0, vy: 0, moved: false };
     try { cowNodes().root.setPointerCapture(e.pointerId); } catch (err) { /* không bắt được con trỏ: bỏ qua */ }
   }
   function cowMove(e) {
     const p = cow.press;
     if (!p || p.id !== e.pointerId) return;
-    const dx = e.clientX - p.sx;
-    const dy = e.clientY - p.sy;
     if (!p.moved) {
-      if (Math.hypot(dx, dy) < 6 || !cowMoves()) return;
+      if (Math.hypot(e.clientX - p.sx, e.clientY - p.sy) < 6 || !cowMoves()) return;
       p.moved = true;
       cow.drag = p;
-      cow.goal = null;
-      cow.spinning = false;
-      cow.spin = 0;
+      Object.assign(cow, { on: null, tw: null, route: [], v: 0, vx: 0, vy: 0, ghost: false, spinning: false, spin: 0 });
+      if (cow.mode === 'sleep') cow.mode = 'look';
       cowSay(pick(COW_HELD));
     }
     const now = performance.now();
     const step = Math.max(8, now - p.lt) / 1000;
     p.vx = p.vx * 0.55 + ((e.clientX - p.lx) / step) * 0.45;
     p.vy = p.vy * 0.55 + ((e.clientY - p.ly) / step) * 0.45;
-    p.lx = e.clientX;
-    p.ly = e.clientY;
+    p.lx = p.cx = e.clientX;
+    p.ly = p.cy = e.clientY;
     p.lt = now;
-    cow.x = clampN(p.ox + dx, 0, cowHome());
-    cow.y = clampN(p.oy + dy, -140, 0);
-    cow.v = 0;
-    cow.vy = 0;
     cowKick();
+  }
+  /* Bò treo dưới ngón tay, đi theo tay một cách mềm */
+  function cowHeld(dt) {
+    const p = cow.drag;
+    const tx = clampN(p.cx - cw.mx, COW_HALF, cw.W - COW_HALF);
+    const ty = clampN(p.cy - cw.my + 30, cw.ceil + COW_TALL, cw.floor);
+    const k = dt ? Math.min(1, dt * 24) : 1;
+    cow.px += (tx - cow.px) * k;
+    cow.py += (ty - cow.py) * k;
+    angTo(0, Math.min(1, dt * 10));
   }
   function cowUp(e) {
     const p = cow.press;
@@ -3994,13 +4664,27 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     if (!p.moved) { if (e.type === 'pointerup') cowPet(); return; }
     cow.drag = null;
     const still = performance.now() - p.lt > 90;
-    cow.v = still ? 0 : clampN(p.vx, -480, 480);
-    cow.vy = still ? 0 : clampN(p.vy, -650, 600);
-    if (cow.y > -0.5 && cow.vy >= 0) { cow.y = 0; cow.vy = 0; }
-    cow.goal = null;
+    cow.vx = still ? 0 : clampN(p.vx, -900, 900);
+    cow.vy = still ? 0 : clampN(p.vy, -900, 800);
     cow.mode = 'graze';
-    cow.until = performance.now() + 1800;
+    cow.until = performance.now() + 1500;
+    if (still) cowStick(performance.now());
     cowKick();
+  }
+  /* Thả nhẹ tay: sát mép trên khung thì đứng lên đó, sát cạnh khung hay vách khung chat thì bám vào */
+  function cowStick(t) {
+    const x = cow.px;
+    const y = cow.py;
+    if (y >= cw.floor - 1) return;
+    if (x - COW_HALF < 10 && y > cw.ceil + 50) { cow.px = 0; cowCling({ k: 'wl' }, y, -1); return; }
+    if (x + COW_HALF > cw.W - 10 && y > cw.ceil + 50) { cow.px = cw.W; cowCling({ k: 'wr' }, -y, 1); return; }
+    for (const p of cowPlats(t)) {
+      if (p.t < cw.ceil + 30) continue;
+      if (y >= p.t - 14 && y <= p.t + 8 && x >= p.l + 4 && x <= p.r - 4) { cow.py = p.t; cow.vy = 0; cowLand({ k: 'top', p: p.key }, x - p.l); return; }
+      if (y < p.t + 16 || y > p.b - 4) continue;
+      if (Math.abs(x + COW_HALF - p.l) < 14) { cow.px = p.l; cowCling({ k: 'L', p: p.key }, p.t - y, 1); return; }
+      if (Math.abs(x - COW_HALF - p.r) < 14) { cow.px = p.r; cowCling({ k: 'R', p: p.key }, y - p.t, -1); return; }
+    }
   }
 
   /* ================= Chuông và báo hiệu ================= */
@@ -4031,6 +4715,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   }
   function doneSignal(text) {
     chime();
+    feelNews();
     if (document.hidden) document.title = '✦ Đã viết xong · Phòng Chat';
     if (!S.cowOn) return;
     const mood = cowMood(text);
@@ -4326,6 +5011,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $('#nameNarr').value = S.narrator;
     $('#chipText').value = S.chips || '';
     $('#optFeel').checked = !!S.feel;
+    $('#optFineFeel').checked = !!S.fineFeel;
     $('#optNameAv').checked = !!S.nameAv;
     $('#optStage').checked = !!S.stage;
   }
@@ -4382,7 +5068,9 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     };
     $$('.ptab').forEach((b) => { b.onclick = () => showTab(b.dataset.tab); });
     mqPanel.addEventListener('change', () => { closeOverlays(); document.body.classList.toggle('pin', !!S.panel); syncPanelBtn(); cowKick(); });
-    window.addEventListener('resize', cowKick);
+    window.addEventListener('resize', () => { cowDirty(); cowKick(); });
+    $('#scroll').addEventListener('scroll', () => { cowDirty(); cowKick(); }, { passive: true });
+    if ('ResizeObserver' in window) { const ro = new ResizeObserver(() => { cowDirty(); cowKick(); }); ro.observe($('#msgs')); ro.observe($('#composer .box')); }
 
     $('#title').addEventListener('input', () => { cur.title = $('#title').value.trim(); persist(); renderList(true); });
     $('#title').addEventListener('keydown', (e) => { if (e.key === 'Enter') e.target.blur(); });
@@ -4452,7 +5140,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $$('#fontSeg button').forEach((b) => { b.onclick = () => { S.font = b.dataset.v; saveSettings(); applyLook(); }; });
     $$('#widthSeg button').forEach((b) => { b.onclick = () => { S.width = b.dataset.v; saveSettings(); applyLook(); }; });
     $('#optMotion').addEventListener('change', (e) => { S.motion = e.target.checked; saveSettings(); applyLook(); cowKick(); });
-    $('#optCow').addEventListener('change', (e) => { S.cowOn = e.target.checked; saveSettings(); applyLook(); cow.x = null; cowKick(); });
+    $('#optCow').addEventListener('change', (e) => { S.cowOn = e.target.checked; saveSettings(); applyLook(); cow.born = false; cowKick(); });
     $('#optSound').addEventListener('change', (e) => { S.sound = e.target.checked; saveSettings(); if (S.sound) { unlockAudio(); chime(); } });
     $('#optChips').addEventListener('change', (e) => { S.chipsOn = e.target.checked; saveSettings(); applyLook(); });
     $('#optSo').addEventListener('change', (e) => { S.soOpen = e.target.checked; saveSettings(); renderMsgs(); });
@@ -4500,6 +5188,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     };
     $('#castShowHidden').onclick = () => { cur.cast.forEach((c) => { delete c.hidden; }); castChanged(); };
     $('#optFeel').addEventListener('change', (e) => { S.feel = e.target.checked; saveSettings(); renderMsgs(); renderCast(); });
+    $('#optFineFeel').addEventListener('change', (e) => { S.fineFeel = e.target.checked; saveSettings(); renderCast(); });
     $('#fileImg').addEventListener('change', (e) => { const files = Array.from(e.target.files || []); e.target.value = ''; loadLocalImages(files); });
     $('#castSeries').addEventListener('input', (e) => { cur.series = e.target.value.trim(); persist(false, true); });
     $('#gClose').onclick = closeGallery;
