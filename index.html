@@ -734,7 +734,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   .send kbd { display: none; }
   .turn { gap: 10px; }
   .head { flex-wrap: wrap; row-gap: 2px; }
-  .usage { display: none; }
+  .usage .tok { display: none; }
   .avatar { width: 28px; height: 28px; font-size: 13px !important; }
 }
 @media (hover: none) {
@@ -917,6 +917,16 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
           <option value="BLOCK_ONLY_HIGH">Chỉ chặn mức cao</option>
           <option value="BLOCK_NONE">Không chặn (BLOCK_NONE)</option>
         </select>
+      </div>
+      <div class="field">
+        <span class="lab">Mức suy nghĩ trước khi viết</span>
+        <select id="think" class="inp">
+          <option value="">Mặc định của model</option>
+          <option value="LOW">Nghĩ ít, trả lời nhanh</option>
+          <option value="MEDIUM">Vừa</option>
+          <option value="HIGH">Nghĩ kỹ, chậm hơn</option>
+        </select>
+        <div class="hint">Model có “thinking” (Gemini 2.5, Gemini 3 trở lên) nghĩ xong mới viết, nên phần lớn thời gian chờ là lúc AI nghĩ. Nghĩ ít thì ra chữ nhanh hơn hẳn, đổi lại truyện có thể kém chặt chẽ hơn một chút. Ô này giống ô Thinking level trong AI Studio. Model nào không nhận thì Phòng Chat tự viết theo mặc định.</div>
       </div>
       <label class="switch"><input id="thoughts" type="checkbox"><span>Hiện phần suy nghĩ của AI</span></label>
       <div class="hint" style="margin-top:0">Chỉ model có “thinking” mới hỗ trợ. Bật mà model báo lỗi thì tắt đi.</div>
@@ -1169,7 +1179,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   /* ================= Cài đặt ================= */
   const SKEY = 'subelchat:settings';
   const DEF = {
-    key: '', remember: true, model: '', models: [], temperature: 1, maxTokens: 0, safety: 'default', thoughts: false,
+    key: '', remember: true, model: '', models: [], temperature: 1, maxTokens: 0, safety: 'default', thoughts: false, think: '',
     ctxLimit: 0, enterSend: false,
     theme: 'muc', font: 'literata', fontSize: 16, width: 'vua', motion: true, cowOn: true, sound: true, chipsOn: true, soOpen: true,
     player: '', narrator: 'Người dẫn', chips: '', panel: true, tab: 'sys', diceN: 1, diceAuto: true, feel: true, fineFeel: true, longLove: true,
@@ -1669,14 +1679,20 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const t = lastRealTurn();
     return t && t.role === 'model' && !t.pending ? t : null;
   }
+  const secs = (ms) => (ms / 1000).toFixed(1) + 's';
   function usageText(t) {
     const u = t.usage;
     const out = (u.candidatesTokenCount || 0) + (u.thoughtsTokenCount || 0);
-    return '↑' + k(u.promptTokenCount || 0) + ' ↓' + k(out) + (t.ms ? ' · ' + (t.ms / 1000).toFixed(1) + 's' : '');
+    return '↑' + k(u.promptTokenCount || 0) + ' ↓' + k(out);
+  }
+  function timeText(t) {
+    return t.ms ? (t.wait ? 'chờ ' + secs(t.wait) + ' · ' : '') + 'xong ' + secs(t.ms) : '';
   }
   function usageTitle(t) {
     const u = t.usage;
-    let s = '↑ ' + num(u.promptTokenCount) + ' token gửi lên (hướng dẫn + lịch sử)';
+    let s = '';
+    if (t.wait) s += 'Chờ ' + secs(t.wait) + ' mới có chữ đầu tiên (Google đọc hướng dẫn, lịch sử, rồi AI nghĩ). Viết xong sau ' + secs(t.ms) + '.\n';
+    s += '↑ ' + num(u.promptTokenCount) + ' token gửi lên (hướng dẫn + lịch sử)';
     if (u.cachedContentTokenCount) s += '\n   trong đó ' + num(u.cachedContentTokenCount) + ' token lấy từ cache, tính rẻ hơn';
     s += '\n↓ ' + num(u.candidatesTokenCount) + ' token truyện';
     if (u.thoughtsTokenCount) s += ' + ' + num(u.thoughtsTokenCount) + ' token suy nghĩ';
@@ -1714,7 +1730,14 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const main = el('div', 'tmain');
     const head = el('div', 'head');
     head.append(el('span', 'who', isModel ? S.narrator : pLabel()), el('span', 'time', fmtTime(t.ts)));
-    if (t.usage) { const u = el('span', 'usage', usageText(t)); u.title = usageTitle(t); head.append(u); }
+    if (t.usage) {
+      const u = el('span', 'usage');
+      const tt = timeText(t);
+      u.append(el('span', 'tok', usageText(t) + (tt ? ' · ' : '')), tt);
+      u.title = usageTitle(t);
+      u.onclick = () => toast(usageTitle(t), { ms: 9000 });
+      head.append(u);
+    }
     if (t.edited) head.append(el('span', 'tag', 'đã sửa'));
     if (t.star) head.append(el('span', 'tag star', '★ đã ghim'));
     const isLast = isModel && t === lastModel();
@@ -1750,7 +1773,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       if (t === cur.turns[cur.turns.length - 1]) {
         const retry = el('button', 'btn red', 'Thử lại');
         retry.type = 'button';
-        retry.onclick = () => { cur.turns.pop(); persist(); renderMsgs(); generate(); };
+        retry.onclick = () => { dropTurn(cur.turns.pop()); persist(); msgsChrome(); generate(); };
         box.append(el('br'), retry);
       }
       body.append(box);
@@ -1800,6 +1823,19 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     box.textContent = '';
     if (!cur.turns.length) box.append(emptyEl());
     for (const t of cur.turns) box.append(turnEl(t));
+    msgsChrome();
+  }
+  /* Chat dài mà dựng lại cả khung chat thì điện thoại mất cả giây, nên lúc gửi, nhận, ghim, đổi bản chỉ vẽ lại đúng lượt đổi */
+  const turnNode = (t) => t && $('#msgs').querySelector(':scope > .turn[data-id="' + CSS.escape(t.id) + '"]');
+  function redrawTurn(t) { const n = turnNode(t); if (n) n.replaceWith(turnEl(t)); }
+  function dropTurn(t) { const n = turnNode(t); if (n) n.remove(); }
+  function appendTurn(t) {
+    const e = $('#msgs .empty');
+    if (e) e.remove();
+    $('#msgs').append(turnEl(t));
+  }
+  /* Phần quanh khung chat: tên phiên, đồng hồ token, dải người có mặt, tab Sổ và Nhân vật nếu đang mở */
+  function msgsChrome() {
     $('#title').placeholder = titleOf(cur);
     $('#sessIcon').textContent = sessIcon(cur);
     updateMeter();
@@ -3397,10 +3433,11 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     t.star = !t.star;
     if (!t.star) delete t.star;
     persist(false, true);
-    renderMsgs();
+    redrawTurn(t);
+    msgsChrome();
     toast(t.star ? 'Đã ghim. Xem lại ở tab Sổ.' : 'Đã bỏ ghim');
   }
-  const SNAP = ['text', 'thoughts', 'usage', 'sig', 'sigModel', 'ms', 'ts', 'note'];
+  const SNAP = ['text', 'thoughts', 'usage', 'sig', 'sigModel', 'ms', 'wait', 'ts', 'note'];
   function snapOf(t) { const v = {}; for (const key of SNAP) if (t[key] !== undefined) v[key] = t[key]; return v; }
   function applySnap(t, v) { for (const key of SNAP) { if (v[key] === undefined) delete t[key]; else t[key] = v[key]; } }
   function switchVer(t, i) {
@@ -3409,7 +3446,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     applySnap(t, t.vers[i]);
     t.vi = i;
     persist(false, true);
-    renderMsgs();
+    if (syncCastFromFeel()) renderMsgs();
+    else { redrawTurn(t); msgsChrome(); }
   }
   function editTurn(t) {
     if (gen) return;
@@ -3471,10 +3509,22 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     }
     return out;
   }
-  function genConfig() {
+  /* Mức suy nghĩ: Gemini 3 trở lên nhận thinkingLevel, Gemini 2.5 nhận thinkingBudget (số token được nghĩ). Model khác thì không gửi */
+  const noThink = new Set();
+  function thinkFor(model, lv) {
+    const id = String(model || '').replace(/^models\//, '');
+    if (/gemini-2\.5/.test(id)) {
+      const pro = /pro/.test(id);
+      return { thinkingBudget: lv === 'LOW' ? (pro ? 128 : 0) : lv === 'MEDIUM' ? 4096 : pro ? 32768 : 24576 };
+    }
+    if (/gemini-([3-9]|\d{2})|gemini-(flash|pro)(-lite)?-latest/.test(id)) return { thinkingLevel: lv };
+    return null;
+  }
+  function genConfig(think) {
     const g = { temperature: Number(S.temperature) };
     if (Number(S.maxTokens) > 0) g.maxOutputTokens = Number(S.maxTokens);
-    if (S.thoughts) g.thinkingConfig = { includeThoughts: true };
+    const tc = Object.assign(S.thoughts ? { includeThoughts: true } : {}, think);
+    if (Object.keys(tc).length) g.thinkingConfig = tc;
     return g;
   }
   function safetySettings() {
@@ -3526,12 +3576,14 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     unlockAudio();
     const input = $('#input');
     const text = input.value.trim();
-    while (cur.turns.length && cur.turns[cur.turns.length - 1].error) cur.turns.pop();
+    while (cur.turns.length && cur.turns[cur.turns.length - 1].error) dropTurn(cur.turns.pop());
+    const was = lastModel();
     if (text) {
       for (const t of cur.turns) if (t.vers) { delete t.vers; delete t.vi; }
       const t = { id: uid(), role: 'user', text, ts: Date.now() };
       fresh.add(t.id);
       cur.turns.push(t);
+      appendTurn(t);
       input.value = '';
       cur.draft = '';
       autosize();
@@ -3540,7 +3592,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       if (!last || last.role !== 'user') { input.focus(); return; }
     }
     persist();
-    renderMsgs();
+    if (was) redrawTurn(was);
+    msgsChrome();
     renderList(true);
     stick = true;
     toBottom(true);
@@ -3554,9 +3607,9 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     unlockAudio();
     const vers = t.vers && t.vers.length ? t.vers.slice() : [snapOf(t)];
     if (t.vers) vers[t.vi] = snapOf(t);
-    cur.turns.splice(cur.turns.indexOf(t));
+    cur.turns.splice(cur.turns.indexOf(t)).forEach(dropTurn);
     persist();
-    renderMsgs();
+    msgsChrome();
     generate({ prev: t, vers });
   }
 
@@ -3567,8 +3620,10 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     requestAnimationFrame(() => {
       painting = false;
       if (!gen) return;
-      const { turn, node } = gen;
-      const main = node.querySelector('.tmain');
+      const { turn } = gen;
+      /* Đổi phiên rồi quay lại thì khung đang viết đã được dựng mới */
+      if (!gen.node.isConnected) gen.node = turnNode(turn) || gen.node;
+      const main = gen.node.querySelector('.tmain');
       if (turn.thoughts) {
         let d = main.querySelector('.thought');
         if (!d) { d = thoughtEl(''); main.querySelector('.head').after(d); }
@@ -3606,7 +3661,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       if (e) e.textContent = Math.round((performance.now() - t0) / 1000) + 's';
     }, 1000);
 
-    const body = { contents, generationConfig: genConfig() };
+    const think = S.think && !noThink.has(S.model) ? thinkFor(S.model, S.think) : null;
+    const body = { contents, generationConfig: genConfig(think) };
     const sysText = systemFor(session);
     if (sysText.trim()) body.systemInstruction = { parts: [{ text: sysText }] };
     const safety = safetySettings();
@@ -3616,12 +3672,20 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     let block = '';
     let stopped = false;
     try {
-      const res = await fetch(API + S.model + ':streamGenerateContent?alt=sse', {
+      const post = () => fetch(API + S.model + ':streamGenerateContent?alt=sse', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': S.key },
         body: JSON.stringify(body),
         signal: ctrl.signal,
       });
+      let res = await post();
+      if (res.status === 400 && think && !/api key/i.test(await res.clone().text())) {
+        /* Model không nhận mức suy nghĩ đã chọn: gửi lại theo mặc định của model, nhớ để các lượt sau khỏi thử */
+        noThink.add(S.model);
+        body.generationConfig = genConfig(null);
+        res = await post();
+        if (res.ok) toast('Model này không nhận “Mức suy nghĩ” đã chọn, nên viết theo mặc định của model.', { ms: 6000 });
+      }
       if (!res.ok) throw new Error(await errorText(res));
       const reader = res.body.getReader();
       const dec = new TextDecoder();
@@ -3640,7 +3704,11 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
           for (const p of (c.content && c.content.parts) || []) {
             if (p.thoughtSignature) turn.sig = p.thoughtSignature;
             if (typeof p.text === 'string') {
-              if (p.thought) turn.thoughts += p.text; else turn.text += p.text;
+              if (p.thought) turn.thoughts += p.text;
+              else {
+                if (!turn.text && p.text) turn.wait = Math.round(performance.now() - t0);
+                turn.text += p.text;
+              }
             }
           }
           if (c.finishReason) finish = c.finishReason;
@@ -3682,7 +3750,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       if (stopped) turn.note = 'Cậu đã dừng giữa chừng.';
       else if (finish && finish !== 'STOP' && finish !== 'FINISH_REASON_UNSPECIFIED') turn.note = FINISH[finish] || 'AI dừng bất thường (' + finish + ').';
     }
-    if (turn.error) { delete turn.sig; delete turn.usage; }
+    if (turn.error) { delete turn.sig; delete turn.usage; delete turn.wait; }
 
     /* Viết lại hỏng hoặc bị dừng khi chưa có chữ: trả bản cũ về chỗ */
     let restored = false;
@@ -3703,7 +3771,14 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     session.updated = Date.now();
     if (session === cur) {
       persist(true);
-      renderMsgs();
+      /* Sổ mới đưa thêm người vào danh sách thì tên họ phải được gắn trong mọi lượt: dựng lại cả khung */
+      if (syncCastFromFeel()) renderMsgs();
+      else {
+        const n = turnNode(turn) || node;
+        const shown = restored ? opt.prev : session.turns.includes(turn) ? turn : null;
+        if (shown) n.replaceWith(turnEl(shown)); else n.remove();
+        msgsChrome();
+      }
       toBottom();
     } else {
       store.put('sessions', session).catch(() => {});
@@ -5210,6 +5285,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $('#maxTok').value = S.maxTokens || '';
     $('#safety').value = S.safety;
     $('#thoughts').checked = !!S.thoughts;
+    $('#think').value = S.think || '';
     $('#ctxLimit').value = S.ctxLimit || '';
     $('#enterSend').checked = !!S.enterSend;
     $('#fsize').value = S.fontSize;
@@ -5347,6 +5423,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $('#maxTok').addEventListener('change', (e) => { S.maxTokens = Math.max(0, parseInt(e.target.value, 10) || 0); e.target.value = S.maxTokens || ''; saveSettings(); });
     $('#safety').addEventListener('change', (e) => { S.safety = e.target.value; saveSettings(); });
     $('#thoughts').addEventListener('change', (e) => { S.thoughts = e.target.checked; saveSettings(); });
+    $('#think').addEventListener('change', (e) => { S.think = e.target.value; saveSettings(); });
     $('#ctxLimit').addEventListener('change', (e) => { S.ctxLimit = Math.max(0, parseInt(e.target.value, 10) || 0); e.target.value = S.ctxLimit || ''; saveSettings(); updateMeter(); });
     $('#enterSend').addEventListener('change', (e) => { S.enterSend = e.target.checked; saveSettings(); applyLook(); updateMeter(); });
 
