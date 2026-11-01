@@ -3920,7 +3920,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   }
   const cow = {
     on: null, s: 0, v: 0, dir: -1, px: 0, py: 0, vx: 0, vy: 0, ang: 0, ghost: false, born: false, tgt: null,
-    tilt: 0, spin: 0, spinning: false, phase: 0, amp: 0, lean: 0, lie: 0, squash: 0,
+    tilt: 0, tv: 0, spin: 0, spinning: false, phase: 0, amp: 0, lean: 0, lie: 0, squash: 0, sqv: 0, slip: false,
+    hvx: 0, hvy: 0, hdx: 0, hdy: 0,
     mode: 'graze', until: 0, route: [], tw: null, drag: null, press: null,
     raf: 0, timer: 0, last: 0, sayTimer: 0, sayW: 0, sayH: 0, sayOn: false, dustAt: 0, rx: NaN, ry: NaN, ra: NaN,
     seenAt: Date.now(), typedAt: -1e9, pets: [],
@@ -4095,7 +4096,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   /* ---- Vòng vẽ ---- */
   function cowReset() {
     cow.born = true;
-    Object.assign(cow, { on: { k: 'floor' }, s: cw.W - 60, v: 0, vx: 0, vy: 0, dir: -1, ang: 0, tw: null, route: [], drag: null, ghost: false, tgt: null, amp: 0, lean: 0, tilt: 0, spin: 0, spinning: false, squash: 0, lie: 0 });
+    Object.assign(cow, { on: { k: 'floor' }, s: cw.W - 60, v: 0, vx: 0, vy: 0, dir: -1, ang: 0, tw: null, route: [], drag: null, ghost: false, tgt: null, amp: 0, lean: 0, tilt: 0, tv: 0, spin: 0, spinning: false, squash: 0, sqv: 0, slip: false, lie: 0 });
     [cow.px, cow.py] = segPos(cowSeg(cow.on), cow.s);
   }
   function cowStep(t) {
@@ -4123,16 +4124,15 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     else if (!cow.on) cowAir(dt, t);
     else a = cowWalk(dt, t);
     if (cow.spinning) { cow.spin += dt * 900; if (cow.spin >= 360) { cow.spin = 0; cow.spinning = false; } }
-    cow.squash = Math.max(0, cow.squash - dt * 3.2);
+    cowSprings(dt);
     const onSurf = cow.on && !cow.tw && !cow.drag;
     const leanT = onSurf ? clampN(a * cow.dir * 0.014, -5, 5) : 0;
     cow.lean += (leanT - cow.lean) * Math.min(1, dt * 8);
-    const tiltT = cow.drag ? clampN(cow.drag.vx * 0.04, -30, 30) : 0;
-    cow.tilt += (tiltT - cow.tilt) * Math.min(1, dt * (cow.drag ? 7 : 10));
-    /* Chân: pha bước tính theo quãng đường đã đi nên không bao giờ trượt chân */
+    /* Chân: pha bước tính theo quãng đường đã đi nên không bao giờ trượt chân; đang bay thì quẫy nhẹ */
     const sp = Math.abs(cow.v);
     let ampT = 0;
     if (cow.drag) { cow.phase += dt * 3.4; ampT = 24; }
+    else if (!cow.on && !cow.tw) { cow.phase += dt * 2.4; ampT = 14; }
     else if (cow.tw && !cow.tw.air) { cow.phase += dt * 1.8; ampT = 14; }
     else if (onSurf && sp > 1.5) { cow.phase += (sp * dt) / (sp > 95 ? 48 : 30); ampT = Math.min(38, 9 + sp * 0.2); }
     cow.amp += (ampT - cow.amp) * Math.min(1, dt * 9);
@@ -4140,7 +4140,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const lieT = cow.mode === 'sleep' && onSurf && upright(cow.on) ? 1 : 0;
     cow.lie += (lieT - cow.lie) * Math.min(1, dt * 2.6);
     if (Math.abs(lieT - cow.lie) < 0.004) cow.lie = lieT;
-    if (cow.drag) { if (Math.abs(cow.drag.vx) > 60) cow.dir = Math.sign(cow.drag.vx); }
+    if (cow.drag) { if (Math.abs(cow.hvx) > 60) cow.dir = Math.sign(cow.hvx); }
     else if (!cow.on && !cow.tw) { if (Math.abs(cow.vx) > 40) cow.dir = Math.sign(cow.vx); }
     else if (onSurf) {
       if (sp > 6) cow.dir = Math.sign(cow.v);
@@ -4150,12 +4150,45 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const moved = !(Math.abs(cow.px - cow.rx) < 0.05 && Math.abs(cow.py - cow.ry) < 0.05 && Math.abs(cow.ang - cow.ra) < 0.05);
     cowRender(t);
     const step = cow.route[0];
-    const busy = cow.drag || cow.tw || !cow.on || moved || (step && step.t !== 'wait') || sp > 0.01 || cow.amp || cow.squash || cow.spinning || cow.lie !== lieT || Math.abs(cow.tilt) > 0.05 || Math.abs(cow.lean) > 0.05;
+    const busy = cow.drag || cow.tw || !cow.on || moved || (step && step.t !== 'wait') || sp > 0.01 || cow.amp || cow.squash || cow.sqv || cow.spinning || cow.lie !== lieT || cow.tilt || cow.tv || Math.abs(cow.lean) > 0.05;
     if (busy) cow.raf = requestAnimationFrame(cowStep);
     else {
       const next = step && step.until != null ? step.until : cow.until;
       cow.timer = setTimeout(cowKick, Math.max(60, Math.min(next, t + 30000) - t));
     }
+  }
+  /* Bẹp và giãn chạy bằng lò xo: va chạm chỉ đẩy một cú, thân tự nén rồi nảy giãn nhẹ và lặng dần, không bật về cái rụp */
+  function cowSquash(x) { cow.sqv = clampN(cow.sqv + x * 26, -14, 30); }
+  /* Nghiêng thân: đang bị nhấc thì treo dưới ngón tay như con lắc (tay đi thì thân trễ lại, tay dừng thì đung đưa vài nhịp rồi thôi);
+     đang bay thì nghiêng theo đà, chạm mặt thì lò xo đưa về thẳng. Chia bước nhỏ cho ổn định cả khi khung hình chậm. */
+  const SWING_L = 36;
+  function cowSprings(dt) {
+    const n = Math.ceil(dt * 120);
+    if (!n) return;
+    const q = dt / n;
+    const held = !!cow.drag;
+    let r = (cow.tilt * Math.PI) / 180;
+    let w = cow.tv;
+    if (held) {
+      w += (0.14 * (cow.hdx * Math.cos(r) + cow.hdy * Math.sin(r))) / SWING_L;
+      cow.hdx = cow.hdy = 0;
+    }
+    const free = !held && !cow.on && !cow.tw;
+    const r0 = free ? clampN(cow.vx * 0.0005, -0.3, 0.3) : 0;
+    const K = free ? 90 : 220;
+    const C = free ? 14 : 26;
+    for (let i = 0; i < n; i++) {
+      w += (held ? (0.45 * cow.hvx * Math.cos(r) - COW_G * Math.sin(r)) / SWING_L - 4.6 * w : -K * (r - r0) - C * w) * q;
+      r += w * q;
+      cow.sqv += (-330 * cow.squash - 12 * cow.sqv) * q;
+      cow.squash += cow.sqv * q;
+    }
+    if (Math.abs(r) > 0.6) { r = clampN(r, -0.6, 0.6); w *= -0.2; }
+    cow.squash = clampN(cow.squash, -0.35, 1.05);
+    if (Math.abs(cow.squash) < 0.003 && Math.abs(cow.sqv) < 0.05) cow.squash = cow.sqv = 0;
+    cow.tilt = (r * 180) / Math.PI;
+    cow.tv = w;
+    if (!held && Math.abs(cow.tilt) < 0.05 && Math.abs(w) < 0.01) cow.tilt = cow.tv = 0;
   }
   /* Đi dọc mặt đang bám: lái tới đích, tới gần thì phanh dần; không có đích thì ma sát cho dừng */
   function cowWalk(dt, t) {
@@ -4169,7 +4202,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       if (!sg.world && sg.type !== 'up' && segPos(sg, cow.s)[1] > cw.floor - 1) { cowToFloor(); return 0; }
       cow.s = clampN(cow.s, vis[0], vis[1]);
     }
-    if (!cow.route.length && t >= cow.until) { cowPlan(t, sg); if (!cow.on || cow.tw) return 0; }
+    /* Còn đang trượt theo đà thì chưa nghĩ việc mới, trượt xong mới tính */
+    if (!cow.route.length && t >= cow.until && Math.abs(cow.v) < 25) { cowPlan(t, sg); if (!cow.on || cow.tw) return 0; }
     let step = cow.route[0];
     while (step && step.t !== 'walk' && step.t !== 'over' && step.t !== 'wait') {
       cow.route.shift();
@@ -4194,7 +4228,9 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       const acc = run ? COW_ACC_RUN : COW_ACC_WALK;
       const d = target - cow.s;
       const want = Math.sign(d) * Math.min(top, Math.sqrt(1.7 * acc * Math.abs(d)));
-      a = clampN((want - cow.v) / Math.max(dt, 0.008), -acc, acc);
+      /* Hãm lại (đang trượt quá đà hay quay đầu) thì được mạnh tay hơn lúc tăng tốc */
+      const lim = cow.v && Math.sign(want - cow.v) !== Math.sign(cow.v) ? acc * 3 : acc;
+      a = clampN((want - cow.v) / Math.max(dt, 0.008), -lim, lim);
       if (Math.abs(d) < 1.5 && Math.abs(cow.v) < 10) {
         cow.s = target;
         cow.v = 0;
@@ -4204,9 +4240,34 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
         [cow.px, cow.py] = segPos(sg, cow.s);
         if (done.t === 'over') { cowCorner(sg, done.end); return 0; }
       }
-    } else if (cow.v) a = clampN(-cow.v / Math.max(dt, 0.008), -280, 280);
+    } else if (cow.v) {
+      /* Không có đích: trượt chậm dần theo đà, đang nhanh thì giảm nhiều, gần dừng thì ma sát đều cho đứng hẳn */
+      a = -(cow.v * 3.2 + Math.sign(cow.v) * 50);
+      if (Math.abs(a) * dt >= Math.abs(cow.v)) a = -cow.v / Math.max(dt, 0.008);
+    }
     cow.v += a * dt;
-    cow.s = clampN(cow.s + cow.v * dt, vis[0], vis[1]);
+    let ns = cow.s + cow.v * dt;
+    if (target == null && cow.v && upright(cow.on)) {
+      /* Đang trượt: quá mép khung thì rơi xuống theo đà, đụng vách khung chat thì nảy ngược nhẹ */
+      const lo = sg.world ? sg.a + COW_LEN : vis[0];
+      const hi = sg.world ? sg.b - COW_LEN : vis[1];
+      if ((ns < lo && cow.v < 0) || (ns > hi && cow.v > 0)) {
+        if (!sg.world && cow.slip && Math.abs(cow.v) > 15) {
+          cow.s = clampN(ns, vis[0], vis[1]);
+          [cow.px, cow.py] = segPos(sg, cow.s);
+          const v = cow.v;
+          cowLetGo(false, false);
+          cow.vx = v;
+          return 0;
+        }
+        /* Dừng ở mép, không kéo giật bò về nếu nó đã đứng quá mép từ trước */
+        ns = clampN(ns, Math.min(lo, cow.s), Math.max(hi, cow.s));
+        cow.v = sg.world && Math.abs(cow.v) > 60 ? -cow.v * 0.3 : 0;
+        if (cow.v) cowSquash(0.12);
+      }
+    }
+    if (target != null || !cow.v) cow.slip = false;
+    cow.s = clampN(ns, vis[0], vis[1]);
     [cow.px, cow.py] = segPos(sg, cow.s);
     angTo(sg.ang, Math.min(1, dt * 14));
     return a;
@@ -4238,8 +4299,9 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   function cowTweenTo(ref, s, opt) {
     const sg = cowSeg(ref);
     if (!sg) return false;
-    cow.tw = { k: 0, d: opt.d, x0: cow.px, y0: cow.py, a0: cow.ang, da: angDelta(cow.ang, sg.ang), h: opt.h || 0, air: !!opt.air, ref, s };
+    cow.tw = { k: 0, d: opt.d, x0: cow.px, y0: cow.py, a0: cow.ang, da: angDelta(cow.ang, sg.ang), h: opt.h || 0, air: !!opt.air, pre: opt.air ? 0.1 : 0, ref, s };
     cow.v = 0;
+    if (opt.air) cowSquash(0.3);
     if (opt.dir) cow.dir = opt.dir;
     return true;
   }
@@ -4249,6 +4311,8 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const w = cow.tw;
     const sg = cowSeg(w.ref);
     if (!sg) { cow.tw = null; cowLetGo(false, false); return; }
+    /* Nhún lấy đà một nhịp rồi mới bật lên */
+    if (w.pre > 0) { w.pre -= dt; return; }
     const [x1, y1] = segPos(sg, w.s);
     w.k = Math.min(1, w.k + dt / w.d);
     const e = w.k < 0.5 ? 2 * w.k * w.k : 1 - Math.pow(-2 * w.k + 2, 2) / 2;
@@ -4262,7 +4326,12 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     cow.s = w.s;
     cow.v = 0;
     cow.ang = w.a0 + w.da;
-    if (w.air) { cow.squash = Math.max(cow.squash, 0.3); cowDust(1); }
+    if (w.air) {
+      cowSquash(0.3);
+      cowDust(1);
+      /* Đáp xuống mặt nằm ngang thì giữ chút đà, trườn thêm một quãng ngắn rồi mới đứng */
+      if (upright(w.ref)) cow.v = clampN(((x1 - w.x0) / w.d) * 0.3, -80, 80);
+    }
     if (!cow.route.length) cow.until = t + 500 + Math.random() * 900;
   }
   function cowCorner(sg, end) {
@@ -4293,7 +4362,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     cow.route = [];
     cow.v = 0;
     cow.s = clampN(cow.px, COW_LEN, cw.W - COW_LEN);
-    cow.squash = Math.max(cow.squash, 0.4);
+    cowSquash(0.4);
     cow.until = performance.now() + 900;
   }
   /* Rời mặt đang bám: đẩy ra khỏi mặt một chút; ghost = rơi thẳng xuống đất, bỏ qua mọi khung (lúc AI đang viết) */
@@ -4328,6 +4397,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     const ox = cow.px;
     const oy = cow.py;
     cow.vy += COW_G * h;
+    cow.vx -= cow.vx * 0.45 * h;
     cow.px += cow.vx * h;
     cow.py += cow.vy * h;
     /* Hai vách khung chat: ném mạnh vào thì bám, không thì nảy lại */
@@ -4365,18 +4435,25 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
         }
       }
     }
-    if (cow.py >= cw.floor) { cow.py = cw.floor; cowLand({ k: 'floor' }, clampN(cow.px, COW_LEN, cw.W - COW_LEN)); }
+    /* Chỉ đáp khi đang rơi xuống; vừa bật nhảy từ mặt đất (khung hình đầu chưa kịp nhích lên) thì không tính là chạm đất */
+    if (cow.py >= cw.floor) {
+      cow.py = cw.floor;
+      if (cow.vy >= 0) cowLand({ k: 'floor' }, clampN(cow.px, COW_LEN, cw.W - COW_LEN));
+    }
   }
-  /* Chạm mặt: rơi mạnh thì nảy, bẹp xuống, tung bụi; nhẹ thì đứng luôn */
+  /* Chạm mặt: rơi mạnh thì nảy, bẹp xuống, tung bụi; nhẹ thì đứng luôn.
+     Đà ngang giữ lại gần hết, nên bò trượt tiếp rồi chậm dần chứ không phanh cái rụp */
   function cowLand(ref, s) {
     const hit = cow.vy;
-    cow.squash = Math.max(cow.squash, Math.min(1, hit / 1000));
+    cowSquash(Math.min(1, hit / 1000));
     if (hit > 420) cowDust(hit > 800 ? 4 : 2);
     if (hit > 520) cowSay(pick(COW_OUCH));
-    if (hit > 300) { cow.vy = -hit * 0.3; cow.vx *= 0.7; return; }
+    if (hit > 380) { cow.vy = -hit * 0.32; cow.vx *= 0.85; return; }
     cow.on = ref;
     cow.s = s;
-    cow.v = clampN(cow.vx * 0.3, -50, 50);
+    cow.v = clampN(cow.vx * 0.85, -380, 380);
+    cow.slip = Math.abs(cow.v) > 40;
+    if (cow.slip) cowDust(1);
     cow.vx = cow.vy = 0;
     cow.ghost = false;
     cow.route = [];
@@ -4393,7 +4470,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     cow.route = [];
     cow.until = performance.now() + 700;
     cow.mode = 'look';
-    cow.squash = Math.max(cow.squash, 0.25);
+    cowSquash(0.25);
     if (Math.random() < 0.6) cowSay(pick(ref.k === 'ceil' ? COW_CEIL : COW_CLING));
   }
 
@@ -4532,7 +4609,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
   /* ---- Vẽ ---- */
   function cowState() {
     if (cow.drag) return 'held';
-    if (cow.tw ? cow.tw.air : !cow.on) return 'air';
+    if (cow.tw ? cow.tw.air && cow.tw.pre <= 0 : !cow.on) return 'air';
     if (cow.mode === 'sleep' && cow.lie > 0.4) return 'sleep';
     const sp = Math.abs(cow.v);
     if (sp > 95) return 'run';
@@ -4649,6 +4726,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     cow.vx = 0;
     cow.vy = -power;
     cow.v = 0;
+    cowSquash(-0.3);
     cowKick();
     return true;
   }
@@ -4716,7 +4794,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       if (Math.hypot(e.clientX - p.sx, e.clientY - p.sy) < 6 || !cowMoves()) return;
       p.moved = true;
       cow.drag = p;
-      Object.assign(cow, { on: null, tw: null, route: [], v: 0, vx: 0, vy: 0, ghost: false, spinning: false, spin: 0 });
+      Object.assign(cow, { on: null, tw: null, route: [], v: 0, vx: 0, vy: 0, hvx: 0, hvy: 0, hdx: 0, hdy: 0, slip: false, ghost: false, spinning: false, spin: 0 });
       if (cow.mode === 'sleep') cow.mode = 'look';
       cowSay(pick(COW_HELD));
     }
@@ -4729,14 +4807,24 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     p.lt = now;
     cowKick();
   }
-  /* Bò treo dưới ngón tay, đi theo tay một cách mềm */
+  /* Bò treo dưới ngón tay, đi theo tay một cách mềm; ghi lại vận tốc của bò để thân đung đưa theo */
   function cowHeld(dt) {
     const p = cow.drag;
     const tx = clampN(p.cx - cw.mx, COW_HALF, cw.W - COW_HALF);
     const ty = clampN(p.cy - cw.my + 30, cw.ceil + COW_TALL, cw.floor);
     const k = dt ? Math.min(1, dt * 24) : 1;
+    const ox = cow.px;
+    const oy = cow.py;
     cow.px += (tx - cow.px) * k;
     cow.py += (ty - cow.py) * k;
+    if (dt) {
+      const vx = (cow.px - ox) / dt;
+      const vy = (cow.py - oy) / dt;
+      cow.hdx += clampN(vx - cow.hvx, -900, 900);
+      cow.hdy += clampN(vy - cow.hvy, -900, 900);
+      cow.hvx = vx;
+      cow.hvy = vy;
+    }
     angTo(0, Math.min(1, dt * 10));
   }
   function cowUp(e) {
@@ -4745,9 +4833,12 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     cow.press = null;
     if (!p.moved) { if (e.type === 'pointerup') cowPet(); return; }
     cow.drag = null;
-    const still = performance.now() - p.lt > 90;
-    cow.vx = still ? 0 : clampN(p.vx, -900, 900);
-    cow.vy = still ? 0 : clampN(p.vy, -900, 800);
+    /* Đà ném lấy theo lần di tay cuối; tay đã khựng lại trước khi buông thì đà nhỏ dần, khựng hẳn thì thả rơi tại chỗ */
+    const age = performance.now() - p.lt;
+    const f = age < 30 ? 1 : Math.max(0, 1 - (age - 30) / 70);
+    const still = !f;
+    cow.vx = clampN(p.vx * f, -900, 900);
+    cow.vy = clampN(p.vy * f, -900, 800);
     cow.mode = 'graze';
     cow.until = performance.now() + 1500;
     if (still) cowStick(performance.now());
