@@ -4710,9 +4710,50 @@ details.gbridge:not([open]) { padding-block: 11px; }
 
   /* Đặt tên nhân vật của người chơi; keep = đang gõ ở màn chào, không vẽ lại màn chào kẻo mất chỗ gõ */
   let askedName = false;
+  /* Chữ “Cậu” trên giao diện đổi thành tên nhân vật khi người chơi đã đặt tên; lời truyện, ô nhập và hộp xem trước giữ nguyên.
+     Nhớ chữ gốc của từng chỗ để đổi tên lần sau vẫn đúng; chỗ nào app tự viết lại thì lấy chữ mới làm gốc */
+  const CAU_RE = /(^|[^\p{L}])Cậu(?=$|[^\p{L}])/gu;
+  const CAU_ATTRS = ['title', 'placeholder', 'aria-label'];
+  const cauMemo = new WeakMap();
+  const cauSkip = (e) => !!(e && e.closest && e.closest('.turn .body, .md, textarea, #input, .tcprev, [contenteditable="true"]'));
+  const cauSwap = (s, name) => (name ? s.replace(CAU_RE, (m, a) => a + name) : s);
+  function cauFix(key, holder, cur, set) {
+    const name = pName();
+    let m = cauMemo.get(holder);
+    if (!m) { m = {}; cauMemo.set(holder, m); }
+    let rec = m[key];
+    if (!rec || (cur !== rec.o && cur !== rec.v)) {
+      if (!cur || !cur.includes('Cậu')) { delete m[key]; return; }
+      rec = m[key] = { o: cur, v: cur };
+    }
+    const v = cauSwap(rec.o, name);
+    rec.v = v;
+    if (cur !== v) set(v);
+  }
+  function cauNode(node) {
+    if (node.nodeType === 3) {
+      const p = node.parentElement;
+      if (p && !cauSkip(p)) cauFix('t', node, node.nodeValue, (v) => { node.nodeValue = v; });
+      return;
+    }
+    if (node.nodeType !== 1 || cauSkip(node)) return;
+    for (const at of CAU_ATTRS) if (node.hasAttribute(at)) cauFix(at, node, node.getAttribute(at), (v) => node.setAttribute(at, v));
+    for (let c = node.firstChild; c; c = c.nextSibling) cauNode(c);
+  }
+  function cauWatch() {
+    cauNode(document.body);
+    new MutationObserver((list) => {
+      for (const mu of list) {
+        if (mu.type === 'childList') mu.addedNodes.forEach(cauNode);
+        else if (mu.type === 'characterData') cauNode(mu.target);
+        else if (mu.type === 'attributes' && !cauSkip(mu.target)) cauFix(mu.attributeName, mu.target, mu.target.getAttribute(mu.attributeName), (v) => mu.target.setAttribute(mu.attributeName, v));
+      }
+    }).observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: CAU_ATTRS });
+  }
   function setPlayer(v, keep) {
     S.player = (v || '').trim().slice(0, 24);
     saveSettings();
+    cauNode(document.body);
     $('#namePlayer').value = S.player;
     if ($('#meName')) { $('#meName').value = S.player; paintMe(); }
     if (keep) { if (S.tab === 'cast' && panelVisible()) renderCast(); return; }
@@ -7577,6 +7618,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $('#optSo').addEventListener('change', (e) => { S.soOpen = e.target.checked; saveSettings(); renderMsgs(); });
     $('#namePlayer').addEventListener('change', (e) => setPlayer(e.target.value));
     wireMe();
+    cauWatch();
     buildTextColors();
     $('#npcBtn').onclick = () => ($('#npcDock').hidden ? openNpcDock() : closeNpcDock());
     $('#ndClose').onclick = closeNpcDock;
