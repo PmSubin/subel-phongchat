@@ -928,6 +928,33 @@ details.gbridge:not([open]) { padding-block: 11px; }
   .gbar .btn { padding: 6px 9px; font-size: 12px; }
   .gthumb { width: 56px; height: 76px; }
 }
+/* ================= Hồ sơ nhân vật của Cậu ================= */
+.mecard { position: relative; margin: 2px 0 16px; padding: 14px; border-radius: 18px; border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line)); background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%), linear-gradient(180deg, var(--card), color-mix(in srgb, var(--card) 85%, var(--bg))); box-shadow: inset 0 1px 0 var(--hi), 0 16px 30px -24px rgba(0, 0, 0, 0.7); }
+.metop { display: flex; align-items: center; gap: 12px; }
+.meava { position: relative; width: 62px; height: 62px; flex: none; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--card2), var(--panel)) center / cover no-repeat; color: var(--violet); font: 600 24px var(--story); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent2) 60%, transparent), 0 0 0 5px color-mix(in srgb, var(--accent) 14%, transparent), 0 10px 20px -8px rgba(0, 0, 0, 0.7); transition: box-shadow 0.2s, transform 0.2s; }
+.meava:hover { transform: scale(1.04); }
+.meava.hasimg { color: transparent; }
+.meava.drop { box-shadow: 0 0 0 3px var(--accent2), 0 0 26px var(--accent); }
+.meava .mecam { position: absolute; right: -3px; bottom: -3px; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(140deg, var(--accent2), var(--accent)); color: var(--on-accent); box-shadow: 0 0 0 2px var(--card); }
+.meava .mecam svg { width: 13px; height: 13px; }
+.mehead { flex: 1; min-width: 0; display: grid; gap: 3px; }
+.mename { width: 100%; padding: 2px 0 4px; border: 0; border-bottom: 1px dashed color-mix(in srgb, var(--line2) 70%, transparent); background: none; outline: none; font: 600 18px var(--story); color: var(--gold); }
+.mename:focus { border-bottom-color: var(--accent2); }
+.mehead small { color: var(--dim); font-size: 11.5px; }
+.metoggle { flex: none; }
+.mesum { margin-top: 10px; color: var(--muted); font-size: 12.5px; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mefields, .mefoot { display: none; }
+.mecard.open .mesum { display: none; }
+.mecard.open .mefields { display: grid; gap: 11px; margin-top: 14px; }
+.mecard.open .mefoot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+[data-motion="1"] .mecard.open .mefields { animation: pane-in 0.3s ease both; }
+.mefields label { display: grid; gap: 5px; }
+.mefields label span { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.mefields textarea { width: 100%; min-height: 58px; resize: vertical; padding: 9px 11px; border-radius: 12px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 40%, var(--card)); outline: none; font: 14px/1.55 var(--ui); color: var(--text); transition: border-color 0.2s, box-shadow 0.2s; }
+.mefields textarea:focus { border-color: color-mix(in srgb, var(--accent2) 55%, var(--line)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
+.mestat { flex: 1; min-width: 140px; color: var(--dim); font-size: 12px; }
+.turn.user .avatar { cursor: pointer; }
+.turn.user .avatar.hasimg { background-position: center; background-size: cover; background-repeat: no-repeat; color: transparent; font-size: 0; }
 </style>
 </head>
 <body>
@@ -1134,6 +1161,26 @@ details.gbridge:not([open]) { padding-block: 11px; }
 
     <section class="pane" data-pane="cast" role="tabpanel" hidden>
       <div class="phead"><b>Nhân vật</b><span id="castStat" class="pstat"></span></div>
+      <div id="meCard" class="mecard">
+        <div class="metop">
+          <button id="meAva" class="meava" type="button" title="Bấm hoặc kéo thả ảnh vào đây để đặt ảnh cho nhân vật của Cậu"><span id="meInit"></span><i class="mecam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.6-2.2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13.2" r="3.4"/></svg></i></button>
+          <div class="mehead"><input id="meName" class="mename" maxlength="24" placeholder="Tên nhân vật của Cậu" aria-label="Tên nhân vật của Cậu"><small>Hồ sơ của Cậu · dùng chung cho mọi truyện</small></div>
+          <button id="meToggle" class="btn sm ghost metoggle" type="button">Sửa hồ sơ</button>
+        </div>
+        <div id="meSum" class="mesum"></div>
+        <div class="mefields">
+          <label><span>Trông ra sao</span><textarea id="meLook" rows="2" placeholder="Tóc, mắt, dáng người, chiều cao, trông chừng bao nhiêu tuổi…"></textarea></label>
+          <label><span>Trang phục và đồ mang theo</span><textarea id="meOutfit" rows="2" placeholder="Áo khoác đen, băng đô đeo ở cổ, túi kunai bên hông, chiếc vòng mẹ tặng…"></textarea></label>
+          <label><span>Tính cách</span><textarea id="mePersona" rows="2" placeholder="Ít nói, hay quan sát, thương người mà không nói ra, ghét bị thương hại…"></textarea></label>
+          <label><span>Thêm (giới tính, tuổi, xuất thân…)</span><textarea id="meMore" rows="2" placeholder="Nam, 18 tuổi, lớn lên ở phố chợ, nhà bán đồ khô…"></textarea></label>
+        </div>
+        <div class="mefoot">
+          <label class="switch"><input id="meSend" type="checkbox"><span>Gửi hồ sơ cho AI</span></label>
+          <span id="meStat" class="mestat"></span>
+          <button id="meImgDel" class="btn sm ghost" type="button">Bỏ ảnh</button>
+        </div>
+        <input id="meFile" type="file" accept="image/*" hidden>
+      </div>
       <div class="castsearch">
         <input id="castQ" class="inp" placeholder="Tra tên, ví dụ Hinata Hyuuga" spellcheck="false" aria-label="Tra tên nhân vật">
         <button id="castGo" class="btn red" type="button"><i data-ic="search"></i>Tìm ảnh</button>
@@ -1380,6 +1427,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
       const saved = localStorage.getItem(SKEY);
       const s = Object.assign({}, DEF, JSON.parse(saved || '{}'));
       if (!Array.isArray(s.models)) s.models = [];
+      s.me = Object.assign({ img: '', look: '', outfit: '', persona: '', more: '', send: true }, s.me && typeof s.me === 'object' ? s.me : {});
       /* Lần đầu mở bản có Subel: đổi tên người dẫn cũ và chuyển sang bảng Tím khói */
       if (!s.lookV) { if (s.narrator === 'Người dẫn') s.narrator = 'Subel'; s.theme = 'khoi'; s.lookV = 1; }
       /* Bản tăng tốc: ai chưa tự chọn mức suy nghĩ thì để Nhanh */
@@ -1988,7 +2036,13 @@ details.gbridge:not([open]) { padding-block: 11px; }
       body.innerHTML = md(t.text);
     }
     if (t.note) main.append(el('div', 'note', t.note));
-    wrap.append(el('div', 'avatar', isModel ? '牛' : initial(pLabel())), main);
+    const av = el('div', 'avatar', isModel ? '牛' : initial(pLabel()));
+    if (!isModel) {
+      if (S.me && S.me.img) { av.classList.add('hasimg'); av.style.backgroundImage = 'url("' + S.me.img + '")'; }
+      av.title = 'Ảnh và hồ sơ nhân vật của Cậu';
+      av.onclick = () => openMe();
+    }
+    wrap.append(av, main);
     return wrap;
   }
   function emptyEl() {
@@ -2012,7 +2066,11 @@ details.gbridge:not([open]) { padding-block: 11px; }
     nameInp.placeholder = 'Tên trong truyện';
     nameInp.value = pName();
     nameInp.addEventListener('change', () => { setPlayer(nameInp.value, true); nameLi.classList.toggle('done', !!pName()); });
-    nameLi.append(el('span', null, 'Đặt tên cho nhân vật của Cậu'), nameInp);
+    const meBtn = el('button', 'btn sm', 'Hồ sơ');
+    meBtn.type = 'button';
+    meBtn.title = 'Ảnh, ngoại hình, trang phục, tính cách của nhân vật Cậu, dùng cho mọi truyện';
+    meBtn.onclick = () => openMe();
+    nameLi.append(el('span', null, 'Đặt tên cho nhân vật của Cậu'), nameInp, meBtn);
     ol.append(nameLi);
     step(!!S.key && !!S.model, 'Dán API key và chọn model', 'Mở', 'run');
     step(!!(cur.system || '').trim(), 'Dán prompt RP vào Hướng dẫn hệ thống', 'Mở', 'sys');
@@ -2451,20 +2509,161 @@ details.gbridge:not([open]) { padding-block: 11px; }
     ].join('\n');
   }
   /* Hướng dẫn hệ thống gửi cho AI: thêm nấc nửa và thang tim nối dài khi prompt có thang cảm xúc ngầm */
-  function systemFor(session) {
-    const sys = swapHero(session.system || '');
-    if (!S.feel || !sys.includes('⚙') || !/`(♡|[+\-−–])\d`/.test(sys)) return sys;
-    const sc = session === cur ? feelScale() : null;
-    const parts = [];
-    if (S.fineFeel) parts.push(FINE_NOTE);
-    if (sc && sc.ext) parts.push(longNote(sc));
-    if (!parts.length) return sys;
-    const note = '# BỔ SUNG CỦA PHÒNG CHAT — THANG CẢM XÚC NGẦM\nThang cảm xúc ngầm trong prompt này giữ nguyên: nghĩa của từng mức, luật lên xuống, thời gian chờ, khóa và cửa riêng của từng người. Phần này chỉ thêm như dưới đây.\n\n' + parts.join('\n\n');
+  /* ================= Hồ sơ nhân vật của Cậu =================
+     Một hồ sơ dùng chung cho mọi truyện: ảnh, trông ra sao, trang phục, tính cách. Gửi cho AI để tả đúng người, không để AI viết hộ */
+  function meNote() {
+    const m = S.me || {};
+    if (m.send === false) return '';
+    const rows = [['Trông ra sao', m.look], ['Trang phục, đồ mang theo', m.outfit], ['Tính cách', m.persona], ['Thêm', m.more]].filter(([, v]) => (v || '').trim());
+    if (!rows.length) return '';
+    const n = pLabel();
+    return '# HỒ SƠ NHÂN VẬT CỦA NGƯỜI CHƠI — ' + n.toUpperCase() + '\n'
+      + 'Người chơi tự viết hồ sơ này cho ' + n + ' và dùng chung cho mọi truyện. Khi tài liệu này hỏi ngoại hình, trang phục, tính cách hay xuất thân của nhân vật người chơi, coi như người chơi đã trả lời bằng hồ sơ dưới đây, trừ điều người chơi nói khác trong lúc chơi. '
+      + 'Dùng nó để tả ' + n + ' đúng như người khác nhìn thấy (dáng vẻ, quần áo, món đồ mang theo) và để NPC phản ứng hợp lý với những gì họ thấy. '
+      + 'Tính cách chỉ để hiểu ' + n + ': không bao giờ dựa vào đó để viết lời nói, hành động, cảm xúc hay suy nghĩ thay cho ' + n + '. '
+      + 'NPC chỉ biết điều họ tận mắt thấy hay được kể; tính cách và chuyện riêng trong hồ sơ không tự nhiên thành điều NPC biết.\n\n'
+      + rows.map(([k, v]) => '- **' + k + ':** ' + v.trim().replace(/\s*\n\s*/g, ' ')).join('\n');
+  }
+  function paintMe() {
+    const av = $('#meAva');
+    if (!av) return;
+    const m = S.me;
+    av.classList.toggle('hasimg', !!m.img);
+    av.style.backgroundImage = m.img ? 'url("' + m.img + '")' : '';
+    $('#meInit').textContent = m.img ? '' : initial(pLabel());
+    $('#meImgDel').hidden = !m.img;
+    const filled = ['look', 'outfit', 'persona', 'more'].filter((k) => (m[k] || '').trim());
+    $('#meStat').textContent = !filled.length ? 'Chưa có gì để gửi' : m.send === false ? 'Đang tắt: AI không đọc hồ sơ này' : 'Subel đọc hồ sơ này ở mọi truyện · khoảng ' + Math.round(meNote().length / 4) + ' token';
+    $('#meSum').textContent = filled.length ? [m.look, m.outfit, m.persona, m.more].filter((s) => (s || '').trim()).join(' · ') : 'Bấm “Sửa hồ sơ” để viết Cậu trông ra sao, mặc gì, tính thế nào. Subel dùng nó cho mọi truyện.';
+  }
+  function openMe(focus) {
+    openPanel('cast');
+    const card = $('#meCard');
+    card.classList.add('open');
+    $('#meToggle').textContent = 'Thu gọn';
+    if (focus === false) return;
+    setTimeout(() => {
+      const f = ['meLook', 'meOutfit', 'mePersona', 'meMore'].map((id) => $('#' + id)).find((t) => !t.value.trim()) || $('#meLook');
+      card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      f.focus({ preventScroll: true });
+    }, 90);
+  }
+  /* Ảnh của Cậu: cắt vuông 256px, lệch lên trên một chút để giữ khuôn mặt, lưu cùng cài đặt */
+  async function setMeImg(file) {
+    if (!file || !/^image\//.test(file.type)) return;
+    const url = URL.createObjectURL(file);
+    try {
+      const im = new Image();
+      await new Promise((res, rej) => { im.onload = res; im.onerror = rej; im.src = url; });
+      const side = Math.min(im.naturalWidth, im.naturalHeight);
+      const cv = document.createElement('canvas');
+      cv.width = cv.height = 256;
+      cv.getContext('2d').drawImage(im, (im.naturalWidth - side) / 2, Math.max(0, (im.naturalHeight - side) * 0.22), side, side, 0, 0, 256, 256);
+      S.me.img = cv.toDataURL('image/jpeg', 0.86);
+      saveSettings();
+      paintMe();
+      renderMsgs();
+      toast('Đã đặt ảnh cho ' + pLabel());
+    } catch (e) {
+      toast('Không đọc được ảnh này', { err: true });
+    } finally { URL.revokeObjectURL(url); }
+  }
+  let meT = 0;
+  function wireMe() {
+    const m = S.me;
+    $('#meName').value = S.player;
+    for (const [id, k] of [['meLook', 'look'], ['meOutfit', 'outfit'], ['mePersona', 'persona'], ['meMore', 'more']]) {
+      const t = $('#' + id);
+      t.value = m[k] || '';
+      t.addEventListener('input', () => {
+        S.me[k] = t.value.slice(0, 1200);
+        clearTimeout(meT);
+        meT = setTimeout(() => { saveSettings(); paintMe(); updateSysInfo(); updateMeter(); }, 500);
+      });
+    }
+    $('#meSend').checked = m.send !== false;
+    $('#meSend').addEventListener('change', (e) => { S.me.send = e.target.checked; saveSettings(); paintMe(); updateSysInfo(); updateMeter(); });
+    $('#meName').addEventListener('change', (e) => setPlayer(e.target.value, true));
+    $('#meToggle').onclick = () => {
+      const open = !$('#meCard').classList.contains('open');
+      $('#meCard').classList.toggle('open', open);
+      $('#meToggle').textContent = open ? 'Thu gọn' : 'Sửa hồ sơ';
+    };
+    const av = $('#meAva');
+    av.onclick = () => $('#meFile').click();
+    $('#meFile').addEventListener('change', (e) => { setMeImg(e.target.files[0]); e.target.value = ''; });
+    $('#meImgDel').onclick = () => { S.me.img = ''; saveSettings(); paintMe(); renderMsgs(); };
+    av.addEventListener('dragover', (e) => { e.preventDefault(); av.classList.add('drop'); });
+    av.addEventListener('dragleave', () => av.classList.remove('drop'));
+    av.addEventListener('drop', (e) => { e.preventDefault(); av.classList.remove('drop'); setMeImg(e.dataTransfer.files[0]); });
+    if (!['look', 'outfit', 'persona', 'more'].some((k) => (m[k] || '').trim())) { $('#meCard').classList.add('open'); $('#meToggle').textContent = 'Thu gọn'; }
+    paintMe();
+  }
+  /* Chèn một khối bổ sung ngay trước khối QUY TẮC TỐI THƯỢNG (nếu prompt có), không thì cuối prompt */
+  function beforeTop(sys, note) {
     let at = -1;
     const re = /^#{1,3}\s*QUY TẮC TỐI THƯỢNG/gm;
     let m;
     while ((m = re.exec(sys))) at = m.index;
+    if (!sys.trim()) return note;
     return at < 0 ? sys.replace(/\s*$/, '') + '\n\n' + note + '\n' : sys.slice(0, at) + note + '\n\n' + sys.slice(at);
+  }
+  function systemFor(session) {
+    let sys = swapHero(session.system || '');
+    if (S.feel && sys.includes('⚙') && /`(♡|[+\-−–])\d`/.test(sys)) {
+      const sc = session === cur ? feelScale() : null;
+      const parts = [];
+      if (S.fineFeel) parts.push(FINE_NOTE);
+      if (sc && sc.ext) parts.push(longNote(sc));
+      if (parts.length) sys = beforeTop(sys, '# BỔ SUNG CỦA PHÒNG CHAT — THANG CẢM XÚC NGẦM\nThang cảm xúc ngầm trong prompt này giữ nguyên: nghĩa của từng mức, luật lên xuống, thời gian chờ, khóa và cửa riêng của từng người. Phần này chỉ thêm như dưới đây.\n\n' + parts.join('\n\n'));
+    }
+    const me = meNote();
+    return me ? beforeTop(sys, me) : sys;
+  }
+  /* Mở file từ máy thì Danbooru chặn: lấy ảnh chính thức của nhân vật trên AniList (đúng bộ đang chơi) */
+  async function anilistPortrait(c) {
+    const series = seriesOf();
+    const toks = seriesTokens();
+    const names = [c.name].concat((c.alias || '').split(',')).map((s) => s.trim()).filter((s) => s.length >= 2 && !isCode(s));
+    for (const n of names.slice(0, 3)) {
+      let hits = series ? await anilistMedia(series, n) : [];
+      if (!hits.length) hits = (await anilist(n)).filter((x) => inSeries(((x.media && x.media.nodes) || []).flatMap((m) => [m.title.romaji, m.title.english, m.title.native]).filter(Boolean), toks));
+      const hit = hits.find((x) => x.image && !/\/default\./.test(x.image.large || x.image.medium || ''));
+      if (hit) return hit.image.large || hit.image.medium;
+      await sleep(400);
+    }
+    return '';
+  }
+  async function localArt(people, quiet) {
+    beautifying = true;
+    const btn = $('#castBeautify');
+    btn.disabled = true;
+    let ok = 0;
+    const miss = [];
+    const session = cur;
+    for (let i = 0; i < people.length && cur === session; i++) {
+      const c = people[i];
+      btn.lastChild.textContent = 'Đang lấy ảnh ' + (i + 1) + '/' + people.length + '…';
+      try {
+        const u = await anilistPortrait(c);
+        if (!u) { miss.push(c.name); continue; }
+        if (!imgsOf(c).includes(u)) c.imgs = [u].concat(imgsOf(c));
+        if (!c.img) c.img = u;
+        ok++;
+        persist(false, true);
+        renderCast();
+        renderHereStrip();
+      } catch (e) {
+        miss.push(c.name);
+        if (/giới hạn/.test(e.message)) await sleep(5000);
+      }
+      await sleep(700);
+    }
+    beautifying = false;
+    btn.disabled = false;
+    btn.lastChild.textContent = 'Tranh đẹp cho cả dàn';
+    if (cur === session) saveCast();
+    if (!quiet || ok) toast((ok ? 'Đã đặt ảnh cho ' + ok + ' người (ảnh chính thức trên AniList; mở bằng link web thì có tranh vẽ đẹp hơn từ Danbooru).' : 'Chưa lấy được ảnh nào.') + (miss.length ? ' Chưa tìm ra: ' + miss.slice(0, 4).join(', ') + (miss.length > 4 ? '…' : '') + '.' : ''), { ms: 9000, err: !ok });
   }
   /* Sau mỗi lượt AI viết xong: báo ai vừa đổi mức (chỉ khi đang đọc tình cảm từ Sổ) */
   function feelNews() {
@@ -3042,8 +3241,8 @@ details.gbridge:not([open]) { padding-block: 11px; }
     }
     castChanged();
     const art = fresh.filter((c) => !c.oc);
-    toast(n ? 'Subel đã thêm ' + n + ' nhân vật từ prompt' + (seriesOf() ? ' (' + seriesOf() + ')' : '') + '.' + (art.length && !localFile ? ' Đang lấy tranh đẹp làm avatar cho từng người…' : ' Bấm vào khung ảnh của từng người để tìm ảnh.') : 'Mọi nhân vật trong prompt đã có sẵn', { ms: 7000 });
-    if (art.length && !localFile) artForCast(art, true);
+    toast(n ? 'Subel đã thêm ' + n + ' nhân vật từ prompt' + (seriesOf() ? ' (' + seriesOf() + ')' : '') + '.' + (art.length ? ' Đang lấy ảnh làm avatar cho từng người…' : ' Bấm vào khung ảnh của từng người để tìm ảnh.') : 'Mọi nhân vật trong prompt đã có sẵn', { ms: 7000 });
+    if (art.length) artForCast(art, true);
   }
   /* Dán prompt mới vào một phiên chưa có nhân vật: chờ Cậu dán xong rồi Subel tự đọc, mỗi prompt một lần */
   let autoCastT = 0;
@@ -3512,7 +3711,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
   let beautifying = false;
   async function artForCast(people, quiet) {
     if (beautifying || !people.length) return;
-    if (localFile) { if (!quiet) toast('Mở file trực tiếp từ máy thì Danbooru chặn ảnh. Mở Phòng Chat bằng link web (GitHub Pages) để lấy tranh đẹp.', { err: true, ms: 9000 }); return; }
+    if (localFile) { localArt(people, quiet); return; }
     beautifying = true;
     const btn = $('#castBeautify');
     btn.disabled = true;
@@ -3878,6 +4077,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
     S.player = (v || '').trim().slice(0, 24);
     saveSettings();
     $('#namePlayer').value = S.player;
+    if ($('#meName')) { $('#meName').value = S.player; paintMe(); }
     if (keep) { if (S.tab === 'cast' && panelVisible()) renderCast(); return; }
     renderMsgs();
   }
@@ -5810,6 +6010,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $('#optChips').addEventListener('change', (e) => { S.chipsOn = e.target.checked; saveSettings(); applyLook(); });
     $('#optSo').addEventListener('change', (e) => { S.soOpen = e.target.checked; saveSettings(); renderMsgs(); });
     $('#namePlayer').addEventListener('change', (e) => setPlayer(e.target.value));
+    wireMe();
     $('#nameNarr').addEventListener('change', (e) => { S.narrator = e.target.value.trim() || 'Subel'; e.target.value = S.narrator; saveSettings(); renderMsgs(); });
     $('#chipText').addEventListener('input', (e) => { S.chips = e.target.value; saveSettings(); renderChips(true); });
 
