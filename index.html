@@ -435,43 +435,89 @@ body.no-chips .chips { display: none; }
 .stepper span { min-width: 54px; text-align: center; font-size: 12.5px; }
 .dice-hist { margin-top: 10px; font-size: 12px; color: var(--dim); line-height: 1.6; min-height: 1em; }
 
-/* Bò hiệp khách */
-.cowworld { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
-body.no-cow .cowworld { display: none; }
-/* Vị trí, bước chân, độ nảy, độ nghiêng do JS tính từng khung hình (vật lý nhỏ); CSS chỉ lo đầu, đuôi, khăn, mắt */
-.cow { position: absolute; left: 0; top: 0; width: 58px; height: 44px; transform-origin: 29px 41px; pointer-events: auto; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; will-change: transform; }
-.cow[data-state="held"] { cursor: grabbing; }
-.cowshadow { position: absolute; left: 0; top: 0; transform-origin: 16px 2px; width: 32px; height: 4px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.34), transparent); will-change: transform, opacity; }
-.cow .hop { width: 58px; height: 44px; transform-origin: 50% 100%; will-change: transform; }
-.cow .flip { width: 58px; height: 44px; transform: scaleX(-1); transition: transform 0.32s cubic-bezier(0.45, 0, 0.25, 1); }
-.cow[data-dir="1"] .flip { transform: none; }
-.moo { display: block; width: 58px; height: 44px; overflow: visible; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)); transform-origin: 50% 100%; }
-.moo :is(.leg, .tail, .head, .nod, .tassel, .scarf, .eye) { transform-box: fill-box; }
-.moo .leg { transform-origin: 50% 0%; }
-.moo .tail { transform-origin: 100% 0%; }
-.moo :is(.head, .nod) { transform-origin: 12% 85%; }
-.moo .tassel { transform-origin: 0% 0%; }
-.moo .scarf { transform-origin: 100% 20%; }
-.moo .eye { transform-origin: 50% 50%; }
-.moo .upper { transform-box: view-box; transform-origin: 36px 56px; }
+/* Bò hiệp khách và vịt con: sống trên cả màn hình, nổi trên mọi khung của trang (cả khung NPC phủ kín điện thoại, z 60),
+   dưới hộp thoại và thông báo. Lớp bóng và hạt ở dưới, mỗi con một lớp riêng, bóng chữ trên cùng */
+.petworld, .petlayer, .petsays { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+.petworld { z-index: 61; }
+.petlayer { z-index: 62; }
+.petsays { z-index: 63; }
+/* Đang trốn: lớp của con ấy lùi ra sau các khung (ra sau bảng trượt nếu bảng đang mở trên điện thoại, ra sau cả đồi oải hương
+   khi trốn trong bụi hoa), chỉ cái đầu ló ra là còn thấy */
+.petlayer.back { z-index: 1; }
+.petlayer.back.over { z-index: 21; }
+.petlayer.back.deep { z-index: -1; }
+body.no-cow .pet-bo, body.no-duck .pet-vit { display: none; }
+/* Vị trí, bước chân, độ nảy, độ nghiêng do JS tính từng khung hình (vật lý nhỏ); CSS chỉ lo đầu, đuôi, cánh, khăn, mắt, mỏ */
+.pet { position: absolute; left: 0; top: 0; pointer-events: auto; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; will-change: transform; }
+.pet[data-state="held"] { cursor: grabbing; }
+/* Ngón tay to hơn con trỏ: nới vùng chạm quanh con vật */
+@media (pointer: coarse) { .pet::before { content: ""; position: absolute; inset: -10px -9px -4px; } }
+.cow { width: 56px; height: 54px; transform-origin: 22px 52px; }
+.duck { width: 46px; height: 44px; transform-origin: 20px 42px; }
+.petshadow { position: absolute; left: 0; top: 0; transform-origin: 17px 2px; width: 34px; height: 4px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.38), transparent); will-change: transform, opacity; }
+.petshadow.pet-vit { width: 26px; transform-origin: 13px 2px; }
+.pet .hop { width: 100%; height: 100%; transform-origin: 50% 100%; will-change: transform; }
+.pet .flip { position: relative; width: 100%; height: 100%; transform: scaleX(-1); transition: transform 0.32s cubic-bezier(0.45, 0, 0.25, 1); }
+.pet[data-dir="1"] .flip { transform: none; }
+.pet svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)); transform-origin: 50% 100%; }
+/* Nền tối: viền mực tím hòa vào nền, nên thay bóng đổ bằng một quầng sáng mỏng quanh hình như nhãn dán (vẫn một lớp lọc) */
+:is([data-theme="muc"], [data-theme="dem"], [data-theme="khoi"]) .pet svg { filter: drop-shadow(0 0 1.3px rgba(240, 232, 255, 0.6)); }
+.pet svg :is(.leg, .tail, .head, .nod, .tassel, .scarf, .eye, .wing, .bill-lo, .mouth) { transform-box: fill-box; }
+.pet .leg { transform-origin: 50% 0%; }
+.pet .eye { transform-origin: 50% 50%; }
+.pet .scarf { transform-origin: 100% 0%; }
+.moo .tail { transform-origin: 100% 100%; }
+.pet .moo :is(.head, .nod) { transform-box: view-box; transform-origin: 50px 66px; }
+.moo .tassel { transform-origin: 0% 100%; }
+.moo .upper { transform-box: view-box; transform-origin: 40px 88px; }
+.moo .mouth { transform-origin: 50% 0%; transform: scaleY(0.25); }
+/* Vịt: lông kem, má hồng, mỏ cam, viền mực như bò; nơ oải hương trên đầu */
+.quack .upper { transform-box: view-box; transform-origin: 42px 88px; }
+.pet .quack :is(.head, .nod) { transform-box: view-box; transform-origin: 52px 60px; }
+.quack .tail { transform-origin: 90% 92%; }
+.quack .wing { transform-origin: 94% 24%; }
+.quack .bill-lo { transform-origin: 0% 0%; }
+[data-motion="1"] .pet .scarf { animation: flutter 0.9s ease-in-out infinite alternate; }
+[data-motion="1"] .pet .eye { animation: c-blink 4.2s infinite; }
+[data-motion="1"] .duck .eye { animation-duration: 3.3s; }
 [data-motion="1"] .moo .tail { animation: swish 1.6s ease-in-out infinite alternate; }
-[data-motion="1"] .moo .scarf { animation: flutter 0.9s ease-in-out infinite alternate; }
-[data-motion="1"] .moo .tassel { animation: tassel 1.2s ease-in-out infinite alternate; }
-[data-motion="1"] .moo .eye { animation: c-blink 4.2s infinite; }
-[data-motion="1"] .cow:is([data-state="graze"], [data-state="look"], [data-state="watch"], [data-state="sleep"], [data-state="think"]) .moo { animation: breathe 3.4s ease-in-out infinite; }
+[data-motion="1"] .moo .tassel { animation: sprig 2.6s ease-in-out infinite alternate; }
+[data-motion="1"] .quack .tail { animation: wag 2.8s ease-in-out infinite; }
+[data-motion="1"] .pet:is([data-state="graze"], [data-state="look"], [data-state="watch"], [data-state="sleep"], [data-state="think"]) svg { animation: breathe 3.4s ease-in-out infinite; }
 [data-motion="1"] .cow[data-state="walk"] .tail { animation-duration: 0.7s; }
 [data-motion="1"] .cow:is([data-state="run"], [data-state="held"], [data-state="air"]) .tail { animation: swish 0.2s linear infinite alternate; }
-[data-motion="1"] .cow:is([data-state="run"], [data-state="held"], [data-state="air"]) .scarf { animation: flutter 0.14s linear infinite alternate; }
+[data-motion="1"] .pet:is([data-state="run"], [data-state="held"], [data-state="air"]) .scarf { animation: flutter 0.14s linear infinite alternate; }
+[data-motion="1"] .duck:is([data-state="run"], [data-state="held"], [data-state="air"]) .tail { animation: wag-fast 0.16s linear infinite alternate; }
+/* Cánh vịt: đi thì khẽ đập, chạy thì vỗ, bay hay bị nhấc lên thì vỗ lia lịa */
+[data-motion="1"] .duck[data-state="walk"] .wing { animation: wiggle 0.34s ease-in-out infinite alternate; }
+[data-motion="1"] .duck[data-state="run"] .wing { animation: flap 0.2s ease-in-out infinite alternate; }
+[data-motion="1"] .duck:is([data-state="air"], [data-state="held"]) .wing { animation: flap 0.12s ease-in-out infinite alternate; }
 [data-motion="1"] .cow[data-state="graze"] .head { animation: graze 2.6s ease-in-out infinite; }
-[data-motion="1"] .cow[data-state="think"] .head { animation: ponder 1.8s ease-in-out infinite; }
-[data-motion="1"] .cow[data-state="look"] .head { animation: look 3.2s ease-in-out infinite; }
-[data-motion="1"] .cow[data-state="watch"] .head { animation: perk 0.8s ease-in-out infinite alternate; }
-[data-motion="1"] .cow[data-state="held"] .head { animation: ponder 0.45s ease-in-out infinite; }
-.cow[data-state="sleep"] .head { transform: rotate(16deg); }
-[data-motion="1"] .cow[data-state="sleep"] .head { animation: doze 3.4s ease-in-out infinite; }
-.cow[data-state="sleep"] .eye { animation: none !important; transform: scaleY(0.12); }
-[data-motion="1"] .cow[data-state="sleep"] :is(.tail, .scarf, .tassel) { animation-duration: 3s; }
-@keyframes graze { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(34deg); } 40% { transform: rotate(29deg); } 55% { transform: rotate(34deg); } 70% { transform: rotate(30deg); } 85% { transform: rotate(0); } }
+[data-motion="1"] .duck[data-state="graze"] .head { animation: peck 2.4s ease-in-out infinite; }
+[data-motion="1"] .pet[data-state="think"] .head { animation: ponder 1.8s ease-in-out infinite; }
+[data-motion="1"] .pet[data-state="look"] .head { animation: look 3.2s ease-in-out infinite; }
+[data-motion="1"] .pet[data-state="watch"] .head { animation: perk 0.8s ease-in-out infinite alternate; }
+[data-motion="1"] .pet[data-state="held"] .head { animation: ponder 0.45s ease-in-out infinite; }
+.pet[data-state="sleep"] .head { transform: rotate(16deg); }
+[data-motion="1"] .pet[data-state="sleep"] .head { animation: doze 3.4s ease-in-out infinite; }
+.pet[data-state="sleep"] .eye { animation: none !important; transform: scaleY(0.12); }
+[data-motion="1"] .pet[data-state="sleep"] :is(.tail, .scarf, .tassel) { animation-duration: 3s; }
+/* Đang nói: bò mấp máy miệng, vịt mở mỏ */
+[data-motion="1"] .cow[data-talk="1"] .mouth { animation: chat 0.2s ease-in-out infinite alternate; }
+[data-motion="1"] .duck[data-talk="1"] .bill-lo { animation: quack 0.17s ease-in-out infinite alternate; }
+/* Bị lắc tới choáng: sao bay quanh đầu, người lảo đảo */
+.pet .daze { position: absolute; width: 0; height: 0; display: none; }
+.cow .daze { left: 33px; top: 4px; }
+.duck .daze { left: 28px; top: 2px; }
+.pet[data-daze="1"] .daze { display: block; }
+.pet .daze b { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; font-size: 9px; line-height: 8px; text-align: center; color: var(--gold); text-shadow: 0 0 4px color-mix(in srgb, var(--gold) 60%, transparent); }
+.pet .daze b::before { content: "✦"; }
+[data-motion="1"] .pet .daze b { animation: daze 0.95s linear infinite; }
+.pet .daze b:nth-child(2) { animation-delay: -0.32s; }
+.pet .daze b:nth-child(3) { animation-delay: -0.63s; }
+[data-motion="1"] .pet[data-daze="1"] svg { animation: woozy 0.9s ease-in-out infinite alternate; }
+@keyframes graze { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(24deg); } 40% { transform: rotate(20deg); } 55% { transform: rotate(24deg); } 70% { transform: rotate(21deg); } 85% { transform: rotate(0); } }
+@keyframes peck { 0%, 48%, 100% { transform: rotate(0); } 10% { transform: rotate(40deg); } 15% { transform: rotate(31deg); } 21% { transform: rotate(42deg); } 27% { transform: rotate(33deg); } 38% { transform: rotate(-4deg); } }
 @keyframes ponder { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(-12deg) translateY(-1px); } }
 @keyframes look { 0%, 100% { transform: rotate(-3deg); } 30%, 52% { transform: rotate(-15deg); } 76% { transform: rotate(7deg); } }
 @keyframes perk { from { transform: rotate(-9deg); } to { transform: rotate(-14deg) translateY(-0.6px); } }
@@ -480,22 +526,40 @@ body.no-cow .cowworld { display: none; }
 @keyframes swish { from { transform: rotate(-16deg); } to { transform: rotate(20deg); } }
 @keyframes flutter { from { transform: rotate(-7deg) scaleY(0.9); } to { transform: rotate(9deg) scaleY(1.1); } }
 @keyframes tassel { from { transform: rotate(-12deg); } to { transform: rotate(14deg); } }
+@keyframes sprig { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }
 @keyframes c-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
-.cowsay { position: absolute; left: 0; top: 0; transform: translateY(6px) scale(0.85); transform-origin: 50% 100%; white-space: nowrap; padding: 4px 10px; border-radius: 10px; background: var(--card2); border: 1px solid var(--line2); font-size: 12px; color: var(--text); opacity: 0; transition: opacity 0.2s, transform 0.32s cubic-bezier(0.2, 1.5, 0.4, 1); pointer-events: none; box-shadow: var(--shadow-sm); }
-.cowsay.on { opacity: 1; transform: none; }
-/* Hạt nhỏ quanh bò: tim, chữ z khi ngủ, dấu chấm than, bụi dưới chân */
+@keyframes wag { 0%, 68%, 100% { transform: rotate(0); } 74% { transform: rotate(-16deg); } 80% { transform: rotate(11deg); } 86% { transform: rotate(-12deg); } 93% { transform: rotate(6deg); } }
+@keyframes wag-fast { from { transform: rotate(-12deg); } to { transform: rotate(10deg); } }
+@keyframes wiggle { from { transform: rotate(4deg); } to { transform: rotate(-12deg); } }
+@keyframes flap { from { transform: rotate(10deg); } to { transform: rotate(-56deg); } }
+@keyframes chat { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+@keyframes quack { from { transform: rotate(0); } to { transform: rotate(26deg); } }
+@keyframes daze { 0% { transform: translate(12px, 0) scale(1); } 25% { transform: translate(0, 4px) scale(1.2); } 50% { transform: translate(-12px, 0) scale(1); } 75% { transform: translate(0, -4px) scale(0.7); opacity: 0.55; } 100% { transform: translate(12px, 0) scale(1); } }
+@keyframes woozy { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+/* Bóng chữ: đuôi chỉ về con đang nói (--tx do JS đặt); bóng chữ của vịt viền màu nhấn cho dễ phân biệt */
+.petsay { position: absolute; left: 0; top: 0; max-width: min(230px, calc(100vw - 24px)); width: max-content; padding: 5px 11px; border-radius: 12px; background: var(--card2); border: 1px solid var(--line2); font-size: 12.5px; line-height: 1.45; color: var(--text); text-wrap: balance; opacity: 0; transform: translateY(6px) scale(0.85); transform-origin: var(--tx, 50%) 100%; transition: opacity 0.2s, transform 0.32s cubic-bezier(0.2, 1.5, 0.4, 1); pointer-events: none; box-shadow: var(--shadow-sm); }
+.petsay::after { content: ""; position: absolute; left: var(--tx, 50%); bottom: -5px; width: 8px; height: 8px; margin-left: -4px; background: inherit; border: inherit; border-width: 0 1px 1px 0; border-radius: 0 0 2px 0; transform: rotate(45deg); }
+.petsay[data-side="down"] { transform-origin: var(--tx, 50%) 0%; }
+.petsay[data-side="down"]::after { bottom: auto; top: -5px; border-width: 1px 0 0 1px; border-radius: 2px 0 0 0; }
+.petsay[data-side="side"]::after { display: none; }
+.petsay.on { opacity: 1; transform: none; }
+.petsay.pet-vit { border-color: color-mix(in srgb, var(--accent) 55%, var(--line2)); background: color-mix(in srgb, var(--accent) 7%, var(--card2)); }
+/* Hạt nhỏ quanh con vật: tim, chữ z khi ngủ, dấu chấm than, sao khi choáng, lông vịt, bụi dưới chân */
 .cfx { position: absolute; pointer-events: none; transform: translateX(-50%); font-weight: 700; line-height: 1; white-space: nowrap; }
 .cfx.heart, .cfx.note, .cfx.drop { font-size: 15px; animation: fx-rise 1.15s ease-out forwards; }
 .cfx.heart { color: var(--accent2); }
 .cfx.note { color: var(--gold); }
 .cfx.drop { color: #7fb2e5; font-size: 13px; }
 .cfx.mark { color: var(--gold); font-size: 18px; animation: fx-pop 0.95s ease-out forwards; }
+.cfx.star { color: var(--gold); font-size: 13px; animation: fx-pop 0.9s ease-out forwards; }
 .cfx.zz { color: var(--muted); font-size: 12px; font-style: italic; font-family: var(--story); animation: fx-z 2.3s ease-out forwards; }
 .cfx.dust { width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--muted) 42%, transparent); animation: fx-dust 0.65s ease-out forwards; }
+.cfx.feather { width: 10px; height: 4px; border-radius: 50%; background: #fbf3df; box-shadow: inset 0 0 0 1px rgba(28, 22, 18, 0.35); animation: fx-feather 1.7s ease-in forwards; }
 @keyframes fx-rise { 0% { opacity: 0; transform: translate(-50%, 4px) scale(0.5); } 22% { opacity: 1; transform: translate(-50%, -6px) scale(1.15); } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), -40px) scale(0.9); } }
 @keyframes fx-pop { 0% { opacity: 0; transform: translate(-50%, 6px) scale(0.3); } 28% { opacity: 1; transform: translate(-50%, -8px) scale(1.3); } 70% { opacity: 1; transform: translate(-50%, -10px) scale(1); } 100% { opacity: 0; transform: translate(-50%, -14px) scale(1); } }
 @keyframes fx-z { 0% { opacity: 0; transform: translate(-50%, 0) scale(0.6) rotate(-10deg); } 25% { opacity: 0.9; } 100% { opacity: 0; transform: translate(calc(-50% + 20px), -36px) scale(1.5) rotate(8deg); } }
 @keyframes fx-dust { from { opacity: 0.85; transform: translate(-50%, 0) scale(0.5); } to { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), -7px) scale(2.3); } }
+@keyframes fx-feather { 0% { opacity: 0; transform: translate(-50%, -6px) rotate(0); } 12% { opacity: 1; } 50% { transform: translate(calc(-50% + var(--dx, 0px) * 0.6), 10px) rotate(160deg); } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), 34px) rotate(320deg); } }
 
 /* ================= Bảng bên phải ================= */
 #panel { width: 396px; flex: none; display: flex; flex-direction: column; min-height: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 95%, transparent), color-mix(in srgb, var(--panel) 86%, transparent)); backdrop-filter: blur(16px); border-left: 1px solid var(--line); box-shadow: inset 1px 0 0 var(--hi); z-index: 3; }
@@ -1073,44 +1137,6 @@ details.gbridge:not([open]) { padding-block: 11px; }
       <div id="ndList" class="ndlist"></div>
     </aside>
     <div id="stage" hidden></div>
-    <div id="cowWorld" class="cowworld" aria-hidden="true">
-      <span class="cowshadow"></span>
-          <div id="cow" class="cow" data-state="graze" data-dir="-1" title="Bò hiệp khách: bấm để vuốt ve, kéo đi đâu cũng được">
-            <div class="hop"><div class="flip">
-<svg class="moo" viewBox="0 0 80 60" focusable="false">
-<g class="leg leg-a"><rect x="26" y="35" width="5.5" height="19" rx="2.6" fill="#d3c6ab" stroke="#1c1612" stroke-width="1.5"/><rect x="26" y="50.5" width="5.5" height="4" rx="1.2" fill="#2a221c"/></g>
-<g class="leg leg-b"><rect x="51" y="35" width="5.5" height="19" rx="2.6" fill="#d3c6ab" stroke="#1c1612" stroke-width="1.5"/><rect x="51" y="50.5" width="5.5" height="4" rx="1.2" fill="#2a221c"/></g>
-<g class="upper">
-<g class="tail"><path d="M17 26 Q10 30 11 40" fill="none" stroke="#1c1612" stroke-width="2" stroke-linecap="round"/><path d="M11 38 Q7.6 44 12 45.4 Q14.4 42 11 38 Z" fill="#2a221c"/></g>
-<ellipse cx="36" cy="31" rx="21" ry="11.5" fill="#efe5cf" stroke="#1c1612" stroke-width="2"/>
-<path d="M25.5 23.6 Q31 20.6 34.2 25 Q34.4 30 29 30.2 Q23.8 29.4 25.5 23.6 Z" fill="#2a221c"/>
-<ellipse cx="44.5" cy="35" rx="4" ry="2.8" fill="#2a221c"/>
-<circle cx="20.5" cy="32.5" r="2" fill="#2a221c"/>
-<path d="M19 23 L46 13.4" stroke="#cdd5dc" stroke-width="2" stroke-linecap="round"/>
-<path d="M44.4 11.2 L47.2 15.8" stroke="#1c1612" stroke-width="2" stroke-linecap="round"/>
-<path d="M46.6 13.2 L52.4 11" stroke="#2a221c" stroke-width="3.2" stroke-linecap="round"/>
-<g class="tassel"><path d="M52.6 11 Q55.6 15 53.6 20" fill="none" stroke="#c8402f" stroke-width="1.5" stroke-linecap="round"/><path d="M53.6 19.4 Q54.8 22 52.8 23.6 Q52 21.4 53.6 19.4 Z" fill="#c8402f"/></g>
-<path d="M49.6 24.4 Q54.6 20.6 57.4 22.4 L58.4 31.2 Q53.2 33.4 49.6 33 Z" fill="#efe5cf" stroke="#1c1612" stroke-width="2" stroke-linejoin="round"/>
-<g class="scarf"><path d="M50.4 29 Q43 26.6 37.6 29.8 Q42 31 46 31.2 Q41 33.2 36.8 36.4 Q45 35.4 50.6 31.4 Z" fill="#c8402f"/></g>
-<path d="M49.2 27.2 Q54 31.4 58.2 28.2 L58.8 31.4 Q54 35 49.6 30.8 Z" fill="#c8402f"/>
-<g class="nod"><g class="head">
-<path d="M57 14.6 Q57 9.4 61.2 8.2" fill="none" stroke="#d9c39a" stroke-width="2.4" stroke-linecap="round"/>
-<ellipse cx="53.6" cy="18.8" rx="4.1" ry="1.8" fill="#efe5cf" stroke="#1c1612" stroke-width="1.5" transform="rotate(-22 53.6 18.8)"/>
-<path d="M53 16 Q60 11 66 15 Q70.2 18 69.2 24 Q68 30.2 62 31 Q55 31.2 53 25 Q51.2 20 53 16 Z" fill="#efe5cf" stroke="#1c1612" stroke-width="2"/>
-<ellipse cx="66.2" cy="27.2" rx="5.4" ry="4.1" fill="#e8c7b5" stroke="#1c1612" stroke-width="1.5"/>
-<circle cx="68.4" cy="26.6" r="0.9" fill="#1c1612"/>
-<g class="eye"><path d="M58.8 18.8 L62.6 20" stroke="#1c1612" stroke-width="1.8" stroke-linecap="round"/><circle cx="61" cy="21.8" r="1.1" fill="#1c1612"/></g>
-<path d="M47.6 14.6 Q59 0.6 70.4 14.6 Q59 18.2 47.6 14.6 Z" fill="#2a221c" stroke="#efe5cf" stroke-width="0.8"/>
-<path d="M50.8 13.3 Q59 16.2 67.2 13.3" fill="none" stroke="#c8402f" stroke-width="1.3"/>
-</g></g>
-</g>
-<g class="leg leg-b"><rect x="20" y="35" width="6" height="19" rx="2.6" fill="#efe5cf" stroke="#1c1612" stroke-width="1.8"/><rect x="20" y="50.5" width="6" height="4" rx="1.2" fill="#2a221c"/></g>
-<g class="leg leg-a"><rect x="46" y="35" width="6" height="19" rx="2.6" fill="#efe5cf" stroke="#1c1612" stroke-width="1.8"/><rect x="46" y="50.5" width="6" height="4" rx="1.2" fill="#2a221c"/></g>
-</svg>
-            </div></div>
-          </div>
-      <span id="cowSay" class="cowsay"></span>
-    </div>
     <header id="top">
       <button id="menuBtn" class="icon" type="button" title="Danh sách phiên" aria-label="Danh sách phiên"><i data-ic="menu"></i></button>
       <span id="sessIcon" aria-hidden="true">🐮</span>
@@ -1323,8 +1349,9 @@ details.gbridge:not([open]) { padding-block: 11px; }
       <div class="sub">Cho vui</div>
       <label class="switch"><input id="optMotion" type="checkbox"><span>Hiệu ứng động (hoa rơi, đom đóm, ấn triện, cuộn mượt)</span></label>
       <div id="motionHint" class="hint" style="margin-top:0" hidden>Máy này đang bật “giảm chuyển động” trong cài đặt hệ thống. Phòng Chat vẫn chạy hiệu ứng theo công tắc trên; thấy chóng mặt thì tắt đi.</div>
-      <label class="switch"><input id="optCow" type="checkbox"><span>Bò hiệp khách đi dạo khắp khung chat</span></label>
-      <div class="hint" style="margin-top:0">Bò đứng trên mép các khung tin nhắn, khung Sổ, ảnh nhân vật; bám cạnh khung để leo lên tụt xuống, đi cả trên hai vách và trần khung chat; cuộn truyện thì bò trôi theo khung đang đứng. Bấm vào bò để vuốt ve, bấm liền 5 lần là bò nhào lộn. Giữ và kéo để đem bò đi đâu cũng được: thả ra là bò rơi xuống mặt gần nhất, thả sát cạnh khung hay ném vào cạnh khung thì bò bám vào đó. Để yên lâu thì bò ngủ, Cậu gõ chữ thì bò ngẩng lên xem.</div>
+      <label class="switch"><input id="optCow" type="checkbox"><span>Bò hiệp khách đi dạo khắp màn hình</span></label>
+      <label class="switch"><input id="optDuck" type="checkbox"><span>Vịt con đi dạo cùng bò</span></label>
+      <div class="hint" style="margin-top:0">Bò và vịt đứng trên mép mọi khung: tin nhắn, khung Sổ, ô nhập, đồi oải hương, các phiên bên trái, hồ sơ của Cậu, thẻ nhân vật, khung NPC, ảnh, tên, thanh tình cảm; bám cạnh khung để leo lên tụt xuống, đi cả trên hai mép và trần màn hình, cuộn thì trôi theo khung đang đứng. Bấm để vuốt ve, bấm liền 5 lần là nhào lộn. Giữ và kéo để đem đi đâu cũng được, vung tay là ném bay qua cả màn hình, lắc qua lắc lại là chóng mặt. Hành quá thì giận, chạy đi trốn sau ô nhập, trong bụi hoa hay sau mép bảng rồi ló đầu ra nhìn: bấm trúng là bắt được. Hai đứa lâu lâu nói chuyện với nhau, bàn về đoạn truyện vừa viết, hóng lúc AI đang viết và lúc Cậu gõ chữ; để yên lâu thì ngủ.</div>
       <label class="switch"><input id="optSound" type="checkbox"><span>Tiếng chuông khi AI viết xong</span></label>
       <label class="switch"><input id="optChips" type="checkbox"><span>Nút lệnh nhanh trên ô nhập</span></label>
       <label class="switch"><input id="optSo" type="checkbox"><span>Mở sẵn khung Sổ trong mỗi lượt</span></label>
@@ -1349,6 +1376,101 @@ details.gbridge:not([open]) { padding-block: 11px; }
       <div class="hint">Các phiên nằm trong trình duyệt này. Xóa dữ liệu trình duyệt là mất hết, nên thỉnh thoảng bấm Sao lưu. Nhập file nhận cả file sao lưu lẫn file truyện tải từ AI Studio trên Google Drive.</div>
     </section>
   </aside>
+  <!-- Bò và vịt sống trên cả màn hình: lớp bóng và hạt, mỗi con một lớp riêng (lúc trốn thì lớp ấy lùi ra sau các khung), bóng chữ trên cùng.
+       Hình vẽ theo biểu tượng của trang: đầu to, viền mực tím đậm, mắt long lanh, nón lá tím có dải oải hương -->
+  <div id="petWorld" class="petworld" aria-hidden="true"><span class="petshadow pet-bo"></span><span class="petshadow pet-vit"></span></div>
+  <div class="petlayer pet-bo" aria-hidden="true">
+    <div id="cow" class="pet cow" data-state="graze" data-dir="-1" title="Bò hiệp khách: bấm để vuốt ve, kéo đi đâu cũng được">
+      <div class="hop"><div class="flip">
+<svg class="moo" viewBox="0 0 100 96" focusable="false">
+<defs>
+<linearGradient id="pbHat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f325a"/><stop offset="1" stop-color="#2b2238"/></linearGradient>
+<linearGradient id="pbScarf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f07aa0"/><stop offset="1" stop-color="#c8406a"/></linearGradient>
+<linearGradient id="pbBud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1e9ff"/><stop offset="1" stop-color="#a685ee"/></linearGradient>
+<clipPath id="pbBodyClip"><ellipse cx="40" cy="70.6" rx="24.6" ry="14.8"/></clipPath>
+<clipPath id="pbHeadClip"><path d="M60 18C76.1 18 83.6 29.5 83 42.7C82.4 53.1 79 59.4 74.4 62.9L45.6 62.9C41 59.4 37.6 53.1 37 42.7C36.4 29.5 43.9 18 60 18Z"/></clipPath>
+</defs>
+<g class="leg leg-a"><rect x="27" y="74" width="8" height="17.6" rx="3.6" fill="#e2d6bf" stroke="#2b2238" stroke-width="3"/><path d="M27 87.4h8v1.4a2.8 2.8 0 0 1-2.8 2.8h-2.4a2.8 2.8 0 0 1-2.8-2.8z" fill="#2b2238"/></g>
+<g class="leg leg-b"><rect x="52" y="74" width="8" height="17.6" rx="3.6" fill="#e2d6bf" stroke="#2b2238" stroke-width="3"/><path d="M52 87.4h8v1.4a2.8 2.8 0 0 1-2.8 2.8h-2.4a2.8 2.8 0 0 1-2.8-2.8z" fill="#2b2238"/></g>
+<g class="leg leg-b"><rect x="19.5" y="75" width="8.6" height="17" rx="3.8" fill="#f6eedc" stroke="#2b2238" stroke-width="3"/><path d="M19.5 87.8h8.6v1.2a2.8 2.8 0 0 1-2.8 2.8h-3a2.8 2.8 0 0 1-2.8-2.8z" fill="#2b2238"/></g>
+<g class="leg leg-a"><rect x="44.5" y="75" width="8.6" height="17" rx="3.8" fill="#f6eedc" stroke="#2b2238" stroke-width="3"/><path d="M44.5 87.8h8.6v1.2a2.8 2.8 0 0 1-2.8 2.8h-3a2.8 2.8 0 0 1-2.8-2.8z" fill="#2b2238"/></g>
+<g class="upper">
+<g class="tail"><path d="M16.8 66.4Q8 66 7.6 55.4" fill="none" stroke="#2b2238" stroke-width="2.8" stroke-linecap="round"/><path d="M7.7 58Q2.8 52 7.2 47.6Q12.2 51.6 9.6 58.2Z" fill="#2b2238"/></g>
+<ellipse cx="40" cy="70.6" rx="24.6" ry="14.8" fill="#f6eedc"/>
+<g clip-path="url(#pbBodyClip)"><path d="M14 61Q24 51.6 34.6 57.6Q38.4 66.4 28.6 70.2Q18.6 72.2 14 66Z" fill="#2b2238"/><ellipse cx="52" cy="82.6" rx="12" ry="4" fill="#e7dcc5"/></g>
+<ellipse cx="40" cy="70.6" rx="24.6" ry="14.8" fill="none" stroke="#2b2238" stroke-width="3.4"/>
+<g><path d="M21 69.6L37.4 55.6" stroke="#2b2238" stroke-width="5" stroke-linecap="round"/><path d="M21 69.6L37.4 55.6" stroke="#4a3d68" stroke-width="2.4" stroke-linecap="round"/><path d="M35.2 53.4L40.2 58.8" stroke="#2b2238" stroke-width="2.6" stroke-linecap="round"/><path d="M38.4 55.6L42.6 52" stroke="#2b2238" stroke-width="3.6" stroke-linecap="round"/><circle cx="42.8" cy="51.8" r="1.4" fill="#b99cf6"/></g>
+<g class="nod"><g class="head"><g transform="matrix(.9 0 0 .9 5 6.6)">
+<ellipse cx="34.6" cy="39" rx="11" ry="5.3" transform="rotate(-24 34.6 39)" fill="#f6eedc" stroke="#2b2238" stroke-width="3"/>
+<ellipse cx="35.6" cy="39.2" rx="6.4" ry="2.5" transform="rotate(-24 35.6 39.2)" fill="#efb9c6"/>
+<ellipse cx="85.6" cy="39.6" rx="9.6" ry="4.8" transform="rotate(24 85.6 39.6)" fill="#f6eedc" stroke="#2b2238" stroke-width="3"/>
+<ellipse cx="84.8" cy="39.8" rx="5.4" ry="2.2" transform="rotate(24 84.8 39.8)" fill="#efb9c6"/>
+<path d="M60 18C76.1 18 83.6 29.5 83 42.7C82.4 53.1 79 59.4 74.4 62.9L45.6 62.9C41 59.4 37.6 53.1 37 42.7C36.4 29.5 43.9 18 60 18Z" fill="#f6eedc"/>
+<g clip-path="url(#pbHeadClip)"><path d="M36.4 37.6C36.4 26.6 47 19.2 56.8 22C60.8 27.2 58.5 36.4 52.2 39.9C47 42.7 39.4 42.7 36.4 37.6Z" fill="#2b2238"/><path d="M78.4 48.5C81.9 47.3 85.6 49 85.6 53.1L85.6 63L73 63C72.5 56.5 74.3 50.2 78.4 48.5Z" fill="#2b2238" opacity=".9"/></g>
+<path d="M60 18C76.1 18 83.6 29.5 83 42.7C82.4 53.1 79 59.4 74.4 62.9L45.6 62.9C41 59.4 37.6 53.1 37 42.7C36.4 29.5 43.9 18 60 18Z" fill="none" stroke="#2b2238" stroke-width="3.4" stroke-linejoin="round"/>
+<ellipse cx="43" cy="50.6" rx="4.4" ry="2.3" fill="#ff9cc0" opacity=".65"/>
+<ellipse cx="81" cy="50.4" rx="3.2" ry="2" fill="#ff9cc0" opacity=".65"/>
+<g class="eye"><ellipse cx="52.4" cy="42.6" rx="4.7" ry="5.7" fill="#1b1426" stroke="#f6eedc" stroke-width="1"/><circle cx="54.2" cy="40.2" r="1.8" fill="#fff"/><circle cx="51.2" cy="45" r=".85" fill="#fff" opacity=".85"/></g>
+<g class="eye"><ellipse cx="72.6" cy="42.6" rx="4.3" ry="5.5" fill="#1b1426"/><circle cx="74.3" cy="40.2" r="1.7" fill="#fff"/><circle cx="71.5" cy="45" r=".8" fill="#fff" opacity=".85"/></g>
+<ellipse cx="63.4" cy="57.4" rx="18.4" ry="10.8" fill="#f3c3c8" stroke="#2b2238" stroke-width="3"/>
+<ellipse cx="57.4" cy="56.2" rx="2.4" ry="3.1" fill="#8d4a62"/>
+<ellipse cx="69.4" cy="56.2" rx="2.4" ry="3.1" fill="#8d4a62"/>
+<path d="M59.4 62.4Q63.4 65.2 67.4 62.4" fill="none" stroke="#8d4a62" stroke-width="1.6" stroke-linecap="round"/>
+<ellipse class="mouth" cx="63.4" cy="63.8" rx="2.6" ry="2.1" fill="#8d4a62"/>
+<g class="scarf"><path d="M49.6 67.4L35.8 74.6L39.6 76.4L33.8 81.8L47.2 74.2Z" fill="url(#pbScarf)" stroke="#2b2238" stroke-width="2.2" stroke-linejoin="round"/></g>
+<path d="M44.6 63.2Q61 71.4 78.8 63.4L80.2 68.8Q61 78 43 68.6Z" fill="url(#pbScarf)" stroke="#2b2238" stroke-width="2.4" stroke-linejoin="round"/>
+<g transform="rotate(-7 60 18)">
+<path d="M27 25Q60 -9 93 25Q60 32.2 27 25Z" fill="url(#pbHat)" stroke="#2b2238" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M32 23.6Q60 -3.6 88 23.6" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="1"/>
+<path d="M60 4.6V27M47 9.6L43 26.4M73 9.6L77 26.4" stroke="#fff" stroke-opacity=".07" stroke-width="1"/>
+<path d="M33.6 23.4Q60 31 86.4 23.4" fill="none" stroke="#b99cf6" stroke-width="2.8" stroke-linecap="round"/>
+<g class="tassel"><path d="M78.6 25Q82.4 16.4 90 9.6" fill="none" stroke="#7d9a7a" stroke-width="1.2" stroke-linecap="round"/><ellipse cx="83.4" cy="17.6" rx="1.8" ry="2.5" transform="rotate(40 83.4 17.6)" fill="url(#pbBud)"/><ellipse cx="81.6" cy="16.6" rx="1.7" ry="2.4" transform="rotate(-4 81.6 16.6)" fill="url(#pbBud)"/><ellipse cx="86" cy="14.4" rx="1.6" ry="2.3" transform="rotate(40 86 14.4)" fill="url(#pbBud)"/><ellipse cx="84.4" cy="13.2" rx="1.5" ry="2.2" transform="rotate(-4 84.4 13.2)" fill="url(#pbBud)"/><ellipse cx="88.6" cy="11.6" rx="1.4" ry="2" transform="rotate(40 88.6 11.6)" fill="url(#pbBud)"/><ellipse cx="87.4" cy="10.4" rx="1.3" ry="1.9" transform="rotate(-4 87.4 10.4)" fill="url(#pbBud)"/><ellipse cx="90.6" cy="9" rx="1.1" ry="1.6" transform="rotate(40 90.6 9)" fill="url(#pbBud)"/></g>
+</g>
+</g></g></g>
+</g>
+</svg>
+        <i class="daze"><b></b><b></b><b></b></i>
+      </div></div>
+    </div>
+  </div>
+  <div class="petlayer pet-vit" aria-hidden="true">
+    <div id="duck" class="pet duck" data-state="graze" data-dir="1" title="Vịt con: bấm để vuốt ve, kéo đi đâu cũng được">
+      <div class="hop"><div class="flip">
+<svg class="quack" viewBox="0 0 100 96" focusable="false">
+<defs>
+<linearGradient id="pvBow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9c8ff"/><stop offset="1" stop-color="#a685ee"/></linearGradient>
+<linearGradient id="pvBill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffbf55"/><stop offset="1" stop-color="#ef9430"/></linearGradient>
+</defs>
+<g class="leg leg-b"><path d="M49 77V88.4" stroke="#2b2238" stroke-width="6.4" stroke-linecap="round"/><path d="M49 77V88.4" stroke="#e08a2c" stroke-width="3.2" stroke-linecap="round"/><path d="M45.4 89.6Q49.4 85.6 57.8 88.2Q58.8 91.4 55.4 91.6H46.8Q44.6 91.4 45.4 89.6Z" fill="#e8902e" stroke="#2b2238" stroke-width="2.6" stroke-linejoin="round"/></g>
+<g class="leg leg-a"><path d="M38 77.4V88.6" stroke="#2b2238" stroke-width="6.6" stroke-linecap="round"/><path d="M38 77.4V88.6" stroke="#f5a63a" stroke-width="3.4" stroke-linecap="round"/><path d="M34.2 89.8Q38.4 85.6 47.2 88.4Q48.2 91.6 44.6 91.8H35.6Q33.4 91.6 34.2 89.8Z" fill="#f7ad42" stroke="#2b2238" stroke-width="2.6" stroke-linejoin="round"/></g>
+<g class="upper">
+<g class="tail"><path d="M24 66Q12.6 62 11.4 49.4Q17 52.4 19.6 50.6Q21.6 56.8 28.4 58.8Z" fill="#fbf5e6" stroke="#2b2238" stroke-width="3.4" stroke-linejoin="round"/></g>
+<ellipse cx="42" cy="70.4" rx="21.6" ry="15" fill="#fbf5e6" stroke="#2b2238" stroke-width="4"/>
+<path d="M24 77.6Q42 88.4 59.6 76.4Q53.6 84.8 42 85Q30 84.8 24 77.6Z" fill="#efe3c6"/>
+<g class="wing"><path d="M48.6 63.4Q38 59.4 28.4 65.8Q24.6 68.8 27.6 71.8Q30.4 73.4 34 72.4Q33.2 75.4 36.6 76Q45.4 76.8 50 70.6Q52 66.8 48.6 63.4Z" fill="#f3e8cf" stroke="#2b2238" stroke-width="3" stroke-linejoin="round"/><path d="M32.6 68.2Q38.4 66.2 44 67M36 71.8Q41.6 70.8 46.4 69.4" fill="none" stroke="#d6c5a0" stroke-width="1.3" stroke-linecap="round"/></g>
+<g class="nod"><g class="head">
+<path d="M54.4 18.6Q50.4 10.2 56.6 6.8Q56.6 12 59.6 15.8Z" fill="#fbf5e6" stroke="#2b2238" stroke-width="2.8" stroke-linejoin="round"/>
+<path d="M59.6 15.8Q62.4 8.8 68.6 10Q64.8 13.4 64.6 17.6Z" fill="#fbf5e6" stroke="#2b2238" stroke-width="2.8" stroke-linejoin="round"/>
+<circle cx="60" cy="39" r="22" fill="#fbf5e6" stroke="#2b2238" stroke-width="4"/>
+<ellipse cx="50.4" cy="48" rx="4.6" ry="2.5" fill="#ff9cc0" opacity=".65"/>
+<path class="bill-lo" d="M73.6 47.6H91.8Q92.8 53 86.2 54Q78.2 54.6 73.6 51Z" fill="#e8872c" stroke="#2b2238" stroke-width="2.8" stroke-linejoin="round"/>
+<path d="M72.4 42Q88 38.6 96 45Q97 48.8 92.2 49.4L74 50Q70 46 72.4 42Z" fill="url(#pvBill)" stroke="#2b2238" stroke-width="3.2" stroke-linejoin="round"/>
+<path d="M76 43.6Q85.6 41.6 91.4 44.6" fill="none" stroke="#ffe0a6" stroke-width="1.3" stroke-linecap="round"/>
+<circle cx="84.2" cy="44" r=".95" fill="#2b2238"/>
+<g class="eye"><ellipse cx="60.6" cy="36.2" rx="4.8" ry="5.8" fill="#1b1426"/><circle cx="62.4" cy="33.8" r="1.85" fill="#fff"/><circle cx="59.4" cy="38.6" r=".9" fill="#fff" opacity=".85"/></g>
+<g class="eye"><ellipse cx="77" cy="35.6" rx="3.9" ry="5.1" fill="#1b1426"/><circle cx="78.5" cy="33.4" r="1.6" fill="#fff"/><circle cx="76.1" cy="37.8" r=".75" fill="#fff" opacity=".85"/></g>
+<g class="scarf"><path d="M44.4 23.4Q40.4 29.4 37.6 33L41.6 33.4Q44.2 29 46.6 24.6Z" fill="#a685ee" stroke="#2b2238" stroke-width="2" stroke-linejoin="round"/><path d="M46.2 24Q46 30.8 47.4 35L50.6 32.6Q48.6 28.4 48.2 23.8Z" fill="#a685ee" stroke="#2b2238" stroke-width="2" stroke-linejoin="round"/></g>
+<path d="M46 22Q37.4 13.8 35 21.4Q36.4 29.4 46 22Z" fill="url(#pvBow)" stroke="#2b2238" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M46 22Q53.6 12.6 57.6 19.2Q56.4 27.4 46 22Z" fill="url(#pvBow)" stroke="#2b2238" stroke-width="2.4" stroke-linejoin="round"/>
+<circle cx="46" cy="22" r="2.8" fill="#b99cf6" stroke="#2b2238" stroke-width="2"/>
+</g></g>
+</g>
+</svg>
+        <i class="daze"><b></b><b></b><b></b></i>
+      </div></div>
+    </div>
+  </div>
+  <div class="petsays" aria-hidden="true"><span id="cowSay" class="petsay pet-bo"></span><span id="duckSay" class="petsay pet-vit"></span></div>
   <!-- Lớp mờ nằm trong #app để bảng điều khiển và danh sách phiên (z 25-30) nổi lên trên nó -->
   <div id="veil"></div>
 </div>
@@ -1510,7 +1632,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
   const DEF = {
     key: '', remember: true, model: '', models: [], temperature: 1, maxTokens: 0, safety: 'default', thoughts: false, think: 'LOW',
     ctxLimit: 0, enterSend: false,
-    theme: 'khoi', font: 'literata', fontSize: 16, width: 'vua', motion: true, cowOn: true, sound: true, chipsOn: true, soOpen: true,
+    theme: 'khoi', font: 'literata', fontSize: 16, width: 'vua', motion: true, cowOn: true, duckOn: true, sound: true, chipsOn: true, soOpen: true,
     player: '', narrator: 'Subel', chips: '', panel: true, tab: 'sys', diceN: 1, diceAuto: true, feel: true, fineFeel: true, longLove: true,
     nameAv: true, stage: true,
   };
@@ -1776,10 +1898,12 @@ details.gbridge:not([open]) { padding-block: 11px; }
   function syncVeil() {
     const b = document.body.classList;
     $('#veil').classList.toggle('on', b.contains('pov') || b.contains('sov'));
+    cowDirty();
+    cowKick(450);
   }
   function closeOverlays() { document.body.classList.remove('pov', 'sov'); syncVeil(); }
   function panelVisible() { return mqPanel.matches ? document.body.classList.contains('pov') : !!S.panel; }
-  function syncPanelBtn() { $('#panelBtn').classList.toggle('on', panelVisible()); }
+  function syncPanelBtn() { $('#panelBtn').classList.toggle('on', panelVisible()); cowDirty(); cowKick(450); }
   function showTab(tab) {
     S.tab = tab;
     saveSettings();
@@ -1787,6 +1911,8 @@ details.gbridge:not([open]) { padding-block: 11px; }
     $$('.pane').forEach((p) => { p.hidden = p.dataset.pane !== tab; });
     if (tab === 'so' && cur) renderSoTab();
     if (tab === 'cast' && cur) renderCast();
+    cowDirty();
+    cowKick(300);
   }
   function openPanel(tab) {
     if (tab) showTab(tab);
@@ -5092,146 +5218,443 @@ details.gbridge:not([open]) { padding-block: 11px; }
     $('#diceBtn').classList.toggle('on', open);
   }
 
-  /* ================= Bò hiệp khách ================= */
-  /* Bò sống trong cả khung chat như một con thú cưng. Mặt bò đi được: mép trên các khung (bong bóng tin nhắn, lượt truyện,
-     khung Sổ, ảnh nhân vật đứng cạnh truyện), ô nhập làm mặt đất, hai vách và trần của khung chat. Bò leo dọc cạnh khung,
-     vòng qua góc, bước hay nhảy sang khung khác, rơi có trọng lực; đứng trên khung nào thì trôi theo khung ấy khi cuộn truyện.
-     Mỗi mặt là một đoạn thẳng có hướng: s là vị trí dọc theo đoạn, s tăng theo chiều bò nhìn khi dir = 1.
-     Đứng yên thì ngừng vòng vẽ và hẹn giờ cho việc kế tiếp, đỡ tốn pin điện thoại. */
-  const FOOT_X = 29, FOOT_Y = 41, COW_HALF = 22, COW_TALL = 40, COW_LEN = 29;
-  const COW_WALK = 40, COW_RUN = 150, COW_CLIMB = 32, COW_ACC_WALK = 110, COW_ACC_RUN = 340, COW_G = 1900, COW_NAP = 80000;
+  /* ================= Bò hiệp khách và vịt con ================= */
+  /* Hai con thú cưng sống trên cả màn hình. Mặt đi được: mép trên các khung (tin nhắn, lượt truyện, khung Sổ, ảnh nhân vật đứng cạnh truyện,
+     ô nhập, ngọn đồi oải hương, các phiên ở cột trái, hồ sơ của Cậu, thẻ nhân vật, ảnh, tên, thanh tình cảm và các khung ở bảng bên phải,
+     thẻ trong khung NPC), cạnh trái phải của các khung ấy, của khung NPC và của hai cột bên, hai mép màn hình, trần (đáy thanh trên cùng)
+     và đáy màn hình ở chỗ không có khung nào đè lên.
+     Leo dọc cạnh khung, vòng qua góc, bước hay nhảy sang khung khác, rơi có trọng lực; đứng trên khung nào thì trôi theo khung ấy khi cuộn.
+     Mỗi mặt là một đoạn thẳng có hướng: s là vị trí dọc theo đoạn, s tăng theo chiều con vật nhìn khi dir = 1.
+     Bộ máy mang tên bò vì bò có trước, vịt dùng chung: mỗi con là một bộ trạng thái riêng, các hàm bên dưới làm việc trên con đang xét `pet`
+     (vòng vẽ và các sự kiện đổi `pet` qua lại). Không con nào cần vẽ thì ngừng vòng vẽ và hẹn giờ cho việc kế tiếp, đỡ tốn pin điện thoại. */
+  const COW_ACC_WALK = 110, COW_ACC_RUN = 340, COW_G = 1900, COW_NAP = 80000;
+  /* Số đo từng con (px): fx, fy là chỗ chân trong khung vẽ; half là nửa bề ngang khi va chạm; tall là chiều cao; len là khoảng chừa ở góc lõm;
+     hang là điểm treo dưới ngón tay, mid là tâm nhào lộn (tính từ chân lên); sit là độ hạ thân khi nằm; shw là bề ngang bóng;
+     peek là phần ló ra khi trốn; rock là độ lắc khi đi (vịt lạch bạch); glide = 1 thì vỗ cánh rơi chậm */
+  const PET_SPEC = {
+    bo: { fx: 22, fy: 52, half: 22, tall: 46, len: 26, hang: 44, mid: 25, sit: 8, shw: 36, peek: 23, walk: 40, run: 150, climb: 32, rock: 1, glide: 0 },
+    vit: { fx: 20, fy: 42, half: 17, tall: 39, len: 22, hang: 36, mid: 18, sit: 6, shw: 26, peek: 17, walk: 34, run: 128, climb: 28, rock: 2.6, glide: 1 },
+  };
   const clampN = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const angDelta = (a, b) => ((((b - a) % 360) + 540) % 360) - 180;
   /* Xoay dần tới góc đích theo đường ngắn nhất; tới nơi thì gán đúng góc để số đo không cộng dồn qua nhiều vòng */
   function angTo(target, k) {
-    const d = angDelta(cow.ang, target);
-    cow.ang = Math.abs(d) < 0.05 ? target : cow.ang + d * k;
+    const d = angDelta(pet.ang, target);
+    pet.ang = Math.abs(d) < 0.05 ? target : pet.ang + d * k;
   }
-  const cow = {
-    on: null, s: 0, v: 0, dir: -1, px: 0, py: 0, vx: 0, vy: 0, ang: 0, ghost: false, born: false, tgt: null,
-    tilt: 0, tv: 0, spin: 0, spinning: false, phase: 0, amp: 0, lean: 0, lie: 0, squash: 0, sqv: 0, slip: false,
-    hvx: 0, hvy: 0, hdx: 0, hdy: 0,
-    mode: 'graze', until: 0, route: [], tw: null, drag: null, press: null,
-    raf: 0, timer: 0, last: 0, sayTimer: 0, sayW: 0, sayH: 0, sayOn: false, dustAt: 0, rx: NaN, ry: NaN, ra: NaN,
-    seenAt: Date.now(), typedAt: -1e9, pets: [],
+  function mkPet(id, live, L) {
+    return {
+      id, live, L, sp: PET_SPEC[id], n: null, other: null,
+      on: null, s: 0, v: 0, dir: id === 'bo' ? -1 : 1, px: 0, py: 0, vx: 0, vy: 0, ang: 0, ghost: false, born: false, tgt: null,
+      tilt: 0, tv: 0, spin: 0, spinning: false, phase: 0, amp: 0, lean: 0, lie: 0, lieT: 0, squash: 0, sqv: 0, slip: false,
+      hvx: 0, hvy: 0, hdx: 0, hdy: 0,
+      mode: 'graze', until: 0, route: [], tw: null, drag: null, press: null, hide: null, flee: '',
+      sayTimer: 0, talkTimer: 0, sayW: 0, sayH: 0, sayOn: false, sayBox: null, dustAt: 0, rx: NaN, ry: NaN, ra: NaN, moved: false,
+      pets: [], rough: [], daze: 0, dazeSaid: 0, shookAt: 0,
+    };
+  }
+  /* Câu của từng con. {n} là tên người dẫn (mặc định Subel) */
+  const BO_LINES = {
+    HI: ['Mooo~', 'Bò hiệp khách xin chào!', 'Cỏ ở đây ngon ghê', 'Viết tiếp đi Cậu!', 'Hí hí', 'Kiếm này để cắt cỏ thôi', 'Gãi đúng chỗ rồi ♥', 'Thêm cái nữa đi!', 'Bò thích Cậu ghê'],
+    DONE: ['Xong rồi nè!', 'Mooo~ viết xong!', 'Đọc đi Cậu!', 'Chạy mệt quá trời', 'Có đoạn mới nè!'],
+    BUSY: ['Đang chạy việc, chờ chút!', 'Đừng cản, bò đang chạy!', 'Sắp xong rồi…', 'Chạy giúp {n} nè!'],
+    HELD: ['Ơ ơ, thả bò xuống!', 'Bò bay nè!', 'Cao quá…', 'Mooo!?', 'Đem bò đi đâu vậy?', 'Bò nặng lắm đó!'],
+    LONG: ['Cậu định bế bò tới bao giờ?', 'Mỏi tay chưa Cậu?', 'Bò ngủ trên tay Cậu luôn nha'],
+    OUCH: ['Ui da!', 'Mooo… đau ghê', 'Bò không sao…', 'Lần sau nhẹ tay nha'],
+    TYPE: ['Viết gì đó?', 'Bò hóng nè', 'Hay đó!', 'Gõ nhanh ghê'],
+    SLEEP: ['Buồn ngủ quá…', 'Bò chợp mắt chút', 'Zzz…'],
+    WAKE: ['Hả? Bò dậy rồi!', 'Ai gọi bò đó?', 'Mơ thấy cỏ non…'],
+    CLING: ['Bám chắc rồi!', 'Suýt rơi…', 'Bò dính tường nè', 'Móng bò bám giỏi ghê'],
+    UPTOP: ['Lên tới nơi rồi!', 'Trên này ngắm truyện đã ghê', 'Bò leo giỏi chưa?'],
+    CEIL: ['Thế giới lộn ngược!', 'Chóng mặt quá…', 'Đi trên trần nè'],
+    FALL: ['Á á á!', 'Rơi nè!', 'Mooo~!'],
+    THROW: ['Áaaa!', 'Bò bay nè!', 'Mooo~~!', 'Bò chưa học bay mà!', 'Ném nhẹ thôi Cậu ơi!'],
+    SHAKE: ['Đừng lắc nữa, bò chóng mặt!', 'Ơ ơ ơ, trời đất quay cuồng…', 'Bò say sóng rồi…', 'Mooo~ thả bò ra!', 'Nón bò sắp rớt!'],
+    DIZZY: ['Thấy cả sao trời…', 'Sao có hai con vịt vậy?', 'Bò đi thẳng không nổi', 'Đất còn xoay nè…'],
+    BONK: ['Bẹp!', 'Cụng đầu rồi…', 'Ui cha cái trán', 'Ai dựng bức tường ở đây vậy?'],
+    BUMP: ['Ui, ai đè bò vậy!', 'Vịt nặng ghê đó!', 'Đừng nhảy lên đầu bò!'],
+    HIDE: ['Không chơi với Cậu nữa!', 'Bò giận rồi, bò đi trốn!', 'Hứ! Đừng tìm bò'],
+    PLAY: ['Trốn tìm nha Cậu!', 'Đếm tới mười đi, bò trốn đây!', 'Thử tìm bò xem!'],
+    SCARED: ['Sợ quá, bò núp đây…', 'Bò trốn trước nha!'],
+    PEEK: ['Ló đầu chút thôi…', 'Hết chưa?', 'Cậu có thấy bò không?', 'Bò không có ở đây đâu', 'Suỵt…'],
+    FOUND: ['Ơ, bị bắt rồi!', 'Sao Cậu biết bò ở đây?', 'Thôi được, bò ra'],
+    OUT: ['Hết giận rồi', 'Bò quay lại nè', 'Ra chơi tiếp thôi', 'Ở trong đó tối quá'],
+    LOST: ['Vịt trốn đâu rồi?', 'Vịt ơi, ra đây đi!', 'Bò thấy cái mỏ rồi nha'],
+    BACK: ['A, Vịt đây rồi!', 'Tìm thấy Vịt rồi!'],
+    SEE_THROW: ['Vịt bay kìa!', 'Coi chừng rớt, Vịt!', 'Vịt ơi, vỗ cánh đi!'],
+    SEE_SHAKE: ['Thả Vịt ra đi Cậu', 'Vịt rụng lông kìa!', 'Nhẹ tay với Vịt thôi'],
+    NUDGE: ['Vịt ơi!', 'Đi dạo không Vịt?', 'Ê, Vịt!'],
   };
-  const COW_HI = ['Mooo~', 'Bò hiệp khách xin chào!', 'Cỏ ở đây ngon ghê', 'Viết tiếp đi Cậu!', 'Hí hí', 'Kiếm này để cắt cỏ thôi', 'Gãi đúng chỗ rồi ♥'];
-  const COW_DONE = ['Xong rồi nè!', 'Mooo~ viết xong!', 'Đọc đi Cậu!', 'Chạy mệt quá trời'];
-  const COW_BUSY = ['Đang chạy việc, chờ chút!', 'Đừng cản, bò đang chạy!', 'Sắp xong rồi…'];
-  const COW_HELD = ['Ơ ơ, thả bò xuống!', 'Bò bay nè!', 'Cao quá…', 'Mooo!?', 'Đem bò đi đâu vậy?'];
-  const COW_OUCH = ['Ui da!', 'Mooo… đau ghê', 'Bò không sao…', 'Lần sau nhẹ tay nha'];
-  const COW_TYPE = ['Viết gì đó?', 'Bò hóng nè', 'Hay đó!', 'Gõ nhanh ghê'];
-  const COW_SLEEP = ['Buồn ngủ quá…', 'Bò chợp mắt chút', 'Zzz…'];
-  const COW_WAKE = ['Hả? Bò dậy rồi!', 'Ai gọi bò đó?', 'Mơ thấy cỏ non…'];
-  const COW_CLING = ['Bám chắc rồi!', 'Suýt rơi…', 'Bò dính tường nè'];
-  const COW_UPTOP = ['Lên tới nơi rồi!', 'Trên này ngắm truyện đã ghê', 'Bò leo giỏi chưa?'];
-  const COW_CEIL = ['Thế giới lộn ngược!', 'Chóng mặt quá…', 'Đi trên trần nè'];
-  const COW_FALL = ['Á á á!', 'Rơi nè!', 'Mooo~!'];
-  /* Bò đọc lượt AI vừa viết: chữ nào lặp từ hai lần trở lên thì bò phản ứng theo */
-  const COW_MOOD = [
-    [/máu|chém|đâm|tấn công|kunai|shuriken|chiến đấu|giao chiến|nổ tung|sát khí|đòn đánh/gi, 'mark', '!', ['Căng quá trời!', 'Bò núp đây…', 'Đánh nhau rồi!']],
-    [/hôn|nắm tay|đỏ mặt|ửng hồng|ôm lấy|tim đập|ngượng ngùng|e thẹn/gi, 'heart', '♥', ['Ui, ngọt ghê ♥', 'Bò ngại quá', 'Mooo~ ♥']],
-    [/khóc|nước mắt|nức nở|tang lễ|đau lòng|tuyệt vọng/gi, 'drop', '💧', ['Bò buồn theo…', 'Thương ghê…', '…mooo']],
-    [/ramen|bữa ăn|bữa tối|bữa sáng|ăn uống|bánh|chén trà|đồ ăn/gi, 'note', '♪', ['Đói bụng rồi', 'Có phần bò không?', 'Thơm ghê!']],
-    [/bật cười|cười phá|trêu chọc|đùa giỡn|hài hước/gi, 'note', '♪', ['Hí hí', 'Vui ghê!']],
+  const VIT_LINES = {
+    HI: ['Quạc!', 'Vịt con chào Cậu!', 'Quạc quạc ♥', 'Gãi cổ vịt đi', 'Vịt đẹp không?', 'Hôm nay viết gì nè?', 'Nhột quá, hí hí', 'Cậu thơm ghê'],
+    DONE: ['Quạc! Xong rồi kìa', 'Đọc mau Cậu ơi!', 'Vịt hóng nãy giờ', 'Có đoạn mới nè!'],
+    BUSY: ['Suỵt, {n} đang viết…', 'Vịt chờ cùng Cậu', 'Chạy theo Bò nè!'],
+    HELD: ['Quạc!? Thả vịt xuống!', 'Vịt biết bay mà…', 'Cao ghê…', 'Ôm nhẹ thôi Cậu', 'Vịt bị bắt cóc!'],
+    LONG: ['Tay Cậu ấm ghê', 'Cậu bế vịt hoài vậy?', 'Vịt ngủ luôn nha…'],
+    OUCH: ['Quạc… đau', 'Lông rụng hết rồi', 'Vịt không sao…', 'Ui cái mỏ'],
+    TYPE: ['Cậu gõ gì đó?', 'Vịt đọc ké nha', 'Viết hay ghê', 'Quạc, chữ nhiều ghê'],
+    SLEEP: ['Vịt buồn ngủ…', 'Rúc cánh ngủ chút', 'Zzz… quạc'],
+    WAKE: ['Quạc? Dậy rồi!', 'Ai kêu vịt đó?', 'Mơ thấy hồ sen…'],
+    CLING: ['Vịt bám được nè!', 'Chân màng dính ghê', 'Suýt rơi…'],
+    UPTOP: ['Lên cao rồi!', 'Trên này gió mát', 'Vịt leo giỏi chưa?'],
+    CEIL: ['Ngược đầu rồi…', 'Thế giới lộn ngược!', 'Vịt chóng mặt'],
+    FALL: ['Quạc quạc!', 'Vỗ cánh, vỗ cánh!', 'Á á!'],
+    THROW: ['Quạc~~~!', 'Vịt bay nè!', 'Vịt tự bay được mà!', 'Wheee!'],
+    SHAKE: ['Quạc quạc quạc!', 'Rụng lông vịt rồi!', 'Đừng lắc, vịt say!', 'Lông bay tứ tung kìa!'],
+    DIZZY: ['Ủa, sao có hai Cậu?', 'Đất nghiêng hay vịt nghiêng…', 'Vịt thấy sao bay'],
+    BONK: ['Cộc!', 'Đụng mỏ rồi…', 'Ui da cái mỏ'],
+    BUMP: ['Ui, Bò đè vịt!', 'Bẹp lép rồi nè', 'Bò nặng quá trời!'],
+    HIDE: ['Hứ, vịt đi trốn!', 'Không chơi với Cậu nữa!', 'Vịt giận rồi đó!'],
+    PLAY: ['Trốn tìm nha!', 'Cậu tìm vịt đi!', 'Đố Cậu thấy vịt!'],
+    SCARED: ['Sợ quá, vịt núp đây…', 'Vịt trốn trước nha!'],
+    PEEK: ['Hết chưa vậy…', 'Ló mỏ chút thôi', 'Cậu không thấy vịt đâu', 'Suỵt…'],
+    FOUND: ['Quạc! Bị lộ rồi', 'Sao Cậu tìm ra vịt?', 'Thôi vịt ra'],
+    OUT: ['Vịt về rồi nè', 'Hết sợ rồi', 'Chơi tiếp thôi'],
+    LOST: ['Bò trốn đâu rồi?', 'Bò ơi, ra đi mà!', 'Vịt thấy cái nón Bò rồi!'],
+    BACK: ['A, Bò về rồi!', 'Bò kìa!'],
+    SEE_THROW: ['Bò bay kìa!', 'Bò ơi, cẩn thận!', 'Bò mà cũng bay được hả?'],
+    SEE_SHAKE: ['Bò chóng mặt rồi kìa', 'Nhẹ tay với Bò thôi Cậu', 'Nón Bò sắp rớt kìa!'],
+    NUDGE: ['Bò ơi!', 'Chờ vịt với!', 'Bò đi đâu đó?'],
+  };
+  const BO = mkPet('bo', () => !!S.cowOn, BO_LINES);
+  const VIT = mkPet('vit', () => !!S.duckOn, VIT_LINES);
+  const PETS = [BO, VIT];
+  BO.other = VIT;
+  VIT.other = BO;
+  /* Con đang xét: mọi hàm của bộ máy đọc và ghi con này */
+  let pet = BO;
+  function withPet(p, fn) {
+    const was = pet;
+    pet = p;
+    try { return fn(); } finally { pet = was; }
+  }
+  /* Lần cuối Cậu chạm vào trang (giờ thật) và gõ chữ (giờ performance.now) */
+  const user = { seenAt: Date.now(), typedAt: -1e9 };
+  const petFill = (text) => text.replace(/\{n\}/g, S.narrator || 'Subel');
+  /* Không khí của lượt AI vừa viết: chữ nào lặp từ hai lần trở lên thì hai con phản ứng theo. hide = khả năng một đứa chạy trốn */
+  const MOODS = [
+    { k: 'fight', re: /máu|chém|đâm|tấn công|kunai|shuriken|chiến đấu|giao chiến|nổ tung|sát khí|đòn đánh|rút kiếm|trận đấu|đánh nhau|lao tới/gi, fx: 'mark', sym: '!', hide: 0.25,
+      bo: ['Căng quá trời!', 'Đánh nhau rồi!', 'Bò rút kiếm đây!'], vit: ['Vịt núp đây…', 'Đánh nhau kìa!', 'Ghê quá!'],
+      talk: [[['b', 'Đánh nhau rồi kìa Vịt!'], ['v', 'Vịt núp sau lưng Bò nha']], [['v', 'Ai thắng vậy Bò?'], ['b', 'Chưa biết, đọc tiếp đi']], [['b', 'Bò mà ở đó thì một kiếm là xong'], ['v', 'Bò toàn chém cỏ mà…']]],
+      after: [[['b', 'Trận lúc nãy căng thật'], ['v', 'Vịt còn run cánh đây']], [['v', 'Bò có sợ đánh nhau không?'], ['b', 'Hiệp khách không biết sợ!'], ['v', 'Vậy sao lúc nãy Bò run?']]] },
+    { k: 'love', re: /hôn|nắm tay|đỏ mặt|ửng hồng|ôm lấy|tim đập|ngượng ngùng|e thẹn|thì thầm|dịu dàng|tựa vào|siết nhẹ/gi, fx: 'heart', sym: '♥',
+      bo: ['Ui, ngọt ghê ♥', 'Bò ngại quá', 'Mooo~ ♥'], vit: ['Quạc ♥', 'Vịt đỏ mặt rồi', 'Ngọt xỉu…'],
+      talk: [[['v', 'Bò ơi, họ nắm tay kìa!'], ['b', 'Suỵt, đừng nhìn']], [['b', 'Đoạn này ngọt quá'], ['v', 'Vịt cũng muốn được ôm']], [['v', 'Tim vịt đập thình thịch'], ['b', 'Bò cũng vậy…']]],
+      after: [[['v', 'Đoạn lúc nãy ngọt ghê'], ['b', 'Bò còn đỏ mặt nè']], [['b', 'Vịt có thích ai chưa?'], ['v', 'Bí mật!'], ['b', 'Hí hí']]] },
+    { k: 'sad', re: /khóc|nước mắt|nức nở|tang lễ|đau lòng|tuyệt vọng|chia ly|cô đơn|nghẹn ngào|lặng lẽ rời/gi, fx: 'drop', sym: '💧',
+      bo: ['Bò buồn theo…', 'Thương ghê…', '…mooo'], vit: ['Vịt muốn khóc…', 'Thương quá…', 'Quạc…'],
+      talk: [[['v', 'Buồn quá Bò ơi…'], ['b', 'Lại đây, bò cho dựa vai']], [['b', '…'], ['v', 'Bò khóc hả?'], ['b', 'Bụi bay vô mắt thôi']]],
+      after: [[['v', 'Vịt vẫn còn buồn chuyện lúc nãy'], ['b', 'Lại đây bò ôm cái']], [['b', 'Mong đoạn sau vui hơn'], ['v', 'Cậu viết cho họ vui lên đi']]] },
+    { k: 'scary', re: /ma quỷ|bóng ma|hồn ma|rùng mình|kinh hoàng|ghê rợn|lạnh sống lưng|tiếng thét|quái vật|nổi da gà|xác chết|âm u|lạnh toát/gi, fx: 'mark', sym: '‼', hide: 0.6,
+      bo: ['Bò sợ…', 'Ai bật đèn lên với!', 'Lạnh gáy ghê'], vit: ['Vịt sợ quá…', 'Đừng đọc tiếp!', 'Quạc… run cầm cập'],
+      talk: [[['v', 'Bò ơi… vịt sợ'], ['b', 'Có bò đây, đừng sợ'], ['v', 'Bò cũng run kìa!']], [['b', 'Ghê quá…'], ['v', 'Vịt trốn trước đây!']]],
+      after: [[['v', 'Đoạn lúc nãy làm vịt nổi da gà'], ['b', 'Da vịt chứ!']], [['b', 'Tối nay bò ngủ chung với Vịt nha'], ['v', 'Bò sợ ma hả?'], ['b', 'Đâu có… hơi hơi']]] },
+    { k: 'food', re: /ramen|bữa ăn|bữa tối|bữa sáng|ăn uống|bánh|chén trà|đồ ăn|nấu ăn|mâm cơm|thơm phức/gi, fx: 'note', sym: '♪',
+      bo: ['Đói bụng rồi', 'Có phần bò không?', 'Thơm ghê!'], vit: ['Có bánh mì vụn không?', 'Vịt đói quá', 'Cho vịt một miếng!'],
+      talk: [[['b', 'Nghe thơm quá Vịt ơi'], ['v', 'Vịt đói run cánh rồi']], [['v', 'Bò có ăn ramen không?'], ['b', 'Bò ăn cỏ thôi'], ['v', 'Vậy phần Bò cho vịt!']]],
+      after: [[['b', 'Nhắc đồ ăn làm bò đói quá'], ['v', 'Vịt cũng thèm bánh']]] },
+    { k: 'fun', re: /bật cười|cười phá|trêu chọc|đùa giỡn|hài hước|cười khúc khích|ngớ ngẩn|phì cười/gi, fx: 'note', sym: '♪',
+      bo: ['Hí hí', 'Vui ghê!', 'Bò cười rớt nón'], vit: ['Quạc quạc quạc!', 'Buồn cười ghê!', 'Hí hí'],
+      talk: [[['v', 'Ha ha, buồn cười quá!'], ['b', 'Bò cười rớt nón luôn']], [['b', 'Đoạn này vui ghê'], ['v', 'Đọc lại lần nữa đi Cậu!']]],
+      after: [[['v', 'Đoạn lúc nãy vui ghê'], ['b', 'Bò còn cười nè']]] },
+  ];
+  /* Chuyện vặt lúc rảnh: b là bò, v là vịt */
+  const TALK_IDLE = [
+    [['b', 'Vịt ơi, cỏ ở đây ngon không?'], ['v', 'Vịt ăn bèo cơ mà'], ['b', 'Ờ ha…']],
+    [['v', 'Bò ơi, kiếm của Bò để làm gì?'], ['b', 'Cắt cỏ, và bảo vệ Cậu'], ['v', 'Ngầu ghê!']],
+    [['b', 'Cậu viết truyện hay ghê'], ['v', 'Vịt cũng thấy vậy!']],
+    [['v', 'Hay mình qua bảng bên kia chơi đi'], ['b', 'Đợi bò gặm xong cọng cỏ này']],
+    [['b', 'Vịt có biết bay thật không?'], ['v', 'Biết chứ… một chút xíu'], ['b', 'Một chút xíu là bao xa?'], ['v', 'Từ đây tới đó!']],
+    [['v', 'Bò ơi, cái nón của Bò đẹp ghê'], ['b', 'Nón hiệp khách đó!'], ['v', 'Cho vịt đội thử với']],
+    [['v', 'Quạc quạc~'], ['b', 'Vịt nói gì vậy?'], ['v', 'Vịt hát đó!']],
+    [['b', 'Bò đói bụng rồi'], ['v', 'Mới ăn xong mà!'], ['b', 'Bò có bốn cái dạ dày mà']],
+    [['v', 'Cậu đang đọc kìa'], ['b', 'Suỵt, đừng làm phiền Cậu']],
+    [['b', 'Khăn của Vịt màu gì vậy?'], ['v', 'Màu theo bảng màu của Cậu đó!']],
+    [['v', 'Bò ơi, chơi trốn tìm không?'], ['b', 'Bò to quá trốn đâu cho vừa'], ['v', 'Sau ô nhập đó!']],
+    [['b', 'Vịt có sợ độ cao không?'], ['v', 'Vịt có cánh mà!'], ['b', 'Cánh nhỏ xíu…']],
+    [['v', 'Cậu ơi, viết tiếp đi!'], ['b', 'Bò cũng hóng nữa']],
+    [['b', 'Bò tập kiếm đây! Hya!'], ['v', 'Coi chừng chém trúng vịt!']],
+    [['v', 'Chân vịt có màng nên bám tường giỏi'], ['b', 'Bò có móng, bò bám giỏi hơn!'], ['v', 'Thi không?']],
+    [['b', 'Hồi xưa bò đi khắp giang hồ'], ['v', 'Giang hồ có hồ sen không?'], ['b', 'Có… chắc vậy']],
+    [['b', 'Vịt đếm được tới mấy?'], ['v', 'Một, hai, quạc!']],
+    [['v', 'Vịt mới mọc thêm một cọng lông'], ['b', 'Đâu? Bò chẳng thấy'], ['v', 'Trên đầu nè!']],
+    [['b', 'Màn hình này rộng ghê'], ['v', 'Mình đi hết chưa nhỉ?'], ['b', 'Còn bảng bên kia nữa']],
+    [['v', '{n} viết khéo ghê Bò nhỉ'], ['b', 'Khéo như bò múa kiếm']],
+    [['b', 'Vịt có biết bơi không?'], ['v', 'Vịt mà không biết bơi thì ai biết!'], ['b', 'Ở đây đâu có nước']],
+    [['v', 'Bò ơi, mai mình làm gì?'], ['b', 'Đứng đây đọc truyện với Cậu'], ['v', 'Thích ghê!']],
+    [['b', 'Thanh tình cảm ở bảng phải ấy'], ['v', 'Vịt đứng lên đó chơi được không?'], ['b', 'Được, nhưng đừng làm rớt tim']],
+    [['v', 'Đồi oải hương thơm ghê Bò ơi'], ['b', 'Bò ăn thử một bông được không?'], ['v', 'Không được ăn hoa!']],
+    [['b', 'Cậu có hồ sơ riêng rồi kìa'], ['v', 'Để vịt đứng lên thẻ của Cậu canh cho']],
+    [['v', 'Khung NPC có người đang nghĩ về Cậu đó'], ['b', 'Bò đoán có người thích Cậu'], ['v', 'Suỵt, để {n} kể']],
+  ];
+  /* Cậu vắng lâu */
+  const TALK_QUIET = [
+    [['v', 'Cậu đi đâu rồi nhỉ?'], ['b', 'Chắc đi pha trà']],
+    [['b', 'Im ắng quá'], ['v', 'Mình hát cho đỡ buồn đi'], ['b', 'Mooo~'], ['v', 'Quạc~']],
+    [['v', 'Cậu ơi, còn đó không?'], ['b', 'Chắc Cậu đang nghĩ cốt truyện']],
+    [['b', 'Bò buồn ngủ rồi đó'], ['v', 'Vịt cũng ríu mắt']],
+  ];
+  /* Người dẫn đang viết, đang nghĩ */
+  const TALK_GEN = [
+    [['v', '{n} đang viết kìa!'], ['b', 'Suỵt, đừng làm ồn']],
+    [['b', 'Chạy việc cho {n} nè!'], ['v', 'Vịt chạy theo với!']],
+    [['v', 'Đoán xem {n} viết gì?'], ['b', 'Chắc có đánh nhau'], ['v', 'Vịt đoán có nắm tay!']],
+    [['b', '{n} viết lâu ghê'], ['v', 'Truyện hay thì phải chờ']],
+    [['v', 'Bò ơi, {n} có viết về tụi mình không?'], ['b', 'Chắc không đâu…']],
+  ];
+  const TALK_THINK = [
+    [['v', '{n} đang suy nghĩ đó'], ['b', 'Nghĩ kỹ mới hay']],
+    [['b', 'Suỵt, {n} đang nghĩ'], ['v', 'Vịt nín thở nè']],
+    [['v', 'Nghĩ lâu quá ta'], ['b', 'Truyện khó thì nghĩ lâu']],
+  ];
+  /* Cậu bắt đầu gõ */
+  const TALK_TYPE = [
+    [['v', 'Cậu đang gõ kìa!'], ['b', 'Để xem Cậu viết gì']],
+    [['b', 'Cậu định cho nhân vật làm gì đây?'], ['v', 'Vịt đoán là làm chuyện liều!']],
+    [['v', 'Gõ nhanh ghê!'], ['b', 'Tay nghề giang hồ đó']],
   ];
   const cn = {};
   function cowNodes() {
-    if (!cn.root) {
-      cn.world = $('#cowWorld');
-      cn.root = $('#cow');
-      cn.hop = $('#cow .hop');
-      cn.upper = $('#cow .upper');
-      cn.nod = $('#cow .nod');
-      cn.a = $$('#cow .leg-a');
-      cn.b = $$('#cow .leg-b');
-      cn.shadow = $('#cowWorld .cowshadow');
-      cn.say = $('#cowSay');
+    if (!cn.main) {
+      cn.world = $('#petWorld');
       cn.main = $('#main');
       cn.top = $('#top');
+      cn.scroll = $('#scroll');
       cn.box = $('#composer .box');
       cn.msgs = $('#msgs');
       cn.stage = $('#stage');
+      cn.side = $('#side');
+      cn.newBtn = $('#newBtn');
+      cn.search = $('#side .search');
+      cn.list = $('#list');
+      cn.foot = $('#side .side-foot');
+      cn.panel = $('#panel');
+      cn.lav = $('#lavField');
+      cn.dock = $('#npcDock');
+      cn.ndList = $('#ndList');
+      for (const [p, id, say] of [[BO, '#cow', '#cowSay'], [VIT, '#duck', '#duckSay']]) {
+        const root = $(id);
+        p.n = {
+          root, layer: root.parentElement, hop: root.querySelector('.hop'), upper: root.querySelector('.upper'), nod: root.querySelector('.nod'),
+          a: $$('.leg-a', root), b: $$('.leg-b', root), shadow: $('#petWorld .petshadow.pet-' + p.id), say: $(say),
+        };
+      }
     }
     return cn;
   }
-  function cowMoves() { return S.cowOn && motionOn(); }
-  function cowKick() {
-    clearTimeout(cow.timer);
-    cow.timer = 0;
-    if (!S.cowOn || cow.raf || document.hidden) return;
-    cow.last = 0;
-    cow.raf = requestAnimationFrame(cowStep);
+  function cowMoves() { return pet.live() && motionOn(); }
+  const loop = { raf: 0, timer: 0, last: 0, hold: 0 };
+  /* Đánh thức vòng vẽ; hold = giữ vòng vẽ chạy thêm chừng ấy ms (bảng đang trượt ra vào, khung dưới chân đang dời chỗ) */
+  function cowKick(hold) {
+    clearTimeout(loop.timer);
+    loop.timer = 0;
+    if (hold > 0) loop.hold = Math.max(loop.hold, performance.now() + hold);
+    if (loop.raf || document.hidden || !PETS.some((p) => p.live())) return;
+    loop.last = 0;
+    loop.raf = requestAnimationFrame(cowStep);
   }
 
-  /* ---- Địa hình: khung chat, các khung bò đứng được, các mặt bò bám được ---- */
+  /* ---- Địa hình: cả màn hình, các khung đứng được, các mặt bám được ---- */
   let cw = null;
+  /* Trần là đáy thanh trên cùng, nền là đáy màn hình. Khung nằm sát đáy (ô nhập, chân cột phiên) đè lên nền: nền chỉ còn ở chỗ trống
+     giữa chúng, và mép màn hình cạnh khung ấy chỉ xuống tới mép trên của khung */
   function cowWorldBox() {
     const n = cowNodes();
-    const m = n.main.getBoundingClientRect();
+    const W = n.world.clientWidth;
+    const H = n.world.clientHeight;
+    const ceil = Math.max(0, Math.round(n.top.getBoundingClientRect().bottom));
+    /* Bảng trượt đang mở, hay khung NPC phủ kín màn hình điện thoại: phần khung chat nằm dưới coi như không có */
+    const cls = document.body.classList;
+    const dr = n.dock.hidden ? null : n.dock.getBoundingClientRect();
+    const ce = cls.contains('pov') ? n.panel : cls.contains('sov') ? n.side : dr && dr.width >= W - 2 && dr.height >= H - 2 ? n.dock : null;
+    const cr = ce && ce.getBoundingClientRect();
+    const cover = cr && cr.width > 40 ? { l: cr.left, r: cr.right } : null;
+    /* Khung NPC nổi trên máy tính (không phủ kín): che phần phải khung chat */
+    const dock = dr && dr.width > 40 && ce !== n.dock ? { l: dr.left, t: dr.top, b: dr.bottom } : null;
+    const ground = [];
     const box = n.box.getBoundingClientRect();
-    const ceil = Math.max(0, Math.round(n.top.getBoundingClientRect().bottom - m.top));
-    return { mx: m.left, my: m.top, W: n.main.clientWidth, ceil, floor: Math.max(ceil + 80, Math.round(box.top - m.top) + 1) };
+    const field = n.lav.getBoundingClientRect();
+    const near = [['cb', box], ['sd|foot', n.foot.getBoundingClientRect()]];
+    for (const k of ['lv|0', 'lv|1']) { const r = lavBox(k, field, box); if (r) near.push([k, { left: r.l, right: r.r, top: r.t, bottom: r.b, width: r.r - r.l }]); }
+    for (const [key, r] of near) {
+      const mid = (r.left + r.right) / 2;
+      if ((key === 'cb' || key[0] === 'l') && cover && mid > cover.l && mid < cover.r) continue;
+      if (r.width > 20 && r.bottom >= H - 26 && r.right > 0 && r.left < W) ground.push({ key, l: r.left, r: r.right, t: r.top });
+    }
+    let wlb = H;
+    let wrb = H;
+    for (const g of ground) {
+      if (g.l < 48) wlb = Math.min(wlb, g.t);
+      if (g.r > W - 48) wrb = Math.min(wrb, g.t);
+    }
+    return { W, H, ceil, floor: H, ground, wlb, wrb, cover, dock, clips: new Map() };
+  }
+  /* Khung thuộc khung chat (lượt, ảnh đứng, ô nhập, đồi oải hương) mà đang bị bảng trượt che */
+  /* Khung của khung chat bị khung NPC nổi che một phần: chỉ giữ phần bên trái mép khung NPC (null khi gần như khuất hết) */
+  function dockCut(key, r) {
+    const d = cw.dock;
+    if (!r || !d || !(key === 'cb' || key.startsWith('lv') || key[0] === 't' || key.startsWith('sp|')) || r.t > d.b || r.b < d.t || r.r <= d.l) return r;
+    r.r = Math.min(r.r, d.l - 2);
+    return r.r - r.l >= 40 ? r : null;
+  }
+  function underCover(key, r) {
+    const c = cw.cover;
+    if (!c || !(key === 'cb' || key.startsWith('lv') || key[0] === 't' || key.startsWith('sp|'))) return false;
+    const m = (r.l + r.r) / 2;
+    return m > c.l && m < c.r;
+  }
+  /* Đoạn nền trống quanh x; null khi x nằm dưới một khung sát đáy hay trong khe hẹp giữa hai khung, không đủ chỗ đứng */
+  function floorGap(x) {
+    let lo = 0;
+    let hi = cw.W;
+    for (const g of cw.ground) {
+      if (x > g.l && x < g.r) return null;
+      if (g.r <= x) lo = Math.max(lo, g.r);
+      else hi = Math.min(hi, g.l);
+    }
+    return hi - lo >= 2 * pet.sp.len + 6 ? [lo, hi] : null;
   }
   const plat = { list: null, at: 0, dirty: true };
   const platCache = new Map();
   function cowDirty() { plat.dirty = true; }
+  /* Những thứ trong bảng bên phải con vật đứng được: hồ sơ của Cậu và ảnh, thẻ nhân vật, ảnh, tên, thanh tình cảm, các khung Sổ, ô màu, công tắc, nút… */
+  const PANE_SEL = '.mecard, .meava, .npc, .portrait, .nname b, .ladder, .socard, .saveitem, .pinitem, .stats, .swatch, .seg, .sysarea, .legend, .res, .field, .switch, .tools .btn, .grid2 .btn';
   function turnPart(turn, part) {
     return turn.querySelector(part === 'so' ? ':scope > .tmain > .so-card' : part === 'body' ? ':scope > .tmain > .body' : ':scope > .tmain');
   }
+  /* Khóa của mỗi khung: t|lượt|phần (khung chat), sp|i (ảnh đứng cạnh truyện), cb (ô nhập), lv (đồi oải hương), sd|… (cột phiên),
+     li|i (một phiên trong danh sách), pn|box (cả bảng phải), pn|tab|i (một thứ trong tab đang mở),
+     nd|box (khung NPC), nd|i (thẻ NPC), nd|i|p · nd|i|n · nd|i|t (ảnh, tên, lời nghĩ trong thẻ) */
   function platEl(key) {
     const hit = platCache.get(key);
     if (hit && hit.isConnected) return hit;
+    const n = cowNodes();
     const [kind, a, b] = key.split('|');
     let e = null;
-    if (kind === 'sp') e = cowNodes().stage.children[+a] || null;
-    else {
-      const turn = cowNodes().msgs.querySelector(':scope > .turn[data-id="' + CSS.escape(a) + '"]');
+    if (kind === 'sp') e = n.stage.children[+a] || null;
+    else if (kind === 't') {
+      const turn = n.msgs.querySelector(':scope > .turn[data-id="' + CSS.escape(a) + '"]');
       e = turn && turnPart(turn, b);
+    } else if (kind === 'cb') e = n.box;
+    else if (kind === 'sd') e = a === 'box' ? n.side : a === 'new' ? n.newBtn : a === 'search' ? n.search : n.foot;
+    else if (kind === 'li') e = n.list.children[+a] || null;
+    else if (kind === 'lv') e = n.lav;
+    else if (kind === 'nd') {
+      const it = a === 'box' ? n.dock : n.ndList.children[+a] || null;
+      e = a === 'box' || !it || !b ? it : it.querySelector(b === 'p' ? '.ndpic' : b === 'n' ? '.ndname b' : '.ndthink');
+    }
+    else if (kind === 'pn') {
+      const pane = a === 'box' ? null : n.panel.querySelector('.pane[data-pane="' + a + '"]');
+      e = a === 'box' ? n.panel : (pane && pane.querySelectorAll(PANE_SEL)[+b]) || null;
     }
     if (e) platCache.set(key, e); else platCache.delete(key);
     return e;
   }
-  function platRect(e) {
-    const r = e.getBoundingClientRect();
-    if (r.width < 40 || r.height < 12) return null;
-    return { l: r.left - cw.mx, t: r.top - cw.my, r: r.right - cw.mx, b: r.bottom - cw.my };
+  /* Vùng cuộn chứa khung (đo một lần mỗi khung hình): khung trôi ra ngoài vùng ấy thì coi như khuất */
+  function clipFor(key, e) {
+    const n = cowNodes();
+    const kind = key.slice(0, 2);
+    const box = kind === 't|' ? n.scroll : kind === 'li' ? n.list : kind === 'pn' && key !== 'pn|box' ? e && e.closest('.pane') : kind === 'nd' && key !== 'nd|box' ? n.ndList : key === 'sd|new' || key === 'sd|search' ? n.side : null;
+    if (!box) return { t: 0, b: cw.H };
+    let c = cw.clips.get(box);
+    if (!c) {
+      const r = box.getBoundingClientRect();
+      c = { t: r.top, b: r.bottom };
+      cw.clips.set(box, c);
+    }
+    return c;
   }
-  /* Các khung đang nhìn thấy: tìm nhị phân lượt đầu tiên còn trong màn hình rồi đọc tới lượt cuối còn thấy */
-  function cowPlats(t) {
-    if (!plat.dirty && plat.list && t - plat.at < 150) return plat.list;
-    const out = [];
-    const add = (key, e) => {
-      const r = e && platRect(e);
-      if (!r || r.b <= cw.ceil || r.t >= cw.floor) return;
-      platCache.set(key, e);
-      out.push(Object.assign(r, { key }));
-    };
-    const kids = cowNodes().msgs.children;
-    let lo = 0, hi = kids.length;
+  /* Đồi oải hương (chỉ có ở bảng Tím khói, Oải hương): phần lớn nằm sau ô nhập, nên chỉ đứng được ở hai khoảng hoa lộ ra hai bên ô nhập
+     (lv|0 bên trái, lv|1 bên phải), mặt đứng là ngọn hoa cao nhất, cách đáy chừng 130px. Điện thoại ô nhập rộng hết cỡ thì không có */
+  const LAV_TIP = 132;
+  function lavBox(key, field, box) {
+    if (field.width < 40) return null;
+    const left = key === 'lv|0';
+    const l = left ? field.left : Math.max(field.left, box.right + 6);
+    const r = left ? Math.min(field.right, box.left - 6) : field.right;
+    return r - l >= 70 ? { l, t: field.bottom - LAV_TIP, r, b: field.bottom } : null;
+  }
+  function platRect(e, key) {
+    if (key[0] === 'l' && key[1] === 'v') {
+      const n = cowNodes();
+      const r = lavBox(key, e.getBoundingClientRect(), n.box.getBoundingClientRect());
+      return dockCut(key, r && Object.assign(r, { ct: 0, cb: cw.H }));
+    }
+    const r = e.getBoundingClientRect();
+    if (r.width < (key[0] === 't' ? 40 : 20) || r.height < 12) return null;
+    const c = clipFor(key, e);
+    return dockCut(key, { l: r.left, t: r.top, r: r.right, b: r.bottom, ct: c.t, cb: c.b });
+  }
+  /* Con của một khung cuộn đang lọt vào vùng nhìn thấy: tìm nhị phân con đầu tiên còn thấy rồi đọc tới con cuối còn thấy */
+  function visKids(box, c, fn) {
+    const kids = box.children;
+    let lo = 0;
+    let hi = kids.length;
     while (lo < hi) {
       const mid = (lo + hi) >> 1;
-      if (kids[mid].getBoundingClientRect().bottom - cw.my < cw.ceil) lo = mid + 1; else hi = mid;
+      if (kids[mid].getBoundingClientRect().bottom < c.t) lo = mid + 1; else hi = mid;
     }
     for (let i = lo; i < kids.length; i++) {
-      const k = kids[i];
-      if (k.getBoundingClientRect().top - cw.my > cw.floor) break;
+      if (kids[i].getBoundingClientRect().top > c.b) break;
+      fn(kids[i], i);
+    }
+  }
+  function shown(e) {
+    const r = e.getBoundingClientRect();
+    return r.width > 30 && r.right > 8 && r.left < cw.W - 8;
+  }
+  /* Các khung đang nhìn thấy trên cả màn hình */
+  function cowPlats(t) {
+    if (!plat.dirty && plat.list && t - plat.at < 150) return plat.list;
+    const n = cowNodes();
+    const out = [];
+    const add = (key, e) => {
+      const r = e && platRect(e, key);
+      if (!r || r.b <= Math.max(r.ct, cw.ceil) || r.t >= r.cb || r.r < 8 || r.l > cw.W - 8 || underCover(key, r)) return;
+      platCache.set(key, e);
+      r.key = key;
+      out.push(r);
+    };
+    visKids(n.msgs, clipFor('t|'), (k) => {
       const id = k.dataset.id;
-      if (!id || !k.classList.contains('turn')) continue;
+      if (!id || !k.classList.contains('turn')) return;
       if (k.classList.contains('user')) add('t|' + id + '|body', turnPart(k, 'body'));
       else { add('t|' + id + '|main', turnPart(k, 'main')); add('t|' + id + '|so', turnPart(k, 'so')); }
+    });
+    if (!n.stage.hidden) [...n.stage.children].forEach((e, i) => add('sp|' + i, e));
+    add('cb', n.box);
+    if (shown(n.lav)) { add('lv|0', n.lav); add('lv|1', n.lav); }
+    if (!n.dock.hidden && shown(n.dock)) {
+      add('nd|box', n.dock);
+      visKids(n.ndList, clipFor('nd|0'), (k, i) => {
+        if (!k.classList.contains('nditem')) return;
+        add('nd|' + i, k);
+        add('nd|' + i + '|p', k.querySelector('.ndpic'));
+        add('nd|' + i + '|n', k.querySelector('.ndname b'));
+        add('nd|' + i + '|t', k.querySelector('.ndthink'));
+      });
     }
-    const st = cowNodes().stage;
-    if (!st.hidden) [...st.children].forEach((e, i) => add('sp|' + i, e));
+    if (shown(n.side)) {
+      add('sd|box', n.side);
+      add('sd|new', n.newBtn);
+      add('sd|search', n.search);
+      add('sd|foot', n.foot);
+      visKids(n.list, clipFor('li'), (k, i) => { if (k.classList.contains('item')) add('li|' + i, k); });
+    }
+    if (shown(n.panel)) {
+      add('pn|box', n.panel);
+      const pane = n.panel.querySelector('.pane:not([hidden])');
+      if (pane) pane.querySelectorAll(PANE_SEL).forEach((e, i) => add('pn|' + pane.dataset.pane + '|' + i, e));
+    }
     plat.list = out;
     plat.at = t;
     plat.dirty = false;
     return out;
   }
-  /* up: đứng trên mép trên · L: bám cạnh trái (bò ở ngoài, bên trái) · R: bám cạnh phải · down: treo dưới trần */
+  /* up: đứng trên mép trên · L: bám cạnh trái (con vật ở ngoài, bên trái) · R: bám cạnh phải · down: treo dưới trần */
   const SEG_T = { up: { ang: 0 }, L: { ang: -90 }, R: { ang: 90 }, down: { ang: 180 } };
-  /* Với mặt của một khung, s đo từ góc trên bên trái của khung (o là độ lệch), nên cuộn truyện thì bò trôi theo khung */
-  const mkSeg = (type, c, a, b, world, o) => ({ type, c, a, b, world, o: o || 0, ang: SEG_T[type].ang });
+  /* Với mặt của một khung, s đo từ góc trên bên trái của khung (o là độ lệch), nên cuộn thì con vật trôi theo khung */
+  const mkSeg = (type, c, a, b, world, o, k) => ({ type, c, a, b, world, o: o || 0, ang: SEG_T[type].ang, k });
   function segPos(sg, s) {
     const v = s + sg.o;
     return sg.type === 'up' ? [v, sg.c] : sg.type === 'L' ? [sg.c, -v] : sg.type === 'R' ? [sg.c, v] : [-v, sg.c];
@@ -5239,238 +5662,286 @@ details.gbridge:not([open]) { padding-block: 11px; }
   function cowSeg(ref) {
     if (!ref) return null;
     switch (ref.k) {
-      case 'floor': return mkSeg('up', cw.floor, 0, cw.W, true);
-      case 'ceil': return mkSeg('down', cw.ceil, -cw.W, 0, true);
-      case 'wl': return mkSeg('R', 0, cw.ceil, cw.floor, true);
-      case 'wr': return mkSeg('L', cw.W, -cw.floor, -cw.ceil, true);
+      case 'floor': return mkSeg('up', cw.floor, 0, cw.W, true, 0, 'floor');
+      case 'ceil': return mkSeg('down', cw.ceil, -cw.W, 0, true, 0, 'ceil');
+      case 'wl': return mkSeg('R', 0, cw.ceil, cw.wlb, true, 0, 'wl');
+      case 'wr': return mkSeg('L', cw.W, -cw.wrb, -cw.ceil, true, 0, 'wr');
     }
     const e = platEl(ref.p);
-    const r = e && platRect(e);
+    const r = e && platRect(e, ref.p);
     if (!r) return null;
     const sg = ref.k === 'top' ? mkSeg('up', r.t, 0, r.r - r.l, false, r.l) : ref.k === 'L' ? mkSeg('L', r.l, r.t - r.b, 0, false, -r.t) : mkSeg('R', r.r, 0, r.b - r.t, false, r.t);
     sg.box = r;
+    sg.key = ref.p;
     return sg;
   }
-  /* Phần của mặt còn nhìn thấy (không khuất sau thanh trên cùng, không chìm dưới ô nhập) */
+  /* Phần của mặt còn nhìn thấy: khung thì trong vùng cuộn của nó (chừa chỗ cho thân con vật dưới thanh trên cùng), nền thì đoạn trống quanh chân */
   function segVis(sg) {
-    const lo = cw.ceil + (sg.world ? 0 : 30);
-    const hi = cw.floor;
     const o = sg.o;
     let a = sg.a + o;
     let b = sg.b + o;
-    if (sg.type === 'up') {
-      if (sg.c < cw.ceil + 30 || sg.c > hi + 1) return null;
-      a = Math.max(a, 0);
-      b = Math.min(b, cw.W);
-    } else if (sg.type === 'L') { a = Math.max(a, -hi); b = Math.min(b, -lo); }
-    else if (sg.type === 'R') { a = Math.max(a, lo); b = Math.min(b, hi); }
+    if (sg.world) {
+      if (sg.k === 'floor') {
+        const g = floorGap(pet.on && pet.on.k === 'floor' ? pet.s : pet.px);
+        if (!g) return null;
+        a = Math.max(a, g[0]);
+        b = Math.min(b, g[1]);
+      }
+    } else {
+      /* Khung đã trượt ra ngoài màn hình (đóng bảng bên), hay đang nằm dưới bảng trượt: coi như mất */
+      if (sg.box.r < 8 || sg.box.l > cw.W - 8 || underCover(sg.key, sg.box)) return null;
+      const lo = Math.max(sg.box.ct, cw.ceil) + 24;
+      const hi = Math.min(sg.box.cb, cw.floor);
+      if (sg.type === 'up') {
+        if (sg.c < lo || sg.c > hi + 1) return null;
+        a = Math.max(a, 0);
+        b = Math.min(b, cw.W);
+      } else if (sg.type === 'L') { a = Math.max(a, -hi); b = Math.min(b, -lo); }
+      else if (sg.type === 'R') { a = Math.max(a, lo); b = Math.min(b, hi); }
+    }
     return a <= b ? [a - o, b - o] : null;
   }
-  /* Đoạn bò đi lại cho vui, chừa mép ra một chút */
+  /* Đoạn con vật đi lại cho vui, chừa mép ra một chút */
   function cowSpan(sg) {
     const v = segVis(sg);
     if (!v) return null;
-    const m = sg.world ? COW_LEN : 16;
+    const m = sg.world ? pet.sp.len : 16;
     return v[1] - v[0] > 2 * m ? [v[0] + m, v[1] - m] : [(v[0] + v[1]) / 2, (v[0] + v[1]) / 2];
   }
-  /* Đầu mút a, b của mỗi mặt nối với mặt nào. Góc khung là góc lồi (bò lật qua mép), góc khung chat là góc lõm (bò rẽ lên vách) */
+  /* Đầu mút a, b của mỗi mặt nối với mặt nào. Góc khung là góc lồi (lật qua mép), góc màn hình là góc lõm (rẽ lên vách) */
   const COW_LINK = {
     'top:a': ['L', 'b'], 'top:b': ['R', 'a'], 'L:b': ['top', 'a'], 'R:a': ['top', 'b'],
     'floor:a': ['wl', 'b'], 'floor:b': ['wr', 'a'], 'wl:b': ['floor', 'a'], 'wr:a': ['floor', 'b'],
     'wl:a': ['ceil', 'b'], 'ceil:b': ['wl', 'a'], 'wr:b': ['ceil', 'a'], 'ceil:a': ['wr', 'b'],
   };
-  const endS = (sg, end) => (sg.world ? (end === 'a' ? sg.a + COW_LEN : sg.b - COW_LEN) : end === 'a' ? sg.a : sg.b);
+  const endS = (sg, end) => (sg.world ? (end === 'a' ? sg.a + pet.sp.len : sg.b - pet.sp.len) : end === 'a' ? sg.a : sg.b);
   const upright = (ref) => !!ref && (ref.k === 'top' || ref.k === 'floor');
+  /* Nhà: mép trên ô nhập (trước đây là nền của khung chat) */
+  const isHome = (ref) => !!ref && (ref.k === 'floor' || (ref.k === 'top' && ref.p === 'cb'));
 
   /* ---- Vòng vẽ ---- */
   function cowReset() {
-    cow.born = true;
-    Object.assign(cow, { on: { k: 'floor' }, s: cw.W - 60, v: 0, vx: 0, vy: 0, dir: -1, ang: 0, tw: null, route: [], drag: null, ghost: false, tgt: null, amp: 0, lean: 0, tilt: 0, tv: 0, spin: 0, spinning: false, squash: 0, sqv: 0, slip: false, lie: 0 });
-    [cow.px, cow.py] = segPos(cowSeg(cow.on), cow.s);
+    pet.born = true;
+    const home = { k: 'top', p: 'cb' };
+    const hs = cowSeg(home);
+    const v = hs && segVis(hs);
+    const right = pet.id === 'bo';
+    Object.assign(pet, { on: v ? home : { k: 'floor' }, v: 0, vx: 0, vy: 0, dir: right ? -1 : 1, ang: 0, tw: null, route: [], drag: null, hide: null, flee: '', ghost: false, tgt: null, amp: 0, lean: 0, tilt: 0, tv: 0, spin: 0, spinning: false, squash: 0, sqv: 0, slip: false, lie: 0, daze: 0 });
+    pet.s = v ? clampN(right ? v[1] - 70 : v[0] + 80, v[0], v[1]) : right ? cw.W - 60 : 60;
+    petBack(false);
+    [pet.px, pet.py] = segPos(cowSeg(pet.on), pet.s);
   }
   function cowStep(t) {
-    cow.raf = 0;
+    loop.raf = 0;
     const n = cowNodes();
-    if (!S.cowOn || document.hidden || !n.main.clientWidth) return;
-    const dt = cow.last ? Math.min(0.05, (t - cow.last) / 1000) : 0;
-    cow.last = t;
+    if (document.hidden || !n.main.clientWidth) return;
+    const live = PETS.filter((p) => p.live());
+    if (!live.length) return;
+    const dt = loop.last ? Math.min(0.05, (t - loop.last) / 1000) : 0;
+    loop.last = t;
     cw = cowWorldBox();
-    if (!cow.born) cowReset();
-    if (!cowMoves()) {
-      cowReset();
-      cow.mode = gen ? 'think' : 'graze';
-      cowRender(t);
-      return;
+    const moves = motionOn();
+    /* Tính xong vật lý của cả hai con rồi mới vẽ, để trình duyệt chỉ phải đo bố cục một lần mỗi khung hình */
+    for (const p of live) {
+      pet = p;
+      if (!p.born) cowReset();
+      if (!moves) { cowReset(); p.mode = gen ? 'think' : 'graze'; } else petPhys(dt, t);
     }
-    if (!cow.drag) {
-      if (gen && cow.mode !== 'run') cowGenStart();
-      else if (!gen && cow.mode === 'run') { cow.mode = 'graze'; cow.route = []; cow.until = t + 2600; cow.ghost = false; }
+    let busy = t < loop.hold;
+    let next = t + 30000;
+    for (const p of live) {
+      pet = p;
+      cowRender(t);
+      if (!moves) continue;
+      const w = petBusy(t);
+      if (w === true) busy = true; else next = Math.min(next, w);
+    }
+    pet = BO;
+    if (!moves) return;
+    if (busy) loop.raf = requestAnimationFrame(cowStep);
+    else loop.timer = setTimeout(cowKick, Math.max(60, Math.min(next, t + 30000) - t));
+  }
+  function petPhys(dt, t) {
+    const p = pet;
+    if (!p.drag && !p.hide) {
+      if (gen && p.mode !== 'run') cowGenStart();
+      else if (!gen && p.mode === 'run') { p.mode = 'graze'; p.route = []; p.until = t + 2600; p.ghost = false; }
     }
     let a = 0;
-    cow.tgt = null;
-    if (cow.drag) cowHeld(dt);
-    else if (cow.tw) cowTween(dt, t);
-    else if (!cow.on) cowAir(dt, t);
+    p.tgt = null;
+    if (p.drag) cowHeld(dt);
+    else if (p.hide) cowHideStep(dt, t);
+    else if (p.tw) cowTween(dt, t);
+    else if (!p.on) cowAir(dt, t);
     else a = cowWalk(dt, t);
-    if (cow.spinning) { cow.spin += dt * 900; if (cow.spin >= 360) { cow.spin = 0; cow.spinning = false; } }
+    if (p.spinning) { p.spin += dt * 900; if (p.spin >= 360) { p.spin = 0; p.spinning = false; } }
     cowSprings(dt);
-    const onSurf = cow.on && !cow.tw && !cow.drag;
-    const leanT = onSurf ? clampN(a * cow.dir * 0.014, -5, 5) : 0;
-    cow.lean += (leanT - cow.lean) * Math.min(1, dt * 8);
-    /* Chân: pha bước tính theo quãng đường đã đi nên không bao giờ trượt chân; đang bay thì quẫy nhẹ */
-    const sp = Math.abs(cow.v);
+    const h = p.hide;
+    const onSurf = p.on && !p.tw && !p.drag && !h;
+    const leanT = onSurf ? clampN(a * p.dir * 0.014, -5, 5) : 0;
+    p.lean += (leanT - p.lean) * Math.min(1, dt * 8);
+    /* Chân: pha bước tính theo quãng đường đã đi nên không bao giờ trượt chân; đang bay thì quẫy nhẹ, sắp chạy trốn thì cuống quýt tại chỗ */
+    const sp = Math.abs(p.v);
     let ampT = 0;
-    if (cow.drag) { cow.phase += dt * 3.4; ampT = 24; }
-    else if (!cow.on && !cow.tw) { cow.phase += dt * 2.4; ampT = 14; }
-    else if (cow.tw && !cow.tw.air) { cow.phase += dt * 1.8; ampT = 14; }
-    else if (onSurf && sp > 1.5) { cow.phase += (sp * dt) / (sp > 95 ? 48 : 30); ampT = Math.min(38, 9 + sp * 0.2); }
-    cow.amp += (ampT - cow.amp) * Math.min(1, dt * 9);
-    if (!ampT && cow.amp < 0.05) cow.amp = 0;
-    const lieT = cow.mode === 'sleep' && onSurf && upright(cow.on) ? 1 : 0;
-    cow.lie += (lieT - cow.lie) * Math.min(1, dt * 2.6);
-    if (Math.abs(lieT - cow.lie) < 0.004) cow.lie = lieT;
-    if (cow.drag) { if (Math.abs(cow.hvx) > 60) cow.dir = Math.sign(cow.hvx); }
-    else if (!cow.on && !cow.tw) { if (Math.abs(cow.vx) > 40) cow.dir = Math.sign(cow.vx); }
+    if (p.drag) { p.phase += dt * 3.4; ampT = 24; }
+    else if (h) {
+      if (h.ph === 'go') { p.phase += dt * (h.pre > 0 ? 7 : 2.4); ampT = h.pre > 0 ? 34 : 14; }
+      else if (h.ph !== 'wait' && h.ph !== 'look') { p.phase += dt * 3; ampT = 16; }
+    } else if (!p.on && !p.tw) { p.phase += dt * 2.4; ampT = 14; }
+    else if (p.tw && !p.tw.air) { p.phase += dt * 1.8; ampT = 14; }
+    else if (onSurf && sp > 1.5) { p.phase += (sp * dt) / (sp > 95 ? 48 : 30); ampT = Math.min(38, 9 + sp * 0.2); }
+    p.amp += (ampT - p.amp) * Math.min(1, dt * 9);
+    if (!ampT && p.amp < 0.05) p.amp = 0;
+    p.lieT = p.mode === 'sleep' && onSurf && upright(p.on) ? 1 : 0;
+    p.lie += (p.lieT - p.lie) * Math.min(1, dt * 2.6);
+    if (Math.abs(p.lieT - p.lie) < 0.004) p.lie = p.lieT;
+    if (p.drag) { if (Math.abs(p.hvx) > 60) p.dir = Math.sign(p.hvx); }
+    else if (h) { /* hướng nhìn do cowHideStep đặt */ }
+    else if (!p.on && !p.tw) { if (Math.abs(p.vx) > 40) p.dir = Math.sign(p.vx); }
     else if (onSurf) {
-      if (sp > 6) cow.dir = Math.sign(cow.v);
-      else if (cow.tgt != null && Math.abs(cow.tgt - cow.s) > 2) cow.dir = Math.sign(cow.tgt - cow.s);
+      if (sp > 6) p.dir = Math.sign(p.v);
+      else if (p.tgt != null && Math.abs(p.tgt - p.s) > 2) p.dir = Math.sign(p.tgt - p.s);
     }
-    if (onSurf && upright(cow.on) && ((sp > 110 && t - cow.dustAt > 260) || (Math.abs(a) > 250 && sp > 30 && t - cow.dustAt > 120))) { cow.dustAt = t; cowDust(1); }
-    const moved = !(Math.abs(cow.px - cow.rx) < 0.05 && Math.abs(cow.py - cow.ry) < 0.05 && Math.abs(cow.ang - cow.ra) < 0.05);
-    cowRender(t);
-    const step = cow.route[0];
-    const busy = cow.drag || cow.tw || !cow.on || moved || (step && step.t !== 'wait') || sp > 0.01 || cow.amp || cow.squash || cow.sqv || cow.spinning || cow.lie !== lieT || cow.tilt || cow.tv || Math.abs(cow.lean) > 0.05;
-    if (busy) cow.raf = requestAnimationFrame(cowStep);
-    else {
-      const next = step && step.until != null ? step.until : cow.until;
-      cow.timer = setTimeout(cowKick, Math.max(60, Math.min(next, t + 30000) - t));
+    if (onSurf && upright(p.on) && ((sp > 110 && t - p.dustAt > 260) || (Math.abs(a) > 250 && sp > 30 && t - p.dustAt > 120))) { p.dustAt = t; cowDust(1); }
+    p.moved = !(Math.abs(p.px - p.rx) < 0.05 && Math.abs(p.py - p.ry) < 0.05 && Math.abs(p.ang - p.ra) < 0.05);
+  }
+  /* Còn phải vẽ khung hình kế tiếp không; không thì trả về lúc cần dậy */
+  function petBusy(t) {
+    const p = pet;
+    const springy = p.amp || p.squash || p.sqv || p.tilt || p.tv || p.spinning || p.moved || Math.abs(p.lean) > 0.05 || p.lie !== p.lieT;
+    const h = p.hide;
+    if (h) {
+      if (springy || (h.ph !== 'wait' && h.ph !== 'look')) return true;
+      return h.ph === 'look' && !h.turned && h.edge !== 'L' && h.edge !== 'R' ? h.until - 700 : h.until;
     }
+    const step = p.route[0];
+    if (springy || p.drag || p.tw || !p.on || (step && step.t !== 'wait') || Math.abs(p.v) > 0.01) return true;
+    let next = step && step.until != null ? step.until : p.until;
+    if (p.daze > t) next = Math.min(next, p.daze + 30);
+    return next;
   }
   /* Bẹp và giãn chạy bằng lò xo: va chạm chỉ đẩy một cú, thân tự nén rồi nảy giãn nhẹ và lặng dần, không bật về cái rụp */
-  function cowSquash(x) { cow.sqv = clampN(cow.sqv + x * 26, -14, 30); }
+  function cowSquash(x) { pet.sqv = clampN(pet.sqv + x * 26, -14, 30); }
   /* Nghiêng thân: đang bị nhấc thì treo dưới ngón tay như con lắc (tay đi thì thân trễ lại, tay dừng thì đung đưa vài nhịp rồi thôi);
      đang bay thì nghiêng theo đà, chạm mặt thì lò xo đưa về thẳng. Chia bước nhỏ cho ổn định cả khi khung hình chậm. */
-  const SWING_L = 36;
   function cowSprings(dt) {
     const n = Math.ceil(dt * 120);
     if (!n) return;
     const q = dt / n;
-    const held = !!cow.drag;
-    let r = (cow.tilt * Math.PI) / 180;
-    let w = cow.tv;
+    const held = !!pet.drag;
+    const L = pet.sp.hang - 4;
+    let r = (pet.tilt * Math.PI) / 180;
+    let w = pet.tv;
     if (held) {
-      w += (0.14 * (cow.hdx * Math.cos(r) + cow.hdy * Math.sin(r))) / SWING_L;
-      cow.hdx = cow.hdy = 0;
+      w += (0.14 * (pet.hdx * Math.cos(r) + pet.hdy * Math.sin(r))) / L;
+      pet.hdx = pet.hdy = 0;
     }
-    const free = !held && !cow.on && !cow.tw;
-    const r0 = free ? clampN(cow.vx * 0.0005, -0.3, 0.3) : 0;
+    const free = !held && !pet.on && !pet.tw && !pet.hide;
+    const r0 = free ? clampN(pet.vx * 0.0005, -0.3, 0.3) : 0;
     const K = free ? 90 : 220;
     const C = free ? 14 : 26;
     for (let i = 0; i < n; i++) {
-      w += (held ? (0.45 * cow.hvx * Math.cos(r) - COW_G * Math.sin(r)) / SWING_L - 4.6 * w : -K * (r - r0) - C * w) * q;
+      w += (held ? (0.45 * pet.hvx * Math.cos(r) - COW_G * Math.sin(r)) / L - 4.6 * w : -K * (r - r0) - C * w) * q;
       r += w * q;
-      cow.sqv += (-330 * cow.squash - 12 * cow.sqv) * q;
-      cow.squash += cow.sqv * q;
+      pet.sqv += (-330 * pet.squash - 12 * pet.sqv) * q;
+      pet.squash += pet.sqv * q;
     }
     if (Math.abs(r) > 0.6) { r = clampN(r, -0.6, 0.6); w *= -0.2; }
-    cow.squash = clampN(cow.squash, -0.35, 1.05);
-    if (Math.abs(cow.squash) < 0.003 && Math.abs(cow.sqv) < 0.05) cow.squash = cow.sqv = 0;
-    cow.tilt = (r * 180) / Math.PI;
-    cow.tv = w;
-    if (!held && Math.abs(cow.tilt) < 0.05 && Math.abs(w) < 0.01) cow.tilt = cow.tv = 0;
+    pet.squash = clampN(pet.squash, -0.35, 1.05);
+    if (Math.abs(pet.squash) < 0.003 && Math.abs(pet.sqv) < 0.05) pet.squash = pet.sqv = 0;
+    pet.tilt = (r * 180) / Math.PI;
+    pet.tv = w;
+    if (!held && Math.abs(pet.tilt) < 0.05 && Math.abs(w) < 0.01) pet.tilt = pet.tv = 0;
   }
   /* Đi dọc mặt đang bám: lái tới đích, tới gần thì phanh dần; không có đích thì ma sát cho dừng */
   function cowWalk(dt, t) {
-    const sg = cowSeg(cow.on);
+    const sg = cowSeg(pet.on);
     if (!sg) { cowLetGo(false, false); return 0; }
-    if (cow.on.k === 'top' && sg.c > cw.floor - 1) { cowToFloor(); return 0; }
     const vis = segVis(sg);
-    if (!vis) { cowLetGo(false, false); return 0; }
-    if (cow.s < vis[0] || cow.s > vis[1]) {
-      /* Khung trôi khỏi chỗ nhìn thấy: vách chìm xuống dưới ô nhập thì bò xuống đất, còn lại thì trượt theo cho khỏi khuất */
-      if (!sg.world && sg.type !== 'up' && segPos(sg, cow.s)[1] > cw.floor - 1) { cowToFloor(); return 0; }
-      cow.s = clampN(cow.s, vis[0], vis[1]);
-    }
+    if (!vis) { if (pet.on.k === 'floor') cowFloorOut(); else cowLetGo(false, false); return 0; }
+    /* Khung trôi bớt khỏi chỗ nhìn thấy: trượt theo cho khỏi khuất (khuất hẳn thì đã buông tay rơi ở trên) */
+    if (pet.s < vis[0] || pet.s > vis[1]) pet.s = clampN(pet.s, vis[0], vis[1]);
     /* Còn đang trượt theo đà thì chưa nghĩ việc mới, trượt xong mới tính */
-    if (!cow.route.length && t >= cow.until && Math.abs(cow.v) < 25) { cowPlan(t, sg); if (!cow.on || cow.tw) return 0; }
-    let step = cow.route[0];
+    if (!pet.route.length && t >= pet.until && Math.abs(pet.v) < 25) { cowPlan(t, sg); if (!pet.on || pet.tw || pet.hide) return 0; }
+    let step = pet.route[0];
     while (step && step.t !== 'walk' && step.t !== 'over' && step.t !== 'wait') {
-      cow.route.shift();
+      pet.route.shift();
       if (cowAction(step, sg, t)) return 0;
-      step = cow.route[0];
+      step = pet.route[0];
     }
     let target = null;
     if (step && step.t === 'wait') {
-      if (step.until == null) { step.until = t + step.ms; if (step.mode) cow.mode = step.mode; }
-      if (t >= step.until) cow.route.shift();
+      if (step.until == null) { step.until = t + step.ms; if (step.mode) pet.mode = step.mode; }
+      if (t >= step.until) pet.route.shift();
     } else if (step) {
       const want = step.t === 'over' ? endS(sg, step.end) : step.s;
-      if (step.t === 'over' && (want < vis[0] - 0.5 || want > vis[1] + 0.5)) { cow.route = []; cow.until = t + 400; }
+      if (step.t === 'over' && (want < vis[0] - 0.5 || want > vis[1] + 0.5)) { pet.route = []; pet.until = t + 400; }
       else target = clampN(want, vis[0], vis[1]);
     }
     let a = 0;
     if (target != null) {
-      cow.tgt = target;
-      const run = cow.mode === 'run';
-      /* Đường xa thì bò đi nhanh hơn một chút */
-      const top = run ? COW_RUN : sg.type === 'up' ? (Math.abs(target - cow.s) > 160 ? 72 : COW_WALK) : COW_CLIMB;
+      pet.tgt = target;
+      const run = pet.mode === 'run';
+      const P = pet.sp;
+      /* Đường xa thì đi nhanh hơn một chút */
+      const top = run ? P.run : sg.type === 'up' ? (Math.abs(target - pet.s) > 160 ? P.walk * 1.8 : P.walk) : P.climb;
       const acc = run ? COW_ACC_RUN : COW_ACC_WALK;
-      const d = target - cow.s;
+      const d = target - pet.s;
       const want = Math.sign(d) * Math.min(top, Math.sqrt(1.7 * acc * Math.abs(d)));
       /* Hãm lại (đang trượt quá đà hay quay đầu) thì được mạnh tay hơn lúc tăng tốc */
-      const lim = cow.v && Math.sign(want - cow.v) !== Math.sign(cow.v) ? acc * 3 : acc;
-      a = clampN((want - cow.v) / Math.max(dt, 0.008), -lim, lim);
-      if (Math.abs(d) < 1.5 && Math.abs(cow.v) < 10) {
-        cow.s = target;
-        cow.v = 0;
+      const lim = pet.v && Math.sign(want - pet.v) !== Math.sign(pet.v) ? acc * 3 : acc;
+      a = clampN((want - pet.v) / Math.max(dt, 0.008), -lim, lim);
+      if (Math.abs(d) < 1.5 && Math.abs(pet.v) < 10) {
+        pet.s = target;
+        pet.v = 0;
         a = 0;
-        const done = cow.route.shift();
+        const done = pet.route.shift();
         if (run) cowDust(3);
-        [cow.px, cow.py] = segPos(sg, cow.s);
+        [pet.px, pet.py] = segPos(sg, pet.s);
         if (done.t === 'over') { cowCorner(sg, done.end); return 0; }
       }
-    } else if (cow.v) {
+    } else if (pet.v) {
       /* Không có đích: trượt chậm dần theo đà, đang nhanh thì giảm nhiều, gần dừng thì ma sát đều cho đứng hẳn */
-      a = -(cow.v * 3.2 + Math.sign(cow.v) * 50);
-      if (Math.abs(a) * dt >= Math.abs(cow.v)) a = -cow.v / Math.max(dt, 0.008);
+      a = -(pet.v * 3.2 + Math.sign(pet.v) * 50);
+      if (Math.abs(a) * dt >= Math.abs(pet.v)) a = -pet.v / Math.max(dt, 0.008);
     }
-    cow.v += a * dt;
-    let ns = cow.s + cow.v * dt;
-    if (target == null && cow.v && upright(cow.on)) {
-      /* Đang trượt: quá mép khung thì rơi xuống theo đà, đụng vách khung chat thì nảy ngược nhẹ */
-      const lo = sg.world ? sg.a + COW_LEN : vis[0];
-      const hi = sg.world ? sg.b - COW_LEN : vis[1];
-      if ((ns < lo && cow.v < 0) || (ns > hi && cow.v > 0)) {
-        if (!sg.world && cow.slip && Math.abs(cow.v) > 15) {
-          cow.s = clampN(ns, vis[0], vis[1]);
-          [cow.px, cow.py] = segPos(sg, cow.s);
-          const v = cow.v;
+    pet.v += a * dt;
+    let ns = pet.s + pet.v * dt;
+    if (target == null && pet.v && upright(pet.on)) {
+      /* Đang trượt: quá mép khung thì rơi xuống theo đà, đụng mép màn hình hay khung sát đáy thì nảy ngược nhẹ */
+      const lo = sg.world ? vis[0] + pet.sp.len : vis[0];
+      const hi = sg.world ? vis[1] - pet.sp.len : vis[1];
+      if ((ns < lo && pet.v < 0) || (ns > hi && pet.v > 0)) {
+        if (!sg.world && pet.slip && Math.abs(pet.v) > 15) {
+          pet.s = clampN(ns, vis[0], vis[1]);
+          [pet.px, pet.py] = segPos(sg, pet.s);
+          const v = pet.v;
           cowLetGo(false, false);
-          cow.vx = v;
+          pet.vx = v;
           return 0;
         }
-        /* Dừng ở mép, không kéo giật bò về nếu nó đã đứng quá mép từ trước */
-        ns = clampN(ns, Math.min(lo, cow.s), Math.max(hi, cow.s));
-        cow.v = sg.world && Math.abs(cow.v) > 60 ? -cow.v * 0.3 : 0;
-        if (cow.v) cowSquash(0.12);
+        /* Dừng ở mép, không kéo giật con vật về nếu nó đã đứng quá mép từ trước */
+        ns = clampN(ns, Math.min(lo, pet.s), Math.max(hi, pet.s));
+        pet.v = sg.world && Math.abs(pet.v) > 60 ? -pet.v * 0.3 : 0;
+        if (pet.v) cowSquash(0.12);
       }
     }
-    if (target != null || !cow.v) cow.slip = false;
-    cow.s = clampN(ns, vis[0], vis[1]);
-    [cow.px, cow.py] = segPos(sg, cow.s);
+    if (target != null || !pet.v) pet.slip = false;
+    pet.s = clampN(ns, vis[0], vis[1]);
+    [pet.px, pet.py] = segPos(sg, pet.s);
     angTo(sg.ang, Math.min(1, dt * 14));
     return a;
   }
-  /* Các bước không phải đi bộ trong lộ trình; trả về true khi bò đã rời mặt đang bám */
+  /* Các bước không phải đi bộ trong lộ trình; trả về true khi con vật đã rời mặt đang bám */
   function cowAction(step, sg, t) {
     if (step.t === 'grab' || step.t === 'hop') {
       const tsg = cowSeg(step.ref);
-      if (!tsg || !segVis(tsg)) { cow.route = []; cow.until = t + 300; return false; }
+      if (!tsg || !segVis(tsg)) { pet.route = []; pet.until = t + 300; return false; }
       const [x1, y1] = segPos(tsg, step.s);
-      const rise = cow.py - y1;
-      const dist = Math.hypot(x1 - cow.px, y1 - cow.py);
+      const rise = pet.py - y1;
+      const dist = Math.hypot(x1 - pet.px, y1 - pet.py);
       const grab = step.t === 'grab';
-      if (!grab && Math.abs(x1 - cow.px) > 4) cow.dir = Math.sign(x1 - cow.px);
+      if (!grab && Math.abs(x1 - pet.px) > 4) pet.dir = Math.sign(x1 - pet.px);
       cowTweenTo(step.ref, step.s, {
         d: grab ? 0.34 : clampN(0.36 + dist / 900, 0.4, 0.8),
         h: grab ? 10 : Math.max(26, rise > 0 ? rise / 2 + 30 : 26),
@@ -5481,218 +5952,311 @@ details.gbridge:not([open]) { padding-block: 11px; }
       return true;
     }
     if (step.t === 'leave') { cowLeaveWall(sg, t); return true; }
-    if (step.t === 'drop') { cowLetGo(false, false); if (Math.random() < 0.4) cowSay(pick(COW_FALL)); return true; }
+    if (step.t === 'drop') { cowLetGo(false, false); if (Math.random() < 0.4) cowSay(pick(pet.L.FALL)); return true; }
     if (step.t === 'say' && Math.random() < (step.p || 1)) cowSay(pick(step.lines));
     return false;
   }
   function cowTweenTo(ref, s, opt) {
     const sg = cowSeg(ref);
     if (!sg) return false;
-    cow.tw = { k: 0, d: opt.d, x0: cow.px, y0: cow.py, a0: cow.ang, da: angDelta(cow.ang, sg.ang), h: opt.h || 0, air: !!opt.air, pre: opt.air ? 0.1 : 0, ref, s };
-    cow.v = 0;
+    pet.tw = { k: 0, d: opt.d, x0: pet.px, y0: pet.py, a0: pet.ang, da: angDelta(pet.ang, sg.ang), h: opt.h || 0, air: !!opt.air, pre: opt.air ? 0.1 : 0, ref, s };
+    pet.v = 0;
     if (opt.air) cowSquash(0.3);
-    if (opt.dir) cow.dir = opt.dir;
+    if (opt.dir) pet.dir = opt.dir;
     return true;
   }
   /* Động tác ngắn có điểm đầu, điểm cuối: lật qua góc, nhảy bám vách, bước xuống, nhảy sang khung khác.
-     Điểm cuối đọc lại mỗi khung hình nên khung có cuộn thì bò vẫn đáp đúng chỗ. */
+     Điểm cuối đọc lại mỗi khung hình nên khung có cuộn thì con vật vẫn đáp đúng chỗ. */
   function cowTween(dt, t) {
-    const w = cow.tw;
+    const w = pet.tw;
     const sg = cowSeg(w.ref);
-    if (!sg) { cow.tw = null; cowLetGo(false, false); return; }
+    if (!sg) { pet.tw = null; cowLetGo(false, false); return; }
     /* Nhún lấy đà một nhịp rồi mới bật lên */
     if (w.pre > 0) { w.pre -= dt; return; }
     const [x1, y1] = segPos(sg, w.s);
     w.k = Math.min(1, w.k + dt / w.d);
     const e = w.k < 0.5 ? 2 * w.k * w.k : 1 - Math.pow(-2 * w.k + 2, 2) / 2;
     const m = w.air ? w.k : e;
-    cow.px = w.x0 + (x1 - w.x0) * m;
-    cow.py = w.y0 + (y1 - w.y0) * m - w.h * 4 * w.k * (1 - w.k);
-    cow.ang = w.a0 + w.da * e;
+    pet.px = w.x0 + (x1 - w.x0) * m;
+    pet.py = w.y0 + (y1 - w.y0) * m - w.h * 4 * w.k * (1 - w.k);
+    pet.ang = w.a0 + w.da * e;
     if (w.k < 1) return;
-    cow.tw = null;
-    cow.on = w.ref;
-    cow.s = w.s;
-    cow.v = 0;
-    cow.ang = w.a0 + w.da;
+    pet.tw = null;
+    pet.on = w.ref;
+    pet.s = w.s;
+    pet.v = 0;
+    pet.ang = w.a0 + w.da;
     if (w.air) {
       cowSquash(0.3);
       cowDust(1);
       /* Đáp xuống mặt nằm ngang thì giữ chút đà, trườn thêm một quãng ngắn rồi mới đứng */
-      if (upright(w.ref)) cow.v = clampN(((x1 - w.x0) / w.d) * 0.3, -80, 80);
+      if (upright(w.ref)) pet.v = clampN(((x1 - w.x0) / w.d) * 0.3, -80, 80);
     }
-    if (!cow.route.length) cow.until = t + 500 + Math.random() * 900;
+    if (!pet.route.length) pet.until = t + 500 + Math.random() * 900;
   }
   function cowCorner(sg, end) {
-    const link = COW_LINK[cow.on.k + ':' + end];
-    const ref = link && (sg.world ? { k: link[0] } : { k: link[0], p: cow.on.p });
+    const link = COW_LINK[pet.on.k + ':' + end];
+    const ref = link && (sg.world ? { k: link[0] } : { k: link[0], p: pet.on.p });
     const nsg = ref && cowSeg(ref);
-    if (!nsg || !segVis(nsg)) { cow.route = []; return; }
+    if (!nsg || !segVis(nsg)) { pet.route = []; return; }
+    /* Chân vách màn hình đứng trên khung sát đáy (ô nhập): không xuống nền mà bước lên khung ấy */
+    if (link[0] === 'floor') {
+      const g = floorGap(sg.k === 'wl' ? pet.sp.len : cw.W - pet.sp.len);
+      if (!g || g[1] - g[0] < 2 * pet.sp.len) { cowLeaveWall(sg, performance.now()); return; }
+    }
     cowTweenTo(ref, endS(nsg, link[1]), { d: sg.world ? 0.32 : 0.24, h: 0, air: false, dir: link[1] === 'a' ? 1 : -1 });
-    if (link[0] === 'ceil' && Math.random() < 0.5) cowSay(pick(COW_CEIL));
+    if (link[0] === 'ceil' && Math.random() < 0.5) cowSay(pick(pet.L.CEIL));
   }
-  /* Tới chân vách: có khung ngay bên dưới thì bước xuống, gần đất thì nhảy xuống đất, không thì buông tay rơi */
+  /* Tới chân vách: có khung ngay bên dưới thì bước xuống, gần nền thì nhảy xuống nền, không thì buông tay rơi */
   function cowLeaveWall(sg, t) {
-    const [x, y] = segPos(sg, cow.s);
-    if (y > cw.floor - 2) { cowToFloor(); return; }
-    const inward = sg.type === 'L' ? 1 : -1;
-    const fx = x + inward * 14;
+    const [x, y] = segPos(sg, pet.s);
+    if (y > cw.floor - 2 && floorGap(x)) { cowToFloor(); return; }
+    const inward = sg.world ? (sg.type === 'R' ? 1 : -1) : sg.type === 'L' ? 1 : -1;
+    const fx = x + inward * (sg.world ? 26 : 14);
     let best = null;
     for (const p of cowPlats(t)) {
-      if (p.t < y - 2 || p.t - y > 120 || fx < p.l + 6 || fx > p.r - 6 || p.t < cw.ceil + 30 || p.t > cw.floor - 2) continue;
+      if (p.t < y - 2 || p.t - y > 120 || fx < p.l + 6 || fx > p.r - 6 || p.t < Math.max(p.ct, cw.ceil) + 24 || p.t > p.cb) continue;
       if (!best || p.t < best.t) best = p;
     }
     if (best) { cowTweenTo({ k: 'top', p: best.key }, fx - best.l, { d: 0.34, h: 8, air: true, dir: inward }); return; }
-    if (cw.floor - y < 120) { cowTweenTo({ k: 'floor' }, clampN(x - inward * 26, COW_LEN, cw.W - COW_LEN), { d: 0.36, h: 6, air: true }); return; }
+    const gx = clampN(x - inward * 26, pet.sp.len, cw.W - pet.sp.len);
+    if (cw.floor - y < 120 && floorGap(gx)) { cowTweenTo({ k: 'floor' }, gx, { d: 0.36, h: 6, air: true }); return; }
     cowLetGo(false, false);
   }
   function cowToFloor() {
-    cow.on = { k: 'floor' };
-    cow.route = [];
-    cow.v = 0;
-    cow.s = clampN(cow.px, COW_LEN, cw.W - COW_LEN);
+    pet.on = { k: 'floor' };
+    pet.route = [];
+    pet.v = 0;
+    pet.s = clampN(pet.px, pet.sp.len, cw.W - pet.sp.len);
     cowSquash(0.4);
-    cow.until = performance.now() + 900;
+    pet.until = performance.now() + 900;
   }
-  /* Rời mặt đang bám: đẩy ra khỏi mặt một chút; ghost = rơi thẳng xuống đất, bỏ qua mọi khung (lúc AI đang viết) */
+  /* Lọt xuống nền chỗ không đứng được (dưới khung sát đáy, khe hẹp): nhảy lên mép trên khung sát đáy gần nhất */
+  function cowFloorOut() {
+    let g = null;
+    let best = Infinity;
+    for (const x of cw.ground) {
+      const d = pet.px < x.l ? x.l - pet.px : pet.px > x.r ? pet.px - x.r : 0;
+      if (d < best) { best = d; g = x; }
+    }
+    if (!g || !cowTweenTo({ k: 'top', p: g.key }, clampN(pet.px - g.l, 14, g.r - g.l - 14), { d: 0.42, h: 30, air: true })) cowLetGo(false, true);
+  }
+  /* Rời mặt đang bám: đẩy ra khỏi mặt một chút; ghost = rơi thẳng xuống, bỏ qua mọi khung trừ ô nhập (lúc AI đang viết) */
   function cowLetGo(ghost, hop) {
-    const r = (cow.ang * Math.PI) / 180;
-    const up = upright(cow.on);
-    cow.on = null;
-    cow.tw = null;
-    cow.route = [];
-    cow.v = 0;
-    cow.ghost = !!ghost;
-    cow.vx = Math.sin(r) * 70;
-    cow.vy = up ? (hop ? -200 : 0) : -Math.cos(r) * 70;
+    const r = (pet.ang * Math.PI) / 180;
+    const up = upright(pet.on);
+    pet.on = null;
+    pet.tw = null;
+    pet.route = [];
+    pet.v = 0;
+    pet.ghost = !!ghost;
+    pet.vx = Math.sin(r) * 70;
+    pet.vy = up ? (hop ? -200 : 0) : -Math.cos(r) * 70;
   }
+  /* AI bắt đầu viết: cả hai về mép ô nhập chạy qua chạy lại; lần đầu của mỗi lượt thì hai đứa bàn tán */
   function cowGenStart() {
-    cow.mode = 'run';
+    pet.mode = 'run';
     cowFx('mark', '!');
-    if (cow.tw) return;
-    if (!cow.on) { cow.ghost = true; return; }
-    if (cow.on.k !== 'floor') { cowLetGo(true, true); return; }
-    cow.route = [];
-    cow.until = 0;
+    if (talk.gen !== gen) {
+      talk.gen = gen;
+      talk.thinkSaid = false;
+      if (Math.random() < 0.45) petTalk(pick(TALK_GEN), { gap: 20000, delay: 1400 });
+    }
+    if (pet.tw) return;
+    if (pet.on && isHome(pet.on)) { pet.route = []; pet.until = 0; return; }
+    cowGenHome();
+  }
+  function cowGenHome() {
+    const ref = { k: 'top', p: 'cb' };
+    const sg = cowSeg(ref);
+    const v = sg && segVis(sg);
+    if (!v || v[1] - v[0] < 60) { if (!pet.on) pet.ghost = true; else cowLetGo(true, upright(pet.on)); return; }
+    const s = clampN(pet.px - sg.box.l, v[0] + 20, v[1] - 20);
+    const [x1, y1] = segPos(sg, s);
+    const dist = Math.hypot(x1 - pet.px, y1 - pet.py);
+    if (Math.abs(x1 - pet.px) > 4) pet.dir = Math.sign(x1 - pet.px);
+    cowTweenTo(ref, s, { d: clampN(0.4 + dist / 1100, 0.45, 0.9), h: Math.max(30, (pet.py - y1) / 2 + 40), air: true });
   }
 
   /* ---- Bay, rơi, đáp, bám ---- */
   function cowAir(dt, t) {
-    const n = Math.max(1, Math.ceil((Math.max(Math.abs(cow.vx), Math.abs(cow.vy) + COW_G * dt) * dt) / 10));
-    for (let i = 0; i < n && !cow.on; i++) cowAirStep(dt / n, t);
+    const n = Math.max(1, Math.ceil((Math.max(Math.abs(pet.vx), Math.abs(pet.vy) + COW_G * dt) * dt) / 10));
+    for (let i = 0; i < n && !pet.on && !pet.tw; i++) cowAirStep(dt / n, t);
     angTo(0, Math.min(1, dt * 7));
   }
   function cowAirStep(h, t) {
-    const ox = cow.px;
-    const oy = cow.py;
-    cow.vy += COW_G * h;
-    cow.vx -= cow.vx * 0.45 * h;
-    cow.px += cow.vx * h;
-    cow.py += cow.vy * h;
-    /* Hai vách khung chat: ném mạnh vào thì bám, không thì nảy lại */
-    if (cow.px - COW_HALF < 0 || cow.px + COW_HALF > cw.W) {
-      const left = cow.px - COW_HALF < 0;
-      if (!cow.ghost && Math.abs(cow.vx) > 170 && cow.py > cw.ceil + 60 && cow.py < cw.floor - 30) {
-        cow.px = left ? 0 : cw.W;
-        if (left) cowCling({ k: 'wl' }, cow.py, -1); else cowCling({ k: 'wr' }, -cow.py, 1);
+    const P = pet.sp;
+    const ox = pet.px;
+    const oy = pet.py;
+    /* Vịt vỗ cánh khi rơi: rơi chậm, chập chờn xuống như chiếc lá */
+    const flap = P.glide && pet.vy > 0 && !pet.ghost;
+    pet.vy += COW_G * h * (flap ? 0.5 : 1);
+    if (flap && pet.vy > 360) pet.vy += (360 - pet.vy) * Math.min(1, h * 14);
+    pet.vx -= pet.vx * 0.45 * h;
+    pet.px += pet.vx * h;
+    pet.py += pet.vy * h;
+    /* Hai mép màn hình: ném vào vừa tay thì bám, mạnh quá thì cụng đầu nảy lại, nhẹ thì nảy lại */
+    if (pet.px - P.half < 0 || pet.px + P.half > cw.W) {
+      const left = pet.px - P.half < 0;
+      const fast = Math.abs(pet.vx);
+      if (!pet.ghost && fast > 1300) { pet.px = left ? P.half : cw.W - P.half; pet.vx = -pet.vx * 0.35; cowBonk(t); }
+      else if (!pet.ghost && fast > 170 && pet.py > cw.ceil + 60 && pet.py < (left ? cw.wlb : cw.wrb) - 30) {
+        pet.px = left ? 0 : cw.W;
+        if (left) cowCling({ k: 'wl' }, pet.py, -1); else cowCling({ k: 'wr' }, -pet.py, 1);
         return;
+      } else {
+        pet.px = left ? P.half : cw.W - P.half;
+        pet.vx = -pet.vx * 0.45;
       }
-      cow.px = left ? COW_HALF : cw.W - COW_HALF;
-      cow.vx = -cow.vx * 0.45;
     }
-    /* Trần: tung thật mạnh lên thì bò treo ngược luôn */
-    if (cow.vy < 0 && cow.py - COW_TALL < cw.ceil) {
-      if (!cow.ghost && cow.vy < -420) { cow.py = cw.ceil; cowCling({ k: 'ceil' }, -cow.px, cow.vx > 0 ? -1 : 1); return; }
-      cow.py = cw.ceil + COW_TALL;
-      cow.vy = -cow.vy * 0.25;
+    /* Trần (chỉ khi bay lên từ bên dưới): tung thật mạnh thì treo ngược luôn, mạnh quá thì cụng đầu. Thả ra ở trên thanh trên cùng thì rơi xuyên qua */
+    if (pet.vy < 0) {
+      if (oy - P.tall >= cw.ceil - 0.5 && pet.py - P.tall < cw.ceil) {
+        if (!pet.ghost && pet.vy < -1150) { pet.py = cw.ceil + P.tall; pet.vy = -pet.vy * 0.3; cowBonk(t); }
+        else if (!pet.ghost && pet.vy < -520) { pet.py = cw.ceil; cowCling({ k: 'ceil' }, -pet.px, pet.vx > 0 ? -1 : 1); return; }
+        else { pet.py = cw.ceil + P.tall; pet.vy = -pet.vy * 0.25; }
+      } else if (pet.py - P.tall < 0) { pet.py = P.tall; pet.vy = -pet.vy * 0.25; }
     }
-    if (!cow.ghost) {
-      const plats = cowPlats(t);
-      if (cow.vy > 0) {
-        let hit = null;
-        for (const p of plats) {
-          if (oy <= p.t + 0.5 && cow.py >= p.t && cow.px >= p.l + 4 && cow.px <= p.r - 4 && p.t >= cw.ceil + 30 && p.t < cw.floor - 2 && (!hit || p.t < hit.t)) hit = p;
+    if (pet.vy > 0) {
+      let hit = null;
+      for (const p of cowPlats(t)) {
+        if (pet.ghost && p.key !== 'cb') continue;
+        if (oy <= p.t + 0.5 && pet.py >= p.t && pet.px >= p.l + 4 && pet.px <= p.r - 4 && p.t >= Math.max(p.ct, cw.ceil) + 24 && p.t <= p.cb && (!hit || p.t < hit.t)) hit = p;
+      }
+      if (hit) { pet.py = hit.t; cowLand({ k: 'top', p: hit.key }, clampN(pet.px - hit.l, 0, hit.r - hit.l)); return; }
+      /* Rơi trúng đầu con kia: nảy lên, con kia bẹp xuống kêu oai oái */
+      const o = pet.other;
+      if (!pet.ghost && o.live() && o.on && upright(o.on) && !o.tw && !o.hide && !o.drag) {
+        const head = o.py - o.sp.tall * 0.85;
+        if (oy <= head && pet.py >= head && Math.abs(pet.px - o.px) < (P.half + o.sp.half) * 0.75) {
+          pet.py = head;
+          pet.vy = -Math.max(240, pet.vy * 0.5);
+          pet.vx += (Math.sign(pet.px - o.px) || (Math.random() < 0.5 ? -1 : 1)) * 170;
+          cowSquash(0.3);
+          withPet(o, () => { cowSquash(0.7); cowDust(2); if (Math.random() < 0.75) cowSay(pick(o.L.BUMP)); });
+          return;
         }
-        if (hit) { cow.py = hit.t; cowLand({ k: 'top', p: hit.key }, clampN(cow.px - hit.l, 0, hit.r - hit.l)); return; }
-      }
-      /* Bị ném ngang vào cạnh khung: bám vào cạnh ấy */
-      if (Math.abs(cow.vx) > 90) {
-        for (const p of plats) {
-          if (cow.py < p.t + 16 || cow.py > p.b - 4) continue;
-          if (cow.vx > 0 && ox + COW_HALF <= p.l && cow.px + COW_HALF > p.l) { cow.px = p.l; cowCling({ k: 'L', p: p.key }, p.t - cow.py, 1); return; }
-          if (cow.vx < 0 && ox - COW_HALF >= p.r && cow.px - COW_HALF < p.r) { cow.px = p.r; cowCling({ k: 'R', p: p.key }, cow.py - p.t, -1); return; }
-        }
       }
     }
-    /* Chỉ đáp khi đang rơi xuống; vừa bật nhảy từ mặt đất (khung hình đầu chưa kịp nhích lên) thì không tính là chạm đất */
-    if (cow.py >= cw.floor) {
-      cow.py = cw.floor;
-      if (cow.vy >= 0) cowLand({ k: 'floor' }, clampN(cow.px, COW_LEN, cw.W - COW_LEN));
+    /* Bị ném ngang vào cạnh khung: bám vào cạnh ấy. Ném quá mạnh thì bay vượt qua; cạnh hai cột bên cần nhẹ tay hơn mới bám */
+    const fast = Math.abs(pet.vx);
+    if (!pet.ghost && fast > 90) {
+      for (const p of cowPlats(t)) {
+        if (fast > (p.key === 'sd|box' || p.key === 'pn|box' ? 700 : 1000)) continue;
+        if (pet.py < p.t + 16 || pet.py > p.b - 4 || pet.py < Math.max(p.ct, cw.ceil) + 24 || pet.py > p.cb) continue;
+        if (pet.vx > 0 && ox + P.half <= p.l && pet.px + P.half > p.l) { pet.px = p.l; cowCling({ k: 'L', p: p.key }, p.t - pet.py, 1); return; }
+        if (pet.vx < 0 && ox - P.half >= p.r && pet.px - P.half < p.r) { pet.px = p.r; cowCling({ k: 'R', p: p.key }, pet.py - p.t, -1); return; }
+      }
     }
+    /* Chỉ đáp khi đang rơi xuống; vừa bật nhảy từ nền (khung hình đầu chưa kịp nhích lên) thì không tính là chạm nền */
+    if (pet.py >= cw.floor) {
+      pet.py = cw.floor;
+      if (pet.vy >= 0) cowLand({ k: 'floor' }, clampN(pet.px, P.len, cw.W - P.len));
+    }
+  }
+  /* Cụng đầu vào mép màn hình hay trần: bẹp, nổ sao, choáng một lúc */
+  function cowBonk(t) {
+    cowSquash(0.7);
+    pet.daze = Math.max(pet.daze, t + 1600);
+    for (let i = 0; i < 3; i++) cowFx('star', '✦', { up: 30, jx: 30, dx: (Math.random() - 0.5) * 30 });
+    if (Math.random() < 0.8) cowSay(pick(pet.L.BONK));
+    petRough(true);
   }
   /* Chạm mặt: rơi mạnh thì nảy, bẹp xuống, tung bụi; nhẹ thì đứng luôn.
-     Đà ngang giữ lại gần hết, nên bò trượt tiếp rồi chậm dần chứ không phanh cái rụp */
+     Đà ngang giữ lại gần hết, nên con vật trượt tiếp rồi chậm dần chứ không phanh cái rụp */
   function cowLand(ref, s) {
-    const hit = cow.vy;
+    const hit = pet.vy;
     cowSquash(Math.min(1, hit / 1000));
     if (hit > 420) cowDust(hit > 800 ? 4 : 2);
-    if (hit > 520) cowSay(pick(COW_OUCH));
-    if (hit > 380) { cow.vy = -hit * 0.32; cow.vx *= 0.85; return; }
-    cow.on = ref;
-    cow.s = s;
-    cow.v = clampN(cow.vx * 0.85, -380, 380);
-    cow.slip = Math.abs(cow.v) > 40;
-    if (cow.slip) cowDust(1);
-    cow.vx = cow.vy = 0;
-    cow.ghost = false;
-    cow.route = [];
-    cow.until = performance.now() + (gen ? 0 : 700);
-    if (cow.mode !== 'run' && cow.mode !== 'sleep') cow.mode = 'look';
+    if (hit > 520) cowSay(pick(pet.L.OUCH));
+    if (hit > 380) { pet.vy = -hit * 0.32; pet.vx *= 0.85; return; }
+    pet.on = ref;
+    pet.s = s;
+    pet.v = clampN(pet.vx * 0.85, -380, 380);
+    pet.slip = Math.abs(pet.v) > 40;
+    if (pet.slip) cowDust(1);
+    pet.vx = pet.vy = 0;
+    pet.ghost = false;
+    pet.route = [];
+    pet.until = performance.now() + (gen ? 0 : 700);
+    if (pet.mode !== 'run' && pet.mode !== 'sleep') pet.mode = 'look';
+    petRough(false);
   }
   function cowCling(ref, s, dir) {
-    cow.on = ref;
-    cow.s = s;
-    cow.v = 0;
-    cow.vx = cow.vy = 0;
-    cow.dir = dir;
-    cow.ghost = false;
-    cow.route = [];
-    cow.until = performance.now() + 700;
-    cow.mode = 'look';
+    pet.on = ref;
+    pet.s = s;
+    pet.v = 0;
+    pet.vx = pet.vy = 0;
+    pet.dir = dir;
+    pet.ghost = false;
+    pet.route = [];
+    pet.until = performance.now() + 700;
+    pet.mode = 'look';
     cowSquash(0.25);
-    if (Math.random() < 0.6) cowSay(pick(ref.k === 'ceil' ? COW_CEIL : COW_CLING));
+    if (Math.random() < 0.6) cowSay(pick(ref.k === 'ceil' ? pet.L.CEIL : pet.L.CLING));
+    petRough(false);
+  }
+  /* Bị ném, bị lắc, cụng đầu nhiều lần liền (3 lần trong 25 giây): giận, đáp xuống là chạy trốn */
+  function petRough(add) {
+    const now = performance.now();
+    if (add) pet.rough.push(now);
+    pet.rough = pet.rough.filter((x) => now - x < 25000);
+    if (!add && pet.rough.length >= 3) { pet.rough = []; pet.flee = 'mad'; pet.until = now + 450; }
   }
 
-  /* ---- Bò tự nghĩ việc kế tiếp ---- */
+  /* ---- Tự nghĩ việc kế tiếp ---- */
   function cowPlan(t, sg) {
-    cow.route = [];
-    const k = cow.on.k;
+    pet.route = [];
+    const k = pet.on.k;
     if (gen) {
-      if (k === 'floor') cow.route = [{ t: 'walk', s: cow.s > cw.W / 2 ? 40 : cw.W - 40 }];
-      else cowLetGo(true, upright(cow.on));
+      if (isHome(pet.on)) {
+        const sp = cowSpan(sg) || [pet.s, pet.s];
+        pet.route = [{ t: 'walk', s: pet.s > (sp[0] + sp[1]) / 2 ? sp[0] : sp[1] }];
+      } else cowGenHome();
       return;
     }
-    if (!upright(cow.on)) { cowPlanWall(sg, t); return; }
-    if (t - cow.typedAt < 1800) { cow.mode = 'watch'; cow.until = cow.typedAt + 1800; return; }
-    if (cow.mode === 'sleep' || Date.now() - cow.seenAt > COW_NAP) {
-      if (cow.mode !== 'sleep') { cow.mode = 'sleep'; cowSay(pick(COW_SLEEP)); } else cowFx('zz', 'z', { up: 22 });
-      cow.until = t + 1800;
+    if (pet.flee) { const why = pet.flee; pet.flee = ''; if (cowHideStart(why)) return; }
+    if (!upright(pet.on)) { cowPlanWall(sg, t); return; }
+    /* Còn choáng: đứng lảo đảo (sao bay quanh đầu do CSS vẽ) cho tới khi tỉnh */
+    if (t < pet.daze) {
+      pet.mode = 'look';
+      pet.until = pet.daze + 300;
+      if (pet.dazeSaid !== pet.daze && Math.random() < 0.6) { pet.dazeSaid = pet.daze; cowSay(pick(pet.L.DIZZY)); }
       return;
     }
-    const span = cowSpan(sg) || [cow.s, cow.s];
-    const floor = k === 'floor';
+    if (t - user.typedAt < 1800) { pet.mode = 'watch'; pet.until = user.typedAt + 1800; return; }
+    if (pet.mode === 'sleep' || Date.now() - user.seenAt > COW_NAP) {
+      if (pet.mode !== 'sleep') { pet.mode = 'sleep'; cowSay(pick(pet.L.SLEEP)); } else cowFx('zz', 'z', { up: 22 });
+      pet.until = t + 1800 + Math.random() * 400;
+      return;
+    }
+    const span = cowSpan(sg) || [pet.s, pet.s];
+    const home = isHome(pet.on);
     const r = Math.random();
-    if (r < (floor ? 0.34 : 0.26)) { cow.mode = 'graze'; cow.until = t + 4000 + Math.random() * 7000; return; }
-    if (r < (floor ? 0.6 : 0.5)) {
-      const g = clampN(floor && Math.random() < 0.3 ? cw.W - 60 - Math.random() * 50 : cow.s + (Math.random() < 0.5 ? -1 : 1) * (50 + Math.random() * 200), span[0], span[1]);
-      if (Math.abs(g - cow.s) > 24) { cow.mode = 'wander'; cow.route = [{ t: 'walk', s: g }]; return; }
+    /* Lâu lâu tự bày trò trốn tìm */
+    if (r < 0.025 && cowHideStart('play')) return;
+    /* Đứng chung một khung với con kia thì có khi lại gần nhau */
+    const o = pet.other;
+    if (r < 0.13 && o.live() && !o.hide && o.on && o.on.k === k && o.on.p === pet.on.p) {
+      const g = clampN(o.s + (pet.s < o.s ? -1 : 1) * (pet.sp.half + o.sp.half + 6), span[0], span[1]);
+      if (Math.abs(g - pet.s) > 24) { pet.mode = 'wander'; pet.route = [{ t: 'walk', s: g }, { t: 'say', lines: pet.L.NUDGE, p: 0.3 }]; return; }
     }
-    if (r < 0.9 && cowExplore(sg, t)) { cow.mode = 'wander'; return; }
-    cow.mode = 'look';
-    cow.until = t + 2200 + Math.random() * 2400;
+    if (r < (home ? 0.38 : 0.3)) { pet.mode = 'graze'; pet.until = t + 4000 + Math.random() * 7000; return; }
+    if (r < (home ? 0.62 : 0.54)) {
+      const g = clampN(pet.s + (Math.random() < 0.5 ? -1 : 1) * (50 + Math.random() * 200), span[0], span[1]);
+      if (Math.abs(g - pet.s) > 24) { pet.mode = 'wander'; pet.route = [{ t: 'walk', s: g }]; return; }
+    }
+    if (r < 0.9 && cowExplore(sg, t)) { pet.mode = 'wander'; return; }
+    pet.mode = 'look';
+    pet.until = t + 2200 + Math.random() * 2400;
   }
   function cowExplore(sg, t) {
-    const tries = cow.on.k === 'floor' ? [cowClimbUp, cowClimbUp, cowClimbUp, cowHopAround, cowWallTrip] : [cowClimbUp, cowClimbDown, cowClimbDown, cowHopAround];
+    const k = pet.on.k;
+    const tries = k === 'floor' ? [cowClimbUp, cowClimbUp, cowClimbUp, cowHopAround, cowWallTrip]
+      : isHome(pet.on) ? [cowClimbUp, cowClimbUp, cowClimbUp, cowHopAround, cowClimbDown]
+      : [cowClimbUp, cowClimbDown, cowClimbDown, cowHopAround];
+    /* Vịt thích vỗ cánh nhảy lên cao hơn là leo */
+    if (pet.sp.glide) tries.push(cowHopAround, cowHopAround);
     for (let i = tries.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [tries[i], tries[j]] = [tries[j], tries[i]]; }
     return tries.some((f) => f(sg, t));
   }
@@ -5702,11 +6266,11 @@ details.gbridge:not([open]) { padding-block: 11px; }
     if (!vis) return false;
     const cands = [];
     for (const p of cowPlats(t)) {
-      if (p.key === cow.on.p && cow.on.k === 'top') continue;
+      if (p.key === pet.on.p && pet.on.k === 'top') continue;
       /* Khung ở trên đầu (đáy cách chỗ đứng không quá 110px), hoặc khung thò xuống ngang chỗ đứng thì bám cạnh ngay tầm */
       const gap = sg.c - p.b;
       const beside = gap < -2;
-      if (p.t < cw.ceil + 34 || p.t > sg.c - 40 || gap > 110) continue;
+      if (p.t < Math.max(p.ct, cw.ceil) + 30 || p.t > p.cb || p.t > sg.c - 40 || gap > 110) continue;
       for (const side of ['L', 'R']) {
         if ((side === 'L' ? p.l : cw.W - p.r) < 34) continue;
         const sx = (beside ? (side === 'L' ? p.l - 18 : p.r + 18) : side === 'L' ? p.l + 10 : p.r - 10) - sg.o;
@@ -5722,179 +6286,410 @@ details.gbridge:not([open]) { padding-block: 11px; }
     const inward = left ? 1 : -1;
     const w = c.p.r - c.p.l;
     const room = Math.max(0, w - 50);
-    cow.route = [
+    pet.route = [
       { t: 'walk', s: c.sx },
       { t: 'grab', ref: { k: c.side, p: c.p.key }, s: left ? c.p.t - grabY : grabY - c.p.t, dir: left ? 1 : -1 },
       { t: 'over', end: left ? 'b' : 'a' },
       { t: 'walk', s: (left ? 0 : w) + inward * (24 + Math.random() * Math.min(180, room)) },
-      { t: 'say', lines: COW_UPTOP, p: 0.3 },
+      { t: 'say', lines: pet.L.UPTOP, p: 0.3 },
     ];
     return true;
   }
   /* Xuống khỏi khung đang đứng: lật qua mép, tụt dọc cạnh, tới chân thì bước xuống */
   function cowClimbDown(sg) {
-    if (cow.on.k !== 'top') return false;
+    if (pet.on.k !== 'top') return false;
     const box = sg.box;
-    const sides = ['L', 'R'].filter((side) => (side === 'L' ? box.l : cw.W - box.r) >= 34);
+    /* Khung sát đáy: cạnh tụt xuống tới tận nền, nên bên ấy phải có nền đủ rộng để đứng */
+    const deep = box.b >= cw.floor - 26;
+    const sides = ['L', 'R'].filter((side) => (side === 'L' ? box.l : cw.W - box.r) >= 34 && (!deep || floorGap(side === 'L' ? box.l - pet.sp.len - 4 : box.r + pet.sp.len + 4)));
     if (!sides.length) return false;
     const left = pick(sides) === 'L';
-    const h = box.b - box.t;
-    cow.route = [{ t: 'over', end: left ? 'a' : 'b' }, { t: 'walk', s: left ? -h : h }, { t: 'leave' }];
+    const h = sideFoot(box, left, pet.on.p) - box.t;
+    pet.route = [{ t: 'over', end: left ? 'a' : 'b' }, { t: 'walk', s: left ? -h : h }, { t: 'leave' }];
     return true;
   }
-  /* Nhảy sang khung bên cạnh hoặc nhảy xuống đất */
+  /* Chân của một cạnh khung: đáy khung, hay mép trên của khung sát đáy chắn ngay dưới (ô nhập, chân cột phiên) cho khỏi chui vào trong */
+  function sideFoot(box, left, key) {
+    const x = left ? box.l : box.r;
+    const x0 = left ? x - pet.sp.tall : x - 14;
+    const x1 = left ? x + 14 : x + pet.sp.tall;
+    let b = Math.min(box.b, cw.floor);
+    for (const g of cw.ground) if (g.key !== key && g.l < x1 && g.r > x0 && g.t > box.t + 20) b = Math.min(b, g.t - 2);
+    return b;
+  }
+  /* Nhảy sang khung bên cạnh hoặc nhảy xuống nền; vịt vỗ cánh nhảy được cao hơn */
   function cowHopAround(sg, t) {
-    const x = cow.px;
-    const y = cow.py;
+    const x = pet.px;
+    const y = pet.py;
+    const up = pet.sp.glide ? 200 : 120;
     const cands = [];
     for (const p of cowPlats(t)) {
-      if (p.key === cow.on.p || p.t < cw.ceil + 34 || p.t > cw.floor - 4) continue;
-      if (y - p.t > 120 || p.t - y > 260) continue;
+      if (p.key === pet.on.p || p.t < Math.max(p.ct, cw.ceil) + 30 || p.t > p.cb - 2) continue;
+      if (y - p.t > up || p.t - y > 260) continue;
       if (p.t < y - 10 && x > p.l - 20 && x < p.r + 20) continue;
       const tx = clampN(x, p.l + 18, p.r - 18);
       if (Math.abs(tx - x) > 240 || (Math.abs(tx - x) < 30 && Math.abs(p.t - y) < 30)) continue;
       cands.push({ ref: { k: 'top', p: p.key }, s: tx - p.l });
     }
-    if (cow.on.k !== 'floor' && cw.floor - y < 260) cands.push({ ref: { k: 'floor' }, s: clampN(x + (Math.random() - 0.5) * 160, COW_LEN, cw.W - COW_LEN) });
+    if (pet.on.k !== 'floor' && cw.floor - y < 260) {
+      const fx = clampN(x + (Math.random() - 0.5) * 160, pet.sp.len, cw.W - pet.sp.len);
+      const g = floorGap(fx);
+      if (g && g[1] - g[0] > 2 * pet.sp.len) cands.push({ ref: { k: 'floor' }, s: fx });
+    }
     if (!cands.length) return false;
     const c = pick(cands);
-    cow.route = [{ t: 'hop', ref: c.ref, s: c.s }];
+    pet.route = [{ t: 'hop', ref: c.ref, s: c.s }];
     return true;
   }
-  /* Đi tới góc khung chat rồi leo lên vách */
+  /* Đi tới góc màn hình rồi leo lên vách */
   function cowWallTrip() {
-    cow.route = [{ t: 'over', end: Math.random() < 0.5 ? 'a' : 'b' }];
+    pet.route = [{ t: 'over', end: Math.random() < 0.5 ? 'a' : 'b' }];
     return true;
   }
   /* Đang bám vách hay trần thì không gặm cỏ: leo tiếp, tụt xuống, hay buông tay */
   function cowPlanWall(sg, t) {
-    const k = cow.on.k;
-    cow.mode = 'wander';
+    const k = pet.on.k;
+    pet.mode = 'wander';
     if (k === 'L' || k === 'R') {
       const box = sg.box;
       const left = k === 'L';
-      if (box.t >= cw.ceil + 34 && Math.random() < 0.75) {
+      if (box.t >= Math.max(box.ct, cw.ceil) + 34 && Math.random() < 0.75) {
         const w = box.r - box.l;
         const room = Math.max(0, w - 50);
-        cow.route = [
+        pet.route = [
           { t: 'over', end: left ? 'b' : 'a' },
           { t: 'walk', s: (left ? 0 : w) + (left ? 1 : -1) * (24 + Math.random() * Math.min(160, room)) },
-          { t: 'say', lines: COW_UPTOP, p: 0.3 },
+          { t: 'say', lines: pet.L.UPTOP, p: 0.3 },
         ];
-      } else cow.route = [{ t: 'walk', s: left ? box.t - box.b : box.b - box.t }, { t: 'leave' }];
+      } else {
+        const h = sideFoot(box, left, pet.on.p) - box.t;
+        pet.route = [{ t: 'walk', s: left ? -h : h }, { t: 'leave' }];
+      }
       return;
     }
     if (k === 'ceil') {
-      cow.route = [{ t: 'walk', s: -(COW_LEN + Math.random() * (cw.W - 2 * COW_LEN)) }, { t: 'wait', ms: 900, mode: 'look' }, { t: 'drop' }];
+      pet.route = [{ t: 'walk', s: -(pet.sp.len + Math.random() * (cw.W - 2 * pet.sp.len)) }, { t: 'wait', ms: 900, mode: 'look' }, { t: 'drop' }];
       return;
     }
+    /* Vách màn hình: lên trần, xuống chân vách (chân vách đứng trên ô nhập thì bước lên ô nhập), hay buông tay */
     const r = Math.random();
     const toCeil = k === 'wl' ? 'a' : 'b';
-    if (r < 0.4) cow.route = [{ t: 'walk', s: sg.a + (sg.b - sg.a) * (0.3 + Math.random() * 0.4) }, { t: 'wait', ms: 700, mode: 'look' }, { t: 'over', end: toCeil }];
-    else if (r < 0.8) cow.route = [{ t: 'over', end: toCeil === 'a' ? 'b' : 'a' }];
-    else cow.route = [{ t: 'wait', ms: 1200, mode: 'look' }, { t: 'drop' }];
+    const low = k === 'wl' ? 'b' : 'a';
+    const grounded = (k === 'wl' ? cw.wlb : cw.wrb) < cw.floor - 2;
+    if (r < 0.4) pet.route = [{ t: 'walk', s: sg.a + (sg.b - sg.a) * (0.3 + Math.random() * 0.4) }, { t: 'wait', ms: 700, mode: 'look' }, { t: 'over', end: toCeil }];
+    else if (r < 0.8) pet.route = grounded ? [{ t: 'walk', s: low === 'b' ? sg.b - 4 : sg.a + 4 }, { t: 'leave' }] : [{ t: 'over', end: low }];
+    else pet.route = [{ t: 'wait', ms: 1200, mode: 'look' }, { t: 'drop' }];
+  }
+
+  /* ---- Trốn sau khung, ló đầu ra nhìn ---- */
+  /* Chỗ trốn là một cạnh của một khung (hay mép màn hình). Con vật phóng tới, lùi vào sau cạnh ấy (lớp của nó lùi ra sau khung),
+     lâu lâu ló đầu ra nhìn rồi thụt vào, ló chỗ khác như trò đập chuột chũi; hết giận thì chui ra, Cậu bấm trúng là bắt được. */
+  const HIDE_ANG = { top: 0, B: 180, L: -90, R: 90 };
+  function rectOf(e) {
+    const r = e && e.isConnected && e.getBoundingClientRect();
+    return r && r.width > 30 && r.height > 20 ? { l: r.left, t: r.top, r: r.right, b: r.bottom } : null;
+  }
+  /* Chỗ chân khi đang lún sâu d (px) vào sau cạnh, u là vị trí dọc theo cạnh */
+  function hidePos(r, edge, u, d) {
+    return edge === 'top' ? [u, r.t + d] : edge === 'B' ? [u, r.b - d] : edge === 'L' ? [r.l + d, u] : [r.r - d, u];
+  }
+  /* Khoảng dọc theo cạnh có thể ló đầu: chừa hai đầu, không ló lên trên thanh trên cùng hay xuống quá thấp */
+  function hideSpan(r, edge) {
+    let a;
+    let b;
+    if (edge === 'top' || edge === 'B') {
+      if (edge === 'top' ? r.t < cw.ceil + 20 || r.t > cw.H - 10 : r.b < 20 || r.b > cw.H - 160) return null;
+      a = Math.max(r.l, 0) + 30;
+      b = Math.min(r.r, cw.W) - 30;
+    } else {
+      const x = edge === 'L' ? r.l : r.r;
+      if (x < -1 || x > cw.W + 1) return null;
+      a = Math.max(r.t, cw.ceil) + 50;
+      b = Math.min(r.b, cw.H) - 110;
+    }
+    return b > a ? [a, b] : null;
+  }
+  /* Chỗ trốn lúc này: sau ô nhập, trong bụi oải hương, sau thanh trên cùng, sau ảnh nhân vật cạnh truyện, sau mép khung NPC,
+     sau mép hai cột bên, sau hai mép màn hình. w là độ ưa thích; back = lớp phải lùi ra sau khung (mép màn hình thì tự khuất,
+     'deep' = lùi ra sau cả đồi hoa); over = khung là bảng trượt đang mở trên điện thoại */
+  function hideSpots() {
+    const n = cowNodes();
+    const cls = document.body.classList;
+    const pov = cls.contains('pov');
+    const sov = cls.contains('sov');
+    /* Khung NPC phủ kín màn hình điện thoại: chỉ còn trốn sau mép màn hình */
+    const full = cw.cover && cw.cover.l <= 1 && cw.cover.r >= cw.W - 1 && !pov && !sov;
+    const out = [];
+    const add = (w, key, edge, get, back, over) => { const r = get(); if (r && hideSpan(r, edge)) out.push({ w, key, edge, get, back, over: !!over }); };
+    if (!pov && !sov && !full) {
+      add(3, 'cb', 'top', () => dockCut('cb', rectOf(n.box)), true);
+      if (shown(n.lav)) for (const k of ['lv|0', 'lv|1']) add(1.5, k, 'top', () => lavBox(k, n.lav.getBoundingClientRect(), n.box.getBoundingClientRect()), 'deep');
+      add(1, 'head', 'B', () => { const r = rectOf(n.top); if (r && cw.dock) r.r = Math.min(r.r, cw.dock.l - 2); return r; }, true);
+      if (!n.stage.hidden) [...n.stage.children].forEach((e, i) => add(1, 'sp|' + i, 'top', () => rectOf(e), true));
+      if (!n.dock.hidden && shown(n.dock)) add(1.5, 'dock', 'L', () => rectOf(n.dock.hidden ? null : n.dock), true);
+    }
+    if (!pov && !full && shown(n.side)) add(1.5, 'side', 'R', () => rectOf(n.side), true, sov);
+    if (!sov && !full && shown(n.panel)) add(1.5, 'panel', 'L', () => rectOf(n.panel), true, pov);
+    add(0.8, 'wl', 'R', () => ({ l: -400, t: 0, r: 0, b: cw.H }), false);
+    add(0.8, 'wr', 'L', () => ({ l: cw.W, t: 0, r: cw.W + 400, b: cw.H }), false);
+    return out;
+  }
+  function petBack(on) {
+    const l = pet.n && pet.n.layer;
+    if (!l) return;
+    const h = pet.hide;
+    l.classList.toggle('back', !!on && !!h && !!h.back);
+    l.classList.toggle('deep', !!on && !!h && h.back === 'deep');
+    l.classList.toggle('over', !!on && !!h && h.over);
+  }
+  /* why: mad (bị hành quá), scared (truyện đáng sợ), play (tự bày trò) */
+  function cowHideStart(why) {
+    if (pet.hide || pet.drag || !cowMoves()) return false;
+    if (!cw) cw = cowWorldBox();
+    const taken = pet.other.hide && pet.other.hide.key;
+    const spots = hideSpots().filter((x) => x.key !== taken);
+    if (!spots.length) return false;
+    let w = Math.random() * spots.reduce((m, x) => m + x.w, 0);
+    const spot = spots.find((x) => (w -= x.w) <= 0) || spots[0];
+    const r = spot.get();
+    const span = hideSpan(r, spot.edge);
+    const u = span[0] + Math.random() * (span[1] - span[0]);
+    const [x1, y1] = hidePos(r, spot.edge, u, 0);
+    const dist = Math.hypot(x1 - pet.px, y1 - pet.py);
+    Object.assign(pet, { on: null, tw: null, route: [], v: 0, vx: 0, vy: 0, ghost: false, slip: false, mode: 'look' });
+    pet.hide = Object.assign({}, spot, { u, d: 0, d0: 0, ph: 'go', k: 0, pre: 0.28, x0: pet.px, y0: pet.py, a0: pet.ang, dur: clampN(0.45 + dist / 1500, 0.5, 1.1), h: clampN(50 + dist * 0.18, 50, 200), left: 1 + Math.floor(Math.random() * 3), until: 0, turned: false, found: false });
+    if (Math.abs(x1 - pet.px) > 4) pet.dir = Math.sign(x1 - pet.px);
+    cowFx('mark', '!', { up: 26 });
+    cowSay(pick(why === 'scared' ? pet.L.SCARED : why === 'play' ? pet.L.PLAY : pet.L.HIDE));
+    const me = pet;
+    const o = pet.other;
+    if (o.live() && Math.random() < 0.55) setTimeout(() => { if (me.hide && !o.hide && !o.drag) sayAs(o, pick(o.L.LOST)); }, 2600 + Math.random() * 1500);
+    cowKick();
+    return true;
+  }
+  function hidePhase(h, ph, until) {
+    h.ph = ph;
+    h.k = 0;
+    h.d0 = h.d;
+    h.until = until || 0;
+    h.turned = false;
+  }
+  const easeBack = (k) => 1 + 2.70158 * Math.pow(k - 1, 3) + 1.70158 * Math.pow(k - 1, 2);
+  function cowHideStep(dt, t) {
+    const h = pet.hide;
+    const r = h.get();
+    const span = r && hideSpan(r, h.edge);
+    /* Chỗ trốn biến mất (đóng bảng, xoay máy): chui ra, rơi xuống */
+    if (!span) { cowUnhide(false); return; }
+    h.u = clampN(h.u, span[0], span[1]);
+    const ang = HIDE_ANG[h.edge];
+    if (h.ph === 'go') {
+      /* Cuống quýt tại chỗ một nhịp rồi phóng vụt tới chỗ trốn theo đường vòng cung */
+      if (h.pre > 0) { h.pre -= dt; return; }
+      h.k = Math.min(1, h.k + dt / h.dur);
+      const [x1, y1] = hidePos(r, h.edge, h.u, 0);
+      const e = h.k < 0.5 ? 2 * h.k * h.k : 1 - Math.pow(-2 * h.k + 2, 2) / 2;
+      pet.px = h.x0 + (x1 - h.x0) * h.k;
+      pet.py = h.y0 + (y1 - h.y0) * h.k - h.h * 4 * h.k * (1 - h.k);
+      pet.ang = h.a0 + angDelta(h.a0, ang) * e;
+      if (h.k >= 1) { pet.ang = ang; hidePhase(h, 'sink'); cowSquash(0.25); petBack(true); }
+      return;
+    }
+    pet.ang = ang;
+    const deep = pet.sp.tall + 4;
+    const peek = pet.sp.tall - pet.sp.peek;
+    const rate = h.ph === 'sink' ? 3.4 : h.ph === 'rise' ? 3 : h.ph === 'out' ? 3.6 : 0;
+    if (rate) {
+      h.k = Math.min(1, h.k + dt * rate);
+      const to = h.ph === 'sink' ? deep : h.ph === 'rise' ? peek : 0;
+      const e = h.ph === 'rise' ? easeBack(h.k) : h.ph === 'sink' ? h.k * h.k : 1 - (1 - h.k) * (1 - h.k);
+      h.d = h.d0 + (to - h.d0) * e;
+      if (h.k >= 1) {
+        if (h.ph === 'sink') hidePhase(h, 'wait', t + 1100 + Math.random() * 2600);
+        else if (h.ph === 'rise') { hidePhase(h, 'look', t + 1400 + Math.random() * 1600); if (Math.random() < 0.35) cowSay(pick(pet.L.PEEK)); }
+        else { [pet.px, pet.py] = hidePos(r, h.edge, h.u, 0); cowUnhide(true); return; }
+      }
+    } else if (t >= h.until) {
+      if (h.ph === 'wait') {
+        if (h.left-- > 0) {
+          /* Ló ra chỗ khác dọc theo cạnh */
+          h.u = span[0] + Math.random() * (span[1] - span[0]);
+          if (h.edge === 'top' || h.edge === 'B') pet.dir = Math.random() < 0.5 ? 1 : -1;
+          hidePhase(h, 'rise');
+        } else hidePhase(h, 'out');
+      } else hidePhase(h, h.left > 0 ? 'sink' : 'out');
+    } else if (h.ph === 'look' && !h.turned && t > h.until - 700 && h.edge !== 'L' && h.edge !== 'R') { h.turned = true; pet.dir = -pet.dir; }
+    [pet.px, pet.py] = hidePos(r, h.edge, h.u, h.d);
+  }
+  /* Chui ra: cạnh trên ô nhập hay ảnh thì đứng lên mép ấy; cạnh dưới thanh trên cùng thì buông rơi; mép bên thì nhảy ra ngoài */
+  function cowUnhide(normal) {
+    const h = pet.hide;
+    pet.hide = null;
+    petBack(false);
+    pet.mode = 'look';
+    pet.until = performance.now() + 900;
+    if (!h) return;
+    const say = normal && !h.found && Math.random() < 0.7;
+    const o = pet.other;
+    if (normal && o.live() && !o.hide && Math.random() < 0.4) setTimeout(() => { if (!o.drag) sayAs(o, pick(o.L.BACK)); }, 900);
+    if (normal && h.edge === 'top') {
+      const ref = { k: 'top', p: h.key };
+      const sg = cowSeg(ref);
+      if (sg && segVis(sg)) {
+        Object.assign(pet, { on: ref, s: clampN(h.u - sg.box.l, 0, sg.box.r - sg.box.l), v: 0, vx: 0, vy: 0, ang: 0 });
+        cowHop(240);
+        if (say) cowSay(pick(pet.L.OUT));
+        return;
+      }
+    }
+    pet.on = null;
+    pet.vx = h.edge === 'L' ? -170 : h.edge === 'R' ? 170 : 0;
+    pet.vy = h.edge === 'B' ? 40 : -240;
+    if (say) cowSay(pick(pet.L.OUT));
+  }
+  /* Cậu bấm trúng cái đầu đang ló ra */
+  function cowFound() {
+    const h = pet.hide;
+    h.found = true;
+    h.left = 0;
+    cowFx('mark', '!', { up: 26 });
+    cowSay(pick(pet.L.FOUND));
+    if (h.ph === 'go') cowUnhide(false);
+    else hidePhase(h, 'out');
+    cowKick();
   }
 
   /* ---- Vẽ ---- */
   function cowState() {
-    if (cow.drag) return 'held';
-    if (cow.tw ? cow.tw.air && cow.tw.pre <= 0 : !cow.on) return 'air';
-    if (cow.mode === 'sleep' && cow.lie > 0.4) return 'sleep';
-    const sp = Math.abs(cow.v);
+    const h = pet.hide;
+    if (h) return h.ph === 'go' ? (h.pre > 0 ? 'run' : 'air') : h.ph === 'look' || h.ph === 'wait' ? 'look' : 'walk';
+    if (pet.drag) return 'held';
+    if (pet.tw ? pet.tw.air && pet.tw.pre <= 0 : !pet.on) return 'air';
+    if (pet.mode === 'sleep' && pet.lie > 0.4) return 'sleep';
+    const sp = Math.abs(pet.v);
     if (sp > 95) return 'run';
-    if (sp > 4 || cow.tw || cow.tgt != null) return 'walk';
-    if (!upright(cow.on)) return 'look';
-    if (cow.mode === 'think' || cow.mode === 'look' || cow.mode === 'watch') return cow.mode;
+    if (sp > 4 || pet.tw || pet.tgt != null) return 'walk';
+    if (!upright(pet.on)) return 'look';
+    if (pet.mode === 'think' || pet.mode === 'look' || pet.mode === 'watch') return pet.mode;
     return 'graze';
   }
   function cowGround(t) {
     let g = cw.floor;
-    if (!cow.ghost) for (const p of cowPlats(t)) if (p.t >= cow.py - 0.5 && p.t < g && cow.px >= p.l + 4 && cow.px <= p.r - 4 && p.t >= cw.ceil + 30) g = p.t;
+    for (const p of cowPlats(t)) {
+      if (pet.ghost && p.key !== 'cb') continue;
+      if (p.t >= pet.py - 0.5 && p.t < g && pet.px >= p.l + 4 && pet.px <= p.r - 4 && p.t >= Math.max(p.ct, cw.ceil) + 24 && p.t <= p.cb) g = p.t;
+    }
     return g;
   }
   function cowRender(t) {
-    const n = cowNodes();
-    const sp = Math.abs(cow.v);
-    const w = Math.sin(cow.phase * Math.PI * 2);
-    const lie = cow.lie;
-    const leg = (ang) => 'translate(0px,' + (9 * lie).toFixed(2) + 'px) rotate(' + (ang * (1 - lie)).toFixed(2) + 'deg) scale(1,' + (1 - 0.68 * lie).toFixed(3) + ')';
-    const la = leg(cow.amp * w);
-    const lb = leg(-cow.amp * w);
+    const n = pet.n;
+    const P = pet.sp;
+    const sp = Math.abs(pet.v);
+    const w = Math.sin(pet.phase * Math.PI * 2);
+    const lie = pet.lie;
+    const leg = (ang) => 'translate(0px,' + (P.sit * lie).toFixed(2) + 'px) rotate(' + (ang * (1 - lie)).toFixed(2) + 'deg) scale(1,' + (1 - 0.68 * lie).toFixed(3) + ')';
+    const la = leg(pet.amp * w);
+    const lb = leg(-pet.amp * w);
     n.a.forEach((g) => { g.style.transform = la; });
     n.b.forEach((g) => { g.style.transform = lb; });
     const bob = Math.abs(w) * Math.min(4, sp * 0.026);
-    const rock = w * Math.min(3, sp * 0.02);
-    n.upper.style.transform = 'translate(0px,' + (9 * lie - bob).toFixed(2) + 'px) rotate(' + (cow.lean + rock).toFixed(2) + 'deg)';
-    n.nod.style.transform = 'rotate(' + (Math.sin(cow.phase * Math.PI * 4) * Math.min(5, sp * 0.05)).toFixed(2) + 'deg)';
-    const s = cow.squash;
-    n.hop.style.transform = 'translate(0px,-40px) rotate(' + cow.tilt.toFixed(2) + 'deg) translate(0px,18px) rotate(' + cow.spin.toFixed(1) + 'deg) translate(0px,22px) scale(' + (1 + 0.16 * s).toFixed(3) + ',' + (1 - 0.2 * s).toFixed(3) + ')';
-    n.root.style.transform = 'translate3d(' + (cow.px - FOOT_X).toFixed(2) + 'px,' + (cow.py - FOOT_Y).toFixed(2) + 'px,0) rotate(' + cow.ang.toFixed(2) + 'deg)';
-    /* Bóng: đứng thì ở dưới chân, bay thì in xuống mặt bên dưới và nhạt dần theo độ cao, bám vách thì không có bóng */
-    let sx = cow.px;
-    let sy = cow.py;
+    /* Vịt đi lạch bạch: thân lắc qua lại theo từng bước */
+    const rock = w * Math.min(3, sp * 0.02) * P.rock;
+    n.upper.style.transform = 'translate(0px,' + (P.sit * lie - bob).toFixed(2) + 'px) rotate(' + (pet.lean + rock).toFixed(2) + 'deg)';
+    n.nod.style.transform = 'rotate(' + (Math.sin(pet.phase * Math.PI * 4) * Math.min(5, sp * 0.05)).toFixed(2) + 'deg)';
+    const s = pet.squash;
+    n.hop.style.transform = 'translate(0px,-' + P.hang + 'px) rotate(' + pet.tilt.toFixed(2) + 'deg) translate(0px,' + (P.hang - P.mid) + 'px) rotate(' + pet.spin.toFixed(1) + 'deg) translate(0px,' + P.mid + 'px) scale(' + (1 + 0.16 * s).toFixed(3) + ',' + (1 - 0.2 * s).toFixed(3) + ')';
+    n.root.style.transform = 'translate3d(' + (pet.px - P.fx).toFixed(2) + 'px,' + (pet.py - P.fy).toFixed(2) + 'px,0) rotate(' + pet.ang.toFixed(2) + 'deg)';
+    /* Bóng: đứng thì ở dưới chân, bay thì in xuống mặt bên dưới và nhạt dần theo độ cao, bám vách hay đang trốn thì không có bóng */
+    let sx = pet.px;
+    let sy = pet.py;
     let sc = 1;
     let so;
-    if (cow.drag || !cow.on || (cow.tw && cow.tw.air)) {
+    if (pet.hide) so = 0;
+    else if (pet.drag || !pet.on || (pet.tw && pet.tw.air)) {
       const g = cowGround(t);
-      const lift = Math.min(1, Math.max(0, g - cow.py) / 160);
+      const lift = Math.min(1, Math.max(0, g - pet.py) / 160);
       sy = g;
       sc = 1 - 0.55 * lift;
-      so = g - cow.py < 320 ? 1 - 0.6 * lift : 0;
-    } else so = Math.max(0, Math.cos((cow.ang * Math.PI) / 180));
-    n.shadow.style.transform = 'translate3d(' + (sx - 16).toFixed(1) + 'px,' + (sy - 2).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+      so = g - pet.py < 320 ? 1 - 0.6 * lift : 0;
+    } else so = Math.max(0, Math.cos((pet.ang * Math.PI) / 180));
+    n.shadow.style.transform = 'translate3d(' + (sx - P.shw / 2).toFixed(1) + 'px,' + (sy - 2).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
     n.shadow.style.opacity = so.toFixed(2);
-    const dir = cow.dir > 0 ? '1' : '-1';
+    const dir = pet.dir > 0 ? '1' : '-1';
     if (n.root.dataset.dir !== dir) n.root.dataset.dir = dir;
     const st = cowState();
     if (n.root.dataset.state !== st) n.root.dataset.state = st;
-    if (cow.sayOn) cowSayFit();
-    cow.rx = cow.px;
-    cow.ry = cow.py;
-    cow.ra = cow.ang;
+    const dz = t < pet.daze ? '1' : '0';
+    if (n.root.dataset.daze !== dz) n.root.dataset.daze = dz;
+    if (pet.sayOn) cowSayFit();
+    pet.rx = pet.px;
+    pet.ry = pet.py;
+    pet.ra = pet.ang;
   }
-  /* Bóng chữ hiện phía lưng bò (bò treo ngược thì ở dưới, bám vách thì ở bên), không tràn ra khỏi khung chat */
+  /* Bóng chữ hiện phía lưng con vật (treo ngược thì ở dưới, bám vách thì ở bên), không tràn ra khỏi màn hình, không đè bóng chữ của con kia.
+     Đuôi bóng chữ chỉ về phía con vật đang nói */
   function cowSayFit() {
-    const n = cowNodes();
-    const r = (cow.ang * Math.PI) / 180;
+    const n = pet.n;
+    const r = (pet.ang * Math.PI) / 180;
     const nx = Math.sin(r);
     const ny = -Math.cos(r);
-    const w = cow.sayW;
-    const h = cow.sayH;
+    const w = pet.sayW;
+    const h = pet.sayH;
+    const off = pet.sp.tall + 6;
     let x;
     let y;
+    let side;
     if (Math.abs(ny) >= 0.5) {
-      x = cow.px + nx * 46 - w / 2;
-      y = ny < 0 ? cow.py + ny * 46 - h : cow.py + ny * 46;
+      x = pet.px + nx * off - w / 2;
+      y = ny < 0 ? pet.py + ny * off - h : pet.py + ny * off;
+      side = ny < 0 ? 'up' : 'down';
     } else {
-      x = nx > 0 ? cow.px + 46 : cow.px - 46 - w;
-      y = cow.py - h / 2 - 12;
+      x = nx > 0 ? pet.px + off : pet.px - off - w;
+      y = pet.py - h / 2 - 12;
+      side = 'side';
     }
-    n.say.style.left = clampN(x, 6, cw.W - w - 6).toFixed(1) + 'px';
-    n.say.style.top = clampN(y, cw.ceil + 4, cw.floor - h - 2).toFixed(1) + 'px';
+    x = clampN(x, 6, cw.W - w - 6);
+    y = clampN(y, 4, cw.H - h - 4);
+    const o = pet.other.sayOn && pet.other.sayBox;
+    if (o && x < o.x + o.w && x + w > o.x && y < o.y + o.h && y + h > o.y) {
+      const below = side === 'down' ? true : side === 'up' ? false : y > o.y;
+      y = clampN(below ? o.y + o.h + 6 : o.y - h - 6, 4, cw.H - h - 4);
+    }
+    pet.sayBox = { x, y, w, h };
+    n.say.style.left = x.toFixed(1) + 'px';
+    n.say.style.top = y.toFixed(1) + 'px';
+    n.say.style.setProperty('--tx', clampN(pet.px - x, 12, w - 12).toFixed(1) + 'px');
+    if (n.say.dataset.side !== side) n.say.dataset.side = side;
   }
-  function cowSay(text) {
-    if (!S.cowOn) return;
-    if (!cw) cw = cowWorldBox();
-    const b = cowNodes().say;
+  /* Nói một câu; ms = thời gian bóng chữ đứng (mặc định theo độ dài câu). Trong lúc nói thì miệng bò, mỏ vịt mấp máy */
+  function cowSay(text, ms) {
+    if (!pet.live()) return;
+    cw = cowWorldBox();
+    const me = pet;
+    const b = pet.n.say;
+    text = petFill(text);
     b.textContent = text;
     b.classList.add('on');
-    cow.sayOn = true;
-    cow.sayW = b.offsetWidth;
-    cow.sayH = b.offsetHeight;
+    pet.sayOn = true;
+    pet.sayW = b.offsetWidth;
+    pet.sayH = b.offsetHeight;
     cowSayFit();
-    clearTimeout(cow.sayTimer);
-    cow.sayTimer = setTimeout(() => { b.classList.remove('on'); cow.sayOn = false; }, 2300);
+    pet.n.root.dataset.talk = '1';
+    clearTimeout(pet.talkTimer);
+    pet.talkTimer = setTimeout(() => { me.n.root.dataset.talk = '0'; }, Math.min(1600, 300 + text.length * 55));
+    clearTimeout(pet.sayTimer);
+    pet.sayTimer = setTimeout(() => { b.classList.remove('on'); me.sayOn = false; }, ms || 1900 + text.length * 35);
   }
-  /* Hạt nhỏ quanh bò; up = cách chân bao xa theo hướng lưng bò, fwd = về phía đầu bò */
+  /* Hạt nhỏ quanh con vật; up = cách chân bao xa theo hướng lưng, fwd = về phía đầu */
   function cowFx(kind, text, opt = {}) {
     if (!cowMoves()) return;
     const n = cowNodes();
     if (!cw) cw = cowWorldBox();
-    const r = (cow.ang * Math.PI) / 180;
+    const r = (pet.ang * Math.PI) / 180;
     const up = opt.up != null ? opt.up : 32;
     const fw = (opt.fwd != null ? opt.fwd : 16) + (opt.jx || 0) * (Math.random() - 0.5);
-    const x = cow.px + Math.sin(r) * up + Math.cos(r) * cow.dir * fw;
-    const y = cow.py - Math.cos(r) * up + Math.sin(r) * cow.dir * fw;
+    const x = pet.px + Math.sin(r) * up + Math.cos(r) * pet.dir * fw;
+    const y = pet.py - Math.cos(r) * up + Math.sin(r) * pet.dir * fw;
     const p = el('span', 'cfx ' + kind, text || '');
     p.style.left = x.toFixed(1) + 'px';
     p.style.top = (y - 10).toFixed(1) + 'px';
@@ -5905,16 +6700,16 @@ details.gbridge:not([open]) { padding-block: 11px; }
     setTimeout(kill, 2600);
   }
   function cowDust(count) {
-    for (let i = 0; i < count; i++) cowFx('dust', '', { up: 1 + Math.random() * 3, fwd: -(12 + Math.random() * 10), dx: -cow.dir * (6 + Math.random() * 14) });
+    for (let i = 0; i < count; i++) cowFx('dust', '', { up: 1 + Math.random() * 3, fwd: -(12 + Math.random() * 10), dx: -pet.dir * (6 + Math.random() * 14) });
   }
   /* Nhảy tại chỗ (khi AI viết xong, khi được vuốt ve): chỉ khi đang đứng trên một mặt */
   function cowHop(power) {
-    if (!power || !cowMoves() || cow.drag || cow.tw || !upright(cow.on)) return false;
-    cow.on = null;
-    cow.route = [];
-    cow.vx = 0;
-    cow.vy = -power;
-    cow.v = 0;
+    if (!power || !cowMoves() || pet.drag || pet.tw || pet.hide || !upright(pet.on)) return false;
+    pet.on = null;
+    pet.route = [];
+    pet.vx = 0;
+    pet.vy = -power;
+    pet.v = 0;
     cowSquash(-0.3);
     cowKick();
     return true;
@@ -5923,134 +6718,260 @@ details.gbridge:not([open]) { padding-block: 11px; }
     const story = splitSo(text || '').story;
     let best = null;
     let most = 1;
-    for (const m of COW_MOOD) {
-      const c = (story.match(m[0]) || []).length;
+    for (const m of MOODS) {
+      const c = (story.match(m.re) || []).length;
       if (c > most) { most = c; best = m; }
     }
     return best;
   }
   function cowWake(loud) {
-    cow.mode = 'look';
-    cow.until = performance.now() + 2000;
+    pet.mode = 'look';
+    pet.until = performance.now() + 2000;
     cowFx('mark', '!', { up: 26 });
-    if (loud) cowSay(pick(COW_WAKE));
+    if (loud) cowSay(pick(pet.L.WAKE));
     cowKick();
   }
   function cowSeen() {
-    cow.seenAt = Date.now();
-    if (cow.mode === 'sleep') cowWake(false);
+    user.seenAt = Date.now();
+    for (const p of PETS) if (p.mode === 'sleep' && p.live()) withPet(p, () => cowWake(false));
   }
-  /* Cậu gõ chữ: bò đang đứng thì thôi việc đang làm, ngẩng lên nhìn */
+  /* Cậu gõ chữ: con nào đang đứng thì thôi việc đang làm, ngẩng lên nhìn; mới bắt đầu gõ thì có khi hai đứa xì xào */
   function cowNotice() {
     const t = performance.now();
-    cow.typedAt = t;
+    const fresh = t - user.typedAt > 20000;
+    user.typedAt = t;
     cowSeen();
-    if (gen || cow.drag || cow.tw || !cowMoves() || !upright(cow.on)) return;
-    if (cow.mode !== 'watch') {
-      cow.mode = 'watch';
-      cow.route = [];
-      if (Math.random() < 0.12) cowSay(pick(COW_TYPE));
+    if (fresh && !gen && Math.random() < 0.18) petTalk(pick(TALK_TYPE), { gap: 50000, delay: 900 });
+    for (const p of PETS) {
+      if (!p.live()) continue;
+      withPet(p, () => {
+        if (gen || pet.drag || pet.tw || pet.hide || !cowMoves() || !upright(pet.on)) return;
+        if (pet.mode !== 'watch') {
+          pet.mode = 'watch';
+          pet.route = [];
+          if (Math.random() < 0.08) cowSay(pick(pet.L.TYPE));
+        }
+        pet.until = t + 1800;
+      });
     }
-    cow.until = t + 1800;
     cowKick();
   }
   function cowPet() {
     const t = performance.now();
-    cow.pets = cow.pets.filter((x) => t - x < 2400);
-    cow.pets.push(t);
-    const flip = cow.pets.length >= 5;
-    if (flip) cow.pets = [];
+    if (pet.hide) { cowFound(); return; }
+    pet.pets = pet.pets.filter((x) => t - x < 2400);
+    pet.pets.push(t);
+    const flip = pet.pets.length >= 5;
+    if (flip) pet.pets = [];
     if (cowHop(flip ? 480 : 290)) {
-      cow.spinning = flip;
-      if (!gen) { cow.mode = 'look'; cow.until = t + 1800; }
-    } else if (flip && !cow.on && !cow.drag && !cow.tw && cowMoves()) {
+      pet.spinning = flip;
+      if (!gen) { pet.mode = 'look'; pet.until = t + 1800; }
+    } else if (flip && !pet.on && !pet.drag && !pet.tw && cowMoves()) {
       /* Đang lơ lửng mà được vuốt đủ 5 lần: bật thêm lên một chút rồi nhào lộn giữa không trung */
-      cow.vy = Math.min(cow.vy, -420);
-      cow.spinning = true;
+      pet.vy = Math.min(pet.vy, -420);
+      pet.spinning = true;
     }
     cowFx('heart', '♥', { jx: 14, dx: (Math.random() - 0.5) * 22 });
-    cowSay(flip ? 'Úi trời, chóng mặt!' : gen ? pick(COW_BUSY) : pick(COW_HI));
+    cowSay(flip ? (pet.id === 'bo' ? 'Úi trời, chóng mặt!' : 'Quạc, nhào lộn nè!') : gen ? pick(pet.L.BUSY) : pick(pet.L.HI));
     cowKick();
   }
-  /* Kéo thả: nhấc lên thì bò quẫy chân, đung đưa theo tay, đem đi đâu trong khung chat cũng được;
-     thả ra thì rơi theo đà tay ném, rơi trúng mép khung thì đứng trên đó, thả sát cạnh khung hay ném vào cạnh thì bám vào */
+  /* Kéo thả: nhấc lên thì con vật quẫy chân, đung đưa theo tay, đem đi đâu trên màn hình cũng được; lắc qua lắc lại thì chóng mặt.
+     Thả ra thì rơi theo đà tay ném (ném mạnh thì bay qua cả màn hình), rơi trúng mép khung thì đứng trên đó, thả sát cạnh khung hay ném vào cạnh thì bám vào */
   function cowDown(e) {
-    if (e.button > 0 || !S.cowOn) return;
+    if (e.button > 0 || !pet.live()) return;
     const now = performance.now();
-    cow.press = { id: e.pointerId, sx: e.clientX, sy: e.clientY, cx: e.clientX, cy: e.clientY, lx: e.clientX, ly: e.clientY, lt: now, vx: 0, vy: 0, moved: false };
-    try { cowNodes().root.setPointerCapture(e.pointerId); } catch (err) { /* không bắt được con trỏ: bỏ qua */ }
+    pet.press = { id: e.pointerId, sx: e.clientX, sy: e.clientY, cx: e.clientX, cy: e.clientY, lx: e.clientX, ly: e.clientY, lt: now, vx: 0, vy: 0, moved: false, at: now, flips: [], gx: 0, gy: 0, long: false };
+    try { pet.n.root.setPointerCapture(e.pointerId); } catch (err) { /* không bắt được con trỏ: bỏ qua */ }
   }
   function cowMove(e) {
-    const p = cow.press;
+    const p = pet.press;
     if (!p || p.id !== e.pointerId) return;
+    const now = performance.now();
     if (!p.moved) {
       if (Math.hypot(e.clientX - p.sx, e.clientY - p.sy) < 6 || !cowMoves()) return;
       p.moved = true;
-      cow.drag = p;
-      Object.assign(cow, { on: null, tw: null, route: [], v: 0, vx: 0, vy: 0, hvx: 0, hvy: 0, hdx: 0, hdy: 0, slip: false, ghost: false, spinning: false, spin: 0 });
-      if (cow.mode === 'sleep') cow.mode = 'look';
-      cowSay(pick(COW_HELD));
+      p.at = now;
+      pet.drag = p;
+      const found = !!pet.hide;
+      if (found) { pet.hide = null; petBack(false); }
+      Object.assign(pet, { on: null, tw: null, route: [], v: 0, vx: 0, vy: 0, hvx: 0, hvy: 0, hdx: 0, hdy: 0, slip: false, ghost: false, spinning: false, spin: 0 });
+      if (pet.mode === 'sleep') pet.mode = 'look';
+      cowSay(pick(found ? pet.L.FOUND : pet.L.HELD));
     }
-    const now = performance.now();
     const step = Math.max(8, now - p.lt) / 1000;
     p.vx = p.vx * 0.55 + ((e.clientX - p.lx) / step) * 0.45;
     p.vy = p.vy * 0.55 + ((e.clientY - p.ly) / step) * 0.45;
     p.lx = p.cx = e.clientX;
     p.ly = p.cy = e.clientY;
     p.lt = now;
+    /* Lắc: tay đổi chiều liên tục (4 lần trong một giây) */
+    for (const ax of ['x', 'y']) {
+      const v = ax === 'x' ? p.vx : p.vy;
+      const sg = Math.sign(v);
+      if (Math.abs(v) > 380 && sg !== (ax === 'x' ? p.gx : p.gy)) {
+        if (ax === 'x' ? p.gx : p.gy) p.flips.push(now);
+        if (ax === 'x') p.gx = sg; else p.gy = sg;
+      }
+    }
+    p.flips = p.flips.filter((x) => now - x < 1000);
+    if (p.flips.length >= 4) { p.flips = []; cowShaken(now); }
+    if (!p.long && now - p.at > 5000) { p.long = true; cowSay(pick(pet.L.LONG)); }
     cowKick();
   }
-  /* Bò treo dưới ngón tay, đi theo tay một cách mềm; ghi lại vận tốc của bò để thân đung đưa theo */
+  /* Bị lắc: sao bay quanh đầu (bò), lông bay tứ tung (vịt), choáng lâu hơn nếu lắc mãi; con kia lên tiếng bênh */
+  function cowShaken(t) {
+    pet.daze = Math.min(t + 6000, Math.max(pet.daze, t) + 1800);
+    petRough(true);
+    if (pet.id === 'vit') for (let i = 0; i < 3; i++) cowFx('feather', '', { up: 18 + Math.random() * 12, jx: 24, dx: (Math.random() - 0.5) * 50 });
+    else { cowFx('star', '✦', { up: 34, jx: 26 }); cowFx('drop', '💧', { up: 30, fwd: -10, dx: -pet.dir * 10 }); }
+    if (t - pet.shookAt > 1600) { pet.shookAt = t; cowSay(pick(pet.L.SHAKE)); }
+    const o = pet.other;
+    if (o.live() && !o.hide && Math.random() < 0.35 && t - talk.seeAt > 6000) { talk.seeAt = t; setTimeout(() => sayAs(o, pick(o.L.SEE_SHAKE)), 700); }
+  }
+  /* Con vật treo dưới ngón tay, đi theo tay một cách mềm; ghi lại vận tốc để thân đung đưa theo */
   function cowHeld(dt) {
-    const p = cow.drag;
-    const tx = clampN(p.cx - cw.mx, COW_HALF, cw.W - COW_HALF);
-    const ty = clampN(p.cy - cw.my + 30, cw.ceil + COW_TALL, cw.floor);
+    const p = pet.drag;
+    const tx = clampN(p.cx, pet.sp.half, cw.W - pet.sp.half);
+    const ty = clampN(p.cy + 30, pet.sp.tall, cw.H);
     const k = dt ? Math.min(1, dt * 24) : 1;
-    const ox = cow.px;
-    const oy = cow.py;
-    cow.px += (tx - cow.px) * k;
-    cow.py += (ty - cow.py) * k;
+    const ox = pet.px;
+    const oy = pet.py;
+    pet.px += (tx - pet.px) * k;
+    pet.py += (ty - pet.py) * k;
     if (dt) {
-      const vx = (cow.px - ox) / dt;
-      const vy = (cow.py - oy) / dt;
-      cow.hdx += clampN(vx - cow.hvx, -900, 900);
-      cow.hdy += clampN(vy - cow.hvy, -900, 900);
-      cow.hvx = vx;
-      cow.hvy = vy;
+      const vx = (pet.px - ox) / dt;
+      const vy = (pet.py - oy) / dt;
+      pet.hdx += clampN(vx - pet.hvx, -900, 900);
+      pet.hdy += clampN(vy - pet.hvy, -900, 900);
+      pet.hvx = vx;
+      pet.hvy = vy;
     }
     angTo(0, Math.min(1, dt * 10));
   }
   function cowUp(e) {
-    const p = cow.press;
+    const p = pet.press;
     if (!p || p.id !== e.pointerId) return;
-    cow.press = null;
+    pet.press = null;
     if (!p.moved) { if (e.type === 'pointerup') cowPet(); return; }
-    cow.drag = null;
+    pet.drag = null;
     /* Đà ném lấy theo lần di tay cuối; tay đã khựng lại trước khi buông thì đà nhỏ dần, khựng hẳn thì thả rơi tại chỗ */
-    const age = performance.now() - p.lt;
+    const now = performance.now();
+    const age = now - p.lt;
     const f = age < 30 ? 1 : Math.max(0, 1 - (age - 30) / 70);
     const still = !f;
-    cow.vx = clampN(p.vx * f, -900, 900);
-    cow.vy = clampN(p.vy * f, -900, 800);
-    cow.mode = 'graze';
-    cow.until = performance.now() + 1500;
-    if (still) cowStick(performance.now());
+    pet.vx = clampN(p.vx * f, -2200, 2200);
+    pet.vy = clampN(p.vy * f, -1900, 1500);
+    pet.mode = 'graze';
+    pet.until = now + 1500;
+    /* Bị ném mạnh: la lên, bò nhào lộn giữa không trung, vịt vỗ cánh; con kia hô hoán */
+    const speed = Math.hypot(pet.vx, pet.vy);
+    if (speed > 950) {
+      petRough(true);
+      if (pet.id === 'bo' && speed > 1500) pet.spinning = true;
+      if (Math.random() < 0.7) cowSay(pick(pet.L.THROW));
+      const o = pet.other;
+      if (o.live() && !o.hide && Math.random() < 0.4 && now - talk.seeAt > 6000) { talk.seeAt = now; setTimeout(() => sayAs(o, pick(o.L.SEE_THROW)), 500); }
+    }
+    if (still) cowStick(now);
     cowKick();
   }
-  /* Thả nhẹ tay: sát mép trên khung thì đứng lên đó, sát cạnh khung hay vách khung chat thì bám vào */
+  /* Thả nhẹ tay: sát mép trên khung thì đứng lên đó, sát cạnh khung hay mép màn hình thì bám vào */
   function cowStick(t) {
-    const x = cow.px;
-    const y = cow.py;
+    const x = pet.px;
+    const y = pet.py;
+    const P = pet.sp;
     if (y >= cw.floor - 1) return;
-    if (x - COW_HALF < 10 && y > cw.ceil + 50) { cow.px = 0; cowCling({ k: 'wl' }, y, -1); return; }
-    if (x + COW_HALF > cw.W - 10 && y > cw.ceil + 50) { cow.px = cw.W; cowCling({ k: 'wr' }, -y, 1); return; }
+    if (x - P.half < 10 && y > cw.ceil + 50 && y < cw.wlb - 20) { pet.px = 0; cowCling({ k: 'wl' }, y, -1); return; }
+    if (x + P.half > cw.W - 10 && y > cw.ceil + 50 && y < cw.wrb - 20) { pet.px = cw.W; cowCling({ k: 'wr' }, -y, 1); return; }
     for (const p of cowPlats(t)) {
-      if (p.t < cw.ceil + 30) continue;
-      if (y >= p.t - 14 && y <= p.t + 8 && x >= p.l + 4 && x <= p.r - 4) { cow.py = p.t; cow.vy = 0; cowLand({ k: 'top', p: p.key }, x - p.l); return; }
-      if (y < p.t + 16 || y > p.b - 4) continue;
-      if (Math.abs(x + COW_HALF - p.l) < 14) { cow.px = p.l; cowCling({ k: 'L', p: p.key }, p.t - y, 1); return; }
-      if (Math.abs(x - COW_HALF - p.r) < 14) { cow.px = p.r; cowCling({ k: 'R', p: p.key }, y - p.t, -1); return; }
+      const lo = Math.max(p.ct, cw.ceil) + 24;
+      if (p.t >= lo && p.t <= p.cb && y >= p.t - 14 && y <= p.t + 8 && x >= p.l + 4 && x <= p.r - 4) { pet.py = p.t; pet.vy = 0; cowLand({ k: 'top', p: p.key }, x - p.l); return; }
+      if (y < p.t + 16 || y > p.b - 4 || y < lo || y > p.cb) continue;
+      if (Math.abs(x + P.half - p.l) < 14) { pet.px = p.l; cowCling({ k: 'L', p: p.key }, p.t - y, 1); return; }
+      if (Math.abs(x - P.half - p.r) < 14) { pet.px = p.r; cowCling({ k: 'R', p: p.key }, y - p.t, -1); return; }
     }
+  }
+
+  /* ---- Bò và vịt nói chuyện với nhau ---- */
+  /* Lâu lâu mới nói (cách nhau ít nhất vài chục giây), bàn chuyện truyện vừa viết, hóng lúc người dẫn đang viết, lúc Cậu gõ chữ, lúc Cậu vắng lâu */
+  const talk = { on: false, at: 0, timer: 0, mood: '', moodAt: 0, gen: null, thinkSaid: false, seeAt: 0 };
+  const bothLive = () => BO.live() && VIT.live();
+  function sayAs(p, text, ms) { withPet(p, () => cowSay(text, ms)); }
+  /* Một đoạn hội thoại: mỗi câu hiện ở con nói, câu sau chờ người đọc kịp câu trước. force = chen ngang đoạn đang nói */
+  function petTalk(lines, opt = {}) {
+    if (!bothLive() || (talk.on && !opt.force)) return false;
+    const now = Date.now();
+    if (now - talk.at < (opt.gap || 40000)) return false;
+    clearTimeout(talk.timer);
+    talk.on = true;
+    talk.at = now;
+    let i = 0;
+    const next = () => {
+      if (i >= lines.length || !bothLive()) { talk.on = false; return; }
+      const [w, text] = lines[i++];
+      const ms = 1500 + text.length * 55;
+      const p = w === 'b' ? BO : VIT;
+      if (!p.drag) sayAs(p, text, ms + 500);
+      talk.timer = setTimeout(next, ms);
+    };
+    talk.timer = setTimeout(next, opt.delay || 0);
+    return true;
+  }
+  /* Mỗi 9 giây xem có nên nói gì không: người dẫn đang nghĩ, Cậu vắng lâu, hay chuyện vặt (thỉnh thoảng nhắc lại không khí đoạn vừa đọc) */
+  function talkTick() {
+    if (!bothLive() || document.hidden || talk.on || !motionOn()) return;
+    if (BO.drag || VIT.drag || BO.hide || VIT.hide) return;
+    if (gen) {
+      if (!talk.thinkSaid && gen.node && gen.node.querySelector('.wait.thinking')) {
+        talk.thinkSaid = true;
+        if (Math.random() < 0.5) petTalk(pick(TALK_THINK), { gap: 15000 });
+      }
+      return;
+    }
+    const now = Date.now();
+    const idle = now - user.seenAt;
+    if (idle > COW_NAP || performance.now() - user.typedAt < 6000) return;
+    if (idle > 45000) { if (Math.random() < 0.4) petTalk(pick(TALK_QUIET), { gap: 90000 }); return; }
+    if (Math.random() > 0.2) return;
+    const mood = talk.mood && now - talk.moodAt < 300000 && Math.random() < 0.35 && MOODS.find((m) => m.k === talk.mood);
+    petTalk(pick(mood ? mood.after : TALK_IDLE), { gap: 70000 });
+  }
+  /* AI viết xong: một con nhảy lên báo, con kia nhún theo; đoạn truyện có không khí rõ thì cả hai bàn tán,
+     đoạn rợn hay đánh nhau thì có khi đứa nhát gan (vịt) chạy đi trốn */
+  function petsDone(text) {
+    const live = PETS.filter((p) => p.live());
+    if (!live.length) return;
+    const mood = cowMood(text);
+    talk.mood = mood ? mood.k : '';
+    talk.moodAt = Date.now();
+    const lead = pick(live.filter((p) => !p.hide).length ? live.filter((p) => !p.hide) : live);
+    for (const p of live) {
+      withPet(p, () => {
+        const first = p === lead;
+        cowHop(mood && mood.k === 'sad' ? 0 : first ? 300 : 210);
+        if (first) cowSay(mood ? pick(mood[p.id]) : pick(p.L.DONE));
+        if (mood) for (let j = 0; j < (first ? 3 : 2); j++) setTimeout(() => withPet(p, () => cowFx(mood.fx, mood.sym, { jx: 22, dx: (Math.random() - 0.5) * 26 })), 120 + j * 230 + (first ? 0 : 180));
+      });
+    }
+    if (mood && mood.hide && Math.random() < mood.hide) {
+      const coward = VIT.live() ? VIT : BO;
+      setTimeout(() => withPet(coward, () => { if (!gen && !coward.drag) cowHideStart('scared'); }), 1500);
+    } else if (mood && bothLive() && Math.random() < 0.6) petTalk(pick(mood.talk), { delay: 2600, gap: 12000 });
+  }
+  function wirePets() {
+    cowNodes();
+    for (const p of PETS) {
+      const r = p.n.root;
+      const on = (fn) => (e) => withPet(p, () => fn(e));
+      r.addEventListener('pointerdown', on(cowDown));
+      r.addEventListener('pointermove', on(cowMove));
+      r.addEventListener('pointerup', on(cowUp));
+      r.addEventListener('pointercancel', on(cowUp));
+      r.addEventListener('mousedown', (e) => e.preventDefault());
+    }
+    document.addEventListener('pointerdown', cowSeen, { capture: true, passive: true });
+    document.addEventListener('keydown', cowSeen, { capture: true, passive: true });
+    setInterval(talkTick, 9000);
   }
 
   /* ================= Chuông và báo hiệu ================= */
@@ -6083,11 +7004,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
     chime();
     feelNews();
     if (document.hidden) document.title = '✦ Đã viết xong · Phòng Chat';
-    if (!S.cowOn) return;
-    const mood = cowMood(text);
-    cowHop(mood && mood[1] === 'drop' ? 0 : 300);
-    cowSay(mood ? pick(mood[3]) : pick(COW_DONE));
-    if (mood) for (let i = 0; i < 3; i++) setTimeout(() => cowFx(mood[1], mood[2], { jx: 22, dx: (Math.random() - 0.5) * 26 }), 120 + i * 230);
+    petsDone(text);
   }
 
   /* ================= Sao lưu, nhập, xuất ================= */
@@ -6287,6 +7204,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     r.style.setProperty('--story', FONTS[S.font] || FONTS.literata);
     r.style.setProperty('--col', WIDTHS[S.width] || WIDTHS.vua);
     document.body.classList.toggle('no-cow', !S.cowOn);
+    document.body.classList.toggle('no-duck', !S.duckOn);
     document.body.classList.toggle('no-chips', !S.chipsOn);
     $('#sendKbd').textContent = S.enterSend ? '↵' : 'Ctrl ↵';
     $$('#themes .swatch').forEach((b) => b.classList.toggle('on', b.dataset.v === S.theme));
@@ -6512,6 +7430,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $('#optMotion').checked = !!S.motion;
     $('#motionHint').hidden = !reduceMotion.matches;
     $('#optCow').checked = !!S.cowOn;
+    $('#optDuck').checked = !!S.duckOn;
     $('#optSound').checked = !!S.sound;
     $('#optChips').checked = !!S.chipsOn;
     $('#optSo').checked = !!S.soOpen;
@@ -6578,8 +7497,9 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $$('.ptab').forEach((b) => { b.onclick = () => showTab(b.dataset.tab); });
     mqPanel.addEventListener('change', () => { closeOverlays(); document.body.classList.toggle('pin', !!S.panel); syncPanelBtn(); cowKick(); });
     window.addEventListener('resize', () => { cowDirty(); cowKick(); });
-    $('#scroll').addEventListener('scroll', () => { cowDirty(); cowKick(); }, { passive: true });
-    if ('ResizeObserver' in window) { const ro = new ResizeObserver(() => { cowDirty(); cowKick(); }); ro.observe($('#msgs')); ro.observe($('#composer .box')); }
+    /* Cuộn ở đâu cũng vậy (khung chat, bảng phải, danh sách phiên): khung dưới chân bò, vịt dời chỗ */
+    document.addEventListener('scroll', () => { cowDirty(); cowKick(); }, { capture: true, passive: true });
+    if ('ResizeObserver' in window) { const ro = new ResizeObserver(() => { cowDirty(); cowKick(); }); ['#msgs', '#composer .box', '#side', '#panel', '#list', '#castList', '#npcDock', '#ndList'].forEach((q) => ro.observe($(q))); }
 
     $('#title').addEventListener('input', () => { cur.title = $('#title').value.trim(); persist(); renderList(true); });
     $('#title').addEventListener('keydown', (e) => { if (e.key === 'Enter') e.target.blur(); });
@@ -6650,7 +7570,8 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $$('#fontSeg button').forEach((b) => { b.onclick = () => { S.font = b.dataset.v; saveSettings(); applyLook(); }; });
     $$('#widthSeg button').forEach((b) => { b.onclick = () => { S.width = b.dataset.v; saveSettings(); applyLook(); }; });
     $('#optMotion').addEventListener('change', (e) => { S.motion = e.target.checked; saveSettings(); applyLook(); cowKick(); });
-    $('#optCow').addEventListener('change', (e) => { S.cowOn = e.target.checked; saveSettings(); applyLook(); cow.born = false; cowKick(); });
+    $('#optCow').addEventListener('change', (e) => { S.cowOn = e.target.checked; saveSettings(); applyLook(); BO.born = false; cowKick(); });
+    $('#optDuck').addEventListener('change', (e) => { S.duckOn = e.target.checked; saveSettings(); applyLook(); VIT.born = false; cowKick(); });
     $('#optSound').addEventListener('change', (e) => { S.sound = e.target.checked; saveSettings(); if (S.sound) { unlockAudio(); chime(); } });
     $('#optChips').addEventListener('change', (e) => { S.chipsOn = e.target.checked; saveSettings(); applyLook(); });
     $('#optSo').addEventListener('change', (e) => { S.soOpen = e.target.checked; saveSettings(); renderMsgs(); });
@@ -6675,14 +7596,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
       if (!pop.hidden && !pop.contains(e.target) && !$('#diceBtn').contains(e.target)) toggleDice(false);
     });
 
-    const cowEl = $('#cow');
-    cowEl.addEventListener('pointerdown', cowDown);
-    cowEl.addEventListener('pointermove', cowMove);
-    cowEl.addEventListener('pointerup', cowUp);
-    cowEl.addEventListener('pointercancel', cowUp);
-    cowEl.addEventListener('mousedown', (e) => e.preventDefault());
-    document.addEventListener('pointerdown', cowSeen, { capture: true, passive: true });
-    document.addEventListener('keydown', cowSeen, { capture: true, passive: true });
+    wirePets();
 
 
     $('#castGo').onclick = () => searchImages($('#castQ').value);
