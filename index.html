@@ -554,7 +554,7 @@ body.no-cow .pet-bo, body.no-duck .pet-vit { display: none; }
 .cfx.star { color: var(--gold); font-size: 13px; animation: fx-pop 0.9s ease-out forwards; }
 .cfx.zz { color: var(--muted); font-size: 12px; font-style: italic; font-family: var(--story); animation: fx-z 2.3s ease-out forwards; }
 .cfx.dust { width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--muted) 42%, transparent); animation: fx-dust 0.65s ease-out forwards; }
-.cfx.feather { width: 10px; height: 4px; border-radius: 50%; background: #fbf3df; box-shadow: inset 0 0 0 1px rgba(28, 22, 18, 0.35); animation: fx-feather 1.7s ease-in forwards; }
+.cfx.feather { width: 10px; height: 4px; border-radius: 50%; background: #ffe066; box-shadow: inset 0 0 0 1px rgba(28, 22, 18, 0.35); animation: fx-feather 1.7s ease-in forwards; }
 @keyframes fx-rise { 0% { opacity: 0; transform: translate(-50%, 4px) scale(0.5); } 22% { opacity: 1; transform: translate(-50%, -6px) scale(1.15); } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), -40px) scale(0.9); } }
 @keyframes fx-pop { 0% { opacity: 0; transform: translate(-50%, 6px) scale(0.3); } 28% { opacity: 1; transform: translate(-50%, -8px) scale(1.3); } 70% { opacity: 1; transform: translate(-50%, -10px) scale(1); } 100% { opacity: 0; transform: translate(-50%, -14px) scale(1); } }
 @keyframes fx-z { 0% { opacity: 0; transform: translate(-50%, 0) scale(0.6) rotate(-10deg); } 25% { opacity: 0.9; } 100% { opacity: 0; transform: translate(calc(-50% + 20px), -36px) scale(1.5) rotate(8deg); } }
@@ -1444,14 +1444,14 @@ details.gbridge:not([open]) { padding-block: 11px; }
 <g class="leg leg-b"><path d="M49 77V88.4" stroke="#2b2238" stroke-width="6.4" stroke-linecap="round"/><path d="M49 77V88.4" stroke="#e08a2c" stroke-width="3.2" stroke-linecap="round"/><path d="M45.4 89.6Q49.4 85.6 57.8 88.2Q58.8 91.4 55.4 91.6H46.8Q44.6 91.4 45.4 89.6Z" fill="#e8902e" stroke="#2b2238" stroke-width="2.6" stroke-linejoin="round"/></g>
 <g class="leg leg-a"><path d="M38 77.4V88.6" stroke="#2b2238" stroke-width="6.6" stroke-linecap="round"/><path d="M38 77.4V88.6" stroke="#f5a63a" stroke-width="3.4" stroke-linecap="round"/><path d="M34.2 89.8Q38.4 85.6 47.2 88.4Q48.2 91.6 44.6 91.8H35.6Q33.4 91.6 34.2 89.8Z" fill="#f7ad42" stroke="#2b2238" stroke-width="2.6" stroke-linejoin="round"/></g>
 <g class="upper">
-<g class="tail"><path d="M24 66Q12.6 62 11.4 49.4Q17 52.4 19.6 50.6Q21.6 56.8 28.4 58.8Z" fill="#fbf5e6" stroke="#2b2238" stroke-width="3.4" stroke-linejoin="round"/></g>
-<ellipse cx="42" cy="70.4" rx="21.6" ry="15" fill="#fbf5e6" stroke="#2b2238" stroke-width="4"/>
-<path d="M24 77.6Q42 88.4 59.6 76.4Q53.6 84.8 42 85Q30 84.8 24 77.6Z" fill="#efe3c6"/>
-<g class="wing"><path d="M48.6 63.4Q38 59.4 28.4 65.8Q24.6 68.8 27.6 71.8Q30.4 73.4 34 72.4Q33.2 75.4 36.6 76Q45.4 76.8 50 70.6Q52 66.8 48.6 63.4Z" fill="#f3e8cf" stroke="#2b2238" stroke-width="3" stroke-linejoin="round"/><path d="M32.6 68.2Q38.4 66.2 44 67M36 71.8Q41.6 70.8 46.4 69.4" fill="none" stroke="#d6c5a0" stroke-width="1.3" stroke-linecap="round"/></g>
+<g class="tail"><path d="M24 66Q12.6 62 11.4 49.4Q17 52.4 19.6 50.6Q21.6 56.8 28.4 58.8Z" fill="#ffd84d" stroke="#2b2238" stroke-width="3.4" stroke-linejoin="round"/></g>
+<ellipse cx="42" cy="70.4" rx="21.6" ry="15" fill="#ffd84d" stroke="#2b2238" stroke-width="4"/>
+<path d="M24 77.6Q42 88.4 59.6 76.4Q53.6 84.8 42 85Q30 84.8 24 77.6Z" fill="#f4bf2a"/>
+<g class="wing"><path d="M48.6 63.4Q38 59.4 28.4 65.8Q24.6 68.8 27.6 71.8Q30.4 73.4 34 72.4Q33.2 75.4 36.6 76Q45.4 76.8 50 70.6Q52 66.8 48.6 63.4Z" fill="#ffe680" stroke="#2b2238" stroke-width="3" stroke-linejoin="round"/><path d="M32.6 68.2Q38.4 66.2 44 67M36 71.8Q41.6 70.8 46.4 69.4" fill="none" stroke="#dba624" stroke-width="1.3" stroke-linecap="round"/></g>
 <g class="nod"><g class="head">
-<path d="M54.4 18.6Q50.4 10.2 56.6 6.8Q56.6 12 59.6 15.8Z" fill="#fbf5e6" stroke="#2b2238" stroke-width="2.8" stroke-linejoin="round"/>
-<path d="M59.6 15.8Q62.4 8.8 68.6 10Q64.8 13.4 64.6 17.6Z" fill="#fbf5e6" stroke="#2b2238" stroke-width="2.8" stroke-linejoin="round"/>
-<circle cx="60" cy="39" r="22" fill="#fbf5e6" stroke="#2b2238" stroke-width="4"/>
+<path d="M54.4 18.6Q50.4 10.2 56.6 6.8Q56.6 12 59.6 15.8Z" fill="#ffd84d" stroke="#2b2238" stroke-width="2.8" stroke-linejoin="round"/>
+<path d="M59.6 15.8Q62.4 8.8 68.6 10Q64.8 13.4 64.6 17.6Z" fill="#ffd84d" stroke="#2b2238" stroke-width="2.8" stroke-linejoin="round"/>
+<circle cx="60" cy="39" r="22" fill="#ffd84d" stroke="#2b2238" stroke-width="4"/>
 <ellipse cx="50.4" cy="48" rx="4.6" ry="2.5" fill="#ff9cc0" opacity=".65"/>
 <path class="bill-lo" d="M73.6 47.6H91.8Q92.8 53 86.2 54Q78.2 54.6 73.6 51Z" fill="#e8872c" stroke="#2b2238" stroke-width="2.8" stroke-linejoin="round"/>
 <path d="M72.4 42Q88 38.6 96 45Q97 48.8 92.2 49.4L74 50Q70 46 72.4 42Z" fill="url(#pvBill)" stroke="#2b2238" stroke-width="3.2" stroke-linejoin="round"/>
