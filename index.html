@@ -2368,14 +2368,63 @@ details.gbridge:not([open]) { padding-block: 11px; }
   function namesOf(c) {
     return [c.name].concat((c.alias || '').split(',')).map((s) => s.trim()).filter((s) => s.length >= 2 && !isCode(s));
   }
+  /* Hai mục là cùng một người khi trùng mã, hay khi mọi chữ trong tên ngắn hơn đều có trong tên dài hơn (Iruka ~ Umino Iruka ~ thầy Iruka) */
+  const nameToks = (s) => normName(s).split(' ').filter((w) => w.length >= 2 && !/^(san|kun|chan|sama|sensei|dono|thay|co|ba|ong|anh|chi|em)$/.test(w));
+  function sameName(a, b) {
+    const x = nameToks(a);
+    const y = nameToks(b);
+    if (!x.length || !y.length) return false;
+    const [s, l] = x.length <= y.length ? [x, y] : [y, x];
+    return s.some((w) => w.length >= 3) && s.every((w) => l.includes(w));
+  }
+  function sameNpc(c, names) {
+    const mine = namesOf(c);
+    return names.some((n) => n && mine.some((m) => sameName(m, n)));
+  }
+  /* Gộp mục trùng vào mục giữ lại: ảnh, tên gọi khác, ghi chú, thẻ tranh, mức tình cảm đặt tay */
+  function mergeNpc(keep, gone) {
+    const mine = imgsOf(keep);
+    const imgs = mine.concat(imgsOf(gone).filter((u) => !mine.includes(u)));
+    if (imgs.length) keep.imgs = imgs;
+    if (!keep.img && gone.img) keep.img = gone.img;
+    const have = namesOf(keep).map(normName);
+    const add = namesOf(gone).filter((n) => !have.includes(normName(n)));
+    if (add.length) keep.alias = [keep.alias].concat(add).filter(Boolean).join(', ');
+    if (!keep.note && gone.note) keep.note = gone.note;
+    for (const k of ['tag', 'tagGuess', 'manual']) if (!keep[k] && gone[k]) keep[k] = gone[k];
+    keep.hidden = !!(keep.hidden && gone.hidden);
+    cur.cast.splice(cur.cast.indexOf(gone), 1);
+  }
+  function dedupeCast() {
+    let changed = false;
+    for (let i = 0; i < cur.cast.length; i++) {
+      for (let j = i + 1; j < cur.cast.length; j++) {
+        const a = cur.cast[i];
+        const b = cur.cast[j];
+        let pair = null;
+        if (a.code && b.code) { if (a.code === b.code) pair = [a, b]; }
+        else if (sameNpc(a, namesOf(b))) pair = a.code || !b.code ? [a, b] : [b, a];
+        if (!pair) continue;
+        mergeNpc(pair[0], pair[1]);
+        changed = true;
+        i = -1;
+        break;
+      }
+    }
+    return changed;
+  }
   function syncCastFromFeel() {
-    if (!cur || !S.feel) return false;
+    const merged = cur ? dedupeCast() : false;
+    if (!cur || !S.feel) { if (merged) persist(false, true); return merged; }
     const now = feelHistory(1)[0];
     if (!now) return false;
     const table = codeTable();
-    let added = false;
+    let added = merged;
     for (const code of Object.keys(now)) {
       if (cur.cast.some((c) => c.code === code)) continue;
+      /* Dàn đã có người này mà chưa có mã (thêm tay, tra tên): gắn mã vào, không tạo mục mới */
+      const same = table[code] && cur.cast.find((c) => !c.code && sameNpc(c, [table[code]]));
+      if (same) { same.code = code; added = true; continue; }
       cur.cast.push({ id: uid(), name: table[code] || code, alias: '', code, img: '', note: table[code] ? '' : 'Người mới trong truyện (mã ' + code + '). Bấm Sửa để đặt tên.' });
       added = true;
     }
@@ -3186,8 +3235,8 @@ details.gbridge:not([open]) { padding-block: 11px; }
   /* Tìm người đã có trong dàn: trùng mã, hay trùng tên, tên gốc, tên gọi khác */
   function castMatch(x) {
     if (x.code) { const c = cur.cast.find((c) => c.code === x.code); if (c) return c; }
-    const keys = [x.name, x.original].concat(x.aliases || []).map(normName).filter((s) => s.length >= 2);
-    return cur.cast.find((c) => [c.name].concat((c.alias || '').split(',')).map(normName).some((n) => n && keys.includes(n)));
+    const keys = [x.name, x.original].concat(x.aliases || []).filter(Boolean);
+    return cur.cast.find((c) => (!x.code || !c.code) && sameNpc(c, keys));
   }
   let castBusy = false;
   async function castFromPrompt(quiet) {
