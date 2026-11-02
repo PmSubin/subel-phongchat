@@ -999,7 +999,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
       <div class="sub">Dàn nhân vật của phiên</div>
       <div class="tools" style="margin-top:0">
         <button id="castBeautify" class="btn red sm" type="button" title="Lấy tranh vẽ đẹp nhất trên Danbooru cho từng người và đặt làm avatar; ảnh cũ vẫn giữ trong bộ sưu tập"><i data-ic="spark"></i>Tranh đẹp cho cả dàn</button>
-        <button id="castFromPrompt" class="btn sm" type="button">Lấy danh sách từ prompt</button>
+        <button id="castFromPrompt" class="btn sm" type="button" title="Subel đọc cả prompt, tìm mọi nhân vật dù prompt viết kiểu gì, rồi tự lấy tranh theo bộ truyện">Subel đọc prompt</button>
         <button id="castAdd" class="btn sm" type="button"><i data-ic="plus"></i>Thêm tay</button>
         <button id="castShowHidden" class="btn sm ghost" type="button" hidden></button>
       </div>
@@ -1611,6 +1611,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     sysChanged();
   }
   function sysChanged() {
+    autoCastSoon();
     updateSysInfo();
     updateMeter();
     renderChips(true);
@@ -2502,7 +2503,7 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     $('#castSeries').placeholder = auto ? 'tự nhận: ' + auto : 'ví dụ Naruto, Doraemon';
     $('#castShowHidden').hidden = !hiddenN;
     $('#castShowHidden').textContent = 'Hiện lại ' + hiddenN + ' người đã ẩn';
-    if (!shown.length) list.append(el('div', 'hint', 'Chưa có ai. Tra tên ở trên để thêm kèm ảnh, bấm “Lấy danh sách từ prompt”, hoặc cứ chơi: ai có cảm xúc trong dòng ⚙ của Sổ sẽ tự hiện ở đây.'));
+    if (!shown.length) list.append(el('div', 'hint', 'Chưa có ai. Tra tên ở trên để thêm kèm ảnh, bấm “Subel đọc prompt”, hoặc cứ chơi: ai có cảm xúc trong dòng ⚙ của Sổ sẽ tự hiện ở đây.'));
     const items = shown.map((c) => ({ c, a: affOf(c, now, prev), here: here.has(c.id) }));
     items.sort((x, y) => (y.here - x.here) || (affScore(y.a) - affScore(x.a)) || (!!y.c.img - !!x.c.img) || x.c.name.localeCompare(y.c.name));
     for (const it of items) list.append(npcEl(it));
@@ -2791,23 +2792,126 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
     focusNpc(c.id);
     if (!localFile) artForCast([c], true);
   }
-  function castFromPrompt() {
+  /* Subel đọc cả prompt để lấy dàn nhân vật: bảng mã, hồ sơ hay văn xuôi đều được. Trả tên gốc, mã, tên gọi khác, thẻ Danbooru đoán sẵn */
+  const CAST_SCHEMA = {
+    type: 'OBJECT',
+    properties: {
+      series: { type: 'STRING' },
+      characters: {
+        type: 'ARRAY',
+        items: {
+          type: 'OBJECT',
+          properties: {
+            name: { type: 'STRING' }, original: { type: 'STRING' }, code: { type: 'STRING' },
+            aliases: { type: 'ARRAY', items: { type: 'STRING' } }, tag: { type: 'STRING' }, oc: { type: 'BOOLEAN' },
+          },
+          required: ['name'],
+        },
+      },
+    },
+    required: ['series', 'characters'],
+  };
+  const CAST_ASK = 'Dưới đây là system instruction của một truyện nhập vai. Hãy liệt kê mọi nhân vật có tên có thể xuất hiện trong truyện (NPC), tìm ở mọi chỗ: bảng, hồ sơ, đoạn văn, danh sách, phụ lục. Bỏ qua nhân vật của người chơi (Subin, Player, người chơi'
+    + '{P}). Không bịa thêm người không có trong prompt. Tối đa 60 người, người quan trọng trước.\n'
+    + 'Với mỗi người: name = tên đúng như prompt viết; original = tên gốc đầy đủ theo cách viết của wiki fan tiếng Anh (romaji), để trống nếu là nhân vật tự tạo; code = mã người ấy trong prompt nếu có (dạng K01, G05, N12), không có thì để trống; aliases = các tên gọi khác trong prompt; tag = thẻ nhân vật trên Danbooru đoán chính xác nhất (dạng yamanaka_ino, kuchiki_rukia), để trống nếu là nhân vật tự tạo; oc = true nếu là nhân vật tự tạo cho truyện này, không có trong tác phẩm gốc.\n'
+    + 'series = tên tác phẩm gốc bằng tiếng Anh hoặc romaji như Danbooru dùng (ví dụ naruto, bleach, jujutsu kaisen), để trống nếu truyện hoàn toàn tự sáng tác.\n\n=== SYSTEM INSTRUCTION ===\n';
+  const textOfReply = (j) => ((j.candidates && j.candidates[0] && j.candidates[0].content && j.candidates[0].content.parts) || []).filter((p) => !p.thought).map((p) => p.text || '').join('');
+  async function aiCast(sys) {
+    const think = noThink.has(S.model) ? null : thinkFor(S.model, 'LOW');
+    const ask1 = CAST_ASK.replace('{P}', pName() ? ', ' + pName() : '') + sys.slice(0, 400000);
+    const body = (schema, th) => {
+      const g = { temperature: 0.2, responseMimeType: 'application/json' };
+      if (schema) g.responseSchema = CAST_SCHEMA;
+      if (th) g.thinkingConfig = th;
+      return JSON.stringify({ contents: [{ role: 'user', parts: [{ text: ask1 }] }], generationConfig: g });
+    };
+    const post = (b) => fetch(API + S.model + ':generateContent', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': S.key }, body: b });
+    let res = await post(body(true, think));
+    /* Model không nhận khuôn JSON hay mức suy nghĩ: gửi lại gọn hơn */
+    if (res.status === 400) res = await post(body(false, null));
+    if (!res.ok) throw new Error(res.status === 429 ? 'hết lượt dùng API' : 'Google trả lỗi ' + res.status);
+    const raw = textOfReply(await res.json()).replace(/^\s*```(?:json)?|```\s*$/g, '').trim();
+    const j = JSON.parse(raw);
+    const me = [normName(pName()), 'subin', 'player', 'nguoi choi'].filter(Boolean);
+    const list = (j.characters || []).filter((x) => x && x.name && !me.includes(normName(x.name))).slice(0, 60);
+    return { series: (j.series || '').trim(), list };
+  }
+  /* Tìm người đã có trong dàn: trùng mã, hay trùng tên, tên gốc, tên gọi khác */
+  function castMatch(x) {
+    if (x.code) { const c = cur.cast.find((c) => c.code === x.code); if (c) return c; }
+    const keys = [x.name, x.original].concat(x.aliases || []).map(normName).filter((s) => s.length >= 2);
+    return cur.cast.find((c) => [c.name].concat((c.alias || '').split(',')).map(normName).some((n) => n && keys.includes(n)));
+  }
+  let castBusy = false;
+  async function castFromPrompt(quiet) {
+    const sys = cur.system || '';
+    if (!sys.trim()) { if (!quiet) toast('Phiên này chưa có prompt', { err: true }); return; }
+    if (castBusy) return;
+    castBusy = true;
+    const session = cur;
+    const btn = $('#castFromPrompt');
+    const label = btn.textContent;
+    let found = null;
+    let series = '';
+    if (S.key && S.model) {
+      btn.disabled = true;
+      btn.textContent = 'Subel đang đọc prompt…';
+      try { ({ series, list: found } = await aiCast(sys)); } catch (e) { if (!quiet) toast('Subel chưa đọc được prompt (' + e.message + '). Dùng bảng mã trong prompt.', { err: true, ms: 7000 }); }
+      btn.disabled = false;
+      btn.textContent = label;
+    }
+    castBusy = false;
+    if (cur !== session) return;
+    /* Bảng mã trong prompt luôn được gộp vào để không sót ai có mã */
+    found = found || [];
     const table = codeTable();
-    const codes = Object.keys(table);
-    if (!codes.length) { toast('Prompt của phiên này không có bảng mã nhân vật (dạng | N01 | Tên |)', { err: true }); return; }
+    for (const code of Object.keys(table)) if (!found.some((x) => x.code === code)) found.push({ name: table[code], code });
+    if (!found.length) {
+      if (!quiet) toast('Chưa tìm được nhân vật nào trong prompt. ' + (S.key && S.model ? '' : 'Thêm API key và chọn model để Subel đọc prompt giúp Cậu, hoặc ') + 'thêm tay bằng nút +.', { err: true, ms: 8000 });
+      return;
+    }
+    if (series && !(cur.series || '').trim()) cur.series = series;
     let n = 0;
     const fresh = [];
-    for (const code of codes) {
-      const old = cur.cast.find((c) => c.code === code);
-      if (old) { if (old.hidden) { old.hidden = false; n++; } continue; }
-      const c = { id: uid(), name: table[code], alias: '', code, img: '', note: '' };
+    for (const x of found) {
+      const extra = [x.original].concat(x.aliases || []).map((s) => (s || '').trim()).filter((s) => s && normName(s) !== normName(x.name));
+      const old = castMatch(x);
+      if (old) {
+        if (old.hidden) { old.hidden = false; n++; }
+        if (!old.code && x.code && isCode(x.code)) old.code = x.code;
+        const have = (old.alias || '').split(',').map(normName);
+        const add = extra.filter((s) => !have.includes(normName(s)));
+        if (add.length) old.alias = [old.alias].concat(add).filter(Boolean).join(', ');
+        if (!old.tag && x.tag) old.tagGuess = x.tag;
+        continue;
+      }
+      const c = { id: uid(), name: x.name.trim(), alias: extra.join(', '), code: x.code && isCode(x.code) ? x.code : '', img: '', note: '' };
+      if (x.tag) c.tagGuess = x.tag.trim().toLowerCase().replace(/\s+/g, '_');
+      if (x.oc) c.oc = true;
       cur.cast.push(c);
       fresh.push(c);
       n++;
     }
     castChanged();
-    toast(n ? 'Đã thêm ' + n + ' nhân vật từ prompt.' + (fresh.length && !localFile ? ' Đang lấy tranh đẹp làm avatar cho từng người…' : ' Bấm vào khung ảnh của từng người để tìm ảnh.') : 'Mọi nhân vật trong prompt đã có sẵn', { ms: 6000 });
-    if (fresh.length && !localFile) artForCast(fresh, true);
+    const art = fresh.filter((c) => !c.oc);
+    toast(n ? 'Subel đã thêm ' + n + ' nhân vật từ prompt' + (seriesOf() ? ' (' + seriesOf() + ')' : '') + '.' + (art.length && !localFile ? ' Đang lấy tranh đẹp làm avatar cho từng người…' : ' Bấm vào khung ảnh của từng người để tìm ảnh.') : 'Mọi nhân vật trong prompt đã có sẵn', { ms: 7000 });
+    if (art.length && !localFile) artForCast(art, true);
+  }
+  /* Dán prompt mới vào một phiên chưa có nhân vật: chờ Cậu dán xong rồi Subel tự đọc, mỗi prompt một lần */
+  let autoCastT = 0;
+  const strHash = (s) => { let x = 5381; for (let i = 0; i < s.length; i += 7) x = (x * 33 + s.charCodeAt(i)) | 0; return (x >>> 0).toString(36) + s.length; };
+  function autoCastSoon() {
+    clearTimeout(autoCastT);
+    const session = cur;
+    autoCastT = setTimeout(() => {
+      if (cur !== session || !S.key || !S.model) return;
+      const sys = cur.system || '';
+      if (sys.length < 400 || cur.cast.some((c) => !c.hidden)) return;
+      const h = strHash(sys);
+      if (cur.castAuto === h) return;
+      cur.castAuto = h;
+      castFromPrompt(true);
+    }, 4000);
   }
   /* Bộ sưu tập ảnh: xem lớn, đặt avatar, tìm thêm ảnh trên wiki Fandom của bộ đang chơi, Pinterest, kéo thả */
   let gal = { c: null, i: 0, found: [], terms: null, ti: 0, offset: 0, busy: false, art: null };
@@ -3184,6 +3288,10 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
      xếp theo số tranh, rồi lấy thẻ đầu tiên mà tranh thuộc đúng bộ đang chơi */
   async function danTag(c) {
     const toks = booruSeriesTokens();
+    if (c.tagGuess) {
+      const g = await danJson('tags.json?only=name,post_count&search[category]=4&search[name]=' + encodeURIComponent(c.tagGuess));
+      if (g[0] && g[0].post_count >= 3) return g[0].name;
+    }
     const cands = new Map();
     const exact = new Set();
     for (const n of [c.name].concat((c.alias || '').split(','), VN_ALIAS[c.name.toLowerCase()] || [])) {
@@ -5515,10 +5623,10 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
 
     $('#castGo').onclick = () => searchImages($('#castQ').value);
     $('#castQ').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); searchImages($('#castQ').value); } });
-    $('#castFromPrompt').onclick = castFromPrompt;
+    $('#castFromPrompt').onclick = () => castFromPrompt();
     $('#castBeautify').onclick = async () => {
-      const people = cur.cast.filter((c) => !c.hidden);
-      if (!people.length) { toast('Chưa có nhân vật nào. Tra tên hoặc bấm “Lấy danh sách từ prompt” trước.', { err: true }); return; }
+      const people = cur.cast.filter((c) => !c.hidden && !c.oc);
+      if (!people.length) { toast('Chưa có nhân vật nào. Tra tên hoặc bấm “Subel đọc prompt” trước.', { err: true }); return; }
       if (localFile) { artForCast(people); return; }
       if (!(await ask('Lấy tranh vẽ đẹp nhất trên Danbooru cho ' + people.length + ' nhân vật và đặt làm avatar?\nChỉ lấy tranh an toàn. Ảnh cũ vẫn giữ trong bộ sưu tập của từng người.', { ok: 'Lấy tranh' }))) return;
       artForCast(people);
