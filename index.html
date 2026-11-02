@@ -1004,6 +1004,31 @@ details.gbridge:not([open]) { padding-block: 11px; }
 @media (max-width: 900px) {
   .npcdock { position: fixed; inset: 0; z-index: 60; width: auto; border: 0; border-radius: 0; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
 }
+/* ================= Màu chữ tự chọn ================= */
+.turn .body em { color: var(--think, inherit); }
+.turn .body strong { color: var(--bold, inherit); }
+.tcrows { display: grid; gap: 8px; }
+.tcrow { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6px 10px; padding: 9px 10px; border-radius: 12px; border: 1px solid var(--line); background: color-mix(in srgb, var(--card) 70%, transparent); }
+.tcrow > b { font-size: 13px; font-weight: 600; }
+.tcpick { display: flex; align-items: center; gap: 6px; }
+.tcpick input[type="color"] { width: 34px; height: 28px; padding: 0; border: 1px solid var(--line2); border-radius: 8px; background: none; cursor: pointer; }
+.tcpick input[type="color"]::-webkit-color-swatch-wrapper { padding: 2px; }
+.tcpick input[type="color"]::-webkit-color-swatch { border: 0; border-radius: 6px; }
+.tcsw { grid-column: 1 / -1; display: flex; gap: 6px; flex-wrap: wrap; }
+.tcsw button { width: 22px; height: 22px; padding: 0; border-radius: 50%; border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25); transition: transform 0.15s; }
+.tcsw button:hover { transform: scale(1.15); }
+.tcsw button.on { border-color: var(--text); }
+.tcprev { margin-top: 10px; padding: 12px 14px; border-radius: 14px; border: 1px dashed color-mix(in srgb, var(--accent) 30%, var(--line2)); background: color-mix(in srgb, var(--bg) 50%, var(--card)); }
+.tcprev .turn { display: block; margin: 0; }
+.tcprev .body { font-family: var(--story); font-size: 15px; line-height: 1.75; }
+.tcprev small { display: block; margin-bottom: 6px; color: var(--dim); font-family: var(--ui); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+/* ================= Hoạt động mở theo mức tình cảm ================= */
+.ndacts2 { display: flex; flex-wrap: wrap; gap: 6px; }
+.ndact { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--line)); background: color-mix(in srgb, var(--accent) 10%, var(--card)); color: var(--text); font-size: 12px; transition: background 0.15s, transform 0.15s; }
+.ndact:hover:not(:disabled) { background: color-mix(in srgb, var(--accent) 22%, var(--card)); transform: translateY(-1px); }
+.ndact:disabled { opacity: 0.5; border-style: dashed; background: none; color: var(--dim); cursor: not-allowed; }
+.ndact .need { font-size: 10.5px; color: var(--dim); font-variant-numeric: tabular-nums; }
+.ndnext { font-size: 12px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -1267,6 +1292,9 @@ details.gbridge:not([open]) { padding-block: 11px; }
     <section class="pane" data-pane="look" role="tabpanel" hidden>
       <div class="sub first">Bảng màu</div>
       <div id="themes" class="themes"></div>
+      <div class="sub">Màu chữ trong truyện <small style="text-transform:none;letter-spacing:0">· riêng cho bảng màu đang dùng</small></div>
+      <div id="tcRows" class="tcrows"></div>
+      <div id="tcPrev" class="tcprev"></div>
       <div class="sub">Chữ truyện</div>
       <div id="fontSeg" class="seg"><button type="button" data-v="literata">Literata</button><button type="button" data-v="noto">Noto Serif</button><button type="button" data-v="sans">Không chân</button></div>
       <div class="field" style="margin-top:14px">
@@ -2455,12 +2483,19 @@ details.gbridge:not([open]) { padding-block: 11px; }
   }
   function dedupeCast() {
     let changed = false;
+    const soNow = S.feel ? feelHistory(1)[0] || null : null;
     for (let i = 0; i < cur.cast.length; i++) {
       for (let j = i + 1; j < cur.cast.length; j++) {
         const a = cur.cast[i];
         const b = cur.cast[j];
         let pair = null;
-        if (a.code && b.code) { if (a.code === b.code) pair = [a, b]; }
+        if (a.code && b.code) {
+          if (a.code === b.code) pair = [a, b];
+          else if (sameNpc(a, namesOf(b))) {
+            const rank = (c) => (soNow && soNow[c.code] ? 2 : 0) + (codeTable()[c.code] ? 1 : 0);
+            if (!(soNow && soNow[a.code] && soNow[b.code])) pair = rank(a) >= rank(b) ? [a, b] : [b, a];
+          }
+        }
         else if (sameNpc(a, namesOf(b))) pair = a.code || !b.code ? [a, b] : [b, a];
         if (!pair) continue;
         mergeNpc(pair[0], pair[1]);
@@ -3980,6 +4015,126 @@ details.gbridge:not([open]) { padding-block: 11px; }
   }
   function hideNpcCard() { $('#npcCard').classList.remove('on'); }
 
+  /* ================= Màu chữ tự chọn =================
+     Mỗi bảng màu giữ màu riêng cho từng loại chữ; bỏ chọn thì về màu gốc của bảng */
+  const TC_KINDS = [['narr', 'Dẫn truyện', '--narr'], ['q', 'Lời thoại “…”', '--q'], ['think', 'Suy nghĩ (chữ nghiêng)', '--think'], ['ooc', 'Trong ngoặc ( )', '--ooc'], ['bold', 'Chữ đậm', '--bold']];
+  const TC_SWATCH = ['#f3eee6', '#ece8f4', '#cbb4ff', '#b48cf2', '#f5a3c7', '#f0c27a', '#ffb48c', '#9ee6c4', '#9cc9ff', '#2e2640', '#6b43a8', '#a33f6a'];
+  function tcMap() { if (!S.tc || typeof S.tc !== 'object') S.tc = {}; return S.tc[S.theme] || (S.tc[S.theme] = {}); }
+  function applyTextColors() {
+    const r = document.documentElement;
+    const m = (S.tc && S.tc[S.theme]) || {};
+    for (const [k, , v] of TC_KINDS) { if (m[k]) r.style.setProperty(v, m[k]); else r.style.removeProperty(v); }
+    paintTextColors();
+  }
+  function tcNow(k, v) {
+    const cs = getComputedStyle(document.documentElement);
+    const val = (cs.getPropertyValue(v) || cs.getPropertyValue(k === 'bold' || k === 'think' ? '--narr' : '--text')).trim();
+    return /^#[0-9a-f]{6}$/i.test(val) ? val : '#ffffff';
+  }
+  function paintTextColors() {
+    const box = $('#tcRows');
+    if (!box) return;
+    const m = (S.tc && S.tc[S.theme]) || {};
+    for (const [k, , v] of TC_KINDS) {
+      const row = box.querySelector('[data-k="' + k + '"]');
+      if (!row) continue;
+      const cur = m[k] || tcNow(k, v);
+      row.querySelector('input').value = cur;
+      row.querySelector('.tcreset').hidden = !m[k];
+      row.querySelectorAll('.tcsw button').forEach((b) => b.classList.toggle('on', !!m[k] && b.dataset.c.toLowerCase() === m[k].toLowerCase()));
+    }
+  }
+  function buildTextColors() {
+    const box = $('#tcRows');
+    if (!box) return;
+    box.textContent = '';
+    for (const [k, label] of TC_KINDS) {
+      const row = el('div', 'tcrow');
+      row.dataset.k = k;
+      const pick = el('div', 'tcpick');
+      const inp = el('input');
+      inp.type = 'color';
+      inp.setAttribute('aria-label', 'Màu ' + label);
+      const set = (c) => { tcMap()[k] = c; saveSettings(); applyTextColors(); };
+      inp.addEventListener('input', () => set(inp.value));
+      const reset = el('button', 'btn sm ghost tcreset', 'Mặc định');
+      reset.type = 'button';
+      reset.onclick = () => { delete tcMap()[k]; saveSettings(); applyTextColors(); };
+      pick.append(reset, inp);
+      const sw = el('div', 'tcsw');
+      for (const c of TC_SWATCH) {
+        const b = el('button');
+        b.type = 'button';
+        b.dataset.c = c;
+        b.style.background = c;
+        b.title = c;
+        b.onclick = () => set(c);
+        sw.append(b);
+      }
+      row.append(el('b', null, label), pick, sw);
+      box.append(row);
+    }
+    const prev = $('#tcPrev');
+    prev.innerHTML = '<small>Xem trước</small><div class="turn"><div class="body md"><p>Ino đặt cái kéo xuống, nhìn tấm thẻ gỗ. <em>Lại một người nữa…</em> <span class="q">“Cậu là người thứ năm hôm nay đấy.”</span> Ngoài cửa, <strong>Tờ Musubi</strong> bay phấp phới. <span class="pa">((Ino đang chờ người khác.))</span></p></div></div>';
+    applyTextColors();
+  }
+  /* ================= Hoạt động với NPC, mở theo mức tình cảm =================
+     Mức lấy từ dòng ⚙ của Sổ; thang ngắn hơn 15 bậc thì các mốc co lại theo tỉ lệ. Bấm để viết sẵn hành động; người ấy vẫn có quyền từ chối */
+  const NPC_ACTS = [
+    ['Chào, bắt chuyện', null, '{P} chào {N} và bắt chuyện vài câu.'],
+    ['Rủ đi ăn', ['pos', 1], '{P} rủ {N} đi ăn ở quán quen.'],
+    ['Rủ tập luyện cùng', ['pos', 2], '{P} rủ {N} ra sân tập cùng.'],
+    ['Đi chơi chung', ['pos', 2], '{P} rủ {N} cuối tuần đi chơi chung với vài người bạn.'],
+    ['Kể chuyện riêng', ['pos', 3], '{P} kể cho {N} nghe một chuyện riêng chưa kể với ai.'],
+    ['Hẹn gặp riêng', ['heart', 3], '{P} hẹn gặp riêng {N} ở một chỗ yên tĩnh.'],
+    ['Mời đi lễ hội', ['heart', 4], '{P} mời {N} đi cùng tới lễ hội, sự kiện sắp tới.'],
+    ['Tặng quà', ['heart', 5], '{P} tặng {N} một món quà nhỏ đã chọn kỹ.'],
+    ['Hẹn hò', ['heart', 7], '{P} hẹn {N} một buổi hẹn hò thật sự, chỉ hai người.'],
+    ['Nắm tay', ['heart', 8], '{P} khẽ hỏi {N} có muốn nắm tay không.'],
+    ['Tỏ tình', ['heart', 8], '{P} nói thật lòng mình với {N}.'],
+    ['Ra mắt gia đình', ['heart', 13], '{P} mời {N} về ra mắt gia đình.'],
+    ['Cầu hôn', ['heart', 14], '{P} ngỏ lời muốn cùng {N} đi hết đời.'],
+  ];
+  function actNeed(need) {
+    if (!need) return null;
+    const [kind, n] = need;
+    if (kind === 'pos') return { kind, n: Math.min(n, feelTop('pos')) };
+    return { kind, n: Math.max(1, Math.round((n * feelTop('heart')) / 15)) };
+  }
+  function actOpen(a, need) {
+    if (!need) return true;
+    if (!a) return false;
+    if (need.kind === 'heart') return a.heart >= need.n;
+    return a.heart > 0 || a.sign >= need.n;
+  }
+  function npcActs(c, a) {
+    const box = el('div', 'ndrow');
+    box.append(el('span', null, 'Hoạt động mở theo tình cảm'));
+    const wrap = el('div', 'ndacts2');
+    let next = null;
+    for (const [t, need0, say] of NPC_ACTS) {
+      const need = actNeed(need0);
+      const ok = actOpen(a, need);
+      const b = el('button', 'ndact');
+      b.type = 'button';
+      b.disabled = !ok;
+      b.append(document.createTextNode((ok ? '' : '🔒 ') + t));
+      if (need) b.append(el('span', 'need', need.kind === 'heart' ? '♡' + need.n : '+' + need.n));
+      b.title = ok ? 'Viết sẵn hành động vào ô nhập; ' + c.name + ' vẫn có thể từ chối' : 'Mở khi ' + c.name + ' tới ' + (need.kind === 'heart' ? '♡' + need.n + ' ' + labOf('heart', need.n) : '+' + need.n + ' ' + labOf('pos', need.n));
+      b.onclick = (e) => {
+        e.stopPropagation();
+        insertLine(say.replace(/\{P\}/g, pLabel()).replace(/\{N\}/g, c.name));
+        if (innerWidth <= 900) closeNpcDock();
+        $('#input').focus();
+      };
+      if (!ok && !next) next = [t, need];
+      wrap.append(b);
+    }
+    box.append(wrap);
+    if (next) box.append(el('div', 'ndnext', 'Mốc tiếp theo: ' + next[0] + ' khi tới ' + (next[1].kind === 'heart' ? '♡' + next[1].n : '+' + next[1].n) + '.'));
+    return box;
+  }
+
   /* ================= Khung NPC: ai nghĩ gì về Cậu =================
      Mỗi NPC một thẻ: ảnh, mức tình cảm và thang, đường tình cảm qua các lượt, điều người ấy nghĩ về Cậu (Subel trả lời theo đúng điều NPC biết) */
   let npcOpen = '';
@@ -4117,6 +4272,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
     if (ti) { row('Quý ' + pLabel() + ' khi', swapHero(ti.like)); row('Khó chịu khi', swapHero(ti.dislike)); row('Độ khó tình cảm', ti.love); }
     const sp = c.code && sparkEl(c.code);
     if (sp) { const r = el('div', 'ndrow'); r.append(el('span', null, 'Tình cảm qua các lượt'), sp); more.append(r); }
+    more.append(npcActs(c, a));
     const acts = el('div', 'ndacts');
     const ask = el('button', 'btn sm red', v ? 'Hỏi lại Subel' : 'Hỏi Subel');
     ask.type = 'button';
@@ -6093,6 +6249,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $$('#themes .swatch').forEach((b) => b.classList.toggle('on', b.dataset.v === S.theme));
     $$('#fontSeg button').forEach((b) => b.classList.toggle('on', b.dataset.v === S.font));
     $$('#widthSeg button').forEach((b) => b.classList.toggle('on', b.dataset.v === S.width));
+    applyTextColors();
     buildFx();
   }
   function buildThemes() {
@@ -6346,6 +6503,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     $('#optSo').addEventListener('change', (e) => { S.soOpen = e.target.checked; saveSettings(); renderMsgs(); });
     $('#namePlayer').addEventListener('change', (e) => setPlayer(e.target.value));
     wireMe();
+    buildTextColors();
     $('#npcBtn').onclick = () => ($('#npcDock').hidden ? openNpcDock() : closeNpcDock());
     $('#ndClose').onclick = closeNpcDock;
     $$('#ndFilter button').forEach((b) => { b.onclick = () => { S.npcF = b.dataset.v; saveSettings(); renderNpcDock(); }; });
