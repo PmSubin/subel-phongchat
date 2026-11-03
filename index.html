@@ -2,18 +2,124 @@
 <html lang="vi" data-theme="khoi" data-motion="1">
 <head>
 <meta charset="utf-8">
-<meta name="subel-build" content="202611031130">
+<meta name="subel-build" content="202611031510">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SUBEL · Phòng Chat</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22fbg%22%20cx%3D%2250%25%22%20cy%3D%2234%25%22%20r%3D%2278%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234a3a78%22%2F%3E%3Cstop%20offset%3D%22.45%22%20stop-color%3D%22%232e2350%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23151026%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22fmoon%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f4ecff%22%2F%3E%3Cstop%20offset%3D%22.55%22%20stop-color%3D%22%23d9c9fb%22%2F%3E%3Cstop%20offset%3D%22.8%22%20stop-color%3D%22%23b9a3f0%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%239d84e4%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22fglow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23cdb8ff%22%20stop-opacity%3D%22.45%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23cdb8ff%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22fskin%22%20cx%3D%2238%25%22%20cy%3D%2230%25%22%20r%3D%2280%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fffaf0%22%2F%3E%3Cstop%20offset%3D%22.6%22%20stop-color%3D%22%23f3e9d6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dccdb4%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22fmuz%22%20cx%3D%2245%25%22%20cy%3D%2235%25%22%20r%3D%2270%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f9d3d6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e3a8b2%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22feye%22%20cx%3D%2240%25%22%20cy%3D%2235%25%22%20r%3D%2270%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%233b2d55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23120c1c%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22fblush%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ff8fb6%22%20stop-opacity%3D%22.75%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ff8fb6%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3ClinearGradient%20id%3D%22fhat%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234a3b69%22%2F%3E%3Cstop%20offset%3D%22.7%22%20stop-color%3D%22%232e2444%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23211a33%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22fscarf%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f28aae%22%2F%3E%3Cstop%20offset%3D%22.6%22%20stop-color%3D%22%23d4567e%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23a83b62%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22fbud%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ddd0ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%238e70dc%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22ffoil%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff6e2%22%2F%3E%3Cstop%20offset%3D%22.45%22%20stop-color%3D%22%23f1dcb2%22%2F%3E%3Cstop%20offset%3D%22.55%22%20stop-color%3D%22%23d9bf8a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f6e7c8%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22ffield%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%236a52b8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231b1430%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath%20id%3D%22fhc%22%3E%3Cpath%20d%3D%22M256%20150C312%20150%20338%20190%20336%20236C334%20272%20322%20294%20306%20306L206%20306C190%20294%20178%20272%20176%20236C174%20190%20200%20150%20256%20150Z%22%2F%3E%3C%2FclipPath%3E%3Cfilter%20id%3D%22fgrain%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.9%22%20numOctaves%3D%222%22%20seed%3D%224%22%2F%3E%3CfeColorMatrix%20values%3D%220%200%200%200%20.95%20%200%200%200%200%20.92%20%200%200%200%200%201%20%200%200%200%20.07%200%22%2F%3E%3CfeComposite%20in2%3D%22SourceGraphic%22%20operator%3D%22in%22%2F%3E%3C%2Ffilter%3E%3Cfilter%20id%3D%22fsoft%22%20x%3D%22-20%25%22%20y%3D%22-20%25%22%20width%3D%22140%25%22%20height%3D%22140%25%22%3E%3CfeGaussianBlur%20stdDeviation%3D%226%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3CclipPath%20id%3D%22fframe%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%2F%3E%3C%2FclipPath%3E%3Cg%20clip-path%3D%22url(%23fframe)%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20fill%3D%22url(%23fbg)%22%2F%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22236%22%20r%3D%22250%22%20fill%3D%22url(%23fglow)%22%2F%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22236%22%20r%3D%22176%22%20fill%3D%22url(%23fmoon)%22%20opacity%3D%22.9%22%2F%3E%3Cpath%20d%3D%22M92%2081Q93.76%2090.24%20103%2092Q93.76%2093.76%2092%20103Q90.24%2093.76%2081%2092Q90.24%2090.24%2092%2081Z%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M426%20100Q427.28%20106.72%20434%20108Q427.28%20109.28%20426%20116Q424.72%20109.28%20418%20108Q424.72%20106.72%20426%20100Z%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.75%22%2F%3E%3Cpath%20d%3D%22M446%20284Q446.96%20289.04%20452%20290Q446.96%20290.96%20446%20296Q445.04%20290.96%20440%20290Q445.04%20289.04%20446%20284Z%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.55%22%2F%3E%3Cpath%20d%3D%22M66%20291Q66.8%20295.2%2071%20296Q66.8%20296.8%2066%20301Q65.2%20296.8%2061%20296Q65.2%20295.2%2066%20291Z%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.45%22%2F%3E%3Cpath%20d%3D%22M140%2050Q140.64%2053.36%20144%2054Q140.64%2054.64%20140%2058Q139.36%2054.64%20136%2054Q139.36%2053.36%20140%2050Z%22%20fill%3D%22%23fff8ec%22%20opacity%3D%220.5%22%2F%3E%3Cg%20transform%3D%22translate(256%20268)%20scale(1.16)%20translate(-256%20-262)%22%3E%3Cellipse%20cx%3D%22256%22%20cy%3D%22318%22%20rx%3D%22120%22%20ry%3D%2218%22%20fill%3D%22%230d0918%22%20opacity%3D%22.35%22%20filter%3D%22url(%23fsoft)%22%2F%3E%3Cellipse%20cx%3D%22160%22%20cy%3D%22218%22%20rx%3D%2242%22%20ry%3D%2220%22%20transform%3D%22rotate(-26%20160%20218)%22%20fill%3D%22url(%23fskin)%22%20stroke%3D%22%23261d36%22%20stroke-width%3D%226.5%22%2F%3E%3Cellipse%20cx%3D%22165%22%20cy%3D%22219%22%20rx%3D%2224%22%20ry%3D%229.5%22%20transform%3D%22rotate(-26%20165%20219)%22%20fill%3D%22%23e9b0be%22%2F%3E%3Cellipse%20cx%3D%22352%22%20cy%3D%22218%22%20rx%3D%2242%22%20ry%3D%2220%22%20transform%3D%22rotate(26%20352%20218)%22%20fill%3D%22url(%23fskin)%22%20stroke%3D%22%23261d36%22%20stroke-width%3D%226.5%22%2F%3E%3Cellipse%20cx%3D%22347%22%20cy%3D%22219%22%20rx%3D%2224%22%20ry%3D%229.5%22%20transform%3D%22rotate(26%20347%20219)%22%20fill%3D%22%23e9b0be%22%2F%3E%3Cpath%20d%3D%22M256%20150C312%20150%20338%20190%20336%20236C334%20272%20322%20294%20306%20306L206%20306C190%20294%20178%20272%20176%20236C174%20190%20200%20150%20256%20150Z%22%20fill%3D%22url(%23fskin)%22%2F%3E%3Cg%20clip-path%3D%22url(%23fhc)%22%3E%3Cpath%20d%3D%22M168%20218C168%20180%20204%20154%20238%20164C252%20182%20244%20214%20222%20226C204%20236%20178%20236%20168%20218Z%22%20fill%3D%22%23261d36%22%2F%3E%3Cpath%20d%3D%22M318%20256C330%20252%20344%20258%20344%20272L344%20304L300%20304C298%20284%20304%20262%20318%20256Z%22%20fill%3D%22%23261d36%22%20opacity%3D%22.92%22%2F%3E%3Cellipse%20cx%3D%22256%22%20cy%3D%22178%22%20rx%3D%2296%22%20ry%3D%2222%22%20fill%3D%22%232a2040%22%20opacity%3D%22.28%22%20filter%3D%22url(%23fsoft)%22%2F%3E%3Cpath%20d%3D%22M334%20196C344%20232%20338%20272%20314%20300%22%20fill%3D%22none%22%20stroke%3D%22%23e7dcff%22%20stroke-width%3D%227%22%20opacity%3D%22.55%22%20filter%3D%22url(%23fsoft)%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M256%20150C312%20150%20338%20190%20336%20236C334%20272%20322%20294%20306%20306L206%20306C190%20294%20178%20272%20176%20236C174%20190%20200%20150%20256%20150Z%22%20fill%3D%22none%22%20stroke%3D%22%23261d36%22%20stroke-width%3D%226.5%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cellipse%20cx%3D%22196%22%20cy%3D%22266%22%20rx%3D%2220%22%20ry%3D%2211%22%20fill%3D%22url(%23fblush)%22%2F%3E%3Cellipse%20cx%3D%22316%22%20cy%3D%22266%22%20rx%3D%2220%22%20ry%3D%2211%22%20fill%3D%22url(%23fblush)%22%2F%3E%3Cellipse%20cx%3D%22220%22%20cy%3D%22238%22%20rx%3D%2215.5%22%20ry%3D%2218.5%22%20fill%3D%22url(%23feye)%22%20stroke%3D%22%23f3e9d6%22%20stroke-width%3D%223%22%2F%3E%3Cellipse%20cx%3D%22292%22%20cy%3D%22238%22%20rx%3D%2215.5%22%20ry%3D%2218.5%22%20fill%3D%22url(%23feye)%22%2F%3E%3Cellipse%20cx%3D%22226%22%20cy%3D%22229%22%20rx%3D%225.6%22%20ry%3D%226.2%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%22215.5%22%20cy%3D%22246%22%20r%3D%222.6%22%20fill%3D%22%23fff%22%20opacity%3D%22.8%22%2F%3E%3Cpath%20d%3D%22M211%20248Q220%20254%20229%20248%22%20fill%3D%22none%22%20stroke%3D%22%237d6aa8%22%20stroke-width%3D%221.6%22%20opacity%3D%22.6%22%2F%3E%3Cellipse%20cx%3D%22298%22%20cy%3D%22229%22%20rx%3D%225.6%22%20ry%3D%226.2%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%22287.5%22%20cy%3D%22246%22%20r%3D%222.6%22%20fill%3D%22%23fff%22%20opacity%3D%22.8%22%2F%3E%3Cpath%20d%3D%22M283%20248Q292%20254%20301%20248%22%20fill%3D%22none%22%20stroke%3D%22%237d6aa8%22%20stroke-width%3D%221.6%22%20opacity%3D%22.6%22%2F%3E%3Cellipse%20cx%3D%22256%22%20cy%3D%22290%22%20rx%3D%2272%22%20ry%3D%2242%22%20fill%3D%22url(%23fmuz)%22%20stroke%3D%22%23261d36%22%20stroke-width%3D%226%22%2F%3E%3Cellipse%20cx%3D%22244%22%20cy%3D%22276%22%20rx%3D%2230%22%20ry%3D%229%22%20fill%3D%22%23fff%22%20opacity%3D%22.22%22%2F%3E%3Cellipse%20cx%3D%22232%22%20cy%3D%22288%22%20rx%3D%228.5%22%20ry%3D%2211.5%22%20fill%3D%22%238a4762%22%2F%3E%3Cellipse%20cx%3D%22280%22%20cy%3D%22288%22%20rx%3D%228.5%22%20ry%3D%2211.5%22%20fill%3D%22%238a4762%22%2F%3E%3Cpath%20d%3D%22M241%20313Q256%20322%20271%20313%22%20fill%3D%22none%22%20stroke%3D%22%238a4762%22%20stroke-width%3D%224.6%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M190%20320Q256%20354%20322%20320L328%20344Q256%20380%20184%20344Z%22%20fill%3D%22url(%23fscarf)%22%20stroke%3D%22%23261d36%22%20stroke-width%3D%225%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M206%20336Q256%20356%20306%20336%22%20fill%3D%22none%22%20stroke%3D%22%23ffd0de%22%20stroke-width%3D%222%22%20opacity%3D%22.5%22%2F%3E%3Cpath%20d%3D%22M296%20346L326%20402L304%20394L294%20412L282%20354Z%22%20fill%3D%22url(%23fscarf)%22%20stroke%3D%22%23261d36%22%20stroke-width%3D%225%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cg%20transform%3D%22rotate(-7%20256%20154)%22%3E%3Cpath%20d%3D%22M118%20174Q256%2034%20394%20174Q256%20204%20118%20174Z%22%20fill%3D%22url(%23fhat)%22%20stroke%3D%22%23261d36%22%20stroke-width%3D%226%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M150%20166Q256%2070%20362%20166%22%20fill%3D%22none%22%20stroke%3D%22%23a991e6%22%20stroke-width%3D%222.4%22%20opacity%3D%22.35%22%2F%3E%3Cpath%20d%3D%22M256%2066L256%20186M206%2086L188%20180M306%2086L324%20180M168%20120L150%20176M344%20120L362%20176%22%20stroke%3D%22%23ffffff%22%20stroke-opacity%3D%22.07%22%20stroke-width%3D%222.4%22%2F%3E%3Cpath%20d%3D%22M164%20164Q256%20194%20348%20164%22%20fill%3D%22none%22%20stroke%3D%22%23b99cf6%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M170%20168Q256%20194%20342%20168%22%20fill%3D%22none%22%20stroke%3D%22%23e3d6ff%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20opacity%3D%22.6%22%2F%3E%3Cpath%20d%3D%22M328%20170Q346%20132%20378%20104%22%20fill%3D%22none%22%20stroke%3D%22%236f8a72%22%20stroke-width%3D%223.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cellipse%20cx%3D%22351.6%22%20cy%3D%22139.8%22%20rx%3D%227.8%22%20ry%3D%2211%22%20transform%3D%22rotate(40%20351.6%20139.8)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3Cellipse%20cx%3D%22343.6%22%20cy%3D%22134.8%22%20rx%3D%227.4%22%20ry%3D%2210.4%22%20transform%3D%22rotate(-4%20343.6%20134.8)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3Cellipse%20cx%3D%22358.4%22%20cy%3D%22129.9%22%20rx%3D%226.9%22%20ry%3D%229.9%22%20transform%3D%22rotate(40%20358.4%20129.9)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3Cellipse%20cx%3D%22352%22%20cy%3D%22125.1%22%20rx%3D%226.5%22%20ry%3D%229.3%22%20transform%3D%22rotate(-4%20352%20125.1)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3Cellipse%20cx%3D%22365.9%22%20cy%3D%22120.5%22%20rx%3D%226%22%20ry%3D%228.7%22%20transform%3D%22rotate(40%20365.9%20120.5)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3Cellipse%20cx%3D%22361.1%22%20cy%3D%22115.9%22%20rx%3D%225.6%22%20ry%3D%228.1%22%20transform%3D%22rotate(-4%20361.1%20115.9)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3Cellipse%20cx%3D%22374%22%20cy%3D%22111.4%22%20rx%3D%225.1%22%20ry%3D%227.6%22%20transform%3D%22rotate(40%20374%20111.4)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3Cellipse%20cx%3D%22370.8%22%20cy%3D%22107.1%22%20rx%3D%224.7%22%20ry%3D%227%22%20transform%3D%22rotate(-4%20370.8%20107.1)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3Cellipse%20cx%3D%22382.7%22%20cy%3D%22102.9%22%20rx%3D%224.2%22%20ry%3D%226.4%22%20transform%3D%22rotate(40%20382.7%20102.9)%22%20fill%3D%22url(%23fbud)%22%20stroke%3D%22%234f3a92%22%20stroke-width%3D%221%22%20stroke-opacity%3D%22.35%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20filter%3D%22url(%23fgrain)%22%20fill%3D%22%23fff%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%22502%22%20height%3D%22502%22%20rx%3D%22107%22%20fill%3D%22none%22%20stroke%3D%22%23e6dbff%22%20stroke-opacity%3D%22.14%22%20stroke-width%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="SUBEL">
 <meta name="theme-color" content="#15121d">
+<script>
+/* Đặt bảng màu và chế độ chuyển động ngay từ đầu, trước khi màn chào hiện, để không chớp sai màu */
+try {
+  var _s = JSON.parse(localStorage.getItem('subelchat:settings') || 'null');
+  var _r = document.documentElement;
+  if (_s && _s.theme) _r.dataset.theme = _s.theme;
+  if ((_s && _s.motion === false) || (!_s && matchMedia('(prefers-reduced-motion: reduce)').matches)) _r.dataset.motion = '0';
+} catch (e) { /* bộ nhớ bị chặn: để mặc định */ }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://generativelanguage.googleapis.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Noto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+/* ================= Màn chào: hiện mỗi lần mở trang, tự tan sau chừng 3 giây, chạm hay bấm phím là vào ngay ================= */
+#intro { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; overflow: hidden; background: radial-gradient(120% 80% at 50% 30%, color-mix(in srgb, var(--accent) 20%, var(--bg)), var(--bg) 62%); color: var(--text); cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; transition: opacity 0.55s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.55s ease; }
+#intro.out { opacity: 0; transform: scale(1.045); filter: blur(6px); pointer-events: none; }
+#intro .landscape { z-index: 0; }
+#intro .landscape .moon { top: 9%; left: auto; right: 12%; width: 110px; height: 110px; transform: none; }
+#intro .landscape .ridge { opacity: 0.85; }
+.in-stars { position: absolute; inset: 0; pointer-events: none; }
+.in-stars i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 6px 1px color-mix(in srgb, var(--violet) 60%, transparent); opacity: 0.8; }
+.in-stars i.b { width: 3px; height: 3px; background: var(--gold); box-shadow: 0 0 8px 2px color-mix(in srgb, var(--gold) 50%, transparent); }
+.in-core { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 20px; margin-top: -4vh; }
+.in-logo { position: relative; width: 112px; height: 112px; margin-bottom: 26px; }
+.in-logo .seal { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 28px; box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent), 0 18px 46px -12px color-mix(in srgb, var(--accent) 75%, transparent), 0 0 70px -10px color-mix(in srgb, var(--accent) 60%, transparent); }
+.in-logo .in-ring { position: absolute; inset: -14px; border-radius: 40px; border: 1.5px solid color-mix(in srgb, var(--accent2) 60%, transparent); opacity: 0; }
+.in-logo .in-spark { position: absolute; width: 14px; height: 14px; color: var(--gold); opacity: 0; }
+.in-logo .in-spark svg { display: block; width: 100%; height: 100%; }
+.in-logo .s1 { left: -26px; top: 6px; }
+.in-logo .s2 { right: -24px; top: -16px; width: 10px; height: 10px; }
+.in-logo .s3 { right: -30px; bottom: 10px; width: 12px; height: 12px; }
+.in-title { margin: 0; display: flex; gap: 0.16em; padding-left: 0.16em; font-family: "Noto Serif", Georgia, serif; font-weight: 600; font-size: clamp(46px, 13vw, 78px); line-height: 1; letter-spacing: 0; }
+.in-title span { display: inline-block; background: linear-gradient(180deg, color-mix(in srgb, var(--gold) 55%, #fff) 8%, var(--gold) 46%, color-mix(in srgb, var(--gold) 70%, #000) 57%, color-mix(in srgb, var(--gold) 88%, #fff) 96%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.4)) drop-shadow(0 0 18px color-mix(in srgb, var(--gold) 30%, transparent)); }
+:is([data-theme="giay"], [data-theme="dao"], [data-theme="oaihuong"]) .in-title span { filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.8)); }
+.in-shine { position: relative; display: block; overflow: hidden; }
+.in-shine::after { content: ""; position: absolute; top: -10%; bottom: -10%; width: 40%; left: -60%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent); mix-blend-mode: overlay; transform: skewX(-18deg); opacity: 0; }
+.in-sub { margin: 14px 0 0; font-size: 12.5px; font-weight: 600; letter-spacing: 0.42em; padding-left: 0.42em; text-transform: uppercase; color: var(--muted); }
+.in-tag { margin: 10px 0 0; font-family: var(--story); font-style: italic; font-size: 16px; color: color-mix(in srgb, var(--violet) 75%, var(--text)); }
+.in-pets { position: relative; width: 240px; height: 64px; margin-top: 22px; }
+.in-pet { position: absolute; bottom: 0; }
+.in-pet svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)); }
+:is([data-theme="muc"], [data-theme="dem"], [data-theme="khoi"]) .in-pet svg { filter: drop-shadow(0 0 1.3px rgba(240, 232, 255, 0.6)); }
+.in-pet svg :is(.leg, .tail, .eye, .wing, .tassel, .scarf) { transform-box: fill-box; }
+.in-pet .leg { transform-origin: 50% 0%; }
+.in-pet .eye { transform-origin: 50% 50%; }
+.in-pet.cow { left: 54px; width: 64px; height: 62px; }
+.in-pet.duck { right: 62px; width: 52px; height: 50px; }
+.in-pet.duck .flip { transform: scaleX(-1); }
+.in-pet .flip, .in-pet .hop { width: 100%; height: 100%; }
+.in-heart { position: absolute; left: 50%; bottom: 46px; width: 18px; height: 18px; margin-left: -9px; color: #ff7aa8; opacity: 0; }
+.in-heart svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 0 8px rgba(255, 122, 168, 0.7)); }
+.in-shadow { position: absolute; bottom: -3px; height: 6px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.4), transparent); }
+.in-pet.cow .in-shadow { left: 8px; width: 46px; }
+.in-pet.duck .in-shadow { left: 6px; width: 38px; }
+.in-foot { position: absolute; left: 0; right: 0; bottom: max(34px, env(safe-area-inset-bottom)); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.in-bar { width: min(220px, 50vw); height: 3px; border-radius: 3px; background: color-mix(in srgb, var(--text) 12%, transparent); overflow: hidden; }
+.in-bar i { display: block; height: 100%; width: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--gold)); transform-origin: 0 50%; transform: scaleX(0); }
+.in-tap { font-size: 12px; letter-spacing: 0.18em; color: var(--dim); opacity: 0; }
+/* Chuyển động (bắt đầu khi trang đã sẵn sàng, lớp .go do JS gắn): trăng lên, logo bật ra, vòng sáng lan, chữ lần lượt nổi lên,
+   bò vịt đi vào gặp nhau rồi nhún, tim bật lên. Trước đó chỉ có trời sao và vạch chờ chạy qua chạy lại */
+#intro:not(.go) :is(.in-core, .in-tap) { opacity: 0; }
+#intro:not(.go) .in-bar i { transform: scaleX(0.28); animation: in-wait 1.1s ease-in-out infinite alternate; }
+#intro { animation: in-failsafe 0.6s ease 9s forwards; }
+[data-motion="1"] #intro .landscape .moon { animation: in-moon 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+[data-motion="1"] .in-stars i { animation: in-tw var(--d, 2.6s) ease-in-out var(--l, 0s) infinite alternate; }
+[data-motion="1"] #intro.go .in-logo .seal { animation: in-pop 0.85s cubic-bezier(0.2, 1.5, 0.4, 1) both; }
+[data-motion="1"] #intro.go .in-logo .in-ring { animation: in-ring 2s ease-out 0.3s infinite; }
+[data-motion="1"] #intro.go .in-logo .in-ring.r2 { animation-delay: 0.95s; }
+[data-motion="1"] #intro.go .in-logo .in-spark { animation: in-spark 1.6s ease-in-out var(--l, 0.6s) infinite; }
+[data-motion="1"] #intro.go .in-title span { animation: in-rise 0.6s cubic-bezier(0.2, 1.3, 0.4, 1) calc(0.3s + var(--i) * 0.07s) both; }
+[data-motion="1"] #intro.go .in-shine::after { animation: in-sweep 1s ease-in-out 1s both; }
+[data-motion="1"] #intro.go .in-sub { animation: in-fade 0.6s ease 0.62s both; }
+[data-motion="1"] #intro.go .in-tag { animation: in-fade 0.6s ease 0.8s both; }
+[data-motion="1"] #intro.go .in-pet.cow { animation: in-walk-l 1.05s cubic-bezier(0.3, 0.6, 0.4, 1) 0.35s both; }
+[data-motion="1"] #intro.go .in-pet.duck { animation: in-walk-r 0.95s cubic-bezier(0.3, 0.6, 0.4, 1) 0.45s both; }
+[data-motion="1"] #intro.go .in-pet .hop { animation: in-step 0.26s ease-in-out 0.35s 4 alternate, in-hop 0.42s cubic-bezier(0.3, 0, 0.4, 1) 1.5s 2 alternate; }
+[data-motion="1"] #intro.go .in-pet .leg-a { animation: in-leg 0.13s ease-in-out 0.35s 8 alternate; }
+[data-motion="1"] #intro.go .in-pet .leg-b { animation: in-leg 0.13s ease-in-out 0.48s 8 alternate-reverse; }
+[data-motion="1"] .in-pet .eye { animation: c-blink 3.6s infinite; }
+[data-motion="1"] .in-pet .moo .tail { animation: swish 0.7s ease-in-out infinite alternate; }
+[data-motion="1"] #intro.go .in-pet .quack .wing { animation: flap 0.18s ease-in-out 1.5s 6 alternate; }
+[data-motion="1"] .in-pet .moo .tassel { animation: sprig 1.2s ease-in-out infinite alternate; }
+[data-motion="1"] #intro.go .in-heart { animation: in-heart 1.1s cubic-bezier(0.2, 1.4, 0.4, 1) 1.6s both; }
+[data-motion="1"] #intro.go .in-bar i { animation: in-load 2.9s cubic-bezier(0.4, 0, 0.2, 1) both; }
+[data-motion="1"] #intro.go .in-tap { animation: in-fade 0.5s ease 0.7s both, in-breathe 1.6s ease-in-out 1.2s infinite alternate; }
+[data-motion="0"] #intro.go .in-tap { opacity: 1; }
+[data-motion="0"] #intro.go .in-bar i { transform: scaleX(1); }
+@keyframes in-moon { from { opacity: 0; transform: translateY(40px) scale(0.92); } to { opacity: 1; transform: none; } }
+@keyframes in-tw { from { opacity: 0.15; transform: scale(0.7); } to { opacity: 1; transform: scale(1.15); } }
+@keyframes in-pop { 0% { opacity: 0; transform: scale(0.55) rotate(-8deg); filter: blur(6px); } 60% { opacity: 1; filter: blur(0); } 100% { opacity: 1; transform: none; } }
+@keyframes in-ring { 0% { opacity: 0.75; transform: scale(0.82); } 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes in-spark { 0%, 100% { opacity: 0; transform: scale(0.4) rotate(0); } 45% { opacity: 1; transform: scale(1) rotate(45deg); } }
+@keyframes in-rise { from { opacity: 0; transform: translateY(26px) scale(0.86); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes in-sweep { 0% { left: -60%; opacity: 0; } 15% { opacity: 1; } 100% { left: 130%; opacity: 0; } }
+@keyframes in-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes in-walk-l { from { transform: translateX(-46vw); opacity: 0; } 15% { opacity: 1; } to { transform: none; opacity: 1; } }
+@keyframes in-walk-r { from { transform: translateX(46vw); opacity: 0; } 15% { opacity: 1; } to { transform: none; opacity: 1; } }
+@keyframes in-step { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+@keyframes in-hop { from { transform: translateY(0) scale(1, 1); } 30% { transform: translateY(-14px) scale(0.96, 1.05); } to { transform: translateY(0) scale(1.06, 0.94); } }
+@keyframes in-leg { from { transform: rotate(-16deg); } to { transform: rotate(16deg); } }
+@keyframes in-heart { 0% { opacity: 0; transform: translateY(10px) scale(0.3); } 40% { opacity: 1; transform: translateY(-6px) scale(1.25); } 70% { transform: translateY(-12px) scale(1); opacity: 1; } 100% { opacity: 0; transform: translateY(-34px) scale(0.9); } }
+@keyframes in-load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes in-wait { from { transform: translateX(-10%) scaleX(0.28); } to { transform: translateX(260%) scaleX(0.28); } }
+@keyframes in-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+@keyframes in-breathe { from { opacity: 1; } to { opacity: 0.45; } }
+@media (max-height: 560px) { .in-logo { width: 84px; height: 84px; margin-bottom: 16px; } .in-pets { margin-top: 12px; } .in-tag { display: none; } }
+/* Màn hình lớn: cả cụm lớn hơn một chút cho cân với khoảng trời */
+@media (min-width: 1000px) and (min-height: 720px) { .in-core { transform: scale(1.2); } }
+.in-tap .fine { display: none; }
+@media (pointer: fine) { .in-tap .fine { display: inline; } .in-tap .coarse { display: none; } }
 /* ================= Bảng màu ================= */
 :root, [data-theme="muc"] {
   --bg: #14110f; --panel: #1a1613; --card: #221c18; --card2: #2c2520; --line: #3a312a; --line2: #4c4037;
@@ -457,6 +563,9 @@ body.no-chips .chips { display: none; }
 .petlayer.back { z-index: 1; }
 .petlayer.back.over { z-index: 21; }
 .petlayer.back.deep { z-index: -1; }
+/* Đang trốn sau khung: lớp của con vật lùi ra sau nên không bấm trúng được; một ô chạm trong suốt nằm trên cùng, phủ đúng phần đầu đang ló ra */
+.pethit { position: absolute; left: 0; top: 0; display: none; pointer-events: auto; cursor: pointer; touch-action: none; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; user-select: none; }
+.pethit.on { display: block; }
 body.no-cow .pet-bo, body.no-duck .pet-vit { display: none; }
 /* Vị trí, bước chân, độ nảy, độ nghiêng do JS tính từng khung hình (vật lý nhỏ); CSS chỉ lo đầu, đuôi, cánh, khăn, mắt, mỏ */
 .pet { position: absolute; left: 0; top: 0; pointer-events: auto; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; will-change: transform; }
@@ -635,7 +744,17 @@ body.no-cow .pet-bo, body.no-duck .pet-vit { display: none; }
 @keyframes screen-glow { from { opacity: 0.75; } to { opacity: 1; } }
 @keyframes screen-line { from { transform: scaleX(0.4); } to { transform: scaleX(1); } }
 /* Nút bị tha đi: nút thật mờ đi, viền chấm, vẫn bấm được; bản sao trên đầu con vật; trả về thì nảy nhẹ */
-.petnapped { opacity: 0.45 !important; outline: 1.5px dotted var(--accent2) !important; outline-offset: 2px; }
+.petnapped { opacity: 0 !important; transition: opacity 0.12s ease !important; }
+/* Bò cọc: mặt đỏ phừng, mày nhíu, há miệng la, khói phì từ hai tai; nón rớt nằm dưới đất chờ bò nhặt lại */
+.cow .rage { opacity: 0; transition: opacity 0.4s ease; }
+.cow[data-rage="1"] .rage { opacity: 1; }
+[data-motion="1"] .cow[data-rage="1"] .rage.face { animation: rage-pulse 0.7s ease-in-out infinite alternate; }
+.cow[data-rage="1"] .mouth { transform: scaleY(1) scaleX(1.25) !important; }
+@keyframes rage-pulse { from { opacity: 0.72; } to { opacity: 1; } }
+.cfx.steam { width: 13px; height: 13px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(236, 232, 246, 0.6) 58%, transparent 72%); animation: fx-steam 1.15s ease-out forwards; }
+@keyframes fx-steam { from { opacity: 0.95; transform: translate(-50%, 0) scale(0.45); } 30% { opacity: 0.9; } to { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), -38px) scale(2.3); } }
+.hatdrop { position: absolute; left: 0; top: 0; width: 38px; height: 17px; pointer-events: none; z-index: 1; will-change: transform; }
+.hatdrop svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35)); }
 .petback { animation: pet-back 0.5s cubic-bezier(0.3, 1.6, 0.5, 1); }
 @keyframes pet-back { from { transform: translateY(-6px) scale(1.12); } }
 .petloot { position: absolute; left: 0; top: 0; pointer-events: auto; cursor: pointer; transform-origin: 50% 100%; will-change: transform; }
@@ -1025,7 +1144,9 @@ html #gallery.zoom .gbox { backdrop-filter: none; -webkit-backdrop-filter: none;
 ::view-transition-new(root) { animation: theme-in 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
 @keyframes theme-in { from { clip-path: circle(0 at var(--vx, 50%) var(--vy, 50%)); } to { clip-path: circle(150vmax at var(--vx, 50%) var(--vy, 50%)); } }
 #toast { position: fixed; left: 0; right: 0; margin-inline: auto; width: max-content; bottom: var(--toastB, 110px); transform: translateY(14px) scale(0.94); opacity: 0; pointer-events: none; padding: 10px 16px; border-radius: 14px; background: var(--glass); backdrop-filter: blur(18px); border: 1px solid var(--line2); box-shadow: inset 0 1px 0 var(--hi), var(--shadow); transition: opacity 0.22s, transform 0.42s cubic-bezier(0.2, 1.45, 0.4, 1); z-index: 60; display: flex; gap: 14px; align-items: center; max-width: min(560px, calc(100% - 28px)); line-height: 1.5; text-wrap: pretty; }
-#toast.on { opacity: 1; transform: none; pointer-events: auto; }
+#toast.on { opacity: 1; transform: none; }
+/* Chữ thông báo không chặn tay (bò vịt hay đứng ngay dưới); chỉ nút trong thông báo là bấm được */
+#toast.on button { pointer-events: auto; }
 #toast.err { border-color: color-mix(in srgb, var(--accent2) 70%, transparent); }
 #toast button { border: 0; background: none; color: var(--gold); font-weight: 600; padding: 0; white-space: nowrap; }
 
@@ -1341,6 +1462,8 @@ details.gbridge:not([open]) { padding-block: 11px; }
 </style>
 </head>
 <body>
+<!-- Màn chào: hiện mỗi lần mở trang; trăng, sao, núi theo bảng màu đang dùng; bò vịt đi vào gặp nhau; chạm hay bấm phím là vào ngay -->
+<div id="intro" role="presentation" aria-hidden="true"><div class="landscape"><i class="moon"></i><i class="ridge r1"></i><i class="mist m1"></i><i class="ridge r2"></i><i class="mist m2"></i><i class="ridge r3"></i></div><div class="in-stars"><i style="left:45.4%;top:36.0%;--d:2.5s;--l:-1.5s"></i><i style="left:58.4%;top:13.9%;--d:2.9s;--l:-2.4s"></i><i class="b" style="left:11.0%;top:20.9%;--d:3.2s;--l:-2.1s"></i><i style="left:6.0%;top:60.9%;--d:2.9s;--l:-1.8s"></i><i style="left:17.1%;top:3.9%;--d:1.7s;--l:-0.6s"></i><i style="left:25.2%;top:4.8%;--d:2.5s;--l:-2.5s"></i><i style="left:51.8%;top:40.8%;--d:2.9s;--l:-1.4s"></i><i style="left:28.7%;top:61.9%;--d:3.3s;--l:-2.1s"></i><i style="left:32.3%;top:16.6%;--d:1.7s;--l:-2.3s"></i><i style="left:40.4%;top:52.9%;--d:3.5s;--l:-2.5s"></i><i style="left:2.1%;top:15.4%;--d:2.5s;--l:-2.9s"></i><i style="left:40.2%;top:7.3%;--d:3.2s;--l:-0.8s"></i><i style="left:10.4%;top:22.6%;--d:3.1s;--l:-0.4s"></i><i class="b" style="left:25.7%;top:9.0%;--d:3.2s;--l:-0.5s"></i><i style="left:55.7%;top:29.4%;--d:3.1s;--l:-0.4s"></i><i style="left:63.8%;top:9.9%;--d:2.0s;--l:-0.8s"></i><i style="left:95.2%;top:50.4%;--d:3.4s;--l:-0.6s"></i><i style="left:39.9%;top:53.4%;--d:1.8s;--l:-3.0s"></i><i style="left:22.5%;top:18.2%;--d:2.3s;--l:-0.9s"></i><i style="left:9.0%;top:8.3%;--d:2.1s;--l:-1.8s"></i><i style="left:37.7%;top:29.7%;--d:2.6s;--l:-1.7s"></i><i class="b" style="left:85.2%;top:13.8%;--d:3.4s;--l:-2.5s"></i><i style="left:26.0%;top:14.2%;--d:3.5s;--l:-0.6s"></i><i style="left:93.2%;top:55.0%;--d:2.4s;--l:-0.3s"></i><i style="left:5.7%;top:59.8%;--d:3.0s;--l:-0.8s"></i><i style="left:81.1%;top:38.2%;--d:2.0s;--l:-2.2s"></i><i style="left:8.6%;top:16.5%;--d:3.3s;--l:-1.8s"></i><i style="left:28.9%;top:57.1%;--d:1.6s;--l:-0.8s"></i><i class="b" style="left:44.8%;top:6.6%;--d:2.3s;--l:-1.7s"></i><i style="left:14.6%;top:24.4%;--d:3.6s;--l:-2.0s"></i><i class="b" style="left:68.4%;top:37.5%;--d:1.7s;--l:-0.1s"></i><i style="left:89.4%;top:44.4%;--d:1.6s;--l:-1.9s"></i><i style="left:48.3%;top:46.1%;--d:3.6s;--l:-0.2s"></i><i style="left:54.4%;top:46.5%;--d:3.1s;--l:-2.1s"></i></div><div class="in-core"><div class="in-logo"><i class="in-ring"></i><i class="in-ring r2"></i><span class="seal">牛</span><i class="in-spark s1" style="--l:.9s"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0Q11.2 8.8 20 10Q11.2 11.2 10 20Q8.8 11.2 0 10Q8.8 8.8 10 0Z" fill="currentColor"/></svg></i><i class="in-spark s2" style="--l:1.4s"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0Q11.2 8.8 20 10Q11.2 11.2 10 20Q8.8 11.2 0 10Q8.8 8.8 10 0Z" fill="currentColor"/></svg></i><i class="in-spark s3" style="--l:1.9s"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0Q11.2 8.8 20 10Q11.2 11.2 10 20Q8.8 11.2 0 10Q8.8 8.8 10 0Z" fill="currentColor"/></svg></i></div><div class="in-shine"><h1 class="in-title" aria-label="SUBEL"><span style="--i:0">S</span><span style="--i:1">U</span><span style="--i:2">B</span><span style="--i:3">E</span><span style="--i:4">L</span></h1></div><p class="in-sub">Phòng chat nhập vai</p><p class="in-tag">Viết cùng AI, sống cùng nhân vật</p><div class="in-pets"><div class="in-pet cow"><i class="in-shadow"></i><div class="hop"><div class="flip"></div></div></div><i class="in-heart"><svg viewBox="0 0 20 18" aria-hidden="true"><path d="M10 17.5C4.2 13 0.6 9.6 0.6 5.6 0.6 2.6 2.9 0.6 5.6 0.6c1.9 0 3.4 1 4.4 2.5C11 1.6 12.5 0.6 14.4 0.6c2.7 0 5 2 5 5 0 4-3.6 7.4-9.4 11.9Z" fill="currentColor"/></svg></i><div class="in-pet duck"><i class="in-shadow"></i><div class="hop"><div class="flip"></div></div></div></div></div><div class="in-foot"><div class="in-bar"><i></i></div><span class="in-tap"><span class="coarse">Chạm để vào</span><span class="fine">Bấm để vào</span></span></div></div>
 <div id="app">
   <aside id="side" aria-label="Các phiên">
     <div class="brand"><span class="seal">牛</span><div><b>SUBEL</b><small id="brandSub">Phòng chat riêng · Gemini</small></div></div>
@@ -1627,6 +1750,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
 <linearGradient id="pbHat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f325a"/><stop offset="1" stop-color="#2b2238"/></linearGradient>
 <linearGradient id="pbScarf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f07aa0"/><stop offset="1" stop-color="#c8406a"/></linearGradient>
 <linearGradient id="pbBud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1e9ff"/><stop offset="1" stop-color="#a685ee"/></linearGradient>
+<radialGradient id="pbRage" cx="50%" cy="60%" r="55%"><stop offset="0" stop-color="#ff2f45" stop-opacity=".85"/><stop offset=".6" stop-color="#ff4a4a" stop-opacity=".55"/><stop offset="1" stop-color="#ff4a4a" stop-opacity="0"/></radialGradient>
 <clipPath id="pbBodyClip"><ellipse cx="40" cy="70.6" rx="24.6" ry="14.8"/></clipPath>
 <clipPath id="pbHeadClip"><path d="M60 18C76.1 18 83.6 29.5 83 42.7C82.4 53.1 79 59.4 74.4 62.9L45.6 62.9C41 59.4 37.6 53.1 37 42.7C36.4 29.5 43.9 18 60 18Z"/></clipPath>
 </defs>
@@ -1648,10 +1772,12 @@ details.gbridge:not([open]) { padding-block: 11px; }
 <path d="M60 18C76.1 18 83.6 29.5 83 42.7C82.4 53.1 79 59.4 74.4 62.9L45.6 62.9C41 59.4 37.6 53.1 37 42.7C36.4 29.5 43.9 18 60 18Z" fill="#f6eedc"/>
 <g clip-path="url(#pbHeadClip)"><path d="M36.4 37.6C36.4 26.6 47 19.2 56.8 22C60.8 27.2 58.5 36.4 52.2 39.9C47 42.7 39.4 42.7 36.4 37.6Z" fill="#2b2238"/><path d="M78.4 48.5C81.9 47.3 85.6 49 85.6 53.1L85.6 63L73 63C72.5 56.5 74.3 50.2 78.4 48.5Z" fill="#2b2238" opacity=".9"/></g>
 <path d="M60 18C76.1 18 83.6 29.5 83 42.7C82.4 53.1 79 59.4 74.4 62.9L45.6 62.9C41 59.4 37.6 53.1 37 42.7C36.4 29.5 43.9 18 60 18Z" fill="none" stroke="#2b2238" stroke-width="3.4" stroke-linejoin="round"/>
+<g class="rage face"><path d="M60 18C76.1 18 83.6 29.5 83 42.7C82.4 53.1 79 59.4 74.4 62.9L45.6 62.9C41 59.4 37.6 53.1 37 42.7C36.4 29.5 43.9 18 60 18Z" fill="url(#pbRage)"/><ellipse cx="34.6" cy="39" rx="9" ry="3.6" transform="rotate(-24 34.6 39)" fill="#ff4a5c" opacity=".7"/><ellipse cx="85.6" cy="39.6" rx="8" ry="3.2" transform="rotate(24 85.6 39.6)" fill="#ff4a5c" opacity=".7"/></g>
 <ellipse cx="43" cy="50.6" rx="4.4" ry="2.3" fill="#ff9cc0" opacity=".65"/>
 <ellipse cx="81" cy="50.4" rx="3.2" ry="2" fill="#ff9cc0" opacity=".65"/>
 <g class="eye"><ellipse cx="52.4" cy="42.6" rx="4.7" ry="5.7" fill="#1b1426" stroke="#f6eedc" stroke-width="1"/><circle cx="54.2" cy="40.2" r="1.8" fill="#fff"/><circle cx="51.2" cy="45" r=".85" fill="#fff" opacity=".85"/></g>
 <g class="eye"><ellipse cx="72.6" cy="42.6" rx="4.3" ry="5.5" fill="#1b1426"/><circle cx="74.3" cy="40.2" r="1.7" fill="#fff"/><circle cx="71.5" cy="45" r=".8" fill="#fff" opacity=".85"/></g>
+<g class="rage brows"><path d="M45.6 33.2L57.4 38.2" stroke="#2b2238" stroke-width="3.4" stroke-linecap="round"/><path d="M79.4 33.2L67.8 38.2" stroke="#2b2238" stroke-width="3.4" stroke-linecap="round"/></g>
 <ellipse cx="63.4" cy="57.4" rx="18.4" ry="10.8" fill="#f3c3c8" stroke="#2b2238" stroke-width="3"/>
 <ellipse cx="57.4" cy="56.2" rx="2.4" ry="3.1" fill="#8d4a62"/>
 <ellipse cx="69.4" cy="56.2" rx="2.4" ry="3.1" fill="#8d4a62"/>
@@ -1786,6 +1912,35 @@ details.gbridge:not([open]) { padding-block: 11px; }
 <script>
 (() => {
   'use strict';
+
+  /* ================= Màn chào ================= */
+  /* Bò vịt trên màn chào chép hình từ hai con thật (đổi mã id cho khỏi đụng nhau). Tự tan khi đủ chừng 3 giây kể từ lúc mở trang
+     (tắt chuyển động thì 1 giây); chạm, bấm chuột hay bấm phím là vào ngay. Việc nào cần chờ màn chào tan thì gọi intro.then(fn) */
+  const intro = (() => {
+    const box = document.getElementById('intro');
+    let done = !box;
+    const waiters = [];
+    const finish = () => {
+      if (done) return;
+      done = true;
+      box.classList.add('out');
+      setTimeout(() => box.remove(), 750);
+      waiters.splice(0).forEach((f) => { try { f(); } catch (e) { /* việc chờ hỏng thì bỏ qua */ } });
+    };
+    if (box) {
+      for (const [sel, cls] of [['#cow svg.moo', 'cow'], ['#duck svg.quack', 'duck']]) {
+        const src = document.querySelector(sel);
+        const slot = box.querySelector('.in-pet.' + cls + ' .flip');
+        if (src && slot) slot.innerHTML = src.outerHTML.replace(/id="(p[bv]\w+)"/g, 'id="in$1"').replace(/url\(#(p[bv]\w+)\)/g, 'url(#in$1)');
+      }
+      /* Bắt đầu diễn khi trang đã đọc xong (máy chậm thì lúc chờ chỉ thấy trời sao và vạch chờ), diễn trọn rồi mới tan */
+      box.classList.add('go');
+      setTimeout(finish, document.documentElement.dataset.motion === '0' ? 1000 : 3200);
+      box.addEventListener('pointerdown', finish);
+      addEventListener('keydown', finish);
+    }
+    return { get done() { return done; }, then(f) { if (done) f(); else waiters.push(f); } };
+  })();
 
   const API = 'https://generativelanguage.googleapis.com/v1beta/';
   /* Nhà cung cấp AI. gem = API riêng của Google; oai = kiểu OpenAI (Chat Completions), phần lớn nhà cung cấp dùng chung;
@@ -2159,10 +2314,10 @@ details.gbridge:not([open]) { padding-block: 11px; }
       t.append(b);
     }
     t.classList.toggle('err', !!opt.err);
-    /* Nổi ngay trên ô nhập, không đè lên ô nhập (ô nhập cao thấp tùy máy, tùy chữ đang gõ) */
+    /* Nổi trên ô nhập, chừa chỗ cho bò vịt hay đứng trên mép ô nhập (ô nhập cao thấp tùy máy, tùy chữ đang gõ) */
     const c = $('#composer');
     const cr = c && c.getClientRects().length ? c.getBoundingClientRect() : null;
-    t.style.setProperty('--toastB', cr && cr.top > innerHeight * 0.4 ? Math.round(innerHeight - cr.top + 12) + 'px' : '110px');
+    t.style.setProperty('--toastB', cr && cr.top > innerHeight * 0.4 ? Math.round(innerHeight - cr.top + 66) + 'px' : '110px');
     t.classList.add('on');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('on'), opt.ms || (opt.err ? 6500 : 3200));
@@ -5819,6 +5974,13 @@ details.gbridge:not([open]) { padding-block: 11px; }
   }
   async function send() {
     if (gen) return;
+    /* Nút Gửi đang bị bò vịt cuỗm: lúc thường thì đòi lại rồi gửi luôn; bò đang cọc thì không cho gửi */
+    const sb = $('#send');
+    if (sb && sb.classList.contains('petnapped') && prank.pet) {
+      const c = prank.pet.carry;
+      if (c && c.rage) { toast('Bò đang cọc, ôm nút Gửi chạy rồi. Bắt bò, hay đợi bò hết giận nha!'); psay(prank.pet, pl(prank.pet.L.RAGE_SEND), 1600); return; }
+      prankEnd('caught');
+    }
     if (!hasKey()) { openPanel('run'); toast(S.provider === 'custom' && !apiBase() ? 'Nhập địa chỉ API trước đã' : 'Dán API key trước đã', { err: true }); (S.provider === 'custom' && !apiBase() ? $('#baseInp') : $('#keyInp')).focus(); return; }
     if (!S.model) { openPanel('run'); toast('Chọn model trước đã', { err: true }); return; }
     if (!pName() && !askedName) {
@@ -6622,6 +6784,9 @@ details.gbridge:not([open]) { padding-block: 11px; }
           root, layer: root.parentElement, hop: root.querySelector('.hop'), upper: root.querySelector('.upper'), nod: root.querySelector('.nod'),
           a: $$('.leg-a', root), b: $$('.leg-b', root), shadow: $('#petWorld .petshadow.pet-' + p.id), say: $(say), laptop: root.parentElement.querySelector('.laptop'),
         };
+        p.n.hit = el('div', 'pethit pet-' + p.id);
+        p.n.hit.title = root.title;
+        p.n.say.parentElement.append(p.n.hit);
       }
     }
     return cn;
@@ -7883,6 +8048,30 @@ details.gbridge:not([open]) { padding-block: 11px; }
     }
     return g;
   }
+  /* Ô chạm cho con đang trốn: phần thân con vật còn ló ra khỏi khung (đầu ló lên trên mép, hay ló ra hai bên) */
+  function hitSync() {
+    const n = pet.n;
+    const hit = n.hit;
+    if (!hit) return;
+    const h = pet.hide;
+    const r = h && h.back && h.ph !== 'go' && h.get && h.get();
+    if (!r) { if (hit.classList.contains('on')) hit.classList.remove('on'); return; }
+    const b = n.root.getBoundingClientRect();
+    let l = b.left;
+    let t = b.top;
+    let rr = b.right;
+    let bb = b.bottom;
+    if (h.edge === 'top') bb = Math.min(bb, r.t + 4);
+    else if (h.edge === 'B') t = Math.max(t, r.b - 4);
+    else if (h.edge === 'L') rr = Math.min(rr, r.l + 4);
+    else if (h.edge === 'R') l = Math.max(l, r.r - 4);
+    if (rr - l < 6 || bb - t < 6) { if (hit.classList.contains('on')) hit.classList.remove('on'); return; }
+    const pad = 8;
+    hit.style.transform = 'translate3d(' + (l - pad).toFixed(1) + 'px,' + (t - pad).toFixed(1) + 'px,0)';
+    hit.style.width = (rr - l + pad * 2).toFixed(1) + 'px';
+    hit.style.height = (bb - t + pad * 2).toFixed(1) + 'px';
+    if (!hit.classList.contains('on')) hit.classList.add('on');
+  }
   function cowRender(t) {
     /* Con đang cưỡi bám đúng vào lưng con chở ngay trước khi vẽ (con chở có thể vừa đi xong ở khung hình này) */
     if (pet.ride && pet.ride.ph === 'on') rideLock(pet);
@@ -7904,6 +8093,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
     const s = pet.squash;
     n.hop.style.transform = 'translate(0px,-' + P.hang + 'px) rotate(' + pet.tilt.toFixed(2) + 'deg) translate(0px,' + (P.hang - P.mid) + 'px) rotate(' + pet.spin.toFixed(1) + 'deg) translate(0px,' + P.mid + 'px) scale(' + (1 + 0.16 * s).toFixed(3) + ',' + (1 - 0.2 * s).toFixed(3) + ')';
     n.root.style.transform = 'translate3d(' + (pet.px - P.fx).toFixed(2) + 'px,' + (pet.py - P.fy).toFixed(2) + 'px,0) rotate(' + pet.ang.toFixed(2) + 'deg)';
+    hitSync();
     /* Bóng: đứng thì ở dưới chân, bay thì in xuống mặt bên dưới và nhạt dần theo độ cao, bám vách hay đang trốn thì không có bóng */
     let sx = pet.px;
     let sy = pet.py;
@@ -8276,6 +8466,26 @@ details.gbridge:not([open]) { padding-block: 11px; }
       if (o.live() && !o.hide && Math.hypot(o.px - pet.px, o.py - pet.py) < 240 && Math.random() < 0.4 && now - talk.seeAt > 6000) { talk.seeAt = now; setTimeout(() => sayAs(o, pl(o.L.SEE_THROW)), 220); }
       sulkStop(pet);
       pet.sulk = { ph: 'fly', t: Date.now() };
+      /* Bị quăng mạnh tới lần thứ 4 trong một phút: bò cọc thật sự (nón văng ra ngay lúc bay);
+         vịt bị quăng tới lần thứ 4 thì bò cọc thay, ném nón xuống đất rồi cuỗm nút Gửi trả thù cho vịt */
+      pet.throwsAt = (pet.throwsAt || []).filter((x) => now - x < 60000);
+      pet.throwsAt.push(now);
+      if (pet.throwsAt.length >= 4 && !BO.rage && motionOn()) {
+        pet.throwsAt = [];
+        if (pet === BO) { pet.sulk.rage = true; hatPop(pet); }
+        else if (BO.live() && !BO.drag && !BO.hide && !BO.moon && !BO.fly) {
+          BO.revenge = true;
+          setTimeout(() => {
+            if (!BO.live() || BO.drag || BO.rage) return;
+            if (BO.sulk) { sulkStop(BO); BO.sulk = null; }
+            if (BO.inScene && scene.on) sceneEnd(false);
+            BO.route = [];
+            faceTo(BO, VIT);
+            withPet(BO, () => hatPop(BO));
+            rageStart(BO);
+          }, 900);
+        }
+      }
     }
     if (still) cowStick(now);
     cowKick();
@@ -9071,6 +9281,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
   /* Đáp xuống sau cú quăng: (nếu lúc chạm đất chưa kịp mắng thì mắng liền) quay về phía Cậu, lao tới, giậm chân mắng tiếp, rồi dỗi bỏ đi */
   function sulkLanded() {
     const p = pet;
+    if (p.sulk && p.sulk.rage) { sulkStop(p); p.sulk = null; rageStart(p); return; }
     const o = other(p);
     const held = p.sulk.ph === 'held';
     const yelled = !!p.sulk.yelled;
@@ -9423,6 +9634,8 @@ details.gbridge:not([open]) { padding-block: 11px; }
   const laptop = { on: null, timer: 0, n: 0 };
   function laptopsOn(why) {
     if (movieOn() || !motionOn()) return false;
+    /* Bò đang cọc ôm nút Gửi chạy: không ngồi gõ máy gì hết */
+    if (BO.rage) return false;
     /* Đang gõ rồi: nhịp gõ tự chạy tiếp, phím mới không đặt lại nhịp (không thì gõ liên tục sẽ không bao giờ thấy "tạch") */
     if (laptop.on) return true;
     if (!cw) cw = cowWorldBox();
@@ -9554,6 +9767,15 @@ details.gbridge:not([open]) { padding-block: 11px; }
     FLYBY: ['Thấy hết màn hình luôn!', 'Bay qua khung chat nè!', 'Vịt ơi chậm thôi!', 'Gió mát ghê!', '{p} ơi, nhìn bò nè!', 'Bò bay ngang trời!'],
     FLYLOOP: ['Á á, lộn vòng!', 'Mooo~ chóng mặt!', 'Đừng nhào nữa mà!', 'Trời đất quay quay!'],
     HAT_GIVE: ['Nè, đội đi!', 'Bắt lấy nè!', 'Giữ cẩn thận nha!'],
+    RAGE: ['BÒ NỔI ĐIÊN RỒI NHA!!', 'Quăng nữa đi! Quăng nữa coi!!', 'Nón bò rớt luôn rồi kìa!!', 'Hết chịu nổi rồi!!', 'Mooo!! Tức muốn bốc khói!'],
+    REVENGE: ['DÁM QUĂNG VỊT CỦA BÒ HẢ?!', 'Ai cho quăng Vịt!!', 'Đụng Vịt là đụng bò nha!!', 'Trả thù cho Vịt nè!!'],
+    RAGE_STEAL: ['Cho hết gửi luôn!', 'Nút Gửi này của bò!', 'Hông cho gửi nữa!', 'Lêu lêu, gửi đi coi!'],
+    RAGE_FLEE: ['Hông bắt được đâu!', 'Lêu lêu!', 'Chậm quá {p} ơi!', 'Né nè!', 'Đuổi kịp hông?', 'Hụt rồi nha!', 'Mooo~ chạy nè!'],
+    RAGE_SEND: ['Nút Gửi ở chỗ bò nè!', 'Hông có gửi gì hết!', 'Muốn gửi thì bắt bò đi!', 'Còn giận, hông cho gửi!'],
+    RAGE_EMPTY: ['Chỗ đó trống trơn rồi!', 'Nút ở đây nè, hí hí!', 'Bấm chỗ trống chi vậy?'],
+    RAGE_CAUGHT: ['Hứ! Bắt được thì trả…', 'Thôi trả đó, hứ!', 'Ăn gian, bò chưa chạy kịp!'],
+    RAGE_CALM: ['Hết giận rồi… lần sau nhẹ tay nha', 'Thôi trả nè, bò hết cọc rồi', 'Phù… bò bình tĩnh lại rồi'],
+    HAT_FIND: ['A, nón của bò đây rồi!', 'Đội lại nón cho ngầu', 'Nón ơi, về với bò nè'],
     HAT_BARE: ['Đầu bò trống trơn…', 'Gió lùa lạnh đầu ghê', 'Hợp ghê đó Vịt!', 'Ra dáng hiệp khách rồi', 'Nhìn cũng được ha'],
     HAT_BACK: ['Nón về rồi!', 'Đầu ấm lại rồi', 'Vẫn là bò đội hợp nhất', 'Cảm ơn Vịt giữ dùm'],
     CHASED: ['Hông trả!', 'Bắt được hông?', 'Đuổi kịp hông nè?', 'Lêu lêu!'],
@@ -9581,6 +9803,8 @@ details.gbridge:not([open]) { padding-block: 11px; }
     FLYBY: ['Qua bên kia nè!', 'Bay khắp nơi luôn!', 'Bám chắc nha Bò!', 'Quạc! Cao nữa nè!', 'Vịt là phi công!'],
     FLYLOOP: ['Nhào lộn nè!', 'Quạc~ một vòng!', 'Vịt bay giỏi chưa?'],
     HAT_ON: ['Vịt thành hiệp khách rồi!', 'Nón rộng quá, che mắt vịt luôn', 'Đẹp hông Bò?', 'Quạc! Ngầu chưa?'],
+    SEE_REVENGE: ['Bò trả thù cho vịt kìa!', 'Bò ơi, vịt hông sao mà…', 'Quạc! Bò ngầu ghê!'],
+    SEE_RAGE: ['Bò ơi bình tĩnh!', 'Nón Bò rớt kìa!', 'Bò bốc khói rồi!', 'Vịt sợ quá…', 'Bò cọc thiệt rồi!'],
     HAT_SHOW: ['Coi vịt đi nè~', 'Hiệp khách vịt xuất hiện!', '{p} ơi, nhìn vịt nè!', 'Tránh đường, hiệp khách tới!'],
     HAT_RET: ['Trả Bò nè!', 'Cảm ơn Bò cho mượn', 'Nón nặng quá, trả nè', 'Bắt nè Bò!'],
     CHASED: ['Hông trả!', 'Quạc, bắt được hông?', 'Đuổi kịp hông?', 'Lêu lêu!'],
@@ -9931,10 +10155,147 @@ details.gbridge:not([open]) { padding-block: 11px; }
     ], { duration: 720, easing: 'cubic-bezier(0.3, 0, 0.4, 1)' });
     k.onfinish = () => { f.remove(); if (to.live()) { hatWorn(to, true); withPet(to, () => cowSquash(0.2)); } else hatReset(); cowKick(); };
   }
-  /* Cảnh bị ngắt giữa chừng (bị nhấc lên, tắt bò vịt…): nón về đầu bò */
-  function hatReset() {
-    for (const f of document.querySelectorAll('.hatfly')) f.remove();
+  /* Cảnh bị ngắt giữa chừng (bị nhấc lên, tắt bò vịt…): nón về đầu bò; trừ lúc bò đang cọc, nón còn nằm dưới đất */
+  function hatReset(force) {
+    if (!force && (BO.rage || hatLie.el)) return;
+    for (const f of document.querySelectorAll('.hatfly, .hatdrop')) f.remove();
+    hatLie.el = null;
     if (BO.n) { hatWorn(BO, true); hatWorn(VIT, false); }
+  }
+  const hatSvg = () => '<svg viewBox="22 0 76 34" focusable="false">' + hatOf(BO).innerHTML + '</svg>';
+  /* Nón văng khỏi đầu bò, xoay mấy vòng rồi nằm dưới đất */
+  const hatLie = { el: null, x: 0, y: 0 };
+  function hatPop(p) {
+    cowNodes();
+    if (!cw) cw = cowWorldBox();
+    if (hatLie.el || p.n.root.dataset.hat === 'off' || VIT.n.root.dataset.hat === 'on') return;
+    const a = hatSpot(p);
+    hatWorn(p, false);
+    const f = el('span', 'hatdrop');
+    f.innerHTML = hatSvg();
+    f.style.left = (a.x - 19).toFixed(1) + 'px';
+    f.style.top = (a.y - 8.5).toFixed(1) + 'px';
+    cowNodes().world.append(f);
+    const x1 = clampN(a.x + clampN(p.vx * 0.3, -260, 260) + (Math.random() - 0.5) * 60, 40, cw.W - 40);
+    const y1 = cw.floor - 9;
+    hatLie.el = f;
+    hatLie.x = x1;
+    hatLie.y = y1;
+    const dx = x1 - a.x;
+    const dy = y1 - a.y;
+    const end = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) rotate(' + (Math.sign(dx || 1) * 352) + 'deg)';
+    f.animate([
+      { transform: 'translate(0,0) rotate(0deg)' },
+      { transform: 'translate(' + (dx * 0.35).toFixed(1) + 'px,' + (Math.min(-70, dy * 0.2 - 90)).toFixed(1) + 'px) rotate(' + (Math.sign(dx || 1) * 200) + 'deg)', offset: 0.32 },
+      { transform: end, offset: 0.86 },
+      { transform: end.replace('352deg', '346deg').replace('-352deg', '-346deg') },
+    ], { duration: 1300, easing: 'cubic-bezier(0.3, 0, 0.55, 1)', fill: 'forwards' });
+  }
+  /* Nón nằm dưới đất bay về đội lên đầu bò */
+  function hatHome() {
+    const f = hatLie.el;
+    hatLie.el = null;
+    if (!f || !f.isConnected || !BO.live() || !motionOn()) { if (f) f.remove(); hatReset(true); return; }
+    const r = f.getBoundingClientRect();
+    const b = hatSpot(BO);
+    const dx = b.x - (r.left + r.width / 2);
+    const dy = b.y - (r.top + r.height / 2);
+    f.getAnimations().forEach((a) => { a.commitStyles && a.commitStyles(); a.cancel(); });
+    const t0 = getComputedStyle(f).transform;
+    const base = t0 && t0 !== 'none' ? t0 + ' ' : '';
+    const k = f.animate([
+      { transform: base + 'translate(0,0)' },
+      { transform: 'translate(' + (r.left + r.width / 2 - parseFloat(f.style.left) - 19 + dx * 0.5).toFixed(1) + 'px,' + (r.top + r.height / 2 - parseFloat(f.style.top) - 8.5 + Math.min(dy, 0) - 50).toFixed(1) + 'px) rotate(-180deg)', offset: 0.5 },
+      { transform: 'translate(' + (b.x - parseFloat(f.style.left) - 19).toFixed(1) + 'px,' + (b.y - parseFloat(f.style.top) - 8.5).toFixed(1) + 'px) rotate(' + (-7 * BO.dir) + 'deg) scaleX(' + BO.dir + ')' },
+    ], { duration: 650, easing: 'cubic-bezier(0.3, 0, 0.4, 1)', fill: 'forwards' });
+    k.onfinish = () => { f.remove(); hatWorn(BO, true); hatWorn(VIT, false); withPet(BO, () => { cowSquash(0.3); cowFx('star', '✦', { up: 40, jx: 16 }); }); cowKick(); };
+  }
+
+  /* ---- Bò cọc: bị quăng quá nhiều thì đỏ mặt bốc khói, giậm chân la, rồi nhảy qua cuỗm nút Gửi chạy vòng vòng 30 giây,
+     Cậu rê chuột hay chạm tới đâu thì bò chạy chỗ khác; hết giờ (hay bị bắt được) thì trả nút, hết giận, đi nhặt nón đội lại ---- */
+  function rageStart(p) {
+    p.rage = { t0: Date.now(), steam: 0, said: 0 };
+    p.flee = '';
+    p.rough = [];
+    p.route = [];
+    p.n.root.dataset.rage = '1';
+    ptag(p, 'angry', 2600);
+    const revenge = !!p.revenge;
+    p.revenge = false;
+    withPet(p, () => { cowSay(pl(revenge ? p.L.REVENGE : p.L.RAGE), 2600); cowFx('mark', '💢', { up: 40 }); cowSquash(0.35); });
+    const puff = () => {
+      if (!p.rage || !p.live()) return;
+      withPet(p, () => {
+        cowFx('steam', '', { up: 32, fwd: -4, dx: -p.dir * 12 });
+        cowFx('steam', '', { up: 32, fwd: 26, dx: p.dir * 12 });
+      });
+    };
+    puff();
+    p.rage.steam = setInterval(puff, 420);
+    setTimeout(() => { if (p.rage) withPet(p, () => cowFx('mark', '💢', { up: 36, fwd: 8 })); }, 1300);
+    const o = other(p);
+    if (o.live() && !o.hide) setTimeout(() => { if (p.rage && o.live() && !o.drag) sayAs(o, pl(revenge ? o.L.SEE_REVENGE : o.L.SEE_RAGE), 1800); }, 1500);
+    /* Giậm chân la một hồi rồi lao đi cuỗm nút Gửi (tắt Bò vịt nghịch nút thì chỉ cọc rồi thôi) */
+    setTimeout(() => {
+      if (!p.rage) return;
+      const b = $('#send');
+      const ok = S.petPrank && b && b.getClientRects().length && !b.closest('[hidden]') && !prank.pet && !modalOpen() && p.live() && !p.drag && !p.hide;
+      if (!ok) { setTimeout(() => rageCalm(p), 4000); return; }
+      if (scene.on) sceneEnd(false);
+      if (talk.on) talkStop();
+      p.carry = { btn: b, ph: 'go', t0: Date.now(), ghost: null, end: 0, shown: true, onReal: null, leaps: 0, chase: 9, rage: true };
+      prank.pet = p;
+      p.route = [];
+      p.mode = 'wander';
+      p.until = performance.now() + 60000;
+      prankLater(100);
+      cowKick();
+    }, 2500);
+  }
+  function rageCalm(p) {
+    if (!p.rage) return;
+    clearInterval(p.rage.steam);
+    p.rage = null;
+    delete p.n.root.dataset.rage;
+    if (p.tag === 'angry') p.tag = '';
+    if (!p.live()) { hatReset(true); return; }
+    withPet(p, () => { cowSay(pl(p.L.RAGE_CALM), 2600); cowFx('puff', '', { up: 34, fwd: 10 }); });
+    setTimeout(() => hatFetch(p), 2800);
+  }
+  /* Đi nhặt nón: đang đứng dưới đất thì đi tới chỗ nón, tới nơi thì nón nhảy lên đầu; xa quá hay đang ở trên khung khác thì nón tự bay về */
+  function hatFetch(p) {
+    if (!hatLie.el) { hatReset(true); return; }
+    const say = () => sayAs(p, pl(p.L.HAT_FIND), 1800);
+    if (p.on && p.on.k === 'floor' && !p.tw && !p.drag && Math.abs(hatLie.x - p.px) < 700) {
+      p.route = [{ t: 'walk', s: p.s + (hatLie.x - p.px) - Math.sign(hatLie.x - p.px || 1) * 18 }];
+      p.mode = 'wander';
+      p.until = performance.now() + 8000;
+      let n = 0;
+      const look = setInterval(() => {
+        n++;
+        if (!hatLie.el) { clearInterval(look); return; }
+        if (Math.abs(hatLie.x - p.px) < 34 || n > 30 || p.drag) { clearInterval(look); p.route = []; say(); hatHome(); }
+      }, 200);
+      return;
+    }
+    say();
+    setTimeout(hatHome, 500);
+  }
+  /* Đang cọc mà cầm nút Gửi: chuột hay ngón tay tới gần thì chạy về phía ngược lại, bị dồn vào góc thì nhảy sang chỗ khác */
+  function rageFlee(p) {
+    if (p.tw || !p.on || user.px == null || Date.now() - user.pt > 2500) return false;
+    const hx = p.px;
+    const hy = p.py - p.sp.tall * 0.5;
+    if (Math.hypot(user.px - hx, user.py - hy) > 230) return false;
+    const away = Math.sign(hx - user.px) || (Math.random() < 0.5 ? -1 : 1);
+    if (Math.random() < 0.35 || Date.now() - (p.rage ? p.rage.said : 0) > 4000) { if (p.rage) p.rage.said = Date.now(); psay(p, pl(p.L.RAGE_FLEE), 1300); }
+    const sp = upright(p.on) && spanOf(p);
+    if (sp) {
+      const s = clampN(p.s + away * (240 + Math.random() * 180), sp[0], sp[1]);
+      if (Math.abs(s - p.s) > 70) { p.route = [{ t: 'walk', s, v: 'run' }]; p.mode = 'wander'; return true; }
+    }
+    withPet(p, () => { if (!cowExplore(cowSeg(p.on), performance.now())) cowHop(420); });
+    return true;
   }
 
   /* ---- Vịt quắp bò bay khắp màn hình: vỗ cánh kéo bò lượn chữ chi từ góc này sang góc kia, lúc cao lúc thấp (bay qua cả khung chat,
@@ -10577,7 +10938,8 @@ details.gbridge:not([open]) { padding-block: 11px; }
       sceneAt(t1 + 5600, () => { for (const p of [a, b]) { p.rest = false; p.tag = ''; } pfx(a, 'mark', '!', { up: 28 }); jumpUp(a, 200); });
       sceneAt(t1 + 6800, () => sceneEnd(true));
     },
-    hat() {
+    hat(a, b) {
+      if (BO.rage || hatLie.el || BO.n.root.dataset.hat === 'off') { PLAY.chat(a, b); return; }
       const L = pl(MEET.hat);
       closeIn(BO, VIT, 40);
       talkAt(300, L);
@@ -10801,7 +11163,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
     const p = prank.pet;
     if (!p) return;
     const c = p.carry;
-    if (!c || !p.live() || gen || laptop.on || !c.btn.isConnected || p.hide || p.seat || p.inScene || p.sulk || modalOpen()) { prankEnd('abort'); return; }
+    if (!c || !p.live() || gen || (laptop.on && !c.rage) || !c.btn.isConnected || p.hide || p.seat || p.inScene || p.sulk || (modalOpen() && !c.rage)) { prankEnd('abort'); return; }
     const near = () => { const [bx, by] = btnAt(c.btn); return Math.hypot(bx - p.px, by - (p.py - p.sp.tall * 0.5)) < 64; };
     /* Đang bay vọt lên: tới gần nút thì chộp (hay thả nút về chỗ) */
     if (p.loot) {
@@ -10817,13 +11179,20 @@ details.gbridge:not([open]) { padding-block: 11px; }
       return;
     }
     if (c.ph === 'go') {
-      if (Date.now() - c.t0 > 14000 || c.leaps > 2) { prankEnd('abort'); return; }
+      if (Date.now() - c.t0 > (c.rage ? 22000 : 14000) || c.leaps > (c.rage ? 5 : 2)) { prankEnd('abort'); return; }
+      /* Đang bám trần hay vách: buông ra rơi xuống trước đã rồi mới chạy tới nút */
+      if (p.on && !upright(p.on) && !p.tw) { withPet(p, () => cowLetGo(false, false)); prankLater(300); return; }
       if (lootReach(p, c)) { prankGrab(p); return; }
       prankLater(p.loot ? 30 : 160);
       return;
     }
     if (c.ph === 'carry') {
       if (Date.now() >= c.end) { c.ph = 'back'; c.t1 = Date.now(); c.leaps = 0; prankLater(200); return; }
+      if (c.rage) {
+        if (!rageFlee(p) && !p.route.length && !p.tw && Math.random() < 0.35) lootWander(p, c);
+        prankLater(220);
+        return;
+      }
       lootWander(p, c);
       prankLater(600);
       return;
@@ -10867,7 +11236,25 @@ details.gbridge:not([open]) { padding-block: 11px; }
     else if (r < 0.8) withPet(p, () => { if (!cowExplore(cowSeg(p.on), performance.now())) cowHop(260); });
     else if (r < 0.9) withPet(p, () => cowHop(300));
   }
-  /* Ngậm lấy nút: hiện bản sao trên đầu, nút thật mờ đi nhưng vẫn bấm được (bấm vào là trả) */
+  /* Bụi lóe lên đúng chỗ nút vừa bị cuỗm */
+  function lootPoof(r) {
+    if (!motionOn()) return;
+    const n = cowNodes();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    for (let i = 0; i < 5; i++) {
+      const a = (i / 5) * Math.PI * 2 + Math.random() * 0.6;
+      const d = Math.max(r.width, r.height) * 0.35 + 6;
+      const f = el('span', 'cfx puff');
+      f.style.left = (cx + Math.cos(a) * d).toFixed(1) + 'px';
+      f.style.top = (cy + Math.sin(a) * d * 0.6 - 10).toFixed(1) + 'px';
+      n.world.append(f);
+      const kill = () => f.remove();
+      f.addEventListener('animationend', kill);
+      setTimeout(kill, 1600);
+    }
+  }
+  /* Ngậm lấy nút: hiện bản sao trên đầu; chỗ nút thật trống trơn ngay (vẫn bấm vào chỗ trống được, bấm là đòi lại) */
   function prankGrab(p) {
     const c = p.carry;
     const b = c.btn;
@@ -10881,11 +11268,19 @@ details.gbridge:not([open]) { padding-block: 11px; }
     c.gh = r.height;
     c.gs = Math.min(0.86, 74 / Math.max(r.width, 1), 40 / Math.max(r.height, 1));
     b.classList.add('petnapped');
-    c.onReal = () => prankEnd('caught');
+    lootPoof(r);
+    /* Bấm vào chỗ trống của nút: chỉ đòi lại nút, không bấm luôn nút ấy (lỡ là nút Xóa) */
+    c.onReal = (e) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      /* Bò đang cọc: bấm chỗ trống không lấy lại được, phải bắt được bò */
+      if (c.rage) { psay(p, pl(p.L.RAGE_EMPTY), 1500); return; }
+      prankEnd('caught');
+    };
     b.addEventListener('click', c.onReal, true);
     c.ph = 'carry';
-    c.end = Date.now() + 20000 + Math.random() * 10000;
-    withPet(p, () => { cowSay(pl(Math.random() < 0.5 ? p.L.SNATCH : p.L.TAKE)); if (p.on) cowHop(200); });
+    c.end = Date.now() + (c.rage ? 30000 : 20000 + Math.random() * 10000);
+    withPet(p, () => { cowSay(pl(c.rage ? p.L.RAGE_STEAL : Math.random() < 0.5 ? p.L.SNATCH : p.L.TAKE)); if (p.on) cowHop(200); });
     ptag(p, 'happy', 1200);
     prankLater(700);
   }
@@ -10932,7 +11327,11 @@ details.gbridge:not([open]) { padding-block: 11px; }
     if (!c) return;
     lootHome(c, how === 'resize');
     if (!p.live()) return;
-    const key = !c.ghost ? '' : how === 'drop' ? 'TOSS' : how === 'caught' ? 'CAUGHT' : how === 'click' ? 'RETURN' : how === 'thrown' ? 'DROPLOOT' : '';
+    if (c.rage) {
+      if (p.live() && c.ghost && (how === 'click' || how === 'thrown')) withPet(p, () => cowSay(pl(p.L.RAGE_CAUGHT), 1800));
+      setTimeout(() => rageCalm(p), how === 'drop' ? 900 : 2000);
+    }
+    const key = c.rage || !c.ghost ? '' : how === 'drop' ? 'TOSS' : how === 'caught' ? 'CAUGHT' : how === 'click' ? 'RETURN' : how === 'thrown' ? 'DROPLOOT' : '';
     if (key) withPet(p, () => cowSay(pl(how === 'click' ? p.L.RETURN.slice(0, 3) : p.L[key])));
     if (how === 'caught') pfx(p, 'mark', '!', { up: 30 });
     if (!p.inScene && !p.seat && !p.drag) { p.mode = 'wander'; p.until = performance.now() + 900; p.route = []; }
@@ -10943,8 +11342,7 @@ details.gbridge:not([open]) { padding-block: 11px; }
     /* Màn hình cảm ứng: ngón tay đi đường sự kiện chạm riêng. Safari trên iPhone hay tự hủy con trỏ (pointercancel) khi tưởng đang cuộn trang,
        hiện kính lúp hay menu nhấn giữ, nên chạm vào bò vịt là chặn hết những thứ ấy; ngón tay trượt ra khỏi con vật vẫn kéo tiếp */
     const touch = 'ontouchstart' in window;
-    for (const p of PETS) {
-      const r = p.n.root;
+    for (const [p, r] of PETS.flatMap((q) => [[q, q.n.root], [q, q.n.hit]])) {
       const on = (fn) => (e) => { if (touch && e.pointerType === 'touch') return; withPet(p, () => fn(e)); };
       r.addEventListener('pointerdown', on(cowDown));
       r.addEventListener('pointermove', on(cowMove));
@@ -11854,7 +12252,7 @@ footer{margin-top:48px;text-align:center;color:var(--dim);font-size:12px}`;
     setTimeout(backupNag, 9000);
     document.addEventListener('visibilitychange', () => { if (!document.hidden) { nagTries = 0; setTimeout(backupNag, 4000); } });
     if (!hasKey()) {
-      setTimeout(() => { openPanel('run'); $('#keyInp').focus(); toast('Chọn AI muốn dùng rồi dán API key để bắt đầu'); }, 350);
+      intro.then(() => setTimeout(() => { openPanel('run'); $('#keyInp').focus(); toast('Chọn AI muốn dùng rồi dán API key để bắt đầu'); }, 300));
     } else if (!S.models.length) {
       loadModels(true);
     }
