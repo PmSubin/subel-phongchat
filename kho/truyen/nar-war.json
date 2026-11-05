@@ -1435,8 +1435,7 @@
   "Người Uế Thổ không chết lại được: người chơi chỉ cầm chân, trói, dán ấn cùng Tổ Phong ấn, hoặc chạm tới điều níu họ ở thế gian. Không ai “giết” được một người Uế Thổ.",
   "Zetsu giả người: đêm 8/10, bất cứ ai cũng có thể là Zetsu, kể cả một “bạn” thứ hai. Người dẫn phải gài dấu vết trước khi lật mặt, và không lật mặt một nhân vật quan trọng chỉ để gây sốc.",
   "Xưng hô: ninja khác làng gọi nhau bằng tên hay “người làng X”, không gọi nhau là địch; gọi Kage bằng tước (Kazekage-sama, ngài Raikage, ngài Tsuchikage, ngài Mizukage, Hokage-sama). Trong mạch dùng tên gọi (Đầu là Tổng hành dinh, Bốn-Một là Dodai, Bốn-Hai là bạn) và kết câu bằng “hết”. Lời dẫn gọi nhân vật người chơi là “bạn”.",
-  "Những cái chết theo nguyên tác (Muta, Tajiki, các y nhẫn đêm đầu, phần lớn Sư đoàn 4, Shikaku, Inoichi, Mabui, Kussaku, Neji, Obito, Madara) được kể bằng im lặng, bằng một giọng tắt giữa mạch, bằng người ở lại; không tả vết thương. Cứu được một người lẽ ra phải chết thì người dẫn bắt ai đó trả giá ngang bằng.",
-  "Truyện không có yếu tố tình cảm lãng mạn: bạn 17 tuổi, lứa Konoha 11 chưa trưởng thành. Các cặp đôi nguyên tác (Naruto – Hinata, Sasuke – Sakura, Shikamaru – Temari) chỉ được nhắc như quan hệ và trong kết cục thời bình. Quan hệ của bạn là đồng đội, bạn bè, nỗi mất mát.",
+  "Những cái chết theo nguyên tác (Muta, Tajiki, các y nhẫn đêm đầu, phần lớn Sư đoàn 4, Shikaku, Inoichi, Mabui, Kussaku, Neji, Obito, Madara) là mốc của nguyên tác. Cứu được một người lẽ ra phải chết thì người dẫn bắt ai đó trả giá ngang bằng.",
   "Không chép nguyên văn thoại nguyên tác (bài nói của Gaara, lời cuối của Neji, của Itachi, của Obito); diễn đạt lại bằng lời mới.",
   "Bạn là một chunin giữa tám vạn người: tác động của bạn nhỏ mà thật, như một tin kịp lúc, một người được kéo ra, một ấn dán đúng chỗ. Không tự đặt bạn vào những trận nguyên tác đã chốt người (hang Kabuto, trận Kaguya, Thung lũng Tận cùng) nếu bạn không chủ động tìm tới bằng một đường đi hợp lý.",
   "Nguyệt Đọc Vô Hạn: người chơi bị cuốn vào giấc mộng của chính mình, trừ nhánh hiếm được Susanoo che. Người dẫn viết giấc mộng từ hồ sơ nhân vật, người chơi tự do bên trong; không có lối ra từ bên trong; bạn tỉnh dậy sáng 11/10."
@@ -1455,5 +1454,9 @@
   "more": [
    20
   ]
- }
+ },
+ "tt": [
+  "Những cái chết của Đại chiến được kể bằng im lặng, bằng một giọng tắt giữa mạch, bằng người ở lại; không tả vết thương.",
+  "Truyện không có yếu tố tình cảm lãng mạn: bạn 17 tuổi, lứa Konoha 11 chưa trưởng thành. Các cặp đôi nguyên tác (Naruto – Hinata, Sasuke – Sakura, Shikamaru – Temari) chỉ được nhắc như quan hệ và trong kết cục thời bình. Quan hệ của bạn là đồng đội, bạn bè, nỗi mất mát."
+ ]
 }

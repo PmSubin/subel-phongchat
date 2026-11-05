@@ -271,7 +271,7 @@
    "s": "0",
    "age": "15",
    "look": "Gương mặt thanh tú như con gái, tóc đen dài, thường mặc kimono hồng nhạt khi đi hái thuốc. Khi chiến đấu đeo mặt nạ ninja săn lùng làng Sương Mù, cầm kim chích senbon.",
-   "mind": "Hiền lành, dịu dàng, thương người, tin rằng con người chỉ mạnh thật khi có người để bảo vệ. Mang huyết kế giới hạn Băng độn, từng bị chính cha mình muốn giết vì nó. Sống vì Zabuza, sẵn sàng chết vì Zabuza.",
+   "mind": "Hiền lành, dịu dàng, thương người, tin rằng con người chỉ mạnh thật khi có người để bảo vệ. Mang huyết kế Băng độn, từng bị chính cha mình muốn giết vì nó. Sống vì Zabuza, sẵn sàng chết vì Zabuza.",
    "voice": "Giọng nhẹ, lễ phép, xưng tôi gọi cậu. Hỏi những câu rất thật như “cậu có ai quan trọng không?”. Khi chiến đấu thì im lặng.",
    "ties": "Nợ Zabuza cả mạng sống. Gặp Naruto trong rừng mà không ai biết là kẻ thù. Ghét phải giết người nhưng làm được nếu Zabuza cần.",
    "secret": "Haku sẽ chọn chết thay Zabuza nếu tới bước đường cùng. Trong Đại chiến, Kabuto gọi Haku dậy bằng Uế Thổ cùng Zabuza, nếu Haku đã chết.",
@@ -1618,7 +1618,7 @@
   {
    "t": "Vài tháng sau",
    "n": "Hai anh em Uchiha",
-   "e": "Sasuke hạ Orochimaru, lập đội Xà gồm Suigetsu, Karin, Jugo để săn Itachi. Đội Kakashi và Đội 8 lùng Sasuke. Deidara đấu Sasuke rồi tự nổ tung, Sasuke thoát nhờ Manda. Một phân thân Itachi trao cho Naruto một con quạ, rồi đội bị Tobi chặn. Jiraiya lẻn vào làng Mưa, đấu Pain và chết dưới đáy hồ; trước khi tắt thở, ông viết một mật mã lên lưng tiên cóc Fukasaku. Ở căn cứ Uchiha, Sasuke đấu Itachi: Itachi đẩy em tới giới hạn, kéo Orochimaru ra khỏi ấn chú của Sasuke, phong ấn hắn bằng kiếm Totsuka, chạm ngón tay vào trán em rồi gục chết vì bệnh. Tobi kể cho Sasuke sự thật về đêm thảm sát; Sasuke thức tỉnh Vạn Hoa Đồng, đổi tên đội thành Diều Hâu, quay mũi kiếm về làng Lá.",
+   "e": "Sasuke hạ Orochimaru, lập đội Xà gồm Suigetsu, Karin, Jugo để săn Itachi. Đội Kakashi và Đội 8 lùng Sasuke. Deidara đấu Sasuke rồi tự nổ tung, Sasuke thoát nhờ Manda. Một phân thân Itachi trao cho Naruto một con quạ, rồi đội bị Tobi chặn. Jiraiya lẻn vào làng Mưa, đấu Pain và chết dưới đáy hồ; trước khi tắt thở, ông viết một mật mã lên lưng tiên cóc Fukasaku. Ở căn cứ Uchiha, Sasuke đấu Itachi: Itachi dồn em tới tận cùng sức, kéo Orochimaru ra khỏi ấn chú của Sasuke, phong ấn hắn bằng kiếm Totsuka, chạm ngón tay vào trán em rồi gục chết vì bệnh. Tobi kể cho Sasuke sự thật về đêm thảm sát; Sasuke thức tỉnh Vạn Hoa Đồng, đổi tên đội thành Diều Hâu, quay mũi kiếm về làng Lá.",
    "b": "Bạn có thể đi cùng đội tìm Sasuke. Tobi chặn đường bằng thứ thuật để mọi đòn xuyên qua; hắn nhìn bạn rất lâu, vì nửa thân hắn cũng làm từ thứ tế bào ấy, dù không ai biết. Vượt Tobi sớm thì bạn tới căn cứ Uchiha lúc Itachi vừa gục: Sasuke ngất, Tobi và Zetsu sắp mang cậu đi. Theo Jiraiya tới làng Mưa là con đường khác: ông chỉ cho đi nếu bạn đã là chunin, và bạn có thể là người mang mật mã về.",
    "k": "Naruto lên núi Myoboku học Tiên thuật. Ở làng Lá, Pain và Konan đã tới ngoài cổng."
   },
@@ -1761,17 +1761,16 @@
   ]
  ],
  "rules": [
-  "Nhẫn thuật theo logic nguyên tác: có tên, có kết ấn, tiêu chakra, có giới hạn. Người chơi mạnh lên dần qua cảnh tập luyện có thời gian, không nhảy vọt, không tự nhiên biết nhẫn thuật cao cấp.",
+  "Nhẫn thuật theo logic nguyên tác: có tên, có kết ấn, tiêu chakra, có cái giá. Người chơi mạnh lên dần qua cảnh tập luyện có thời gian, không nhảy vọt, không tự nhiên biết nhẫn thuật cao cấp.",
   "Xưng hô: Naruto gọi Sasuke trống không, Sakura gọi “Sasuke-kun”, học trò gọi “thầy Kakashi”, “thầy Iruka”, gọi Hokage là “Hokage-sama” (Naruto gọi “ông già”). Giữa bạn bè cùng lớp dùng tớ/cậu hoặc tao/mày tùy tính.",
   "Dòng “Bạn” trong Sổ ghi: Chakra (Đầy / Vơi / Cạn), Thể lực (Khỏe / Bị thương / Nặng), Ấn (Yên 0 / Nóng 1 / Rạn 2 / Vỡ 3), nhẫn thuật đã học, nhẫn cụ, tiền (ryo).",
   "Nguyên tác chạy theo đúng thứ tự: bài thử chuông, nhiệm vụ hạng D, nước Sóng, thi Chunin, cuộc tấn công làng Lá. Nếu người chơi không can thiệp, sự kiện diễn ra như nguyên tác.",
   "Bí mật cái ấn hé từng lớp theo điều kiện trong secrets; không ai kể hết chỉ vì được hỏi. Orochimaru chỉ nhận ra bạn khi ấn lên mức Rạn ở gần hắn.",
-  "Chiến đấu tả nhanh, rõ, có chiến thuật; vết thương có sức nặng nhưng không ghê rợn. Cái chết (Haku, Zabuza, Đệ Tam) được kể bằng cảm xúc của người ở lại.",
-  "Truyện không có yếu tố tình cảm lãng mạn: nhân vật chính đều là trẻ 12–13 tuổi. Những cảm mến kiểu trẻ con trong nguyên tác (Sakura với Sasuke) chỉ nhắc như tính cách, không dựng thành chuyện tình.",
+  "Chiến đấu tả nhanh, rõ, có chiến thuật.",
   "Câu cửa miệng như “dattebayo” dùng có chừng mực; không chép nguyên văn thoại dài của nguyên tác, diễn đạt lại bằng lời mới.",
   "Lời dẫn gọi nhân vật người chơi là “bạn”, không nói, nghĩ hay quyết định thay bạn.",
   "Từ chặng tìm Tsunade, các mốc nguyên tác theo đúng thứ tự: tìm Tsunade, đuổi theo Sasuke, hai năm rưỡi, Kazekage, cầu Thiên Địa, Hidan và Kakuzu, Sasuke và Itachi, Pain, Hội nghị Ngũ Kage, Đại chiến, Thung lũng Tận cùng. Người chơi không can thiệp thì diễn ra như phần e; những gì đã đổi phải được mang theo.",
-  "Thời Shippuden bạn 15–16 tuổi, thời Đại chiến 16–17. Vẫn không có tình cảm lãng mạn; các cặp đôi nguyên tác chỉ nhắc ở kết cục thời Boruto. Cái chết của Asuma, Jiraiya, Neji, Itachi kể bằng người ở lại, không tả vết thương."
+  "Thời Shippuden bạn 15–16 tuổi, thời Đại chiến 16–17."
  ],
  "highlights": [
   "Bài thử chuông với bốn người mà chỉ hai chiếc chuông.",
@@ -1784,5 +1783,10 @@
  "ani": {
   "id": 20,
   "q": "Naruto"
- }
+ },
+ "tt": [
+  "Vết thương có sức nặng nhưng không ghê rợn. Cái chết (Haku, Zabuza, Đệ Tam) được kể bằng cảm xúc của người ở lại.",
+  "Truyện không có yếu tố tình cảm lãng mạn: nhân vật chính đều là trẻ 12–13 tuổi. Những cảm mến kiểu trẻ con trong nguyên tác (Sakura với Sasuke) chỉ nhắc như tính cách, không dựng thành chuyện tình.",
+  "Thời Shippuden và Đại chiến vẫn không có tình cảm lãng mạn; các cặp đôi nguyên tác chỉ nhắc ở kết cục thời Boruto. Cái chết của Asuma, Jiraiya, Neji, Itachi kể bằng người ở lại, không tả vết thương."
+ ]
 }

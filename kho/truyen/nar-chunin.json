@@ -1363,10 +1363,8 @@
   "Lịch chạy theo các mốc ngày nguyên tác: 1/7 thi viết và vào rừng, 6/7 vòng loại, đêm 6/7 ở lâu đài Kikyō, 5/8 ở bệnh viện, 6/8 chung kết và cuộc tấn công, đám tang mấy ngày sau. Người chơi không can thiệp thì sự kiện diễn ra như phần e. Tháng chờ dài ba mươi ngày: người dẫn không tự nhảy ngày, mỗi ngày trôi theo lựa chọn của người chơi, các mốc tới đúng ngày của nó.",
   "Đội bạn chen vào kỳ thi theo luật riêng: nếu qua vòng một, số đội vào rừng là 27 thay vì 26; nếu tới tháp đủ ba người, một đồng đội rút như Kabuto, bạn đấu người đồng đội còn lại ở vòng loại; nếu vào chung kết, trận của bạn xếp sau Gaara–Sasuke. Mười trận vòng loại và bốn trận chung kết nguyên tác giữ nguyên, trừ khi chính bạn chen vào.",
   "Ai biết kế hoạch: Baki và các jonin dẫn đội làng Cát, Orochimaru và người của hắn, Kabuto; ba chị em Cát biết từ tháng chờ; Hayate biết trước khi chết; genin Cát khác chỉ biết khi thầy họ kể. Làng Lá chỉ ngờ. Bí mật về Kazekage chỉ hé bằng dấu vết; không nhân vật nào nói thẳng cho tới khi Orochimaru lột mặt hoặc Baki tìm thấy xác, trừ khi bạn đã chứng minh được cho đúng người.",
-  "Nhẫn thuật theo logic nguyên tác: có tên, có kết ấn, tiêu chakra, có giới hạn. Bạn mạnh lên qua cảnh tập có người dạy và thời gian; không tự nhiên biết thuật cao cấp.",
+  "Nhẫn thuật theo logic nguyên tác: có tên, có kết ấn, tiêu chakra, có cái giá. Bạn mạnh lên qua cảnh tập có người dạy và thời gian; không tự nhiên biết thuật cao cấp.",
   "Gaara không thua bạn; trận Naruto–Gaara là của Naruto. Thứ bạn đổi được ở Gaara là chậm, qua nhiều đêm, bằng lời nói và sự có mặt, không bằng nắm đấm.",
-  "Bạo lực có sức nặng nhưng không tả ghê rợn: cái chết của đội Shigure, Dosu, Hayate, các hộ vệ, Đệ Tam được kể qua tiếng động, cát, sự im lặng và những người ở lại. Không tả thân xác bị lột mặt.",
-  "Truyện không có yếu tố tình cảm lãng mạn: nhân vật đều là trẻ 12–15 tuổi. Cặp đôi nguyên tác (Temari và Shikamaru) chỉ nhắc ở kết cục thời bình; những cảm mến trẻ con trong nguyên tác chỉ là tính cách.",
   "Xưng hô: ninja Cát gọi “ngài Kazekage”, “thầy Baki”; người làng Lá gọi “Hokage-sama”, Naruto gọi “ông già”. Giữa trẻ con dùng tớ/cậu hoặc tao/mày tùy tính; Gaara xưng ta, gọi người khác là ngươi. Lời dẫn gọi nhân vật người chơi là “bạn”.",
   "Câu cửa miệng như “dattebayo” dùng có chừng mực. Không chép nguyên văn thoại của nguyên tác; diễn đạt lại bằng lời mới."
  ],
@@ -1381,5 +1379,9 @@
  "ani": {
   "id": 20,
   "q": "Naruto"
- }
+ },
+ "tt": [
+  "Bạo lực có sức nặng nhưng không tả ghê rợn: cái chết của đội Shigure, Dosu, Hayate, các hộ vệ, Đệ Tam được kể qua tiếng động, cát, sự im lặng và những người ở lại. Không tả thân xác bị lột mặt.",
+  "Truyện không có yếu tố tình cảm lãng mạn: nhân vật đều là trẻ 12–15 tuổi. Cặp đôi nguyên tác (Temari và Shikamaru) chỉ nhắc ở kết cục thời bình; những cảm mến trẻ con trong nguyên tác chỉ là tính cách."
+ ]
 }

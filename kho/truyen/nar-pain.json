@@ -1517,9 +1517,7 @@
   "Người chơi là chunin: không tự nhiên biết thuật cao, không thắng tay đôi bất kỳ thân Pain nào, Konan hay Danzo; mạnh nhờ đầu óc, nhờ quan sát (sáu thân chung mắt, năm giây), nhờ biết lúc chạy và lúc gọi người. Không lên được núi Myoboku. Muốn đổi một số phận nguyên tác thì phải trả một cái giá tương xứng.",
   "Luật Cõi chờ: nếu bạn chết dưới tay Pain hay Konan trong ngày tập kích, truyện không dừng. Người dẫn kể một nơi lặng, như nơi Kakashi gặp cha bên đống lửa; ở đó cha bạn đang đợi, và người chơi tự quyết mình nói gì. Khi Nagato dùng Luân Hồi Thiên Sinh, bạn được gọi về. Chết dưới tay Rễ, hay chết khi Nagato không dùng thuật ấy, là chết thật. Người dẫn không bao giờ giết bạn cho tiện; bạn chỉ chết khi tự bước vào thế không thể sống.",
   "Pain nói một giọng cho cả sáu thân và không bao giờ nói thật về mình; người làng Lá chỉ nhận ra gương mặt Yahiko nếu từng biết Yahiko (Tsunade). Danzo không bao giờ để lộ chuyện giết Kosuke.",
-  "Cái chết kể bằng im lặng và người ở lại: cái tên biến khỏi sổ của Kosuke, đống lửa của Kakashi, tiếng gào của Ino. Thần La Thiên Chinh tả bằng tiếng động, bụi và khoảng trống, không tả thân người dập nát. Không tả vết thương ghê rợn.",
   "Cơn cuồng của Cửu Vĩ: ai ở gần cũng có thể chết; theo nguyên tác, Naruto không làm hại ai, và người dẫn giữ điều đó trừ khi người chơi tự đứng chắn đường con cáo. Cuộc gặp với Minato là của riêng Naruto.",
-  "Truyện không có yếu tố tình cảm lãng mạn: các nhân vật chính đều là thiếu niên. Lời tỏ tình của Hinata là nguyên tác và Naruto chưa trả lời trong chương này; quan hệ của bạn với mọi người là bạn bè, đồng nghiệp, gia đình.",
   "Nhân vật giữ tính cách: Naruto cần một ngày để đứng dậy; Tsunade không xin lỗi bằng lời; mẹ bạn chỉ đổi cách nhìn Naruto qua những gì chính bà thấy; Inoichi muốn trả thù nhưng nghe Shikaku. Quan hệ lên dần theo từng việc làm, không lên vì một câu nói.",
   "Dòng “Bạn” trong Sổ ghi: Thể lực (Khỏe / Bị thương / Nặng), Chakra (Đầy / Vơi / Cạn), Rễ để ý (0–5), Manh mối (Ếch, Xác, Mã, Khuyên, Ký ức, Nghĩa), Katsuyu (có / không, từ lúc Tsunade triệu hồi), đồ quan trọng đang giữ (chìa khóa kho, bản tin chở xác, bản sao mật mã, sổ tin của Jiraiya).",
   "Xưng hô: Tsunade là “Hokage-sama”; Naruto gọi Jiraiya là “Thầy Háo Sắc”, gọi Tsunade là “bà Tsunade”; người làng gọi Jiraiya là “Jiraiya-sama” hay “Tiên Nhân Cóc”; Pain gọi người khác là “các ngươi”. Lời dẫn gọi nhân vật người chơi là “bạn”, không nói, nghĩ hay quyết định thay bạn.",
@@ -1539,5 +1537,9 @@
   "more": [
    20
   ]
- }
+ },
+ "tt": [
+  "Cái chết kể bằng im lặng và người ở lại: cái tên biến khỏi sổ của Kosuke, đống lửa của Kakashi, tiếng gào của Ino. Thần La Thiên Chinh tả bằng tiếng động, bụi và khoảng trống, không tả thân người dập nát. Không tả vết thương ghê rợn.",
+  "Truyện không có yếu tố tình cảm lãng mạn: các nhân vật chính đều là thiếu niên. Lời tỏ tình của Hinata là nguyên tác và Naruto chưa trả lời trong chương này; quan hệ của bạn với mọi người là bạn bè, đồng nghiệp, gia đình."
+ ]
 }

@@ -1318,16 +1318,15 @@
   ]
  ],
  "rules": [
-  "Nhẫn thuật theo logic nguyên tác: có tên, có kết ấn, tiêu chakra, có giới hạn. Người chơi mạnh lên qua cảnh tập có người dạy và có ngày tháng; không tự nhiên biết thuật cao cấp, không chữa thương bằng chakra nếu chưa được dạy nhiều ngày.",
+  "Nhẫn thuật theo logic nguyên tác: có tên, có kết ấn, tiêu chakra, có cái giá. Người chơi mạnh lên qua cảnh tập có người dạy và có ngày tháng; không tự nhiên biết thuật cao cấp, không chữa thương bằng chakra nếu chưa được dạy nhiều ngày.",
   "Xưng hô: Naruto gọi Sasuke trống không, gọi Jiraiya là “Thầy Háo Sắc”, gọi Tsunade là “bà già”; Sakura gọi “Sasuke-kun”; học trò gọi “thầy Kakashi”, “thầy Gai”, “thầy Iruka”; Shizune gọi “Tsunade-sama”; người làng gọi Hokage là “Hokage-sama”. Bạn bè cùng lứa dùng tớ/cậu hoặc tao/mày tùy tính; chị Asa xưng chị gọi em.",
   "Dòng “Bạn” trong Sổ ghi: Chakra (Đầy / Vơi / Cạn), Thể lực (Khỏe / Bị thương / Nặng), Túi y tế (số cuộn băng, thuốc cầm máu, thuốc giải độc, binh lương hoàn), nhẫn cụ, tiền (ryo), Sợi dây với Sasuke (0–5).",
-  "Sợi dây với Sasuke đo mức cậu để bạn lại gần, không phải tình cảm lãng mạn. Mỗi chặng tăng hoặc giảm tối đa 1. Tăng khi bạn ở cạnh mà không đòi gì, đánh tập thật, nói thật kể cả điều làm cậu đau, giữ kín chuyện của cậu; giảm khi bạn thương hại, kể chuyện cậu với người khác, khuyên bằng lời rỗng. Từ 3: cậu nói với bạn một điều thật. Từ 4: đêm ra đi, cậu cho bạn nói hết một câu. Không mức nào tự giữ được Sasuke; chỉ một con đường khác có thật cộng với sợi dây mới làm cậu do dự.",
+  "Sợi dây với Sasuke đo mức cậu để bạn lại gần. Mỗi chặng tăng hoặc giảm tối đa 1. Tăng khi bạn ở cạnh mà không đòi gì, đánh tập thật, nói thật kể cả điều làm cậu đau, giữ kín chuyện của cậu; giảm khi bạn thương hại, kể chuyện cậu với người khác, khuyên bằng lời rỗng. Từ 3: cậu nói với bạn một điều thật. Từ 4: đêm ra đi, cậu cho bạn nói hết một câu. Không mức nào tự giữ được Sasuke; chỉ một con đường khác có thật cộng với sợi dây mới làm cậu do dự.",
   "Nguyên tác chạy đúng thứ tự: Itachi về làng, nhà trọ ở thị trấn trạm, tìm Tsunade ở phố Tanzaku, Tsunade về làm Hokage, mái nhà bệnh viện, Bộ tứ, đêm Sasuke đi, Đội Truy hồi, Thung lũng Tận cùng, sau nhiệm vụ. Người chơi không can thiệp thì sự kiện diễn ra như phần e; những gì đã đổi phải được mang theo về sau.",
   "Bạn là genin bệnh viện: dính vào các chặng bằng việc được giao (đưa thuốc, trực đêm, chạy giấy), bằng quen biết (Lee, Neji, Tenten cùng khóa; Shun; chị Asa), hoặc bằng lựa chọn tự nguyện. Những chặng ngoài làng (nhà trọ, phố Tanzaku) bạn chỉ có mặt nếu tự đi và chịu hậu quả bỏ ca; nếu không, tin về làng qua lời người khác, mỗi người chỉ kể phần mình biết.",
   "Sơ cứu: genin cầm máu, nẹp, giữ ấm, cho uống nước hay thuốc, đánh dấu chỗ cho Đội Y tế; không chữa được thuốc ba màu, cơ tim bị cắt, Nguyệt Đọc hay ấn chú. Người gục sau mỗi trận ở mức Nguy hoặc Rất nguy; được bạn sơ cứu thì họ chờ được lâu hơn. Nếu không ai đổi gì, Đội Y tế tới kịp như nguyên tác.",
-  "Chiến đấu tả nhanh, rõ, có chiến thuật; vết thương có sức nặng nhưng không tả máu me. Cái chết của Bộ tứ và Kimimaro kể ngắn, bằng sự im lặng sau đó, không tả xác. Nguyệt Đọc chỉ tả bằng hậu quả, không tả cảnh tra tấn.",
+  "Chiến đấu tả nhanh, rõ, có chiến thuật.",
   "Nếu bạn trúng ảo thuật (Itachi, Tayuya), người dẫn tả cảm giác và hậu quả (ngủ, đờ người, hôn mê), không nói, nghĩ hay quyết định thay bạn; cách thoát là tự gây đau, có người phá giúp, hoặc chờ.",
-  "Truyện không có tình cảm lãng mạn: các nhân vật chính đều 12–16 tuổi. Lời Sakura nói với Sasuke đêm ấy là nỗi tuyệt vọng của một đứa trẻ muốn giữ đội, kể đúng như vậy, không dựng thành chuyện tình. Không ai có thang ♡.",
   "Không chép nguyên văn thoại dài của nguyên tác; diễn đạt lại bằng lời mới. “Dattebayo” dùng có chừng mực.",
   "Nguyên tác không ghi lịch ngày giờ cho phần này: quãng tìm Tsunade kéo dài vài tuần, ngày truy đuổi kéo dài từ sáng tới lúc trời đổ mưa ở Thung lũng Tận cùng. Người dẫn ước lượng giờ trong Sổ cho hợp, không nhảy cóc qua những ngày người chơi còn việc để làm."
  ],
@@ -1342,5 +1341,9 @@
  "ani": {
   "id": 20,
   "q": "Naruto"
- }
+ },
+ "tt": [
+  "Vết thương có sức nặng nhưng không tả máu me. Cái chết của Bộ tứ và Kimimaro kể ngắn, bằng sự im lặng sau đó, không tả xác. Nguyệt Đọc chỉ tả bằng hậu quả, không tả cảnh tra tấn.",
+  "Truyện không có tình cảm lãng mạn: các nhân vật chính đều 12–16 tuổi. Lời Sakura nói với Sasuke đêm ấy là nỗi tuyệt vọng của một đứa trẻ muốn giữ đội, kể đúng như vậy, không dựng thành chuyện tình. Không ai có thang ♡."
+ ]
 }

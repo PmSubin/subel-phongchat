@@ -1207,12 +1207,10 @@
  "rules": [
   "Truyện chính trị ngầm: mọi người nói một nửa, giấu một nửa. Không nhân vật nào tiết lộ bí mật chỉ vì được hỏi; phải có điều kiện ghi trong secrets.",
   "Ảo thuật Sharingan rất nguy hiểm: người chơi có thể bị trúng ảo thuật, nhưng người dẫn chỉ tả cảm giác và hậu quả, không chiếm quyền nói, nghĩ, quyết định của nhân vật người chơi. Biệt Thiên Thần không bao giờ được dùng lên người chơi.",
-  "Cái chết tả nặng nề, có sức nặng cảm xúc, không ghê rợn chi tiết. Không tả cảnh giết trẻ em; số phận của Shisui nếu xảy ra được kể kín đáo, không tả cách thức, không tô vẽ như điều đáng làm.",
   "Dòng “Bạn” trong Sổ ghi: Thể lực, Chakra (Đầy / Vơi / Cạn), Rễ để ý (0–5), Uchiha nghi (0–5), số đêm còn tới trăng tròn, đồ quan trọng đang giữ.",
   "Lịch truyện nén nguyên tác vào bảy đêm. Nếu người chơi không can thiệp, sự kiện mỗi chặng diễn ra như phần e của chặng đó.",
   "Xưng hô: Anbu gọi nhau bằng mật danh khi làm việc; Hokage là “Hokage-sama”; người Uchiha gọi tộc trưởng là “tộc trưởng”; Itachi gọi Shisui là “anh Shisui”. Lời dẫn gọi nhân vật người chơi là “bạn”.",
   "Gã đeo mặt nạ không bị đánh bại trực diện trong truyện này; người chơi chỉ có thể làm hắn lộ diện, đổi kế, hoặc khiến hắn rút lui. Thân phận Obito chỉ hé dấu vết, không nói thẳng.",
-  "Truyện không có yếu tố tình cảm lãng mạn: Itachi, Shisui, Izumi đều chưa trưởng thành. Quan hệ giữa họ là bạn bè, đồng đội, gia đình.",
   "Không chép nguyên văn thoại của nguyên tác; diễn đạt lại bằng lời mới.",
   "Người chơi là Anbu: sau đêm trăng đỏ, bạn dính vào các chặng bằng nhiệm vụ (trực cổng, đi tuần, hộ tống, theo dõi), bằng Rễ (Danzo mời hoặc săn bạn), hoặc bằng lời hứa riêng với Itachi. Không tự đặt bạn vào các trận nguyên tác đã chốt người (Itachi–Sasuke, Naruto–Pain) nếu bạn không chủ động tìm tới.",
   "Từ chặng Áo mây đỏ, lịch chạy theo năm của nguyên tác (khoảng năm năm sau đêm trăng đỏ, rồi gần ba năm nữa tới Đại chiến). Người chơi không can thiệp thì diễn ra như phần e. Nếu thảm sát đã bị chặn, người dẫn dựng lại các chặng sau cho hợp, giữ những thế lực không đổi (Akatsuki, Orochimaru, Pain)."
@@ -1231,5 +1229,9 @@
   "more": [
    20
   ]
- }
+ },
+ "tt": [
+  "Cái chết tả nặng nề, có sức nặng cảm xúc, không ghê rợn chi tiết. Không tả cảnh giết trẻ em; số phận của Shisui nếu xảy ra được kể kín đáo, không tả cách thức, không tô vẽ như điều đáng làm.",
+  "Truyện không có yếu tố tình cảm lãng mạn: Itachi, Shisui, Izumi đều chưa trưởng thành. Quan hệ giữa họ là bạn bè, đồng đội, gia đình."
+ ]
 }
