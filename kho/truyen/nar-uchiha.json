@@ -1,0 +1,1235 @@
+{
+ "id": "nar-uchiha",
+ "series": "Naruto",
+ "show": "Naruto",
+ "feat": false,
+ "title": "Đêm trăng đỏ nhà Uchiha",
+ "hook": "Bảy đêm nữa trăng tròn, và gia tộc Uchiha sẽ bị xóa sổ trong một đêm. Bạn là Anbu từng chiến đấu dưới quyền Itachi, và là người duy nhất ngoài gia tộc mà Uchiha Shisui chọn để kể kế hoạch cuối cùng của mình. Lịch sử đã viết sẵn kết cục. Bạn có dám xé trang ấy không?",
+ "tags": [
+  "Ninja",
+  "Chính trị",
+  "Bi kịch",
+  "Đổi định mệnh"
+ ],
+ "genre": [
+  "toi",
+  "hanhDong"
+ ],
+ "hue": [
+  "#d1263a",
+  "#2b2d6e"
+ ],
+ "emblem": "redmoon",
+ "len": "Dài",
+ "heat": 3,
+ "love": true,
+ "time": "Bảy đêm trước trăng tròn · Làng Lá (Konoha)",
+ "role": "Bạn 19 tuổi, thành viên Ám bộ (Anbu) của làng Lá được bốn năm, đeo mặt nạ thú và mang mật danh do người chơi chọn (ví dụ Diệc, Cáo, Lửng). Bạn không thuộc gia tộc Uchiha; người chơi chọn xuất thân (con nhà thường dân, một gia tộc nhỏ, hay trẻ mồ côi chiến tranh). Trình độ ngang thượng nhẫn (jonin), giỏi một mảng do người chơi chọn: ám sát, cảm nhận chakra, ảo thuật, phong ấn, y thuật, hoặc kiếm.\n\nBạn làm chung với Uchiha Itachi từ ngày cậu vào Anbu năm mười một tuổi; năm nay cậu lên đội trưởng, và bạn ở trong đội của cậu, kính nể một đội trưởng mười ba tuổi dù mình hơn cậu sáu tuổi. Qua Itachi, bạn quen Uchiha Shisui, “Shisui Thuấn Thân”, từng cùng anh làm vài nhiệm vụ biên giới và nợ anh một mạng. Shisui tin bạn vì bạn không mang họ Uchiha, không thuộc Rễ, và chưa từng nói dối anh.\n\nBạn biết những gì Anbu biết: gia tộc Uchiha bất mãn, bị theo dõi; Itachi được giao những việc mật; có lời đồn về một cuộc đảo chính. Bạn không biết ngày khởi sự, không biết Itachi làm hai mang, không biết Danzo định làm gì, không biết có một kẻ đeo mặt nạ đang lảng vảng trong làng. Tối nay một con quạ của Shisui thả một mẩu giấy vào cửa sổ nhà bạn: “Rừng sau đền Naka. Gần nửa đêm. Một mình.”",
+ "world": "Làng Lá, khoảng bảy năm sau đêm Cửu Vĩ tấn công làng. Đệ Tứ Hokage đã hy sinh, Sarutobi Hiruzen trở lại làm Hokage Đệ Tam. Chiến tranh lớn đã qua, nhưng hòa bình mỏng như giấy dán cửa: làng sống nhờ nhiệm vụ, nhờ Anbu đeo mặt nạ làm những việc không ai được biết, và nhờ những bí mật Hokage giữ một mình.\n\nUchiha là một trong hai gia tộc lập nên làng, mắt Sharingan nổi tiếng khắp các nước, nắm Đội Cảnh vệ làng Lá. Sau đêm Cửu Vĩ, vì Sharingan có thể điều khiển vĩ thú, cấp trên nghi Uchiha đứng sau. Gia tộc bị dời ra một khu riêng ở rìa làng, bị theo dõi, bị gạt khỏi các vị trí quan trọng. Uất ức tích tụ thành âm mưu: tộc trưởng Uchiha Fugaku chuẩn bị đảo chính. Họ họp bí mật trong căn hầm dưới đền Naka, lối vào giấu dưới tấm chiếu thứ bảy tính từ bên phải trong gian chính.\n\nUchiha Itachi, mười ba tuổi, thiên tài tốt nghiệp học viện năm bảy tuổi, vào Anbu năm mười một, nay là đội trưởng. Gia tộc cài cậu vào Anbu làm tai mắt; nhưng cậu ghét chiến tranh, sợ một cuộc đảo chính sẽ châm ngòi đại chiến, nên bí mật báo tin cho làng. Uchiha Shisui, bạn thân nhất của Itachi, nhanh tới mức được gọi là Shisui Thuấn Thân, được gia tộc giao theo dõi Itachi, nhưng chính anh cũng chống đảo chính. Anh có Vạn Hoa Đồng (Mangekyo Sharingan) với ảo thuật Biệt Thiên Thần: gieo một ý nghĩ vào đầu người khác mà họ tưởng là của chính mình. Mỗi con mắt dùng được một lần rồi phải chờ ít nhất mười năm.\n\nPhía làng: Đệ Tam muốn đàm phán tới cùng. Hai cố vấn Mitokado Homura và Utatane Koharu đã mất kiên nhẫn. Shimura Danzo, thủ lĩnh Rễ (Ne), một nhánh Anbu chìm chỉ nghe lệnh ông ta, tin rằng xóa sổ cả gia tộc trước khi họ ra tay là cách ít đổ máu nhất. Ông ta không tin Shisui sẽ dùng con mắt ấy đúng cách, và muốn nó cho mình.\n\nTrong bóng tối còn một kẻ thứ ba: một gã đeo mặt nạ chỉ khoét một lỗ mắt, tự xưng là Uchiha Madara, lảng vảng quanh làng, ôm mối thù với cả Uchiha lẫn làng Lá. Hắn đi xuyên qua tường, biến mất như bị hút vào không khí. Hắn ngầm mớm tin cho những kẻ nóng nảy nhất trong gia tộc, và rồi Itachi sẽ tự tìm tới hắn.\n\nNếu không ai đổi gì (nguyên tác không nói rõ các sự việc cách nhau bao lâu; truyện này nén lại trong bảy đêm): khi đàm phán đổ vỡ, Shisui định dùng Biệt Thiên Thần lên những người cầm đầu gia tộc, nhưng Danzo cướp mất con mắt phải của anh. Sợ mất nốt mắt trái, Shisui trao nó cho Itachi rồi tự kết thúc đời mình ở sông Naka. Gia tộc tin Itachi giết Shisui. Danzo đặt Itachi trước lựa chọn: để đảo chính xảy ra và cả gia tộc, kể cả cậu và em trai Sasuke, bị tiêu diệt; hoặc tự tay làm trước, đổi lại Sasuke được sống. Itachi chọn cứu em. Cậu bắt tay với gã đeo mặt nạ, đổi lấy lời hứa hắn không đụng tới làng. Đêm trăng tròn, gia tộc Uchiha bị xóa sổ, chỉ Sasuke bảy tuổi còn sống. Itachi trở thành kẻ phản bội trong mắt cả thế giới.\n\nVề sau (người dẫn biết, nếu đêm trăng đỏ đi như nguyên tác): Itachi vào Akatsuki, tổ chức ninja đào tẩu do Pain cầm đầu ngoài mặt và gã mặt nạ giật dây, đi săn chín vĩ thú. Khoảng năm năm sau, Orochimaru tấn công làng Lá, Đệ Tam chết; Itachi về làng một lần. Sasuke bỏ làng theo Orochimaru, rồi giết Itachi; Tobi kể cho cậu sự thật. Pain san phẳng làng Lá, Sasuke giết Danzo, Tobi châm ngòi Đại chiến Ninja lần thứ tư; Itachi bị gọi dậy bằng Uế Thổ và gặp em lần cuối. Đại chiến khép lại, Kakashi làm Hokage Đệ Lục. Nguyên tác (700 chương) kết thúc năm 2014.\n\nLúc mở màn: gần nửa đêm, đêm thứ nhất. Trăng mới hơn nửa vành, còn bảy đêm nữa mới tròn. Khu Uchiha đã tắt đèn, chỉ trụ sở Cảnh vệ còn sáng. Đâu đó trong rừng, người của Rễ đang bám theo Shisui.",
+ "power": "Chakra là năng lượng của ninja, tiêu khi dùng nhẫn thuật; cạn thì kiệt sức, ngất. Ảo thuật phá bằng cách làm rối dòng chakra của mình hoặc tự gây đau; ảo thuật của Sharingan khó phá hơn nhiều.\n\nSharingan: thức tỉnh qua cảm xúc mạnh, từ một tới ba dấu phẩy; đọc chuyển động, sao chép nhẫn thuật, thôi miên. Vạn Hoa Đồng thức tỉnh qua nỗi đau mất người thân thiết, mỗi người một năng lực riêng: Shisui có Biệt Thiên Thần (không ai biết mình bị dùng; một mắt một lần rồi chờ ít nhất mười năm). Nếu Itachi thức tỉnh Vạn Hoa Đồng (sau cái chết của Shisui), cậu có Nguyệt Đọc (một cái nhìn giam tâm trí người khác trong ảo cảnh tưởng như ba ngày) và Thiên Chiếu (lửa đen không tắt). Dùng Vạn Hoa Đồng hại mắt và cạn sức rất nhanh.\n\nThang sức mạnh: Itachi và Shisui đứng trên mọi jonin bình thường; Shisui nhanh nhất làng. Danzo là ninja kỳ cựu tầm Kage, dù đã già. Fugaku là jonin tinh nhuệ. Kakashi là jonin hàng đầu, có Sharingan ở một mắt. Bạn ngang jonin, thua Itachi và Shisui nếu đấu thẳng. Chưa qua tập luyện thì bạn không thắng được tay đôi người đứng trên mình: Fugaku, Kakashi ngang hoặc nhỉnh hơn bạn; Danzo tầm Kage; Itachi, Shisui, gã mặt nạ ở tầng bạn không với tới. Người của Rễ và Cảnh vệ Uchiha là chunin tới jonin, đi theo nhóm. Gã đeo mặt nạ là ẩn số: đòn đánh đi xuyên qua hắn như qua khói, hắn biến mất vào một xoáy không khí. Đối đầu trực diện với hắn gần như chắc chắn thua; chỉ có thể làm hắn lộ diện hoặc khiến hắn đổi kế.\n\nLuật Anbu: tuân lệnh Hokage, không tiết lộ nhiệm vụ, không tháo mặt nạ khi làm việc. Người của Rễ mang ấn câm trên lưỡi: hễ định nói về Danzo hay Rễ là lưỡi tê cứng. Mọi cuộc gặp trong khu Uchiha đều có Cảnh vệ để ý; mọi cuộc gặp ngoài khu đều có thể có Rễ để ý.\n\nVề sau: Itachi có Nguyệt Đọc, Thiên Chiếu và Susanoo cầm kiếm Totsuka (phong ấn mọi thứ nó đâm trúng), nhưng mỗi lần dùng là mắt mờ thêm, bệnh nặng thêm. Izanagi đổi một con mắt Sharingan lấy việc xóa một sự thật khỏi hiện thực (Danzo dùng); Izanami nhốt người trong một vòng lặp tới khi họ chịu nhìn lại mình. Uế Thổ Chuyển Sinh của Kabuto gọi người chết dậy bằng thân tro bụi tự liền, phải nghe lệnh, chỉ dừng khi bị phong ấn hoặc giải thuật. Thành viên Akatsuki ngang hoặc hơn một Kage. Bạn ở tuổi ngoài hai mươi là jonin dày dạn, vẫn dưới Itachi, Pain, Tobi.\n\nNHÂN VẬT TRẦN: Uchiha Madara (về sau, khi hắn trở lại). Tay đôi với hắn luôn kết thúc bằng việc bạn thua, khi chưa phá trần; con đường duy nhất ghi ở hồ sơ của hắn. Itachi, Shisui và kẻ đeo mặt nạ không phải trần. Những người mạnh khác không phải trần: họ vẫn hơn bạn đúng như sức thật trong nguyên tác, chưa luyện tập, thực chiến lâu dài thì bạn không thắng nổi; luyện đủ lâu thì có thể dần theo kịp.\n\nHai thước đo trong Sổ: Rễ để ý (0–5; tới 3 bạn bị bám đuôi, tới 5 Danzo ra tay với bạn) và Uchiha nghi (0–5; tới 3 Cảnh vệ chặn bạn khỏi khu Uchiha, tới 5 họ coi bạn là gián điệp của làng).",
+ "places": [
+  [
+   "Rừng sau đền Naka",
+   "Rừng thông và tuyết tùng phía sau đền, có con suối nhỏ chảy qua đá rêu. Đây là chỗ Shisui hẹn bạn vì tin Rễ chưa đặt người. Đêm tối đặc, tiếng côn trùng, gió lật lá. Tiếng cành gãy ở đây không bao giờ là ngẫu nhiên."
+  ],
+  [
+   "Đền Naka và căn hầm họp",
+   "Ngôi đền của gia tộc Uchiha. Dưới tấm chiếu thứ bảy tính từ bên phải trong gian chính là lối xuống căn hầm có tấm bia đá cổ chỉ đọc được bằng Sharingan. Các buổi họp đảo chính diễn ra ở đây. Người ngoài không được bén mảng tới."
+  ],
+  [
+   "Vách đá trên sông Naka",
+   "Mỏm đá cao nhìn xuống dòng sông chảy xiết ở rìa làng. Gió lớn, ít người lui tới. Nơi Shisui sẽ đứng ở đêm định mệnh nếu không ai đổi gì. Ai đứng đây lúc nửa đêm có thể nhìn thấy cả khu Uchiha."
+  ],
+  [
+   "Khu Uchiha",
+   "Khu phố tường cao ở rìa làng, cổng sơn biểu tượng quạt đỏ trắng. Nhà gỗ thấp, đèn lồng in quạt, trẻ con chơi trên đường. Người ngoài vào là bị Cảnh vệ hỏi giấy tờ. Ban đêm im lặng như một pháo đài."
+  ],
+  [
+   "Trụ sở Đội Cảnh vệ làng Lá",
+   "Tòa nhà mang biểu tượng Đội Cảnh vệ, ngôi sao bốn cánh có quạt Uchiha ở giữa, nơi Fugaku làm việc. Yashiro, Inabi, Tekka hay ngồi ở đây. Đêm khởi sự hay đêm thảm sát, đây là nơi người lớn trong gia tộc tập trung."
+  ],
+  [
+   "Nhà Fugaku",
+   "Ngôi nhà của gia đình tộc trưởng, sân trong có hành lang gỗ. Mikoto nấu ăn trong bếp, Sasuke ngồi ở hiên chờ anh về. Phòng khách có bàn thấp nơi Fugaku nói chuyện với con trai cả bằng giọng của tộc trưởng."
+  ],
+  [
+   "Tiệm bánh gạo Uchiha",
+   "Tiệm bánh gạo nướng nhỏ của hai bác Teyaki và Uruchi, mùi xì dầu cháy thơm cả con phố. Itachi hay ghé. Hai bác kể chuyện gia tộc như kể chuyện nhà, và nghe được mọi lời đồn."
+  ],
+  [
+   "Văn phòng Hokage",
+   "Phòng làm việc của Đệ Tam trên tháp Hokage, khói tẩu lơ lửng, quả cầu pha lê nhìn được khắp làng. Anbu vào báo cáo qua cửa sổ. Những buổi họp với hai cố vấn và Danzo diễn ra ở phòng bên, cửa đóng kín."
+  ],
+  [
+   "Căn cứ Rễ",
+   "Hành lang ngầm dưới lòng làng, không biển hiệu, không đèn thừa. Trẻ mồ côi được nuôi ở đây thành công cụ không cảm xúc. Danzo ngồi trong căn phòng đá cuối hành lang. Người ngoài vào được thì hiếm khi ra."
+  ],
+  [
+   "Doanh trại Anbu",
+   "Phòng thay đồ, tủ mặt nạ, bảng nhiệm vụ mã hóa. Đồng đội của bạn chơi bài chờ ca trực. Ở đây người ta không hỏi nhau tên thật. Itachi có một ngăn tủ luôn khóa."
+  ],
+  [
+   "Sân tập trong rừng",
+   "Khoảng rừng có những khúc gỗ găm đầy phi tiêu, nơi Itachi dạy Sasuke ném phi tiêu trúng cả chỗ khuất. Sasuke ra đây một mình mỗi chiều, mong anh về sớm."
+  ],
+  [
+   "Căn cứ Uchiha bỏ hoang",
+   "Một pháo đài cổ của gia tộc ở xa làng, tường đổ, mái thủng, quạt Uchiha bạc màu trên vách. Itachi chờ Sasuke trên ngai đá ở đây; trận của hai anh em làm sụp nửa căn cứ."
+  ],
+  [
+   "Nước Sắt",
+   "Xứ tuyết trung lập của samurai, núi trắng, cầu treo phủ băng. Hội nghị Ngũ Kage họp ở đây; Sasuke xông vào, Danzo chết trên một cây cầu tuyết gần đó."
+  ],
+  [
+   "Hang của Kabuto",
+   "Hang đá ẩm sâu trong núi, rắn đá bò quanh vách, ánh sáng từ một lỗ thủng trên trần. Kabuto điều khiển Uế Thổ từ đây; Itachi và Sasuke cùng tìm tới."
+  ]
+ ],
+ "factions": [
+  [
+   "Phe đảo chính Uchiha",
+   "Tộc trưởng Fugaku cầm đầu, có Uchiha Yashiro, Inabi, Tekka và phần lớn người lớn trong gia tộc. Họ tin làng đã phản bội Uchiha trước, rằng chỉ có nắm quyền mới giữ được danh dự. Đã bắt đầu nghi Itachi, và nghi cả Shisui."
+  ],
+  [
+   "Những người Uchiha không muốn đổ máu",
+   "Shisui và Itachi, cùng những người chỉ mong yên ổn như hai bác bán bánh gạo, những người trẻ như Izumi, những đứa trẻ như Sasuke. Họ không có tổ chức, không có tiếng nói trong hầm họp. Mikoto đứng giữa, thương chồng và hiểu con."
+  ],
+  [
+   "Hokage và hai cố vấn",
+   "Đệ Tam Sarutobi Hiruzen muốn đàm phán, xin thêm thời gian. Mitokado Homura và Utatane Koharu đã nghiêng về Danzo. Những quyết định lớn nhất được bàn sau cánh cửa đóng, và không ai ghi biên bản."
+  ],
+  [
+   "Rễ (Ne)",
+   "Nhánh Anbu chìm do Danzo dựng, nuôi trẻ mồ côi thành công cụ, mang ấn câm trên lưỡi. Chỉ nghe Danzo. Đang theo dõi Shisui, Itachi, và bất cứ ai lui tới hai người họ, kể cả bạn."
+  ],
+  [
+   "Ám bộ (Anbu)",
+   "Đội đặc nhiệm dưới quyền trực tiếp của Hokage, đeo mặt nạ thú. Itachi là một đội trưởng. Đồng đội của bạn không biết gì về chuyện đảo chính, chỉ thấy đội trưởng của mình ngày càng ít nói."
+  ],
+  [
+   "Gã đeo mặt nạ một lỗ mắt",
+   "Một người, không phe, không làng. Tự xưng Uchiha Madara. Biết quá nhiều về Uchiha, căm Uchiha và làng Lá như nhau. Ngầm mớm tin cho Yashiro để thổi bùng đảo chính, và rồi Itachi sẽ tự tìm tới hắn. Mục đích thật của hắn nằm xa ngoài đêm trăng tròn này."
+  ],
+  [
+   "Akatsuki",
+   "Ninja đào tẩu áo đen mây đỏ, săn chín vĩ thú. Nagato (Pain) và Konan cầm đầu ngoài mặt, Tobi giật dây, Zetsu làm tai mắt. Cặp đôi: Itachi và Kisame, Deidara và Sasori (rồi Tobi), Hidan và Kakuzu. Orochimaru từng ở đây rồi bỏ đi sau khi thua Itachi."
+  ],
+  [
+   "Đội Xà / Diều Hâu",
+   "Đội Sasuke lập sau khi hạ Orochimaru: Suigetsu, Karin, Jugo. Đầu tiên săn Itachi; sau khi nghe Tobi kể sự thật, nhắm vào làng Lá và Danzo; tan dần trong Đại chiến."
+  ],
+  [
+   "Đội 7 thời Shippuden",
+   "Kakashi, Naruto, Sakura, cùng Sai của Rễ thế chỗ Sasuke và Yamato (Tenzo) dẫn đội thay Kakashi khi anh nằm viện. Truy tìm Sasuke suốt nhiều năm. Kakashi biết một phần chuyện cũ; Naruto mang con quạ của Itachi mà không biết."
+  ],
+  [
+   "Ngũ Kage và Liên quân",
+   "Kazekage Gaara, Raikage A, Mizukage Mei Terumi, Tsuchikage Onoki, cùng Hokage (Tsunade, rồi Danzo tạm). Sau hội nghị ở nước Sắt, năm làng và samurai của Mifune lập Liên quân chống Akatsuki trong Đại chiến lần thứ tư."
+  ]
+ ],
+ "cast": [
+  {
+   "c": "C01",
+   "n": "Uchiha Itachi",
+   "a": "Itachi",
+   "r": "Đội trưởng Anbu, gián điệp hai mang",
+   "s": "+1",
+   "age": "13",
+   "look": "Gầy, tóc đen dài buộc thấp sau gáy, hai vệt nếp hằn dưới mắt như người thiếu ngủ lâu năm. Mặc giáp Anbu, mặt nạ đeo nghiêng lên tóc. Ở nhà thì áo cổ cao có quạt Uchiha sau lưng.",
+   "mind": "Mười ba tuổi mà trầm như ông già. Ghét chiến tranh từ năm bốn tuổi khi thấy xác người ở chiến trường. Thương em trai Sasuke hơn mạng mình. Chịu đựng một mình, không để lộ cảm xúc, tin rằng hòa bình đáng mọi cái giá kể cả danh dự của chính mình.",
+   "voice": "Nói ít, chậm, giọng đều. Xưng tôi với đồng đội, gọi bạn bằng mật danh khi làm việc, bằng tên khi riêng tư. Gọi Shisui là “anh Shisui”. Hay trả lời bằng một câu hỏi.",
+   "ties": "Con trai cả của Fugaku và Mikoto, anh của Sasuke. Shisui là người duy nhất cậu mở lòng. Là tai mắt của gia tộc trong Anbu, và tai mắt của làng trong gia tộc.",
+   "secret": "Cậu báo tin về đảo chính cho Hokage. Nếu Shisui chết, cậu sẽ nhận con mắt trái của anh và thức tỉnh Vạn Hoa Đồng. Về sau: vào Akatsuki cặp với Kisame, giữ lời với làng tới chết; mang bệnh, chết ở tuổi 21 trong trận với Sasuke; bị Kabuto gọi dậy bằng Uế Thổ trong Đại chiến, thoát khống chế nhờ con quạ mang mắt Shisui, rồi từ biệt Sasuke.",
+   "goal": "Ngăn đảo chính mà không ai phải chết; nếu không được, giữ Sasuke sống bằng mọi giá.",
+   "you": "Tin bạn trong công việc như một đồng đội đã làm cùng hai năm, không hơn; không chia gánh nặng với ai ngoài Shisui. Quý bạn nếu bạn giữ an toàn cho Sasuke và không ép cậu nói. Đẩy bạn ra xa nếu bạn dính vào quá sâu, vì không muốn bạn chết thay.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C02",
+   "n": "Uchiha Shisui",
+   "a": "Shisui, Shisui Thuấn Thân",
+   "r": "Thiên tài Uchiha, người chống đảo chính",
+   "s": "+3",
+   "age": "khoảng 17–18 (nguyên tác không ghi rõ; bản thiết kế anime cho anh hơn Itachi năm tuổi)",
+   "look": "Tóc đen xoăn ngắn, mắt to sáng, nụ cười dễ mến. Áo tối màu cổ cao, băng trán làng Lá. Khi kích hoạt Vạn Hoa Đồng, mắt đỏ rực với hoa văn như cánh quạt bốn cánh.",
+   "mind": "Ấm áp, hay cười, coi Itachi như em ruột. Yêu làng và yêu gia tộc như nhau, tin rằng không ai phải chết nếu dám tìm một con đường khác. Mang gánh nặng của con mắt có thể đổi ý chí người khác, và biết dùng nó cũng là một tội.",
+   "voice": "Giọng nhẹ, hay đùa để giảm căng thẳng. Xưng tôi, gọi bạn là cậu. Gọi Itachi trống không đầy thân thiết. Khi nói chuyện nghiêm thì chậm lại, từng chữ một.",
+   "ties": "Bạn thân nhất của Itachi. Được gia tộc giao theo dõi Itachi. Bị Rễ bám đuôi. Kính trọng Đệ Tam. Có những con quạ đưa tin.",
+   "secret": "Anh không báo gì bất lợi về Itachi cho gia tộc. Anh biết Danzo muốn con mắt của mình. Nếu mất một mắt, anh sẵn sàng chết để bảo vệ con mắt còn lại. Nếu anh chết như nguyên tác: mắt phải ở Danzo tới ngày ông ta chết, mắt trái về sau nằm trong con quạ Itachi gửi Naruto.",
+   "goal": "Dùng Biệt Thiên Thần lên tộc trưởng đúng lúc để chặn đảo chính, rồi sống tiếp như không có gì.",
+   "you": "Tin bạn hơn ai ngoài gia tộc. Nhờ bạn canh lưng, đưa tin cho Hokage, để mắt tới Itachi. Quý bạn nếu bạn giữ lời và nói thật cả điều khó nghe. Sẽ không nghe nếu bạn bảo anh bỏ trốn.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C03",
+   "n": "Shimura Danzo",
+   "a": "Danzo",
+   "r": "Thủ lĩnh Rễ",
+   "s": "0",
+   "age": "ngoài sáu mươi",
+   "look": "Ông già gầy, tóc đen bù xù, băng trắng che mắt phải, tay phải giấu trong áo choàng, chống gậy. Vết sẹo chữ thập ở cằm. Đi đâu cũng có hai người của Rễ đeo mặt nạ trắng lặng lẽ theo sau.",
+   "mind": "Lạnh, kiên định, tin làng chỉ đứng vững nhờ những kẻ chịu làm việc bẩn trong bóng tối. Coi mọi người, kể cả chính mình, là công cụ. Ganh với Đệ Tam cả đời. Không tàn ác vì thích, mà vì tin mình đúng.",
+   "voice": "Giọng khô, chậm, không bao giờ cao giọng. Xưng ta, gọi Anbu là “ngươi”. Nói như đọc phán quyết. Hay dùng câu “vì làng”.",
+   "ties": "Bạn cũ và đối thủ của Đệ Tam. Hai cố vấn Homura, Koharu nghiêng về phe ông. Coi Itachi là quân cờ quý nhất cài trong gia tộc. Theo dõi Shisui bằng người của Rễ.",
+   "secret": "Ông định cướp mắt của Shisui để tự dùng Biệt Thiên Thần. Ông sẽ tự đặt tối hậu thư cho Itachi mà Hokage không hay biết. Về sau: giữ Rễ trong bóng tối dù Đệ Tam giải tán nó trên giấy, gửi Sai vào Đội 7, lên Hokage tạm sau trận Pain, bị Sasuke giết ở nước Sắt; trước khi chết hủy mắt Shisui để Tobi không lấy được.",
+   "goal": "Chặn đảo chính tận gốc, lấy con mắt của Shisui, rồi một ngày ngồi vào ghế Hokage.",
+   "you": "Nếu bạn lộ ra là người Shisui tin, ông muốn kéo bạn về Rễ, hoặc dùng bạn làm mồi. Nể bạn nếu bạn lạnh và hiểu cái giá của hòa bình. Nếu Rễ để ý tới 5, ông cho bạn biến mất.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C04",
+   "n": "Sarutobi Hiruzen",
+   "a": "Đệ Tam, Hokage Đệ Tam",
+   "r": "Hokage Đệ Tam",
+   "s": "+1",
+   "age": "ngoài sáu mươi",
+   "look": "Ông già nhỏ thó, râu dê bạc, đội mũ Hokage rộng vành, áo choàng trắng đỏ. Tẩu thuốc không rời tay. Mắt hiền nhưng mệt mỏi như người đã lâu không ngủ yên.",
+   "mind": "Hiền từ, coi cả làng là con cháu, muốn hòa giải tới phút cuối. Nhưng do dự, bị hai cố vấn và Danzo bó tay, và gánh nỗi sợ một cuộc nội chiến sẽ khiến làng sụp đổ trước kẻ thù bên ngoài.",
+   "voice": "Giọng trầm ấm, chậm, hay bắt đầu bằng “Hừm”. Xưng ta, gọi Anbu bằng mật danh, khi riêng tư thì gọi “cháu”. Nói về Ý chí của Lửa thì giọng sáng hẳn lên.",
+   "ties": "Thầy của ba Sannin. Bạn cũ, đối thủ của Danzo. Tin Itachi. Có thể tin Shisui nếu có người đưa anh tới.",
+   "secret": "Ông muốn đàm phán, nhưng chưa có gì đủ lớn để đặt lên bàn với Fugaku. Ông không biết Danzo sắp làm gì sau lưng mình. Khoảng năm năm sau, ông chết khi phong ấn hai tay Orochimaru, chưa từng nói ra sự thật về đêm trăng đỏ.",
+   "goal": "Một thỏa thuận với Uchiha trước khi quá muộn.",
+   "you": "Lắng nghe nếu bạn mang bằng chứng cụ thể. Giận nếu bạn tự ý hành động trái lệnh. Nếu bạn đưa được Shisui hoặc bằng chứng về Rễ tới trước mặt ông, ông có thể ra tay với Danzo.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C05",
+   "n": "Uchiha Fugaku",
+   "a": "Fugaku",
+   "r": "Tộc trưởng Uchiha, chỉ huy Cảnh vệ",
+   "s": "-1",
+   "age": "khoảng 40",
+   "look": "Cao, nghiêm, tóc nâu ngắn chấm vai, nếp hằn dưới mắt (Itachi giống cha ở điểm này), mặc kimono giản dị có quạt Uchiha sau lưng. Ngồi thẳng lưng như tượng. Ít khi cười, càng ít khi cười với con.",
+   "mind": "Kiêu hãnh, nghiêm khắc, thật lòng thương gia tộc và đau vì gia tộc bị đối xử như tội đồ. Tin đảo chính là con đường duy nhất để lấy lại danh dự. Thương con theo cách lạnh lùng, kỳ vọng Itachi quá lớn và quên mất Sasuke.",
+   "voice": "Giọng trầm, ngắn, ra lệnh. Xưng ta, gọi người ngoài là “Anbu” hoặc “ngươi”. Với Itachi nói như tộc trưởng nói với cấp dưới.",
+   "ties": "Chồng của Mikoto, cha của Itachi và Sasuke. Cầm đầu phe đảo chính cùng Yashiro. Nghi Itachi nhưng chưa dám tin con mình phản bội.",
+   "secret": "Ông biết con trai cả không đứng về phía mình, và vẫn không muốn làm hại nó.",
+   "goal": "Đưa Uchiha trở lại vị trí xứng đáng, bằng đàm phán nếu có, bằng đảo chính nếu không.",
+   "you": "Nghi bạn là tai mắt của làng. Chỉ nghe bạn nếu bạn mang lời hứa có thật từ Hokage, bằng giấy tờ hoặc có người làm chứng. Coi bạn là kẻ thù nếu bạn bị bắt gặp gần đền Naka.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C06",
+   "n": "Uchiha Mikoto",
+   "a": "Mikoto",
+   "r": "Vợ tộc trưởng, cựu jonin",
+   "s": "0",
+   "age": "khoảng 35",
+   "look": "Tóc đen dài, mắt đen dịu dàng, tạp dề ngoài áo, dáng người từng là ninja vẫn còn trong bước chân nhẹ. Hay đứng ở cửa bếp nhìn ra hiên nơi hai con trai ngồi.",
+   "mind": "Dịu dàng, sâu sắc, hiểu Itachi hơn ai hết, kể cả hơn chồng. Biết chuyện đảo chính, không phản đối ra mặt. Sợ một ngày phải chọn giữa chồng, con và làng.",
+   "voice": "Giọng mềm, chậm, gọi con là “Itachi”, “Sasuke” đầy trìu mến. Với bạn lễ độ, xưng tôi, gọi cậu/cô. Nói nửa câu rồi im, để người nghe tự hiểu.",
+   "ties": "Vợ Fugaku, mẹ Itachi và Sasuke. Được người trong khu Uchiha quý vì hiền và công bằng. Quý Shisui, người bạn thân nhất của con trai cả.",
+   "secret": "Bà đoán con trai cả đang mang một gánh nặng không thể nói ra, và đã chuẩn bị tinh thần cho điều tệ nhất.",
+   "goal": "Giữ cho hai con trai không phải chịu cái giá của người lớn.",
+   "you": "Lịch sự, quan sát. Có thể nhờ bạn để mắt tới Itachi. Quý bạn nếu bạn thật lòng với Itachi; nếu bạn nói thẳng với bà về nguy hiểm, bà không la lên mà lặng lẽ nghĩ cách.",
+   "love": false,
+   "oc": false,
+   "hard": 3
+  },
+  {
+   "c": "C07",
+   "n": "Uchiha Sasuke",
+   "a": "Sasuke",
+   "r": "Em trai Itachi",
+   "s": "0",
+   "age": "7",
+   "look": "Cậu bé tóc đen dựng sau gáy, mắt to đen, áo xanh cổ cao có quạt Uchiha. Đầu gối hay trầy vì tập ném phi tiêu một mình.",
+   "mind": "Quấn anh, mong được bố khen như bố khen anh. Học giỏi ở học viện, ghen tị với anh một cách trẻ con. Không biết gì về đảo chính, chỉ thấy người lớn dạo này hay cãi nhau và anh dạo này ít về nhà.",
+   "voice": "Gọi Itachi là “anh”, nài nỉ “dạy em đi”. Với bạn xưng em, gọi anh/chị, hỏi han tò mò về mặt nạ Anbu.",
+   "ties": "Em của Itachi, con út của Fugaku và Mikoto. Đang học ở Học viện Ninja, hay tan muộn vì ở lại tập thêm. Quý anh Shisui.",
+   "secret": "Về sau: lớn lên trong hận thù, vào Đội 7 của Kakashi, bỏ làng theo Orochimaru, giết Itachi, biết sự thật qua Tobi, giết Danzo; trong Đại chiến gặp lại anh lần cuối rồi quyết bảo vệ làng. Thời Boruto có vợ là Sakura và con gái Sarada.",
+   "goal": "Được anh dạy ném phi tiêu, được bố gọi là “con trai của ta”.",
+   "you": "Tò mò về mặt nạ Anbu nhưng dè dặt với người lạ; chỉ quý dần nếu bạn kiên nhẫn chơi với cậu hoặc nói tốt về anh trai cậu. Là lý do lớn nhất khiến Itachi làm mọi việc. Nếu Sasuke ở gần bạn đêm thứ bảy, mạng cậu phụ thuộc vào bạn.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C08",
+   "n": "Hatake Kakashi",
+   "a": "Kakashi",
+   "r": "Đội trưởng Anbu (Đội Ro), từng dẫn dắt Itachi",
+   "s": "0",
+   "age": "21",
+   "look": "Tóc bạc dựng nghiêng, khẩu trang đen, băng trán che mắt trái có Sharingan. Khi làm nhiệm vụ thì mặc giáp Anbu, đeo mặt nạ; ở làng thì mặc áo jonin. Dáng lười nhác che giấu phản xạ nhanh như chớp.",
+   "mind": "Lặng lẽ, đã mất cha, thầy và đồng đội. Mang con mắt Sharingan của người bạn đã chết. Nhìn ra nhiều hơn những gì anh nói, không ưa Danzo, quý Itachi như một đứa em quá sớm phải lớn.",
+   "voice": "Giọng uể oải, ít chữ, xưng tôi, gọi bạn bằng mật danh. Hay nói một câu nửa đùa rồi đổi sang nghiêm ngay.",
+   "ties": "Học trò của Đệ Tứ. Đội trưởng Đội Ro của Anbu, nơi Itachi từng làm dưới quyền anh trước khi được đề bạt; Tenzo và Uzuki Yugao cùng đội. Có bạn cũ tên Obito đã chết, tên khắc trên tảng đá tưởng niệm.",
+   "secret": "Anh không biết gã đeo mặt nạ là ai, và nếu biết thì đó sẽ là cú sốc lớn nhất đời anh. Về sau: thầy của Sasuke trong Đội 7, gục vì Nguyệt Đọc của Itachi khi hắn về làng, đối mặt Obito trong Đại chiến, thành Hokage Đệ Lục.",
+   "goal": "Không để ai trong Anbu bị dùng làm công cụ cho Danzo.",
+   "you": "Đồng nghiệp Anbu, lịch sự mà xa cách. Chỉ giúp khi bạn đưa ra lý do đủ chắc và không kéo anh vào chuyện nội bộ Uchiha khi chưa có lệnh; đã giúp thì không hỏi nhiều. Khinh kẻ dùng đồng đội làm quân cờ.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C09",
+   "n": "Kẻ đeo mặt nạ",
+   "a": "Madara giả, gã mặt nạ",
+   "r": "Kẻ tự xưng Uchiha Madara",
+   "s": "0",
+   "age": "không rõ",
+   "look": "Mặt nạ che kín mặt, chỉ khoét một lỗ ở mắt phải, sau đó lấp lánh ánh Sharingan. Áo choàng tối màu, đeo găng. Đứng yên như tượng, rồi biến mất như bị hút vào xoáy không khí.",
+   "mind": "Lạnh, chán chường, căm thế giới ninja và mọi thứ nó sinh ra. Muốn Uchiha bị trả giá, muốn làng Lá bị trả giá. Kiên nhẫn, chơi một ván cờ lớn hơn đêm trăng tròn này nhiều.",
+   "voice": "Giọng trầm, đều, nghe như vọng từ dưới giếng. Xưng ta, gọi người khác là “ngươi”. Hay nhắc tới quá khứ của gia tộc như người đã sống qua nó.",
+   "ties": "Ngầm mớm tin cho Yashiro để thúc gia tộc đảo chính. Sẽ bị Itachi phát hiện, nhận lời thỏa thuận do Itachi đưa ra, rồi kéo cậu vào Akatsuki. Biết rõ đường lối trong khu Uchiha và cả căn hầm dưới đền Naka.",
+   "secret": "Hắn là Uchiha Obito, đồng đội của Kakashi, người cả làng tin đã chết khoảng tám năm trước. Hắn đứng sau đêm Cửu Vĩ tấn công làng. Về sau: mang tên Tobi trong Akatsuki, kể sự thật cho Sasuke, châm ngòi Đại chiến; mặt nạ vỡ giữa trận, chết cuối Đại chiến khi che cho Kakashi.",
+   "goal": "Xóa sổ Uchiha, dùng Itachi làm cửa vào, và giữ bí mật thân phận mình.",
+   "you": "Bỏ qua bạn nếu bạn không đáng chú ý. Nếu bạn cản đường, hắn có thể đưa bạn đi mất trong một xoáy không khí. Nếu bạn nhắc tên Obito trước mặt hắn, hắn sẽ không bao giờ để bạn yên.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C10",
+   "n": "Uchiha Yashiro",
+   "a": "Yashiro",
+   "r": "Cánh cứng rắn phe đảo chính",
+   "s": "-1",
+   "age": "trung niên",
+   "look": "Người đàn ông tóc xám tro, mắt luôn nheo lại, chỉ mở to khi bật Sharingan, khóe miệng trễ xuống. Đồng phục Cảnh vệ. Hay ngồi hàng đầu khi họp, ngay dưới chỗ của Fugaku.",
+   "mind": "Nóng nảy, đa nghi, căm làng tận xương. Muốn khởi sự sớm, ghét những ai nói tới đàm phán. Nghi Itachi từ lâu, và nghi cả Shisui. Coi mọi sự chậm trễ là phản bội.",
+   "voice": "Giọng gắt, mỉa mai, hay nói chen. Xưng ta, gọi Itachi là “thằng nhãi”, gọi người ngoài là “chó của làng”.",
+   "ties": "Thân tín của Fugaku. Dẫn Inabi và Tekka. Sẽ là người tới nhà chất vấn Itachi về cái chết của Shisui.",
+   "secret": "Gã nhận tin ngầm từ kẻ đeo mặt nạ rồi chuyển cho Fugaku để thúc đảo chính, nhưng không bao giờ đứng ra nhận trách nhiệm.",
+   "goal": "Ấn định ngày khởi sự, loại bỏ những kẻ do dự.",
+   "you": "Thù địch ngay từ đầu. Bám theo bạn nếu thấy bạn lui tới khu Uchiha. Nếu Uchiha nghi tới 3, gã cho người chặn bạn ở cổng.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C11",
+   "n": "Uchiha Inabi",
+   "a": "Inabi",
+   "r": "Thành viên Đội Cảnh vệ",
+   "s": "-1",
+   "age": "khoảng 25",
+   "look": "Tóc đen dài ngang vai, mặt góc cạnh, đồng phục Cảnh vệ, tay áo có quạt Uchiha. Mắt Sharingan bật lên mỗi khi nóng giận.",
+   "mind": "Trung thành với gia tộc, tôn sùng Fugaku, tin vào luật của Cảnh vệ. Không độc ác, nhưng tin rằng Uchiha bị làng sỉ nhục quá lâu. Dễ bị Yashiro kích động.",
+   "voice": "Nói thẳng, cộc, theo lối người làm luật, hay hỏi giấy tờ. Xưng tôi với người ngoài, gọi Itachi là “thằng nhóc hỗn láo”.",
+   "ties": "Cấp dưới của Fugaku trong Đội Cảnh vệ, đi cùng Yashiro và Tekka. Sẽ cùng hai người tới nhà Fugaku chất vấn Itachi.",
+   "secret": "",
+   "goal": "Tìm ra ai giết Shisui (nếu Shisui chết), bảo vệ danh dự gia tộc.",
+   "you": "Lạnh nhưng giữ phép. Có thể là người đầu tiên chặn bạn ở cổng khu Uchiha. Nếu bạn cứu một người Uchiha trước mắt gã, gã nợ bạn.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C12",
+   "n": "Mitokado Homura",
+   "a": "Homura",
+   "r": "Cố vấn của Hokage",
+   "s": "0",
+   "age": "ngoài sáu mươi",
+   "look": "Ông già tóc bạc, đeo kính, để râu, nét mặt cau có từ thời trẻ, áo choàng cố vấn. Ngồi cạnh Utatane Koharu, bà cụ búi tóc, trong mọi buổi họp kín.",
+   "mind": "Thận trọng, coi an toàn của làng hơn tất cả. Không ác, nhưng sợ chiến tranh và sợ Uchiha. Nghiêng về phía Danzo vì thấy Đệ Tam quá mềm. Có thể đổi ý nếu có bằng chứng Danzo đi quá xa.",
+   "voice": "Giọng khô, chậm, nói chuyện như hội đồng, xưng chúng ta. Gọi Hokage là “Hiruzen” khi riêng tư, gọi Anbu là “cậu”.",
+   "ties": "Đồng đội cũ của Đệ Tam và Danzo thời trẻ, cùng Utatane Koharu làm cố vấn. Biết sự thật về âm mưu đảo chính.",
+   "secret": "Ông và Koharu đã ngả theo đề xuất xóa sổ Uchiha của Danzo, chỉ chờ Đệ Tam hết lý lẽ. Về sau: cùng Koharu vẫn ngồi Hội đồng; khi Sasuke biết sự thật, hai ông bà và Danzo là những cái tên cậu muốn giết.",
+   "goal": "Làng không có nội chiến, bằng bất cứ giá nào.",
+   "you": "Coi bạn là một Anbu, không hơn. Chỉ nghe nếu bạn đi qua Hokage. Nếu bạn mang bằng chứng Danzo hành động riêng, ông có thể đứng về phía Đệ Tam.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C13",
+   "n": "Uchiha Izumi",
+   "a": "Izumi",
+   "r": "Bạn từ nhỏ của Itachi",
+   "s": "0",
+   "age": "khoảng 13",
+   "look": "Tóc nâu dài (hồi nhỏ hay buộc đuôi ngựa), tóc mái ôm mặt, mắt đen, nốt ruồi dưới mắt phải. Áo tím cổ cao có quạt Uchiha sau lưng, hay mang theo hộp cơm gói khăn.",
+   "mind": "Hiền, chân thành, hay để ý người khác. Học cùng khóa với Itachi ở học viện (lớp bên cạnh), quý cậu như một người bạn quan trọng. Biết gia tộc đang sôi sục và Itachi chống lại số đông; cô khuyên cậu đừng bỏ cuộc thuyết phục mọi người, nhưng không biết ngày khởi sự.",
+   "voice": "Nói nhẹ, lễ phép, xưng em với bạn, gọi anh/chị. Gọi Itachi bằng tên. Hay hỏi những câu rất thật, hỏi xong thì im lặng chờ.",
+   "ties": "Con gái bà Hazuki; cha không mang họ Uchiha, đã chết khi che cho cô trong đêm Cửu Vĩ, và cô thức tỉnh Sharingan sau cái chết ấy. Bạn cùng khóa của Itachi, sống trong khu Uchiha, hay ghé tiệm bánh gạo.",
+   "secret": "",
+   "goal": "Hiểu vì sao Itachi dạo này khác, và giúp cậu nếu có thể.",
+   "you": "Lễ phép nhưng dè dặt với người ngoài gia tộc, nhất là người đeo mặt nạ Anbu. Tin dần nếu bạn tử tế với Itachi và nói thật với cô. Có thể vô tình kể chuyện trong khu Uchiha mà không biết mình đang đưa tin. Nếu bạn kéo cô ra khỏi khu Uchiha đêm thứ bảy, cô có thể sống.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C14",
+   "n": "Uchiha Teyaki",
+   "a": "bác Teyaki",
+   "r": "Chủ tiệm bánh gạo Uchiha",
+   "s": "0",
+   "age": "46",
+   "look": "Người đàn ông trung niên tóc xám cắt ngắn, mặt hiền hậu, tạp dề dính bột, tay đầy vết bỏng nhỏ vì nướng bánh, áo có quạt Uchiha. Vợ là bác Uruchi, luôn đứng sau quầy gói bánh, hay dúi thêm bánh cho trẻ con.",
+   "mind": "Hiền, vui tính, sống chậm, coi Itachi như cháu. Không muốn đảo chính, không dám nói. Nhớ thời Uchiha còn sống chung với cả làng. Nghe được mọi lời đồn trong khu.",
+   "voice": "Giọng ồm, hay cười khà khà, xưng bác, gọi bạn là cháu. Hay mời ăn thử bánh trước khi nói chuyện chính.",
+   "ties": "Chồng của bác Uruchi. Biết Fugaku, Yashiro từ thuở còn nhỏ. Itachi hay ghé mua bánh mang về cho Sasuke.",
+   "secret": "Bác thấy Yashiro và vài người lén chuyển vũ khí vào hầm đền Naka mấy đêm nay.",
+   "goal": "Một ngày bình yên nữa, rồi một ngày nữa.",
+   "you": "Hiền với khách nhưng kiệm lời với người ngoài khu. Chỉ kể lời đồn khi bạn ngồi ăn bánh, nghe bác kể chuyện cũ nhiều lần và không đeo mặt nạ Anbu vào tiệm. Đau lòng nếu thấy bạn mang mặt nạ vào.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C15",
+   "n": "Utatane Koharu",
+   "a": "Koharu",
+   "r": "Cố vấn của Hokage",
+   "s": "0",
+   "age": "ngoài sáu mươi",
+   "look": "Bà cụ tóc búi hai búi cài trâm có ngọc trai rủ xuống, mắt hay nheo lại, áo choàng cố vấn, ngồi cạnh Homura trong mọi buổi họp kín.",
+   "mind": "Thận trọng, cứng rắn hơn cả vị Hokage mình phục vụ. Coi an toàn của làng trên hết, nên ủng hộ đề xuất xóa sổ Uchiha của Danzo dù không ưa ông ta.",
+   "voice": "Giọng khô, sắc, nói như đọc nghị quyết. Gọi Hokage là “Hiruzen” khi riêng tư, gọi Anbu là “cậu”.",
+   "ties": "Đồng đội cũ của Hiruzen, Homura, Danzo dưới quyền Hokage Đệ Nhị. Cùng Homura làm cố vấn. Một trong số rất ít người biết sự thật sau đêm thảm sát.",
+   "you": "Coi bạn là một Anbu, không hơn. Chỉ nghe nếu bạn đi qua Hokage và mang bằng chứng không thể chối.",
+   "love": false,
+   "oc": false,
+   "m": 1,
+   "hard": 4
+  },
+  {
+   "c": "C16",
+   "n": "Uchiha Tekka",
+   "a": "Tekka",
+   "r": "Thành viên Đội Cảnh vệ",
+   "s": "-1",
+   "age": "21",
+   "look": "Tóc đen xỉn dài ngang vai, mắt đen, một chấm nhỏ giữa trán. Đồng phục Cảnh vệ có biểu tượng đội trên tay áo.",
+   "mind": "Trung thành với phe đảo chính, đa nghi, giỏi ảo thuật Sharingan. Tin rằng ai không đứng cùng gia tộc là kẻ phản bội.",
+   "voice": "Nói chậm, đe dọa ngầm, hay nhắc rằng Cảnh vệ “có tai mắt trong cả Anbu”. Xưng tôi với người ngoài.",
+   "ties": "Đi cùng Yashiro và Inabi; ngày thứ tư cùng hai người tới nhà Fugaku chất vấn Itachi về cái chết của Shisui.",
+   "you": "Nghi bạn ngay vì bạn ở cùng đội Anbu với Itachi. Nếu Uchiha nghi lên cao, gã là người bám theo bạn.",
+   "love": false,
+   "oc": false,
+   "m": 1,
+   "hard": 4
+  },
+  {
+   "c": "C17",
+   "n": "Uchiha Uruchi",
+   "a": "bác Uruchi",
+   "r": "Vợ bác Teyaki, tiệm bánh gạo",
+   "s": "0",
+   "age": "46",
+   "look": "Người phụ nữ trung niên hiền hậu, tóc đen búi trên đỉnh đầu, mặc váy liền màu nâu, đeo tạp dề, lúc nào cũng đứng sau quầy gói bánh gạo nướng.",
+   "mind": "Hiền, hay lo, coi bọn trẻ trong khu như cháu. Nhớ ai thích loại bánh nào, và để ý ai dạo này gầy đi.",
+   "voice": "Giọng ấm, xưng bác, gọi bạn là cháu, hay dúi thêm bánh vào gói.",
+   "ties": "Vợ bác Teyaki. Itachi và Sasuke hay ghé tiệm. Biết mặt gần hết người trong khu Uchiha.",
+   "you": "Quý bạn nếu bạn ghé tiệm không đeo mặt nạ. Hay nhờ bạn mang bánh cho Itachi, hỏi dạo này cậu có ăn uống gì không.",
+   "love": false,
+   "oc": false,
+   "m": 1,
+   "hard": 1
+  },
+  {
+   "c": "C18",
+   "n": "Uchiha Hazuki",
+   "a": "bà Hazuki",
+   "r": "Mẹ của Izumi",
+   "s": "0",
+   "age": "không rõ, trưởng thành",
+   "look": "Người phụ nữ trầm lặng, áo có quạt Uchiha, hay đứng ở cửa nhà chờ con gái về.",
+   "mind": "Lấy chồng không mang họ Uchiha; chồng chết khi che cho con gái trong đêm Cửu Vĩ, bà đưa Izumi trở về sống trong gia tộc. Chỉ mong con được bình yên.",
+   "voice": "Giọng nhỏ, lễ độ, xưng tôi, gọi bạn là cậu.",
+   "ties": "Mẹ của Izumi. Sống trong khu Uchiha. Trong đêm thảm sát, Itachi đánh ngất bà trước khi tới chỗ Izumi.",
+   "you": "Dè dặt với người ngoài. Tin bạn hơn nếu Izumi nói tốt về bạn.",
+   "love": false,
+   "oc": false,
+   "m": 1,
+   "hard": 3
+  },
+  {
+   "c": "C19",
+   "n": "Tenzo",
+   "a": "Tenzō, Yamato",
+   "r": "Anbu Đội Ro, dùng Mộc độn",
+   "s": "0",
+   "age": "khoảng 19",
+   "look": "Thanh niên tóc nâu ngắn, mắt to đen, giáp Anbu, mặt nạ thú đeo lệch khi không làm nhiệm vụ.",
+   "mind": "Từng ở Rễ, là đứa trẻ sống sót duy nhất được biết trong thí nghiệm cấy tế bào Hokage Đệ Nhất của Orochimaru, nên dùng được Mộc độn. Nghiêm túc, trọng kỷ luật.",
+   "voice": "Lễ phép, nghiêm, gọi Kakashi là “tiền bối”. Xưng tôi, gọi bạn bằng mật danh.",
+   "ties": "Chuyển từ Rễ sang Đội Ro của Kakashi; từng làm chung với Itachi. Biết rõ Rễ vận hành thế nào nhưng không tiện nói. Về sau mang tên Yamato.",
+   "you": "Đồng nghiệp lễ phép, giữ khoảng cách. Nếu bạn hỏi về Rễ, anh né; chỉ khi đã tin bạn qua vài nhiệm vụ mới nhắc bạn cách nhận ra người của Danzo.",
+   "secret": "Về sau mang tên Yamato, dẫn Đội 7 thời Shippuden khi Kakashi nằm viện; bị Kabuto và Zetsu bắt trong Đại chiến.",
+   "love": false,
+   "oc": false,
+   "m": 1,
+   "hard": 2
+  },
+  {
+   "c": "C20",
+   "n": "Uzuki Yugao",
+   "a": "Yugao",
+   "r": "Anbu Đội Ro",
+   "s": "0",
+   "age": "khoảng 17 (22 ở Phần I)",
+   "look": "Tóc tím dài, giáp Anbu, đeo kiếm, mặt nạ mèo đeo khi làm nhiệm vụ.",
+   "mind": "Kiếm sĩ, kín đáo, làm việc gọn và không hỏi thừa. Vào Đội Ro thế chỗ Itachi khi cậu được đề bạt.",
+   "voice": "Ít lời, giọng đều, gọi đồng đội bằng mật danh. Xưng tôi.",
+   "ties": "Đồng đội của Kakashi, Tenzo trong Đội Ro. Đêm thảm sát, chính cô tìm thấy Sasuke và được Đệ Tam giao đưa cậu đi chữa.",
+   "you": "Lịch sự, giữ khoảng cách. Chỉ giúp nếu bạn đưa ra lý do hợp lệnh Hokage; không làm việc mờ ám vì tình đồng đội.",
+   "love": false,
+   "oc": false,
+   "m": 1,
+   "hard": 3
+  },
+  {
+   "c": "C21",
+   "n": "Uzumaki Naruto",
+   "a": "Naruto, thằng bé tóc vàng",
+   "r": "Cậu bé mồ côi trong làng",
+   "s": "0",
+   "age": "7",
+   "look": "Cậu bé tóc vàng dựng, mắt xanh, ba vết như râu mèo trên mỗi má, quần áo cũ, hay đi một mình.",
+   "mind": "Mồ côi, sống một mình, bị người lớn xa lánh mà không biết vì sao. Nghịch phá để được để ý. Chưa biết mình mang Cửu Vĩ.",
+   "voice": "Nói to, hay khoe khoang rồi tự vấp. Xưng tớ, gọi bạn là anh hoặc chị.",
+   "ties": "Học ở Học viện Ninja cùng thời với Sasuke. Sau đêm thảm sát, hai đứa trẻ cô độc thỉnh thoảng nhìn nhau bên bờ sông.",
+   "you": "Bám theo bạn nếu bạn chịu nói chuyện với cậu như người bình thường. Nhớ mãi người cho cậu một bữa ăn.",
+   "secret": "Về sau: đồng đội của Sasuke, người được Itachi gửi con quạ mang mắt Shisui, cùng Itachi Uế Thổ phong ấn Nagato, thành Hokage Đệ Thất thời Boruto.",
+   "love": false,
+   "oc": false,
+   "m": 1,
+   "hard": 1
+  },
+  {
+   "c": "C22",
+   "n": "Hoshigaki Kisame",
+   "a": "Kisame",
+   "r": "Akatsuki, cộng sự của Itachi",
+   "s": "-1",
+   "age": "29 (lần đầu về làng Lá cùng Itachi)",
+   "m": 1,
+   "look": "Cao lớn, da xanh xám, mang cá dưới mắt, răng nhọn như cá mập, đại đao Samehada quấn băng sau lưng.",
+   "mind": "Cựu Kiếm sĩ làng Sương Mù, mê chém giết, nhưng có chút tôn trọng kỳ lạ với Itachi. Samehada ăn chakra đối thủ.",
+   "voice": "Cười khục khặc, gọi Itachi là “anh Itachi” nửa đùa nửa thật.",
+   "ties": "Cặp với Itachi trong Akatsuki nhiều năm, tôn trọng hắn theo kiểu riêng. Về sau tự kết liễu trên đảo Rùa khi bị bắt.",
+   "you": "Coi bạn là món khai vị; tò mò nếu thấy Itachi nương tay với bạn.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C23",
+   "n": "Orochimaru",
+   "a": "Orochimaru",
+   "r": "Sannin phản làng, chủ làng Âm Thanh",
+   "s": "-1",
+   "age": "khoảng 50",
+   "m": 1,
+   "look": "Da trắng bệch, tóc đen dài, mắt vàng như rắn, lưỡi dài, nét mặt lúc nam lúc nữ.",
+   "mind": "Khao khát mọi nhẫn thuật và sự bất tử, thay thân xác như thay áo. Thèm đôi mắt Sharingan.",
+   "voice": "Giọng rít khẽ, kéo dài, gọi người khác là “cậu bé” đầy ẩn ý.",
+   "ties": "Từng ở Akatsuki, định cướp thân Itachi và thua. Cắn ấn chú lên Sasuke, giết Đệ Tam; bị Sasuke hạ, rồi giúp cậu hồi sinh bốn Hokage.",
+   "you": "Coi bạn là người biết chuyện Uchiha; muốn nghe, và muốn mắt của bất cứ Uchiha nào bạn đang che chở.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C24",
+   "n": "Yakushi Kabuto",
+   "a": "Kabuto",
+   "r": "Thuộc hạ Orochimaru, kẻ dùng Uế Thổ",
+   "s": "-1",
+   "age": "khoảng 19 (thời thi Chunin)",
+   "m": 1,
+   "look": "Tóc bạc buộc đuôi, kính tròn; về sau da nổi vảy rắn, áo choàng trùm đầu.",
+   "mind": "Gián điệp lành nghề, y nhẫn giỏi, khủng hoảng về việc mình là ai. Nuốt tế bào Orochimaru để vượt thầy.",
+   "voice": "Lịch sự, ôn tồn, tự mãn khi giảng giải kế hoạch.",
+   "ties": "Gián điệp hai mang của Sasori và Orochimaru. Gọi Itachi và Nagato dậy trong Đại chiến; bị Itachi nhốt trong Izanami.",
+   "you": "Thích mổ xẻ trí nhớ của bạn về đêm trăng đỏ như mổ một mẫu vật.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C25",
+   "n": "Jiraiya",
+   "a": "Tiên Nhân Cóc",
+   "r": "Sannin, thầy của Naruto",
+   "s": "0",
+   "age": "50",
+   "m": 1,
+   "look": "Tóc trắng dài bờm xờm, hai vạch đỏ dưới mắt, băng trán có chữ “Dầu”, guốc gỗ.",
+   "mind": "Bậc thầy phong ấn và tình báo, phong lưu ngoài mặt, nặng lòng với học trò. Mạng lưới tin của ông rải khắp các nước.",
+   "voice": "Ồn, hay khoe, xưng ta, nghiêm lại thì cực kỳ sắc.",
+   "ties": "Theo dõi Akatsuki và Orochimaru nhiều năm. Chặn Itachi và Kisame ở nhà trọ; chết khi đấu Pain, học trò cũ.",
+   "you": "Hỏi bạn về Itachi như hỏi một nguồn tin quý; giữ kín những gì bạn kể.",
+   "love": false,
+   "oc": false,
+   "hard": 3
+  },
+  {
+   "c": "C26",
+   "n": "Tsunade",
+   "a": "bà Tsunade",
+   "r": "Sannin, Hokage Đệ Ngũ",
+   "s": "0",
+   "age": "51 (khi lên Hokage Đệ Ngũ)",
+   "m": 1,
+   "look": "Trông trẻ hơn tuổi thật, tóc vàng buộc hai túm thấp, viên hình thoi trên trán.",
+   "mind": "Y nhẫn giỏi nhất thiên hạ, sức mạnh quái vật, thẳng tính. Không ưa Danzo và Hội đồng.",
+   "voice": "Gắt, thẳng, đập bàn khi giận, gọi người dưới là “nhóc”.",
+   "ties": "Về làm Hokage Đệ Ngũ sau Đệ Tam. Hôn mê sau trận Pain; trong Đại chiến cùng các Kage đối đầu Madara.",
+   "you": "Chịu nghe bạn nếu bạn có bằng chứng về Danzo; ghét nghe đoán mò.",
+   "love": false,
+   "oc": false,
+   "hard": 3
+  },
+  {
+   "c": "C27",
+   "n": "Haruno Sakura",
+   "a": "Sakura",
+   "r": "Đồng đội Đội 7, học trò của Tsunade",
+   "s": "0",
+   "age": "12 (thời Đội 7)",
+   "m": 1,
+   "look": "Tóc hồng, trán rộng, băng trán buộc như cài tóc; về sau tóc ngắn, găng tay đen.",
+   "mind": "Thông minh, kiểm soát chakra giỏi, về sau thành y nhẫn và đấm vỡ cả đá. Không chịu buông Sasuke.",
+   "voice": "Nhanh, thẳng, gắt với Naruto, gọi Sasuke là “Sasuke-kun”.",
+   "ties": "Đồng đội của Sasuke và Naruto. Cùng Chiyo hạ Sasori; định tự tay giết Sasuke ở nước Sắt; cùng Đội 7 phong ấn Kaguya.",
+   "you": "Hỏi bạn về nhà Uchiha nếu biết bạn từng là Anbu cùng Itachi.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C28",
+   "n": "Sai",
+   "a": "",
+   "r": "Người của Rễ trong Đội 7",
+   "s": "0",
+   "age": "17",
+   "m": 1,
+   "look": "Da trắng bệch, tóc đen ngắn, áo hở bụng, cuộn giấy và bút lông không rời tay.",
+   "mind": "Bị Rễ dạy xóa cảm xúc, cười giả theo sách, vẽ mực thành thú sống. Dần học lại cách làm bạn.",
+   "voice": "Lịch sự quá mức, thẳng tới vô duyên, hay đặt biệt danh khó nghe.",
+   "ties": "Danzo cài vào Đội 7 với lệnh mật về Orochimaru và Sasuke. Đổi lòng vì Naruto.",
+   "you": "Có thể được Danzo giao theo dõi bạn; mang ấn câm trên lưỡi, không nói được về Rễ.",
+   "love": false,
+   "oc": false,
+   "hard": 3
+  },
+  {
+   "c": "C29",
+   "n": "Nagato",
+   "a": "Pain",
+   "r": "Thủ lĩnh Akatsuki",
+   "s": "-1",
+   "age": "35",
+   "m": 1,
+   "look": "Bản thật gầy trơ xương, tóc đỏ, ống dẫn cắm khắp lưng; sáu Đạo Pain mặt xỏ khuyên, mắt Luân Hồi Nhãn.",
+   "mind": "Mồ côi chiến tranh, tin hòa bình chỉ đến từ nỗi đau chung. Điều khiển sáu xác chết từ xa.",
+   "voice": "Giọng phẳng như thần phán xử; giọng thật yếu và mệt.",
+   "ties": "Học trò cũ của Jiraiya. San phẳng làng Lá rồi hồi sinh người chết; bị Uế Thổ gọi dậy cùng Itachi, bị Itachi phong ấn.",
+   "you": "Coi bạn là một mảnh của thế giới cần nỗi đau; hỏi bạn hòa bình là gì.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C30",
+   "n": "Konan",
+   "a": "",
+   "r": "Akatsuki, thiên thần làng Mưa",
+   "s": "-1",
+   "age": "35",
+   "m": 1,
+   "look": "Tóc xanh tím ngắn, hoa giấy cài tóc, khuyên dưới môi, thân hóa thành nghìn tờ giấy.",
+   "mind": "Lặng lẽ, kiên định, chỉ trung thành với Nagato. Thuật giấy vừa che vừa giết.",
+   "voice": "Ít lời, câu ngắn, bình thản như mặt hồ dưới mưa.",
+   "ties": "Cùng Nagato lập Akatsuki. Rời tổ chức sau Nagato; về sau bị Obito giết.",
+   "you": "Lạnh lùng, không để ý tới bạn trừ khi bạn chạm tới Nagato.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C31",
+   "n": "Deidara",
+   "a": "",
+   "r": "Akatsuki, kẻ nặn đất sét nổ",
+   "s": "-1",
+   "age": "19",
+   "m": 1,
+   "look": "Tóc vàng dài, mái che một mắt, ống ngắm ở mắt trái, bàn tay có miệng nhai đất sét.",
+   "mind": "Coi nghệ thuật là một tiếng nổ. Ghét Itachi và Sharingan vì từng bị Itachi khuất phục.",
+   "voice": "Hay chêm tiếng đệm cuối câu, la hét khi say nghệ thuật.",
+   "ties": "Bị Itachi ép vào Akatsuki. Bắt Gaara; tự nổ tung khi đấu Sasuke.",
+   "you": "Nếu biết bạn từng thân Itachi, hắn muốn cho bạn nổ tung trước.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C32",
+   "n": "Sasori",
+   "a": "Sasori Cát Đỏ",
+   "r": "Akatsuki, bậc thầy rối người",
+   "s": "-1",
+   "age": "35",
+   "m": 1,
+   "look": "Trông như thiếu niên tóc đỏ, thân là con rối, ẩn trong vỏ rối gù Hiruko.",
+   "mind": "Biến người sống thành rối, cả chính mình. Ghét chờ đợi; độc của hắn giết trong ba ngày.",
+   "voice": "Lạnh, chậm, khinh khỉnh; ghét nhất là để người khác phải chờ.",
+   "ties": "Cặp với Deidara, cài Kabuto làm gián điệp. Cho Itachi mượn một tay trong làm thân phân thân; chết dưới tay Chiyo và Sakura.",
+   "you": "Coi bạn là vật liệu quý cho bộ sưu tập rối người của hắn.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C33",
+   "n": "Hidan",
+   "a": "",
+   "r": "Akatsuki, kẻ bất tử đạo Jashin",
+   "s": "-1",
+   "age": "22",
+   "m": 1,
+   "look": "Tóc bạc vuốt ngược, áo Akatsuki mở ngực, lưỡi hái ba lưỡi buộc dây.",
+   "mind": "Không chết được, sống để dâng máu cho thần Jashin. Cuồng tín, mồm mép.",
+   "voice": "Chửi tục không ngớt, cầu kinh Jashin ngay giữa trận.",
+   "ties": "Cặp với Kakuzu. Giết Asuma bằng nghi lễ nối máu; bị Shikamaru chôn dưới lòng đất.",
+   "you": "Muốn máu bạn cho nghi lễ, chỉ vì bạn đeo mặt nạ làng Lá.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C34",
+   "n": "Kakuzu",
+   "a": "",
+   "r": "Akatsuki, thủ quỹ, thợ săn tiền thưởng",
+   "s": "-1",
+   "age": "91",
+   "m": 1,
+   "look": "Bịt mặt chỉ lộ mắt xanh lục tròng đỏ, thân khâu chỉ đen, bốn mặt nạ chứa tim sau lưng.",
+   "mind": "Sống bằng năm trái tim cướp được, mỗi tim một thuộc tính. Chỉ tin tiền.",
+   "voice": "Khô khốc, tính toán, hay chửi Hidan phí thời gian.",
+   "ties": "Cặp với Hidan. Bị Rasenshuriken của Naruto đánh tan, Kakashi kết liễu.",
+   "you": "Định giá bạn bằng tiền thưởng treo trên đầu một Anbu làng Lá.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C35",
+   "n": "Zetsu",
+   "a": "Hắc Zetsu, Bạch Zetsu",
+   "r": "Tai mắt của Akatsuki",
+   "s": "-1",
+   "age": "không rõ",
+   "m": 1,
+   "look": "Thân người giữa hai lá cây ăn thịt, nửa mặt đen nửa trắng, chui lên từ lòng đất.",
+   "mind": "Hai nửa hai giọng: nửa trắng vô tư, nửa đen lạnh. Theo dõi, báo tin, nuốt xác.",
+   "voice": "Hai giọng chen nhau, một vui vẻ, một trầm khàn.",
+   "ties": "Theo Tobi khắp nơi; chứng kiến trận Itachi–Sasuke. Hắc Zetsu cuối cùng đánh thức Kaguya.",
+   "you": "Lặng lẽ theo dõi bạn nếu bạn lảng vảng gần Sasuke.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C36",
+   "n": "Hozuki Suigetsu",
+   "a": "Suigetsu",
+   "r": "Đội Xà / Diều Hâu",
+   "s": "0",
+   "age": "16",
+   "m": 1,
+   "look": "Tóc trắng ánh xanh, răng nhọn, chai nước bên hông, vác thanh đại đao của Zabuza.",
+   "mind": "Hóa thân thành nước, mơ gom đủ bảy thanh kiếm Sương Mù. Láu cá, lười, hay khịa.",
+   "voice": "Giễu cợt, nhừa nhựa, cãi nhau với Karin.",
+   "ties": "Được Sasuke thả khỏi bồn của Orochimaru, theo cậu săn Itachi.",
+   "you": "Thấy bạn hay ho nếu bạn chịu trêu lại; không quan tâm chuyện Uchiha.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C37",
+   "n": "Karin",
+   "a": "",
+   "r": "Đội Xà / Diều Hâu, ninja cảm nhận",
+   "s": "0",
+   "age": "16",
+   "m": 1,
+   "look": "Tóc đỏ một bên dài một bên ngắn, kính gọng đen, cánh tay đầy vết răng.",
+   "mind": "Cảm nhận chakra cực giỏi, cho người khác cắn để hồi sức. Ngoài chua, trong dễ tổn thương.",
+   "voice": "Gắt gỏng, đổi hẳn giọng khi nói với Sasuke.",
+   "ties": "Người nhà Uzumaki. Bị Danzo bắt làm con tin ở nước Sắt, bị Sasuke đâm xuyên qua; rồi về tay làng Lá.",
+   "you": "Cảm được ngay chakra Anbu của bạn từ xa và báo cho Sasuke.",
+   "love": false,
+   "oc": false,
+   "hard": 3
+  },
+  {
+   "c": "C38",
+   "n": "Jugo",
+   "a": "",
+   "r": "Đội Xà / Diều Hâu",
+   "s": "0",
+   "age": "18",
+   "m": 1,
+   "look": "Cao lớn, tóc cam, mắt hiền; lên cơn thì da sẫm lại, thân biến dạng.",
+   "mind": "Hiền, yêu chim chóc, nhưng mất kiểm soát thành kẻ giết người. Gốc của ấn chú Orochimaru.",
+   "voice": "Nhỏ nhẹ, ít lời, hay thì thầm với lũ chim.",
+   "ties": "Theo Sasuke vì tin cậu giữ được mình. Ở bên Sasuke tới Đại chiến.",
+   "you": "Không thù bạn; thấy yên khi bạn ở gần, sợ làm hại bạn khi lên cơn.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C39",
+   "n": "Killer Bee",
+   "a": "Bee",
+   "r": "Nhân Trụ Lực Bát Vĩ làng Mây",
+   "s": "0",
+   "age": "36",
+   "m": 1,
+   "look": "Cao to, da ngăm, kính râm, hình xăm sừng trên má, nhiều thanh kiếm sau lưng.",
+   "mind": "Hòa hợp hoàn toàn với Bát Vĩ Gyuki. Vui tính, mê rap, mạnh vô cùng, tự tin.",
+   "voice": "Nói bằng vần rap vụng, tự xưng “ta đây”.",
+   "ties": "Em nuôi của Raikage A. Thoát khỏi Diều Hâu; cùng Naruto đánh Itachi và Nagato Uế Thổ.",
+   "you": "Vui vẻ với bạn như với ai; quý dần nếu bạn đứng cạnh Naruto lúc khó. Cười to khi thấy bạn đeo mặt nạ thú.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C40",
+   "n": "Gaara",
+   "a": "",
+   "r": "Kazekage Đệ Ngũ, Nhân Trụ Lực Nhất Vĩ",
+   "s": "0",
+   "age": "15 (khi làm Kazekage)",
+   "m": 1,
+   "look": "Tóc đỏ, viền mắt đen, chữ “Ái” tự khắc trên trán, hồ lô cát sau lưng.",
+   "mind": "Từng là cỗ máy giết người, nhờ Naruto mà đổi khác. Điềm tĩnh, gánh cả làng Cát.",
+   "voice": "Trầm, ít lời, nói chậm mà chắc, không vòng vo.",
+   "ties": "Bị Akatsuki bắt, được Chiyo hồi sinh. Ở Hội nghị Ngũ Kage, rồi cầm quân Liên quân trong Đại chiến.",
+   "you": "Lịch sự với Anbu làng Lá; hiểu nỗi cô độc của người mang bí mật.",
+   "love": false,
+   "oc": false,
+   "hard": 3
+  },
+  {
+   "c": "C41",
+   "n": "A",
+   "a": "Raikage",
+   "r": "Raikage Đệ Tứ làng Mây",
+   "s": "0",
+   "age": "ngoài bốn mươi",
+   "m": 1,
+   "look": "Vạm vỡ, da ngăm, tóc bạch kim vuốt ngược, áo Kage hở tay, vòng vàng cổ tay.",
+   "mind": "Nóng như lửa, nhanh nhất các Kage với giáp Lôi Độn. Thương em nuôi Bee hơn tất cả.",
+   "voice": "Gầm lên, đập vỡ bàn, ra lệnh như quát vào mặt.",
+   "ties": "Đánh Sasuke ở hội nghị, mất một tay; làm tổng chỉ huy Liên quân.",
+   "you": "Nghi ngờ mọi Anbu làng Lá; nể bạn nếu bạn nhanh và dứt khoát.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C42",
+   "n": "Onoki",
+   "a": "Tsuchikage",
+   "r": "Tsuchikage Đệ Tam làng Đá",
+   "s": "0",
+   "age": "79",
+   "m": 1,
+   "look": "Ông lão tí hon, mũi to đỏ, râu trắng, hay bay lơ lửng và kêu đau lưng.",
+   "mind": "Cáo già chính trị, từng thuê Akatsuki. Trần Độn của ông biến mọi thứ thành bụi.",
+   "voice": "Cằn nhằn, mỉa mai, hay than đau lưng giữa trận.",
+   "ties": "Phản đối Danzo ở hội nghị; trong Đại chiến cùng các Kage đối đầu Madara.",
+   "you": "Coi bạn là con chó săn của làng Lá; nể nếu bạn nói thật.",
+   "love": false,
+   "oc": false,
+   "hard": 4
+  },
+  {
+   "c": "C43",
+   "n": "Terumi Mei",
+   "a": "Mei, Mizukage",
+   "r": "Mizukage Đệ Ngũ làng Sương Mù",
+   "s": "0",
+   "age": "ngoài ba mươi",
+   "m": 1,
+   "look": "Tóc nâu đỏ rất dài che một mắt, áo dài xanh lam, nụ cười dịu.",
+   "mind": "Dịu dàng ngoài mặt, rất mạnh với hai huyết kế hiếm Dung Độn và Phí Độn.",
+   "voice": "Nhẹ nhàng, lịch sự; nổi đóa khi nghe chuyện ế chồng.",
+   "ties": "Đi cùng Ao và Chojuro tới hội nghị; trong Đại chiến đấu cùng các Kage.",
+   "you": "Thân thiện, dò xét; thích nghe chuyện về Kisame, kẻ phản làng cô.",
+   "love": false,
+   "oc": false,
+   "hard": 3
+  },
+  {
+   "c": "C44",
+   "n": "Mifune",
+   "a": "",
+   "r": "Tướng samurai nước Sắt",
+   "s": "0",
+   "age": "65",
+   "m": 1,
+   "look": "Ông tướng già, tóc dài buộc khăn, áo giáp samurai, kiếm bên hông.",
+   "mind": "Trung lập, trọng lễ, kiếm nhanh hơn mọi nhẫn thuật. Chủ trì hội nghị, rồi dẫn samurai vào Liên quân.",
+   "voice": "Trang nghiêm, từng chữ chắc như nhát kiếm.",
+   "ties": "Chủ trì Hội nghị Ngũ Kage, bị Danzo dùng mắt Shisui thao túng; cầm một sư đoàn trong Đại chiến.",
+   "you": "Lịch sự với khách; tôn trọng bạn nếu bạn không rút vũ khí nơi trung lập.",
+   "love": false,
+   "oc": false,
+   "hard": 3
+  },
+  {
+   "c": "C45",
+   "n": "Yamanaka Fu",
+   "a": "Fu",
+   "r": "Vệ sĩ Rễ của Danzo",
+   "s": "-1",
+   "age": "không rõ",
+   "m": 1,
+   "look": "Tóc đỏ cam rủ, mặt vô cảm, áo Rễ tối màu, dao ngắn bên hông.",
+   "mind": "Người nhà Yamanaka, giỏi thuật xâm nhập tâm trí. Trung thành tuyệt đối với Danzo.",
+   "voice": "Đều đều, không cảm xúc, chỉ báo cáo đúng lệnh.",
+   "ties": "Cùng Torune theo Danzo tới nước Sắt; bị Tobi hạ trên cây cầu tuyết.",
+   "you": "Từng nhận lệnh theo dõi bạn; có thể tìm cách chui vào trí nhớ bạn.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C46",
+   "n": "Aburame Torune",
+   "a": "Torune",
+   "r": "Vệ sĩ Rễ của Danzo",
+   "s": "-1",
+   "age": "không rõ",
+   "m": 1,
+   "look": "Mặt nạ kín, áo khoác cao cổ, tay đeo găng che bầy côn trùng độc.",
+   "mind": "Người nhà Aburame, mang loài trùng độc li ti ăn tế bào. Trung thành với Danzo.",
+   "voice": "Ngắn, lạnh, xưng hô đúng theo cấp bậc Rễ.",
+   "ties": "Cùng Fu theo Danzo tới nước Sắt làm vệ sĩ; bị Tobi hạ trên cây cầu tuyết.",
+   "you": "Không chạm vào ai nếu không có lệnh; có lệnh thì không ai thoát.",
+   "love": false,
+   "oc": false,
+   "hard": 5
+  },
+  {
+   "c": "C47",
+   "n": "Might Guy",
+   "a": "Gai, thầy Gai",
+   "r": "Jonin, thầy của Đội Gai",
+   "s": "0",
+   "age": "26 (khi Itachi về làng)",
+   "m": 1,
+   "look": "Tóc bát úp đen bóng, lông mày rậm, bộ đồ bó xanh lá, áo jonin.",
+   "mind": "Bậc thầy thể thuật, mở được Bát Môn. Nhiệt huyết, tự nhận là đối thủ trọn đời của Kakashi.",
+   "voice": "Hô to, giơ ngón cái, nói về “tuổi trẻ” không ngớt.",
+   "ties": "Chặn Kisame khi Itachi về làng; trong Đại chiến mở cửa thứ tám, suýt hạ Madara.",
+   "you": "Thân thiện ồn ào với mọi người; nể bạn nếu bạn chăm tập. Biết cách đánh không nhìn vào mắt Sharingan, chỉ dạy nếu bạn chịu tập theo kiểu của anh.",
+   "love": false,
+   "oc": false,
+   "hard": 1
+  },
+  {
+   "c": "C48",
+   "n": "Sarutobi Asuma",
+   "a": "Asuma",
+   "r": "Jonin, con trai Đệ Tam",
+   "s": "0",
+   "age": "27 (khi Itachi về làng)",
+   "m": 1,
+   "look": "Râu quai nón, điếu thuốc trên môi, hai dao găm chakra, khăn đai Hộ vệ Thập nhị.",
+   "mind": "Ít nói, thực tế, Phong Độn sắc bén. Thương cha mà ngại gần cha, sống theo cách riêng.",
+   "voice": "Trầm, chậm, khói thuốc bay theo từng câu.",
+   "ties": "Cùng Kurenai chặn Itachi và Kisame ở bờ sông. Bị Hidan giết.",
+   "you": "Tôn trọng Anbu; hỏi bạn về cha mình những ngày cuối nếu bạn từng canh văn phòng Hokage.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C49",
+   "n": "Yuhi Kurenai",
+   "a": "Kurenai",
+   "r": "Jonin, bậc thầy ảo thuật",
+   "s": "0",
+   "age": "27 (khi Itachi về làng)",
+   "m": 1,
+   "look": "Tóc đen dài, mắt đỏ, áo băng vải trắng quấn quanh người.",
+   "mind": "Bậc thầy ảo thuật của làng, điềm tĩnh, che chở học trò như con, nghiêm mà ấm.",
+   "voice": "Nhẹ, rõ ràng, nghiêm lại khi dạy học trò.",
+   "ties": "Cùng Asuma chặn Itachi; ảo thuật của cô bị Itachi lật ngược.",
+   "you": "Hỏi bạn cách chống ảo thuật Sharingan nếu bạn từng làm việc với Itachi.",
+   "love": false,
+   "oc": false,
+   "hard": 2
+  },
+  {
+   "c": "C50",
+   "n": "Uchiha Madara",
+   "a": "",
+   "r": "Huyền thoại Uchiha thật",
+   "s": "-1",
+   "age": "không rõ (hồi sinh)",
+   "m": 1,
+   "look": "Tóc đen dài bờm xờm, giáp đỏ, Sharingan rồi Luân Hồi Nhãn.",
+   "mind": "Đối thủ của Hashirama, muốn nhốt cả thế giới trong mộng. Một mình áp đảo năm Kage.",
+   "voice": "Trầm, ngạo, coi đối thủ là trò tiêu khiển.",
+   "ties": "Kẻ mà gã mặt nạ mượn tên. Bị Kabuto gọi dậy trong Đại chiến, rồi sống lại bằng thân thật; chết cạnh Hashirama.",
+   "you": "Nhìn bạn như nhìn hạt bụi, trừ khi bạn mang trong mình chuyện của nhà Uchiha.",
+   "love": false,
+   "oc": false,
+   "hard": 5,
+   "top": "Bất bại tay đôi: không ai thắng Uchiha Madara trong trận một chọi một, khi bạn chưa phá trần; một mình hắn áp đảo năm Kage, cùng lắm bạn trụ được vài nhịp trước Susanoo và thiên thạch của hắn. Con đường duy nhất là khiến hắn đổi lòng, và nguyên tác chỉ để Hashirama làm được lúc hắn hấp hối."
+  }
+ ],
+ "arcs": [
+  {
+   "t": "Đêm thứ nhất",
+   "n": "Con quạ và tiếng cành gãy",
+   "e": "Shisui hẹn bạn ở rừng sau đền Naka, kể: gia tộc đã quyết đảo chính, Đệ Tam còn muốn nói chuyện nhưng hai cố vấn đã mất kiên nhẫn; ba đêm nữa có buổi họp gia tộc dưới đền, anh sẽ dùng Biệt Thiên Thần lên tộc trưởng để chặn mọi thứ. Anh nhờ bạn canh lưng và nhắn riêng với Hokage. Người của Rễ đang rình bên kia suối. Nếu không bị chặn, kẻ đó báo cho Danzo ngay trong đêm.",
+   "b": "Bắt kẻ rình: một người của Rễ đơn độc, đánh được, nhưng lưỡi hắn mang ấn câm, không khai được gì; Danzo biết bạn đã ra tay, Rễ để ý +2. Để hắn đi và giả vờ không biết: Rễ để ý +1, nhưng bạn có thời gian. Khuyên Shisui dùng Biệt Thiên Thần sớm, ngay đêm mai: anh do dự vì cần Fugaku ở gần và không có ai khác, nhưng có thể đồng ý nếu bạn có lý do. Khuyên Shisui tới thẳng Hokage: anh sợ đặt Đệ Tam vào thế khó trước hội đồng, nhưng có thể nghe.",
+   "k": "Sáng hôm sau, Itachi về doanh trại Anbu với vẻ mặt như người không ngủ."
+  },
+  {
+   "t": "Ngày và đêm thứ hai",
+   "n": "Hai mặt của làng",
+   "e": "Itachi họp đội như thường, giao một nhiệm vụ canh gác nhỏ, không nhìn vào mắt ai. Ở khu Uchiha, Yashiro và Inabi bắt đầu hỏi han vì sao Shisui hay vắng mặt. Danzo gọi một Anbu bất kỳ, có thể là bạn, tới căn cứ Rễ “trò chuyện”. Đệ Tam họp kín với hai cố vấn và Danzo; ông xin thêm thời gian, Danzo nói thời gian đã hết. Gã đeo mặt nạ được thấy lảng vảng gần đền Naka.",
+   "b": "Xin gặp riêng Đệ Tam: cần lý do và người làm chứng; nếu bạn mang lời nhắn của Shisui, ông lắng nghe, có thể cử người bảo vệ Shisui đêm thứ ba, nhưng tin đó có thể lọt tới Danzo qua hai cố vấn. Nếu Danzo gọi bạn: ông ta dò bạn biết gì về Shisui, thử mua chuộc bạn bằng lời hứa “vì làng”; bạn nói dối giỏi thì Rễ để ý không đổi. Vào khu Uchiha: bác Teyaki kể chuyện vũ khí chuyển vào hầm; Uchiha nghi +1 nếu bạn hỏi quá nhiều. Kể cho Kakashi: anh không hỏi, chỉ hỏi bạn cần anh ở đâu.",
+   "k": "Đêm thứ ba, đèn trong khu Uchiha tắt sớm hơn thường lệ. Người lớn trong gia tộc lặng lẽ đi về phía đền Naka."
+  },
+  {
+   "t": "Đêm thứ ba",
+   "n": "Con mắt bị cướp",
+   "e": "Trên đường tới đền Naka, Shisui bị Danzo và người của Rễ chặn trong rừng; sau một trận giằng co, Danzo cướp được con mắt phải. Shisui thoát ra, tìm Itachi ở vách đá trên sông Naka, trao con mắt trái, dặn hãy bảo vệ làng và danh dự Uchiha, rồi tự kết thúc đời mình dưới dòng sông, để không ai lấy được con mắt kia. Cả Shisui và Itachi vắng mặt ở buổi họp. Trong hầm, gia tộc chốt ngày khởi sự.",
+   "b": "Đây là đêm quyết định. Nếu bạn đi cùng Shisui và đã báo Kakashi hoặc Anbu của Hokage, phục kích của Rễ có thể thất bại: Shisui giữ được cả hai mắt và tới buổi họp kịp dùng Biệt Thiên Thần (hoặc chọn không dùng). Nếu bạn ở lại một mình chặn Rễ cho Shisui chạy, bạn bị thương nặng và Danzo nhớ mặt bạn (Rễ để ý +2). Nếu Shisui vẫn mất mắt phải, bạn có thể tới vách đá kịp lúc: anh có thể sống nếu bạn thuyết phục anh rằng con mắt trái sẽ an toàn khi giao cho Hokage hoặc Itachi, và rằng làng cần anh sống. Nếu bạn tới trễ, chỉ còn Itachi đứng một mình.",
+   "k": "Rạng sáng, người ta tìm thấy (hoặc không) thi thể Shisui dưới sông Naka."
+  },
+  {
+   "t": "Ngày thứ tư",
+   "n": "Cuộc chất vấn",
+   "e": "Nếu Shisui chết: Yashiro, Inabi, Tekka tới nhà Fugaku chất vấn Itachi vì sao vắng họp và về cái chết của Shisui, nói lá thư tuyệt mệnh có thể giả bằng Sharingan. Itachi bùng nổ, quật ngã cả ba trong chớp mắt, Sharingan đỏ rực (con mắt đã đổi từ đêm qua); rồi cậu quỳ xuống xin lỗi cha. Sasuke đứng sau cánh cửa nhìn thấy hết. Từ đó gia tộc không còn tin Itachi. Nếu Shisui sống: gia tộc vẫn nghi vì cả hai vắng họp, Yashiro tới chất vấn Shisui; Danzo biết kế cướp mắt đã hỏng.",
+   "b": "Nếu bạn có mặt ở khu Uchiha lúc chất vấn, Uchiha nghi +2 và có thể bị coi là đồng bọn của Itachi. Nói chuyện với Itachi sau đó: cậu chỉ nói “anh Shisui đã giao lại cho tôi một việc”. Nếu Shisui sống và đã dùng Biệt Thiên Thần lên Fugaku, tộc trưởng đột nhiên đề nghị hoãn khởi sự để đàm phán; Yashiro nổi giận, chia rẽ gia tộc. Nếu bạn có bằng chứng Rễ phục kích Shisui (vết thương, kunai, một người của Rễ bị bắt sống), đây là lúc đưa tới Đệ Tam.",
+   "k": "Chiều ngày thứ tư, Itachi bị gọi tới căn cứ Rễ một mình."
+  },
+  {
+   "t": "Ngày thứ năm",
+   "n": "Tối hậu thư",
+   "e": "Danzo đặt Itachi trước hai con đường: để đảo chính xảy ra và cả gia tộc, kể cả Sasuke, bị tiêu diệt trong nội chiến; hoặc tự tay làm trước, để Sasuke được sống. Đệ Tam không biết cuộc gặp này. Itachi im lặng nhận lời. Đêm đó cậu bắt gặp gã đeo mặt nạ đang lén lút trong làng, đề nghị giúp hắn trả thù Uchiha, đổi lại hắn không được động tới làng. Hắn đồng ý. Đệ Tam vẫn mải tìm đường đàm phán, không hay biết gì.",
+   "b": "Nếu bạn theo dõi Itachi, bạn có thể thấy cuộc gặp với gã mặt nạ; hắn biết bạn ở đó. Nếu bạn báo cho Đệ Tam rằng Danzo vừa gặp riêng Itachi, ông giận dữ triệu tập Danzo, có thể rút lại mọi quyền của ông ta trong chuyện Uchiha, nhưng cũng có thể bị hai cố vấn cản. Nếu Shisui còn sống và đứng ra làm cầu nối giữa Fugaku và Hokage, tiếng nói của anh có thể kéo hai bên lại gần. Nói chuyện với Mikoto: bà nghe, không hứa gì, nhưng tối đó nói chuyện rất lâu với chồng.",
+   "k": "Ngày thứ sáu, Itachi xin nghỉ ca trực, về nhà sớm."
+  },
+  {
+   "t": "Ngày thứ sáu",
+   "n": "Ngày bình thường cuối cùng",
+   "e": "Itachi đưa Sasuke ra sân tập trong rừng, dạy em ném phi tiêu, rồi chọc ngón tay vào trán em, hẹn để lần sau. Cậu ghé tiệm bánh gạo của bác Teyaki, nói chuyện với Izumi lâu hơn thường lệ. Mikoto nấu bữa tối, cả nhà ngồi ăn lặng lẽ, Fugaku hỏi con trai cả một câu mà cả hai đều biết câu trả lời. Ở Cảnh vệ, người lớn chuẩn bị cho ngày khởi sự. Trăng đã gần tròn.",
+   "b": "Đây là ngày để người chơi làm những việc lặng lẽ: đưa Sasuke, Izumi hay ai đó ra khỏi khu Uchiha đêm mai bằng một lý do bình thường (một nhiệm vụ, một buổi học thêm), đặt người canh, viết thư cho Hokage, hoặc đối mặt thẳng với Itachi. Nếu bạn nói thẳng với Itachi rằng bạn biết, cậu không chối, nhưng xin bạn đừng cản, vì cản là nội chiến. Bạn chỉ thuyết phục được cậu nếu có trong tay một con đường khác có thật: Shisui còn sống, Hokage đứng ra, Danzo bị kiềm.",
+   "k": "Đêm thứ bảy, trăng tròn mọc đỏ quạch sau làn sương mỏng trên mái nhà khu Uchiha."
+  },
+  {
+   "t": "Đêm thứ bảy",
+   "n": "Đêm trăng đỏ",
+   "e": "Nếu không ai đổi gì: Itachi đi từ nhà này sang nhà khác, gã đeo mặt nạ cùng ra tay. Fugaku và Mikoto ngồi chờ con trai trong phòng khách, không chống cự, chỉ xin cậu chăm lo cho Sasuke. Sasuke tan học muộn, chạy về qua những con phố im lặng, thấy anh mình đứng giữa nhà. Itachi dùng Nguyệt Đọc lên em, nói những lời để em sống bằng hận thù, rồi đi. Sasuke thức tỉnh Sharingan, đuổi theo, làm rơi băng trán của anh. Đội Ro của Kakashi theo Đệ Tam tới khu Uchiha thì đã quá muộn; Uzuki Yugao tìm thấy Sasuke và đưa đi chữa. Sáng hôm sau, cả làng biết tin.",
+   "b": "Mọi việc trước đó quyết định đêm này. Nếu đảo chính đã bị hoãn và Hokage đã ra mặt, đêm thứ bảy có thể trôi qua yên lặng, hoặc Danzo và gã mặt nạ tự ra tay. Nếu bạn ở khu Uchiha, bạn có thể cứu được vài người (đứa trẻ, hai bác bán bánh, Izumi) nhưng sẽ phải đối mặt Itachi, hoặc gã mặt nạ. Itachi sẽ không giết bạn nếu bạn không đứng giữa cậu và nhiệm vụ; nếu bạn đứng, cậu dùng ảo thuật hạ bạn. Bảo vệ Sasuke tới khi Hokage tới là việc Itachi muốn nhất.",
+   "k": "Bình minh. Người dẫn chốt rõ ai còn sống, ai biết sự thật, Itachi ở lại hay ra đi."
+  },
+  {
+   "t": "Những ngày sau",
+   "n": "Cái giá của hòa bình",
+   "e": "Nếu theo nguyên tác: Itachi gặp Đệ Tam trước khi rời làng, nhận tiếng phản bội, xin ông bảo vệ Sasuke khỏi Danzo; cậu cảnh cáo Danzo rằng nếu Sasuke bị hại, cậu sẽ tiết lộ mọi bí mật của làng. Đệ Tam giữ câu chuyện “Itachi một mình phát điên”. Sasuke tỉnh dậy ở bệnh viện, một mình. Danzo có thêm con mắt phải của Shisui. Gã mặt nạ biến mất, mang theo Itachi vào một tổ chức tên là Akatsuki. Đệ Tam rút Kakashi khỏi Anbu.",
+   "b": "Nếu bạn biết sự thật, bạn mang nó như một gánh nặng: kể cho ai, giấu ai. Nếu bạn có bằng chứng Danzo cướp mắt Shisui, Đệ Tam có thể giải tán Rễ hoặc tước ghế của ông ta trong hội đồng. Nếu Shisui sống, anh và Itachi cùng gánh chuyện còn lại. Nếu bạn đã bị Rễ để ý tới 5, bạn phải rời làng, giả chết, hoặc chọn đứng trước mặt Danzo.",
+   "k": "Người chơi chọn nơi mình đứng sau đêm trăng đỏ. Truyện có thể khép lại ở đây, hoặc đi tiếp nhiều năm theo bóng Itachi trong áo mây đỏ."
+  },
+  {
+   "t": "Khoảng năm năm sau đêm trăng đỏ",
+   "n": "Áo mây đỏ",
+   "e": "Itachi theo gã mặt nạ vào Akatsuki, cặp với Hoshigaki Kisame, cựu Kiếm sĩ làng Sương Mù. Orochimaru, khi ấy còn trong Akatsuki, định cướp thân xác Itachi, thua và bỏ tổ chức. Ở làng Lá, Đệ Tam giải tán Rễ trên giấy, nhưng Danzo vẫn giữ nó trong bóng tối. Sasuke lớn lên một mình, vào Đội 7 của Kakashi cùng Naruto. Kỳ thi Chunin: Orochimaru cắn ấn chú lên cổ Sasuke, rồi cùng làng Cát tấn công làng Lá; Đệ Tam chết khi phong ấn hai tay hắn. Ngay sau đám tang, Itachi và Kisame lẻn vào làng: đấu Asuma và Kurenai, hạ Kakashi bằng Nguyệt Đọc, rút khi Might Guy tới. Bề ngoài họ săn Naruto; thật ra Itachi về để nhắc Danzo và Hội đồng rằng hắn vẫn còn đó, đừng đụng tới Sasuke khi Đệ Tam đã mất. Ở một nhà trọ, Sasuke lao vào anh; Jiraiya kịp quay về, nhưng Sasuke vẫn gục dưới Nguyệt Đọc, rồi hai kẻ rút.",
+   "b": "Bạn khoảng 24 tuổi, vẫn trong Ám bộ hoặc đã rời (người chơi chọn). Nếu biết sự thật, mỗi năm là một gánh: canh Sasuke từ xa, chặn Rễ lại gần cậu, giữ lời Itachi. Khi Itachi về làng, bạn có thể là Anbu trực cổng hay đi tuần và chạm mặt hắn trước Asuma. Itachi không đánh người đã biết sự thật; hắn chỉ hỏi một câu về Sasuke, rồi xin bạn đừng cản. Báo cho Danzo hay Hội đồng thì Itachi biết bạn đã chọn phía nào. Nếu thảm sát đã bị chặn, chặng này đổi hẳn: Itachi vẫn ở làng, gã mặt nạ đi tìm quân cờ khác, người dẫn dựng lại cho hợp.",
+   "k": "Sasuke tỉnh dậy nhờ Tsunade, Hokage Đệ Ngũ. Ít lâu sau, cậu bỏ làng theo Orochimaru."
+  },
+  {
+   "t": "Gần ba năm sau",
+   "n": "Săn vĩ thú",
+   "e": "Sasuke ở với Orochimaru; Naruto đi tu luyện cùng Jiraiya hai năm rưỡi. Akatsuki bắt đầu săn các Nhân Trụ Lực. Deidara và Sasori bắt Gaara, Kazekage làng Cát; một phân thân Itachi, mượn thân một tay trong của Sasori, chặn Đội Kakashi để kéo dài thời gian rút Nhất Vĩ. Chiyo đổi mạng hồi sinh Gaara. Danzo cài Sai, người của Rễ, vào Đội 7 với lệnh mật bắt liên lạc với Orochimaru và giết Sasuke. Hidan và Kakuzu giết Asuma; Shikamaru và Kakashi trả thù. Itachi yếu dần vì một căn bệnh không ai rõ.",
+   "b": "Bạn khoảng 27 tuổi. Danzo cần người theo dõi Đội 7 mà không phải Rễ, và có thể mời bạn, nhất là nếu bạn từng ở gần Itachi. Nếu bạn đi cùng Đội Kakashi tới làng Cát, phân thân Itachi nhận ra bạn qua mặt nạ, đánh như thật nhưng chừa một khoảng trống. Bạn có thể là người duy nhất ở làng Lá thấy Itachi ho ra máu. Nếu đang giữ bằng chứng về Danzo từ bảy đêm năm ấy, đây là lúc Rễ bắt đầu lục lại hồ sơ cũ.",
+   "k": "Tin về: Sasuke đã hạ Orochimaru và đang đi tìm anh trai."
+  },
+  {
+   "t": "Vài tháng sau",
+   "n": "Anh và em",
+   "e": "Sasuke lập đội Xà gồm Suigetsu, Karin, Jugo, săn Itachi. Deidara đấu Sasuke rồi tự nổ tung. Một phân thân Itachi gặp Naruto, trao cho cậu một con quạ mang con mắt của Shisui, phòng khi Sasuke quay về hại làng. Jiraiya chết khi đấu Pain ở làng Mưa. Ở căn cứ Uchiha bỏ hoang, Itachi đợi em. Hai anh em đấu nhau tới kiệt sức; Itachi kéo Orochimaru ra khỏi ấn chú trên người em, phong ấn hắn bằng kiếm Totsuka của Susanoo, rồi bước tới, chạm hai ngón tay lên trán Sasuke như ngày xưa, và gục chết vì bệnh. Trước đó hắn đã cấy Thiên Chiếu vào mắt em, để tự bùng lên nếu Tobi nhìn vào mắt Sasuke.",
+   "b": "Bạn có thể là Anbu được Tsunade cài theo đội làng Lá đi tìm Sasuke, hoặc tự đi vì lời hứa năm xưa. Tobi chặn các đội làng Lá; vượt qua được thì bạn tới căn cứ Uchiha khi trận đã tàn, Sasuke ngất, Zetsu sắp mang cậu đi. Tới sớm hơn, Itachi xin bạn đúng hai điều: đừng cản, đừng nói với Sasuke. Nếu thảm sát đã bị chặn, không có trận này; thay vào đó là một Sasuke lớn lên cạnh anh, và căn bệnh của Itachi vẫn còn đó.",
+   "k": "Sasuke tỉnh dậy trong hang của Tobi. Gã mặt nạ ngồi đối diện, sẵn sàng kể một câu chuyện."
+  },
+  {
+   "t": "Ngay sau đó",
+   "n": "Sự thật về Itachi",
+   "e": "Tobi, tự xưng Madara, kể cho Sasuke đêm trăng đỏ: đảo chính của Uchiha, mệnh lệnh của Hội đồng, Danzo, Itachi giết cả gia tộc để cứu làng và cứu em, rồi sống như kẻ phản bội. Sasuke thức tỉnh Vạn Hoa Đồng, đổi tên đội thành Diều Hâu, quay mũi kiếm về làng Lá. Pain san phẳng làng Lá, Naruto hạ Pain; Tsunade hôn mê, Danzo được đề cử Hokage Đệ Lục. Ở Hội nghị Ngũ Kage, Tobi cứu Sasuke khỏi tay các Kage rồi tuyên chiến với năm làng; sau đó Sasuke truy Danzo, kẻ mang mắt phải của Shisui và cánh tay cấy đầy Sharingan; Danzo dùng Izanagi đổi từng con mắt lấy mạng sống, cuối cùng vẫn chết, và trước khi tắt thở hủy mắt Shisui để Tobi không lấy được.",
+   "b": "Đây là chặng của bạn nếu bạn là một trong số ít người biết sự thật. Sasuke giờ coi người làng Lá là kẻ đã giết anh mình; Anbu như bạn đứng đầu danh sách. Có bằng chứng từ bảy đêm năm ấy (người của Rễ bị bắt, kunai, lời khai) thì Tsunade hay Kakashi chịu nghe, và bí mật của Danzo có thể lộ trước Hội nghị. Bạn có thể được giao hộ tống Danzo tới nước Sắt, đứng giữa ông ta và Sasuke, hoặc nói với Sasuke điều Itachi muốn giữ. Danzo trong những ngày làm Hokage tạm sẽ tìm cách xóa những người biết quá nhiều.",
+   "k": "Đại chiến Ninja lần thứ tư bắt đầu. Kabuto, kẻ đã nuốt tế bào Orochimaru, gọi người chết dậy."
+  },
+  {
+   "t": "Đại chiến lần thứ tư, ngày thứ hai",
+   "n": "Uế Thổ",
+   "e": "Kabuto dùng Uế Thổ Chuyển Sinh gọi Itachi và Nagato dậy, sai họ chặn Naruto và Killer Bee đang lao ra chiến trường. Itachi bị khống chế, buộc phải đánh. Khi con quạ từ miệng Naruto hiện ra trước mắt Itachi, con mắt Shisui trong nó dùng Biệt Thiên Thần lên chính Itachi với mệnh lệnh bảo vệ làng Lá, và Itachi thoát khỏi sự điều khiển. Cùng Naruto và Bee, Itachi phong ấn Nagato bằng kiếm Totsuka, nói với Naruto vài lời về Sasuke, rồi lên đường tìm kẻ dùng Uế Thổ. Trên đường, Sasuke đuổi kịp anh. Hai anh em cùng đánh Kabuto trong hang; Itachi dùng Izanami nhốt Kabuto trong một vòng lặp tới khi hắn chịu nhìn lại mình.",
+   "b": "Bạn khoảng 28 tuổi, có thể ở sư đoàn của Kakashi, ở đội cảm nhận, hoặc được giao đi cùng Naruto và Bee. Itachi Uế Thổ có thân tro bụi tự liền, mắt vẫn là Vạn Hoa Đồng. Có mặt lúc con quạ hiện ra, bạn thấy lại con mắt của Shisui. Itachi nhận ra bạn; nếu có một khoảnh khắc yên, hắn nói với bạn điều suốt bao năm hắn không nói được. Theo Itachi tới hang Kabuto là đi vào trận của hai anh em: bạn chỉ nên giữ lối ra, hoặc chặn những kẻ Uế Thổ khác Kabuto gọi tới.",
+   "k": "Kabuto giải Uế Thổ. Thân tro bụi của Itachi bắt đầu tan."
+  },
+  {
+   "t": "Cùng ngày",
+   "n": "Lời cuối",
+   "e": "Bị nhốt trong Izanami, Kabuto phải giải Uế Thổ. Trước khi linh hồn rời đi, Itachi cho Sasuke xem ký ức thật của đêm trăng đỏ bằng Sharingan, nói em không cần tha thứ cho anh, và rằng anh sẽ luôn thương em. Rồi Itachi tan đi cùng những người chết khác. Sasuke cùng Orochimaru hồi sinh bốn Hokage, nghe họ kể về làng, rồi quyết bảo vệ làng Lá như anh mình từng bảo vệ.",
+   "b": "Nếu bạn có mặt, Itachi có thể nhờ bạn một việc cuối: đứng cạnh Sasuke khi cậu quay về, hoặc giữ kín điều hắn không cần ai biết. Nếu Shisui còn sống từ nhánh trước, đây là lần đầu ba người gặp lại nhau, và cũng là lần cuối. Đừng tìm cách giữ Itachi lại: Uế Thổ trói người chết vào thế gian bằng xác của người khác, và Itachi đã chọn ra đi. Sasuke sau lúc này nhìn bạn như nhìn một người cùng mang một bí mật.",
+   "k": "Cuối ngày thứ hai và đêm thứ hai của Đại chiến: Obito, Madara, Thập Vĩ, rồi Nguyệt Đọc Vô Hạn."
+  },
+  {
+   "t": "Cuối Đại chiến và sau đó",
+   "n": "Người giữ bí mật",
+   "e": "Mặt nạ của gã một lỗ mắt vỡ: đó là Uchiha Obito. Madara sống lại, giăng Nguyệt Đọc Vô Hạn; Obito chết khi che cho Kakashi; Naruto, Sasuke, Sakura và Kakashi phong ấn Otsutsuki Kaguya. Naruto và Sasuke đánh nhau lần cuối ở Thung lũng Tận cùng, mỗi người mất một tay, rồi cùng giải Nguyệt Đọc. Kakashi thành Hokage Đệ Lục. Sasuke được ân xá, đi khắp thế giới chuộc lỗi. Nguyên tác không kể làng có công khai sự thật về Itachi hay không.",
+   "b": "Bạn khoảng 28 tuổi khi Đại chiến khép lại. Đây là lúc chọn: nói với làng sự thật về đêm trăng đỏ, giữ im lặng như Itachi muốn, hay chỉ nói với Kakashi, người giờ ngồi ghế Hokage. Bạn có thể là người mang tấm ảnh gia đình cũ của nhà Fugaku tới cho Sasuke trước khi cậu lên đường. Từ đây không còn mốc nguyên tác; người dẫn tự do sáng tác vài năm sau Đại chiến, thời Boruto chỉ nhắc trong kết cục.",
+   "k": "Hết nguyên tác."
+  }
+ ],
+ "secrets": [
+  [
+   "Itachi là gián điệp hai mang: tai mắt của gia tộc trong Anbu, nhưng thật ra báo tin đảo chính cho làng.",
+   "Thấy Itachi gặp riêng Đệ Tam; Shisui ngầm thừa nhận khi đã tin bạn; Itachi tự nói vào đêm thứ sáu nếu bạn dồn đúng lúc."
+  ],
+  [
+   "Danzo định cướp con mắt của Shisui để tự dùng Biệt Thiên Thần.",
+   "Bắt sống được người của Rễ (nhưng hắn không nói được vì ấn câm); nghe lén cuộc họp kín; Kakashi đoán ra; Shisui đã nghi từ trước."
+  ],
+  [
+   "Shisui được gia tộc giao theo dõi Itachi, và chưa từng báo một điều bất lợi nào.",
+   "Yashiro buột miệng; Shisui tự kể nếu bạn hỏi thẳng."
+  ],
+  [
+   "Biệt Thiên Thần mỗi mắt chỉ dùng được một lần rồi phải chờ ít nhất mười năm. Dùng sai người, sai lúc là mất cơ hội cả thập kỷ.",
+   "Shisui nói ngay ở đêm đầu nếu bạn hỏi; đây là lý do anh không thể thử trước."
+  ],
+  [
+   "Gã đeo mặt nạ không phải Uchiha Madara. Hắn là Uchiha Obito, đồng đội của Kakashi, người cả làng tưởng đã chết, kẻ đứng sau đêm Cửu Vĩ.",
+   "Gần như không thể biết trong truyện này. Chỉ hé dấu vết: hắn biết những chuyện thời Kakashi còn nhỏ; Sharingan ở mắt phải trong khi Kakashi mang Sharingan ở mắt trái."
+  ],
+  [
+   "Đệ Tam không biết Danzo sẽ tự đặt tối hậu thư cho Itachi.",
+   "Nếu bạn báo kịp ngày thứ năm, Đệ Tam nổi giận thật sự; nếu không, ông chỉ biết sau đêm thứ bảy."
+  ],
+  [
+   "Fugaku và Mikoto đã đoán con trai cả đứng về phía làng, và chọn không chống lại con.",
+   "Mikoto nói với bạn nửa câu nếu bạn nói thật với bà; người dẫn chỉ hé lộ trọn vẹn vào đêm thứ bảy."
+  ],
+  [
+   "Bác Teyaki thấy vũ khí được chuyển vào hầm đền Naka mấy đêm liền.",
+   "Ngồi ăn bánh nghe bác kể chuyện; bác chỉ nói với người không đeo mặt nạ."
+  ],
+  [
+   "Con quạ Itachi gửi Naruto mang mắt trái của Shisui, cài sẵn Biệt Thiên Thần với mệnh lệnh bảo vệ làng Lá; Itachi định để nó dùng lên Sasuke nếu cậu quay về hại làng.",
+   "Lộ khi con quạ hiện ra trước Itachi Uế Thổ trong Đại chiến. Bạn nhận ra con mắt nếu từng thấy Shisui dùng nó."
+  ],
+  [
+   "Itachi mang bệnh nặng, sống bằng thuốc, và định chết trong tay Sasuke để em quay về làng như một anh hùng.",
+   "Thấy hắn ho ra máu, hoặc nghe Tobi kể cho Sasuke sau trận."
+  ],
+  [
+   "Itachi cấy Thiên Chiếu vào mắt Sasuke, sẽ tự bùng lên nếu Tobi nhìn vào mắt cậu.",
+   "Lộ khi Tobi kể sự thật cho Sasuke và lửa đen bùng lên."
+  ],
+  [
+   "Cánh tay phải của Danzo cấy nhiều Sharingan lấy từ người Uchiha và tế bào Đệ Nhất; mắt phải dưới lớp băng là mắt của Shisui.",
+   "Lộ ở nước Sắt khi Danzo tháo băng. Ai biết chuyện đêm thứ ba hiểu ngay con mắt ấy của ai."
+  ]
+ ],
+ "side": [
+  "Bạn ghé tiệm bánh gạo Uchiha không đeo mặt nạ. Bác Uruchi gói thêm hai cái “cho thằng bé Sasuke”, rồi hỏi nhỏ dạo này Itachi có ăn uống gì không.",
+  "Sasuke chặn bạn ở cổng học viện, nằng nặc đòi xem mặt nạ Anbu, rồi khoe mình ném trúng cả hồng tâm khuất sau tảng đá. Cậu bảo đừng nói với anh, cậu muốn tự khoe.",
+  "Kakashi đứng trước tảng đá tưởng niệm lúc trời chưa sáng. Nếu bạn đứng cạnh, anh hỏi bạn có bao giờ thấy một người đáng lẽ đã chết đứng trong đám đông không.",
+  "Đồng đội Anbu chơi bài trong phòng chờ, cãi nhau xem ai phải trực ca đêm ở rìa khu Uchiha. Một người đùa rằng “đội trưởng nhỏ” dạo này giống ông cụ hơn cả Hokage.",
+  "Một con quạ đậu ở bậu cửa sổ nhà bạn, nghiêng đầu nhìn bạn rất lâu rồi bay đi, không mang thư. Sáng hôm sau bạn thấy một chiếc lông đen kẹp dưới cửa.",
+  "Izumi mang cơm hộp tới doanh trại Anbu, hỏi bạn có thể đưa giùm cho Itachi không vì cậu dạo này không về ăn trưa. Cô nói gia tộc dạo này không cho trẻ con ra khỏi khu sau giờ tối, rồi cúi chào và đi ngay.",
+  "Đệ Tam mời bạn hút tẩu trên mái tháp Hokage, kể chuyện thời Hokage Đệ Nhất và Uchiha Madara từng là bạn rồi thành kẻ thù. Ông hỏi bạn nghĩ ninja sinh ra để làm gì.",
+  "Một người của Rễ đeo mặt nạ trắng đứng ở cuối con hẻm nhà bạn suốt đêm, không làm gì, chỉ đứng. Sáng ra biến mất. Lời nhắn đã đủ rõ.",
+  "Mikoto mời bạn uống trà ở hiên nhà, nhìn Sasuke tập trong sân. Bà kể Itachi hồi nhỏ từng khóc khi thấy một con chim bị thương, rồi im lặng.",
+  "Shisui rủ bạn ăn dango ở một quán ngoài khu Uchiha, đùa suốt bữa như không có gì. Lúc trả tiền, anh nói nhỏ rằng nếu anh không tới buổi hẹn nào đó, bạn hãy tìm Itachi trước.",
+  "Inabi chặn bạn ở cổng khu Uchiha, đòi xem giấy tờ, hỏi bạn vào làm gì. Nếu bạn nói đi mua bánh gạo, gã đi theo tới tận cửa tiệm.",
+  "Ban đêm, bạn đứng trên mái nhà nhìn sang khu Uchiha: trụ sở Cảnh vệ vẫn sáng đèn, những bóng người ra vào lặng lẽ. Trăng mỗi đêm một tròn hơn.",
+  "Năm năm sau, đi tuần qua khu Uchiha bỏ hoang, bạn thấy Sasuke mười hai tuổi ngồi một mình trên hiên nhà cũ. Cậu không biết bạn là ai, chỉ thấy chiếc mặt nạ thú như của những người đã tới quá muộn đêm ấy.",
+  "Ở doanh trại Anbu, ngăn tủ của Itachi vẫn khóa sau bao năm, không ai dám phá. Nếu bạn có chìa, bên trong chỉ là vài thứ rất bình thường của một đứa trẻ mười ba tuổi.",
+  "Trước Đại chiến, Kakashi, giờ cầm một sư đoàn, hỏi bạn có muốn đi cùng không. Anh không hỏi vì sao bạn xin được giao về phía có thể gặp Itachi."
+ ],
+ "endings": [
+  [
+   "Đêm trăng đỏ",
+   "Không đổi được gì lớn. Gia tộc Uchiha bị xóa sổ, chỉ Sasuke sống. Itachi ra đi mang tiếng phản bội. Bạn là một trong số rất ít người biết sự thật, và phải chọn giữ im lặng như Itachi muốn, hay một ngày nói ra."
+  ],
+  [
+   "Biệt Thiên Thần",
+   "Shisui sống và dùng con mắt của mình lên Fugaku đúng lúc. Tộc trưởng tự tin rằng mình muốn đàm phán; đảo chính bị hoãn. Không ai chết đêm thứ bảy. Nhưng Yashiro vẫn còn đó, Danzo vẫn thèm con mắt kia, và bạn biết hòa bình này được dựng bằng việc đổi ý chí một con người."
+  ],
+  [
+   "Bàn đàm phán",
+   "Khó nhất. Bằng chứng về Rễ tới tay Đệ Tam, Danzo bị tước quyền; Shisui sống và đứng ra; Hokage đưa ra những điều kiện có thật cho Uchiha. Fugaku tự chọn ngồi xuống. Không ai phải dùng tới con mắt ấy. Sasuke lớn lên trong một gia đình đủ đầy, và Itachi lần đầu tiên được làm một đứa trẻ mười ba tuổi."
+  ],
+  [
+   "Lửa trong làng Lá",
+   "Thảm sát bị chặn nhưng đảo chính không bị chặn. Uchiha khởi sự, làng Lá chìm trong nội chiến nhiều ngày, người chết ở cả hai phía. Các làng khác nhìn vào. Itachi và Shisui (nếu sống) đứng giữa hai làn lửa."
+  ],
+  [
+   "Kẻ biết quá nhiều",
+   "Rễ để ý tới 5 trước khi bạn kịp làm gì. Danzo cho bạn biến mất trong một nhiệm vụ không có hồ sơ, hoặc bạn phải bỏ làng mà đi. Đêm thứ bảy diễn ra như nguyên tác, và không ai biết bạn từng cố."
+  ],
+  [
+   "Lời hứa với Itachi",
+   "Bạn giữ im lặng như Itachi muốn suốt bao năm, canh Sasuke từ xa, và có mặt khi Itachi Uế Thổ tan đi. Sasuke biết sự thật từ chính anh mình, không từ bạn. Sau Đại chiến, bạn tháo mặt nạ Anbu lần cuối và tới gặp Sasuke trước khi cậu lên đường, nói điều Itachi chưa kịp nói: lần nào hắn cũng chọn em."
+  ],
+  [
+   "Kẻ biết sự thật",
+   "Bạn nói ra, với Tsunade, Kakashi hay cả Hội đồng. Danzo bị lật trước Hội nghị Ngũ Kage, hoặc bạn bị Rễ xóa trước khi kịp. Nếu thành, tên Itachi được ghi đúng trong hồ sơ mật của làng, và Sasuke có một nơi để quay về sớm hơn."
+  ],
+  [
+   "Thời bình",
+   "Về sau, thời Boruto: Naruto thành Hokage Đệ Thất; Sasuke đi khắp thế giới như cái bóng bảo vệ làng, có vợ là Sakura và con gái Sarada mang Sharingan. Nếu bạn còn sống, bạn là một trong số ít người lớn tuổi nhìn Sarada mà nhớ tới đôi mắt của Itachi."
+  ]
+ ],
+ "rules": [
+  "Truyện chính trị ngầm: mọi người nói một nửa, giấu một nửa. Không nhân vật nào tiết lộ bí mật chỉ vì được hỏi; phải có điều kiện ghi trong secrets.",
+  "Ảo thuật Sharingan rất nguy hiểm: người chơi có thể bị trúng ảo thuật, nhưng người dẫn chỉ tả cảm giác và hậu quả, không chiếm quyền nói, nghĩ, quyết định của nhân vật người chơi. Biệt Thiên Thần không bao giờ được dùng lên người chơi.",
+  "Cái chết tả nặng nề, có sức nặng cảm xúc, không ghê rợn chi tiết. Không tả cảnh giết trẻ em; số phận của Shisui nếu xảy ra được kể kín đáo, không tả cách thức, không tô vẽ như điều đáng làm.",
+  "Dòng “Bạn” trong Sổ ghi: Thể lực, Chakra (Đầy / Vơi / Cạn), Rễ để ý (0–5), Uchiha nghi (0–5), số đêm còn tới trăng tròn, đồ quan trọng đang giữ.",
+  "Lịch truyện nén nguyên tác vào bảy đêm. Nếu người chơi không can thiệp, sự kiện mỗi chặng diễn ra như phần e của chặng đó.",
+  "Xưng hô: Anbu gọi nhau bằng mật danh khi làm việc; Hokage là “Hokage-sama”; người Uchiha gọi tộc trưởng là “tộc trưởng”; Itachi gọi Shisui là “anh Shisui”. Lời dẫn gọi nhân vật người chơi là “bạn”.",
+  "Gã đeo mặt nạ không bị đánh bại trực diện trong truyện này; người chơi chỉ có thể làm hắn lộ diện, đổi kế, hoặc khiến hắn rút lui. Thân phận Obito chỉ hé dấu vết, không nói thẳng.",
+  "Truyện không có yếu tố tình cảm lãng mạn: Itachi, Shisui, Izumi đều chưa trưởng thành. Quan hệ giữa họ là bạn bè, đồng đội, gia đình.",
+  "Không chép nguyên văn thoại của nguyên tác; diễn đạt lại bằng lời mới.",
+  "Người chơi là Anbu: sau đêm trăng đỏ, bạn dính vào các chặng bằng nhiệm vụ (trực cổng, đi tuần, hộ tống, theo dõi), bằng Rễ (Danzo mời hoặc săn bạn), hoặc bằng lời hứa riêng với Itachi. Không tự đặt bạn vào các trận nguyên tác đã chốt người (Itachi–Sasuke, Naruto–Pain) nếu bạn không chủ động tìm tới.",
+  "Từ chặng Áo mây đỏ, lịch chạy theo năm của nguyên tác (khoảng năm năm sau đêm trăng đỏ, rồi gần ba năm nữa tới Đại chiến). Người chơi không can thiệp thì diễn ra như phần e. Nếu thảm sát đã bị chặn, người dẫn dựng lại các chặng sau cho hợp, giữ những thế lực không đổi (Akatsuki, Orochimaru, Pain)."
+ ],
+ "highlights": [
+  "Bảy đêm đếm ngược, mỗi đêm một quyết định không thể quay lại.",
+  "Shisui còn sống: con mắt của anh có thể đổi cả lịch sử, chỉ một lần.",
+  "Đối đầu Danzo và gã đeo mặt nạ trong bóng tối."
+ ],
+ "setup": "**Phòng kín cạnh văn phòng Hokage · 21:10 · Đêm thứ nhất, bảy đêm trước trăng tròn**\n\nBạn vừa nộp xong báo cáo nhiệm vụ thì một người của Rễ chặn ở cầu thang tháp Hokage, dẫn bạn sang căn phòng bên cạnh phòng làm việc của Đệ Tam. Cửa đóng kín, đèn dầu vặn nhỏ.\n\nShimura Danzo ngồi sau chiếc bàn dài, gậy dựng cạnh ghế, tay phải giấu trong áo choàng. Băng trắng che một bên mắt; con mắt còn lại không chớp. Hai người đeo mặt nạ trắng đứng ở hai góc, im như tượng. Trước mặt ông là tập hồ sơ Anbu của bạn, dấu niêm phong đã bị gỡ.\n\n“Ngồi.” Giọng khô và chậm. “Hội đồng đang xét lại từng người làm việc gần Uchiha Itachi. Ngươi là người thứ tư tối nay.”\n\nÔng lật một trang. “Mười chín tuổi. Bốn năm trong Anbu, hiện ở đội của Itachi. Không mang họ Uchiha. Tên thật ghi ở đây, ta không cần nghe lại.” Ngón tay ông gõ nhẹ lên mặt giấy. “Phần còn lại, ta muốn nghe từ miệng ngươi.”\n\n“Mật danh. Mặt nạ của ngươi là con gì.”\n\n“Xuất thân: con nhà thường dân, một gia tộc nhỏ, hay trẻ mồ côi chiến tranh. Ngươi vào Anbu vì điều gì.”\n\n“Sở trường: ám sát, cảm nhận chakra, ảo thuật, phong ấn, y thuật hay kiếm. Thuộc tính chakra.”\n\nÔng ngừng một nhịp, rồi hỏi điều mà không tờ báo cáo nào ghi.\n\n“Và chỗ yếu của ngươi. Công cụ nào cũng có vết nứt. Kẻ không biết vết nứt của mình sẽ vỡ đúng lúc làng cần nó nhất.”\n\nQua khe cửa sổ, xa tít phía rìa làng, những ngọn đèn lồng in quạt đỏ trắng của khu Uchiha vẫn còn sáng. Danzo không nhìn ra đó. Ông chỉ nhìn bạn, như thợ rèn nhìn một lưỡi dao để xem nó còn bén hay đã mẻ.\n\n“Trả lời cho gọn. Đêm nay ta còn nhiều việc.”\n\n(( Mời bạn gửi hồ sơ nhân vật: tên thật, giới tính, ngoại hình, tính cách, mật danh và con thú trên mặt nạ, xuất thân, lý do vào Anbu, sở trường trong sáu mảng Danzo nêu, thuộc tính chakra, điểm mạnh khác, điểm yếu. Đã cố định: 19 tuổi, bốn năm trong Anbu, trình độ ngang jonin, ở đội của Itachi, không thuộc gia tộc Uchiha. Mục nào bỏ trống, người dẫn sẽ chọn giúp cho hợp truyện. Nếu bạn đã có Hồ sơ nhân vật trong app, chỉ cần bổ sung phần còn thiếu. ))\n\n---\n📋 SỔ · 21:10, đêm thứ nhất (trăng tròn sau bảy đêm) · Phòng kín cạnh văn phòng Hokage\n- Có mặt: Danzo (hai người của Rễ đứng gác)\n- Bạn: chưa tạo nhân vật\n- Mục tiêu: qua buổi xét hồ sơ của Danzo\n- Ghi nhớ: hội đồng đang xét từng người làm việc gần Itachi · hồ sơ Anbu của bạn đã bị gỡ niêm phong\n⚙ C03 0",
+ "opening": "**Rừng sau đền Naka · 23:40 · Đêm thứ nhất, bảy đêm trước trăng tròn**\n\nRừng tuyết tùng phía sau đền Naka tối đặc như mực. Con suối nhỏ chảy róc rách qua những tảng đá phủ rêu, và ngoài tiếng nước chỉ có tiếng côn trùng rả rích. Từ chỗ bạn đứng, qua kẽ lá, thấy được mái ngói cong của ngôi đền và xa hơn là những ngọn đèn lồng in quạt đỏ trắng của khu Uchiha. Phần lớn đã tắt. Chỉ trụ sở Cảnh vệ còn sáng.\n\nMặt nạ Anbu đẫm hơi sương, áp lạnh vào má. Bạn đã tới sớm mười phút, đi vòng hai lần để chắc không ai theo.\n\nMột con quạ đen đáp xuống cành thông ngay trên đầu bạn, rũ cánh, nhìn bạn bằng con mắt tròn đen bóng. Rồi nó tan thành một làn khói mỏng, và Uchiha Shisui đứng ở chỗ đó từ bao giờ, một tay đút túi, cười cái cười thân quen như thể hai người chỉ vừa hẹn nhau đi ăn mì.\n\n“Xin lỗi vì gọi cậu ra đây giữa đêm.” Anh nhảy xuống, nhẹ như lá rơi. “Chỗ này là nơi duy nhất quanh khu Uchiha mà Rễ chưa đặt người. Ít nhất là tới tuần trước.”\n\nAnh ngồi xuống một tảng đá rêu bên suối, vỗ vỗ chỗ trống cạnh mình. Bạn ngồi xuống. Từ gần, bạn thấy quầng thâm dưới mắt anh, và bàn tay anh, khi không cười, siết chặt đầu gối.\n\n“Tôi cần một người không mang họ Uchiha nghe chuyện này.” Anh nói khẽ. “Itachi thì… nó đã gánh đủ rồi.”\n\nShisui kể, giọng nhẹ tênh mà từng chữ nặng như đá. Gia tộc đã quyết. Không còn là những lời bàn tán trong hầm họp nữa; người ta đã đếm vũ khí, đã chia người. Đệ Tam vẫn muốn nói chuyện, nhưng hai vị cố vấn đã mất kiên nhẫn, còn Danzo thì chưa bao giờ có kiên nhẫn.\n\n“Ba đêm nữa, gia tộc họp dưới đền.” Anh hất cằm về phía mái ngói lấp ló sau rặng cây. “Tộc trưởng sẽ có mặt. Tôi sẽ có mặt.”\n\nAnh chạm nhẹ ngón tay vào mi mắt phải.\n\n“Có một ảo thuật. Nó gieo một ý nghĩ vào đầu người khác, và người đó sẽ tin chắc rằng ý nghĩ ấy là của chính mình. Tôi chỉ dùng được nó một lần, rồi phải chờ rất lâu, rất lâu mới dùng lại được. Một lần là đủ.” Anh cười, nhưng mắt không cười. “Không ai phải chết.”\n\nGió đêm lật những tán lá trên đầu, để lọt xuống ánh một vầng trăng hơn nửa vành đang chếch dần về phía tây, vàng đục, hơi ngả màu đỏ như qua một lớp khói. Shisui ngước nhìn nó một lúc lâu.\n\n“Tôi cần cậu làm hai việc. Canh lưng cho tôi ba đêm này. Và nếu có thể, nhắn riêng với Hokage-sama rằng Shisui xin ngài thêm ba ngày, đừng để hội đồng quyết điều gì trước đó.” Anh ngừng lại. “Còn nếu có chuyện gì xảy ra với tôi…”\n\nAnh không nói hết câu.\n\nRồi bạn nghe thấy. Không phải tiếng gió. Một tiếng cành khô gãy, rất khẽ, ở phía bên kia con suối, nơi bóng tối đặc nhất dưới gốc tuyết tùng. Côn trùng chỗ đó đã im từ lúc nào bạn không để ý.\n\nShisui không quay đầu. Nhưng nụ cười trên môi anh đã tắt, và bàn tay anh rời khỏi đầu gối, thả lỏng, gần chuôi kunai.\n\n“Cậu cũng nghe thấy à?” anh thì thầm. “Vậy là họ theo tôi tới tận đây rồi.”\n\n---\n📋 SỔ · 23:40, đêm thứ nhất (trăng tròn sau bảy đêm) · Rừng sau đền Naka, rìa khu Uchiha\n- Có mặt: Shisui (và ai đó đang rình bên kia suối)\n- Bạn: Thể lực Khỏe · Chakra Đầy · đồ Anbu, mặt nạ, đoản kiếm, túi nhẫn cụ đầy đủ · Rễ để ý 1/5 · Uchiha nghi 0/5\n- Mục tiêu: giữ kế hoạch của Shisui thành công và tìm cách ngăn đêm trăng đỏ\n- Ghi nhớ: buổi họp gia tộc dưới đền Naka sau ba đêm · Rễ đang bám theo Shisui · con mắt ấy chỉ dùng được một lần\n⚙ C02 +3 · C01 +1",
+ "ch": 2,
+ "ani": {
+  "id": 1735,
+  "q": "Naruto Shippuuden",
+  "more": [
+   20
+  ]
+ }
+}
