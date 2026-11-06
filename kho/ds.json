@@ -1,7 +1,7 @@
 {
  "v": 1,
- "n": 14,
- "at": 1793938224646,
+ "n": 15,
+ "at": 1793938856474,
  "ids": {
   "tr-full": "mw3nitbw",
   "tr-2008": "mw3nitbw",
@@ -15,7 +15,8 @@
   "gen-mondstadt": "mw4dtb35",
   "tr-halloween": "mw4ghuad",
   "tr-blackdragon": "mw4ghuad",
-  "tr-tenjiku": "mw4ghuad"
+  "tr-tenjiku": "mw4ghuad",
+  "gen-mondstadt-18": "mw4gvkm2"
  },
  "khuon": ""
 }
