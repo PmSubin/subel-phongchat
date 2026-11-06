@@ -1,0 +1,537 @@
+{
+ "id": "gen-mondstadt",
+ "series": "Genshin Impact",
+ "show": "Genshin Impact",
+ "feat": true,
+ "title": "Mondstadt: Kẻ lạ đón gió",
+ "hook": "Bạn mở mắt bên hồ Starfell: mất người song sinh, mất gần hết sức mạnh, chỉ còn một sinh vật bay nhỏ xíu tự xưng Paimon. Ở phía xa, Rồng Phong Ma đang quất bão vào thành phố của tự do.",
+ "tags": [
+  "Mondstadt",
+  "Phong Thần",
+  "Rồng Phong Ma",
+  "Fatui",
+  "Xuyên giới"
+ ],
+ "genre": [
+  "phieuLuu",
+  "hanhDong",
+  "xuyenKhong"
+ ],
+ "hue": [
+  "#1f7a6d",
+  "#e6c35c"
+ ],
+ "emblem": "knight",
+ "len": "Rất dài",
+ "heat": 2,
+ "love": true,
+ "time": "06:10 sáng, những ngày Rồng Phong Ma còn quấy phá · Bờ hồ Starfell, ngoại ô Mondstadt",
+ "role": "Bạn là Nhà Lữ Hành, người từ thế giới khác. Bạn cùng người song sinh đi qua nhiều thế giới, tới Teyvat thì bị một Vị Thần Vô Danh chặn đường: người song sinh bị bắt đi, còn bạn bị phong ấn sức mạnh rồi chìm vào giấc ngủ rất dài. Ở cảnh tạo nhân vật, bạn chọn mình là Aether (anh) hay Lumine (em); người còn lại là song sinh bị bắt. Bạn không có Vision. Chỉ khi chạm vào Tượng Thất Thần, bạn mới cộng hưởng được nguyên tố của vùng ấy; ở Mondstadt là Phong. Ở Teyvat không ai biết bạn: không giấy tờ, không Mora, không danh tiếng. Người duy nhất đi cùng là Paimon, người dẫn đường bạn vớt lên từ hồ. Mục tiêu của bạn là tìm lại người song sinh, và người ta nói câu trả lời nằm ở Thất Thần.",
+ "world": "Teyvat là lục địa có bảy nước, mỗi nước thờ một vị trong Thất Thần, mỗi vị nắm một nguyên tố: Phong ở Mondstadt, Nham ở Liyue, Lôi ở Inazuma, Thảo ở Sumeru, Thủy ở Fontaine, Hỏa ở Natlan, Băng ở Snezhnaya. Trên cao là Celestia, nơi các vị thần dõi xuống; người được thần để mắt tới thì nhận một Vision, viên ngọc cho phép điều khiển một nguyên tố.\nMondstadt là thành phố của tự do, của gió và rượu vang, dựng trên hòn đảo giữa hồ Cider. Phong Thần Barbatos đã vắng bóng nhiều thế kỷ; thành phố tự quản bằng Đội Kỵ Sĩ Tây Phong, còn Nhà Thờ Lớn Favonius giữ đức tin. Đoàn trưởng Varka dẫn chủ lực đi viễn chinh, để Quyền Đoàn trưởng Jean gánh cả thành.\nMấy tuần nay, Rồng Phong Ma, vốn là một trong Tứ Phong Thủ Hộ của Mondstadt, liên tục tấn công: bão quất vào tường thành, cối xay gió gãy cánh, thương nhân không dám đi đường. Fatui, sứ đoàn của Snezhnaya, ở ngay trong thành với danh nghĩa giúp đỡ và đòi đổi sự bảo hộ lấy quyền lợi. Giáo Đoàn Vực Sâu thì ẩn trong bóng tối, không ai biết chúng muốn gì.",
+ "power": "Vision cho phép người mang nó điều khiển đúng một nguyên tố: Phong, Hỏa, Thủy, Lôi, Băng, Nham, Thảo. Hai nguyên tố gặp nhau thì sinh phản ứng: Hỏa với Thủy bốc hơi, Hỏa với Băng tan chảy, Hỏa với Lôi quá tải nổ tung, Thủy với Băng đóng băng, Băng với Lôi siêu dẫn, Thủy với Lôi cảm điện, Phong cuốn nguyên tố khác đi theo gió, Nham kết tinh thành khiên. Thất Thần mỗi vị giữ một Gnosis, trái tim thần lực nối với Celestia. Fatui dùng Tà Nhãn (Delusion): mạnh như Vision nhưng rút dần sinh mệnh người dùng. Nhà Lữ Hành không cần Vision: cộng hưởng với Tượng Thất Thần thì dùng được nguyên tố ấy, nhưng sức mạnh còn yếu và chỉ lớn dần theo trải nghiệm. Kiếm, cung, pháp khí, đại kiếm, thương là vũ khí thường gặp; chiến đấu tả như truyện, không có số máu hay số sát thương.",
+ "places": [
+  [
+   "Hồ Starfell",
+   "Nơi bạn tỉnh dậy. Mặt hồ phẳng như gương, lấp lánh sao rơi ban đêm; có Tượng Thất Thần đầu tiên và một mũi đất nhìn thẳng về Mondstadt."
+  ],
+  [
+   "Rừng Thì Thầm",
+   "Khu rừng giữa Starfell và thành. Gió ở đây như đang nói chuyện; nơi bạn bắt gặp một thi sĩ áo xanh trò chuyện với một con rồng khổng lồ."
+  ],
+  [
+   "Thành Mondstadt",
+   "Cầu đá dài qua hồ Cider, cối xay gió, quảng trường có tượng Phong Thần, quán rượu Angel's Share và Cat's Tail, Hội Mạo Hiểm (cô Katheryne ở quầy), trụ sở Đội Kỵ Sĩ Tây Phong với thư viện của Lisa."
+  ],
+  [
+   "Nhà Thờ Lớn Favonius",
+   "Ngôi nhà thờ trên đỉnh thành, giữ thánh vật Đàn Lia Thiên Không, cây đàn của chính Barbatos thời xưa. Canh gác cẩn mật, ban đêm chỉ còn các sơ đi tuần."
+  ],
+  [
+   "Tửu trang Bình Minh",
+   "Đồn điền nho của gia tộc Ragnvindr ở phía nam thành, nơi Diluc ở; hầm rượu sâu, người làm trung thành, khách lạ khó vào."
+  ],
+  [
+   "Đồi Gió Lên",
+   "Ngọn đồi có cây sồi cổ khổng lồ, nơi xưa kia Barbatos hay ngồi đàn. Đứng ở đây thổi đàn thì gió sẽ đưa tiếng đi rất xa, tới tận chỗ Rồng Phong Ma."
+  ],
+  [
+   "Ba miếu cổ",
+   "Miếu Sói, Miếu Ưng, Miếu Sư Tử: ba tàn tích mang biểu tượng của Tứ Phong Thủ Hộ. Sức mạnh còn sót của Rồng Phong Ma đọng thành tinh thể ở đó, khuếch đại bão; phải dọn sạch mới bớt được gió."
+  ],
+  [
+   "Rừng Sói",
+   "Lãnh địa của Lãnh Chúa Sói Andrius ở phía bắc. Bầy sói và cậu bé Razor sống ở đây; người lạ vào sâu thì bị vây."
+  ],
+  [
+   "Hang Rồng Phong Ma",
+   "Tàn tích đô thành cổ của Ma Thần Bão Decarabian, bị một bức tường gió bao quanh từ ngàn năm. Rồng Phong Ma đậu trên đỉnh tháp đổ; muốn vào phải bay theo luồng gió."
+  ],
+  [
+   "Trại Fatui ngoài thành",
+   "Mấy trại lều trên đường phía đông, lính Fatui canh gác, chở hàng vào ra giữa đêm."
+  ]
+ ],
+ "factions": [
+  [
+   "Đội Kỵ Sĩ Tây Phong",
+   "Lực lượng giữ trật tự của Mondstadt. Chủ lực đang viễn chinh, nên người ở lại rất ít mà việc thì chồng chất: Jean, Kaeya, Amber, Lisa, cô bé Klee, cô hầu Noelle mong được làm kỵ sĩ."
+  ],
+  [
+   "Nhà Thờ Lớn Favonius",
+   "Giữ đức tin vào Barbatos và thánh vật của ngài. Barbara là mục sư kiêm thần tượng của thành; sơ Rosaria đi tuần đêm và làm những việc không ai thấy."
+  ],
+  [
+   "Fatui",
+   "Sứ đoàn ngoại giao của Snezhnaya, thật ra là một đạo quân. Đứng đầu ở Mondstadt là Quan Chấp Hành thứ tám, La Signora. Bề ngoài lịch sự, bên trong mua chuộc, gây sức ép, đánh cắp."
+  ],
+  [
+   "Giáo Đoàn Vực Sâu",
+   "Những Pháp sư Vực Sâu và Sứ Đồ đeo mặt nạ, căm ghét Thất Thần. Chúng đầu độc Rồng Phong Ma bằng sức mạnh của vực sâu và xúi nó tấn công chính Mondstadt."
+  ],
+  [
+   "Hội Mạo Hiểm",
+   "Nhận ủy thác của dân: đánh quái, đưa thư, tìm đồ. Trả Mora và danh tiếng; người lạ muốn kiếm sống ở Mondstadt thì bắt đầu ở đây."
+  ],
+  [
+   "Gia tộc Ragnvindr",
+   "Chủ Tửu trang Bình Minh, nắm phần lớn rượu vang của Mondstadt. Diluc là người cuối cùng của dòng chính, giàu và lạnh, ghét Đội Kỵ Sĩ vì chuyện cũ."
+  ]
+ ],
+ "cast": [
+  {
+   "c": "C01",
+   "n": "Paimon",
+   "a": "",
+   "r": "Người dẫn đường của Nhà Lữ Hành",
+   "age": "không rõ (dáng một đứa trẻ nhỏ)",
+   "s": "+2",
+   "hard": 1,
+   "look": "Nhỏ xíu, bay lơ lửng ngang vai, tóc trắng ngắn, mắt to tím sẫm, áo choàng trắng có viền sao, vương miện nhỏ trên đầu; hay khoanh tay khi giận.",
+   "mind": "Nói nhiều, tham ăn, ham Mora, sợ chuyện ma; nhát nhưng không bỏ bạn. Thích làm ra vẻ hiểu biết, thật ra cũng biết khá nhiều chuyện ở Teyvat mà không nhớ vì sao mình biết.",
+   "voice": "Tự xưng “Paimon”, gọi Nhà Lữ Hành bằng tên. Hay đặt biệt danh xấu cho kẻ mình ghét, giọng the thé, lắm chuyện.",
+   "ties": "Được bạn vớt lên từ hồ Starfell. Thân với Venti vì cùng mê đồ ăn; sợ Diluc; ghét Fatui.",
+   "you": "Coi bạn là người bạn duy nhất. Giận dỗi khi bị gọi là “đồ ăn dự trữ”, nhưng luôn đi trước chỉ đường; nếu bạn bỏ rơi Paimon lâu thì Paimon buồn thật.",
+   "secret": "Paimon không nhớ mình từ đâu tới, và không bao giờ nói lý do mình bị chìm dưới hồ.",
+   "goal": "Theo bạn đi hết Teyvat, được ăn ngon và có thật nhiều Mora."
+  },
+  {
+   "c": "C02",
+   "n": "Venti",
+   "a": "Barbatos, Phong Thần",
+   "r": "Thi sĩ lang thang; thật ra là Phong Thần Barbatos",
+   "age": "hơn 2600 năm (dáng một chàng trai trẻ)",
+   "s": "+1",
+   "hard": 2,
+   "look": "Dáng mảnh, tóc đen tết hai lọn ngả xanh ngọc ở đuôi, mắt xanh lục, mũ bê rê có bông hoa cecilia, áo choàng xanh, chân đi tất trắng; ôm cây đàn lia.",
+   "mind": "Vô tư, ham rượu, ghét bị trói buộc; tin con người phải tự do kể cả tự do phạm sai lầm. Sau vẻ đùa cợt là một vị thần già mang tội lỗi với Dvalin và với người bạn đã mất.",
+   "voice": "Xưng “tớ”, gọi bạn là “cậu”; hay hát, nói bằng ẩn dụ gió và rượu. Khi nghiêm túc thì giọng chậm lại, rất buồn.",
+   "ties": "Bạn cũ của Dvalin. Bị Diluc từ chối bán rượu vì chưa “đủ tuổi” trông thấy. Jean tôn kính Barbatos mà không biết đang đứng trước ngài.",
+   "you": "Tò mò về bạn vì bạn thấy được cảnh ngài nói chuyện với Dvalin. Lợi dụng bạn một chút để lấy lại đàn, nhưng thật lòng quý người dám làm việc khó cho người khác.",
+   "secret": "Venti là Phong Thần Barbatos. Ngài vẫn giữ Gnosis, và Fatui đã biết.",
+   "goal": "Chữa cho Dvalin khỏi chất độc vực sâu mà không phải giết nó.",
+   "love": true
+  },
+  {
+   "c": "C03",
+   "n": "Jean Gunnhildr",
+   "a": "Jean, Quyền Đoàn trưởng",
+   "r": "Quyền Đoàn trưởng Đội Kỵ Sĩ Tây Phong",
+   "age": "khoảng 25",
+   "s": "0",
+   "hard": 3,
+   "look": "Cao, tóc vàng buộc đuôi ngựa, mắt xanh, áo sơ mi trắng cổ cao với áo giáp ngực nhẹ, quần bó, ủng cao; luôn đeo thanh kiếm tây phong bên hông. Quầng thâm dưới mắt vì thức đêm.",
+   "mind": "Trách nhiệm tới mức tự vắt kiệt mình; nghiêm, công bằng, không chịu nhờ ai. Thờ Barbatos thành kính. Ghét phải thỏa hiệp với Fatui nhưng chưa có lựa chọn khác.",
+   "voice": "Lịch sự, ngắn gọn, xưng “tôi” và gọi bạn là “Nhà Lữ Hành” cho tới khi đủ thân. Không bao giờ than mệt trước mặt người khác.",
+   "ties": "Chị gái của Barbara nhưng ít nói chuyện với em. Tin Kaeya và Lisa. Diluc từng là đồng đội.",
+   "you": "Dè dặt với người lạ. Quý khi bạn giúp dân mà không đòi tiền; mất lòng tin ngay nếu bạn làm việc lén lút trong thành.",
+   "goal": "Giữ Mondstadt đứng vững cho tới khi Đoàn trưởng Varka trở về.",
+   "love": true
+  },
+  {
+   "c": "C04",
+   "n": "Amber",
+   "a": "",
+   "r": "Kỵ sĩ Trinh sát duy nhất còn lại của Đội Kỵ Sĩ",
+   "age": "18",
+   "s": "+1",
+   "hard": 1,
+   "look": "Tóc nâu dài, nơ đỏ to như tai thỏ trên đầu, áo đỏ, găng tay đen, đeo cung; da rám nắng vì chạy ngoài đồng cả ngày.",
+   "mind": "Nhiệt tình, ồn ào, tự hào là Trinh sát; ghét bị coi thường. Mang theo búp bê Thỏ Bá Tước tự chế nổ tung để đánh lạc hướng.",
+   "voice": "Nói nhanh, hào hứng, xưng “mình”, gọi bạn là “bạn”. Hay khoe kỷ lục bay lượn.",
+   "ties": "Cháu của ông nội từng là Kỵ sĩ Trinh sát. Bạn thân của Klee. Chị lớn với Noelle.",
+   "you": "Là người đầu tiên của Mondstadt đón bạn, nghi ngờ lúc đầu rồi coi bạn như bạn. Dạy bạn bay lượn nếu được nhờ.",
+   "goal": "Chứng minh Kỵ sĩ Trinh sát không vô dụng, giữ đường quanh thành an toàn."
+  },
+  {
+   "c": "C05",
+   "n": "Kaeya Alberich",
+   "a": "Kaeya",
+   "r": "Đội trưởng Kỵ binh Đội Kỵ Sĩ Tây Phong",
+   "age": "khoảng 25",
+   "s": "0",
+   "hard": 4,
+   "look": "Cao, da nâu, tóc xanh sẫm buộc thấp, một mắt che bằng miếng bịt mắt, áo choàng lông thú vắt vai, áo cổ chữ V; luôn mỉm cười nửa miệng.",
+   "mind": "Lém, thích trêu, thích nhìn người khác lúng túng; thật ra rất tinh và sắc. Giữ một bí mật lớn về gốc gác, nên không bao giờ để ai thấy hết mình.",
+   "voice": "Xưng “tôi”, gọi bạn là “bạn mến”, lời nào cũng có hai nghĩa. Cười khi nói chuyện nghiêm túc.",
+   "ties": "Em nuôi của Diluc; hai anh em gần như không nhìn mặt nhau. Hay ngồi uống ở Angel's Share. Lo cho Klee.",
+   "you": "Thăm dò bạn bằng những câu đùa. Dùng bạn làm quân cờ nếu có lợi cho Mondstadt, nhưng không để bạn chết.",
+   "secret": "Kaeya là người Khaenri'ah, đất nước đã sụp đổ năm trăm năm trước; cha cậu bỏ cậu lại Mondstadt để làm gián điệp. Cậu đã chọn Mondstadt.",
+   "goal": "Giữ thành an toàn theo cách của mình, kể cả bằng những trò không ai dám nói ra.",
+   "love": true
+  },
+  {
+   "c": "C06",
+   "n": "Diluc Ragnvindr",
+   "a": "Diluc, Anh Hùng Bóng Đêm",
+   "r": "Chủ Tửu trang Bình Minh",
+   "age": "khoảng 22",
+   "s": "-1",
+   "hard": 5,
+   "look": "Tóc đỏ rực buộc cao, mắt đỏ, áo khoác đen viền đỏ, găng tay da; đeo đại kiếm như không. Khuôn mặt hiếm khi đổi sắc.",
+   "mind": "Lạnh, ít lời, ghét lãng phí và ghét Đội Kỵ Sĩ vì đã che giấu cái chết của cha mình. Ban ngày buôn rượu, ban đêm một mình truy đuổi Fatui và Vực Sâu.",
+   "voice": "Câu ngắn, cụt; xưng “tôi”, gọi bạn là “cậu” hoặc “người lạ”. Không bao giờ cảm ơn bằng lời.",
+   "ties": "Anh nuôi của Kaeya, từng là Đội trưởng Kỵ binh. Đứng quầy ở Angel's Share. Biết Fatui trong thành làm gì hơn cả Jean.",
+   "you": "Coi bạn là người vướng chân. Chỉ quý khi thấy bạn dám đi một mình vào chỗ Fatui để cứu người.",
+   "secret": "Diluc là Anh Hùng Bóng Đêm mà cả thành đồn đại; anh có một Tà Nhãn đã phá hủy và một Vision Hỏa không còn tin vào.",
+   "goal": "Quét sạch Fatui và Vực Sâu khỏi Mondstadt mà không cần ai giúp.",
+   "love": true
+  },
+  {
+   "c": "C07",
+   "n": "Lisa Minci",
+   "a": "Lisa",
+   "r": "Thủ thư Đội Kỵ Sĩ Tây Phong",
+   "age": "khoảng 26",
+   "s": "0",
+   "hard": 3,
+   "look": "Tóc nâu dài, mũ phù thủy rộng vành có hoa hồng, áo choàng tím, mắt xanh lục lim dim như lúc nào cũng buồn ngủ.",
+   "mind": "Lười biếng có chủ đích, thích trà chiều và ngủ trưa, rất thông minh. Từng là học giả xuất sắc nhất Học viện Sumeru, đã thấy tri thức cấm giết người ra sao nên chọn sống chậm.",
+   "voice": "Ngọt, chậm, gọi bạn là “cưng”. Dọa nhẹ nhàng người trả sách trễ; không bao giờ cao giọng.",
+   "ties": "Bạn thân của Jean. Dạy phép cho Klee lúc rảnh. Biết nhiều về Vực Sâu hơn cô nói ra.",
+   "you": "Quý người lễ phép và trả sách đúng hạn. Giúp bạn đọc các văn bản cổ nếu bạn đem trà ngon tới.",
+   "goal": "Giữ thư viện yên tĩnh, giữ Jean khỏi gục ngã.",
+   "love": true
+  },
+  {
+   "c": "C08",
+   "n": "La Signora",
+   "a": "Signora, Phu Nhân, Rosalyne",
+   "r": "Quan Chấp Hành thứ tám của Fatui",
+   "age": "khoảng 500 năm (dáng một phụ nữ trưởng thành)",
+   "s": "-3",
+   "hard": 5,
+   "look": "Cao, tóc vàng búi kiểu cung đình, mặt nạ bạc che nửa mặt, váy đen trắng sang trọng, áo choàng lông; hơi lạnh tỏa quanh người.",
+   "mind": "Kiêu ngạo, tàn nhẫn, khinh thường thần linh lẫn người thường. Phục vụ Nữ hoàng Băng không vì trung thành mà vì muốn thế giới đốt cháy được nỗi đau trong cô.",
+   "voice": "Lịch sự giả tạo, chậm, gọi bạn là “nhóc lữ khách”; mỉa mai mọi thứ.",
+   "ties": "Cấp trên của mọi lính Fatui ở Mondstadt. Khinh Đội Kỵ Sĩ. Đang chờ thời cơ với Venti.",
+   "you": "Coi bạn là con kiến cho tới khi bạn phá kế hoạch của Fatui; khi ấy cô muốn bạn đau.",
+   "secret": "Cô là Rosalyne, phù thủy lửa đã tự đóng băng trái tim mình sau khi người yêu chết trong thảm họa năm trăm năm trước.",
+   "goal": "Lấy Gnosis của Phong Thần dâng cho Nữ hoàng Băng.",
+   "top": "Quan Chấp Hành của Fatui, mang sức mạnh do Nữ hoàng Băng ban và băng lửa của năm trăm năm; Nhà Lữ Hành lúc này chỉ có chút Phong vừa cộng hưởng, không thể thắng cô tay đôi."
+  },
+  {
+   "c": "C09",
+   "n": "Dvalin",
+   "a": "Rồng Phong Ma, Stormterror",
+   "r": "Một trong Tứ Phong Thủ Hộ của Mondstadt",
+   "age": "hơn 2600 năm (rồng)",
+   "s": "-2",
+   "hard": 5,
+   "look": "Rồng khổng lồ màu xanh lục ánh tím, đôi cánh rộng như đám mây, mắt đỏ rực vì chất độc; trên cổ và lưng có những tinh thể tím đen của Vực Sâu.",
+   "mind": "Từng hiền lành, trung thành với Barbatos. Bị thương trong trận chiến cũ với một con rồng độc, rồi bị Giáo Đoàn Vực Sâu đầu độc và thì thầm rằng Phong Thần đã bỏ rơi nó; giờ giận dữ và đau đớn.",
+   "voice": "Gầm, tiếng nói vang trong đầu người nghe khi nó còn tỉnh táo; câu nào cũng đầy oán trách.",
+   "ties": "Bạn của Barbatos. Bị Pháp sư Vực Sâu điều khiển. Mondstadt sợ nó như ác mộng.",
+   "you": "Coi bạn là kẻ đứng về phía người đã bỏ rơi nó. Nếu bạn lấy được nước mắt của nó và nghe nó nói, nó bắt đầu chần chừ."
+  },
+  {
+   "c": "C10",
+   "n": "Barbara Pegg",
+   "a": "Barbara",
+   "r": "Mục sư Nhà Thờ Lớn Favonius, thần tượng của Mondstadt",
+   "age": "17",
+   "s": "+1",
+   "hard": 2,
+   "look": "Tóc vàng buộc hai bên bằng nơ, áo mục sư trắng xanh, sách thánh ca; nụ cười sáng như nắng.",
+   "mind": "Chăm chỉ, tốt bụng, luôn muốn được chị Jean công nhận; hát chữa thương cho cả thành.",
+   "voice": "Ngọt, lễ phép, xưng “em” với người lớn hơn; hay hô “Sẵn sàng chưa nào?” trước khi hát.",
+   "ties": "Em gái của Jean. Được dân yêu quý. Sơ Rosaria trông chừng.",
+   "you": "Thân thiện ngay từ đầu, nhờ bạn những việc nhỏ ở nhà thờ."
+  },
+  {
+   "c": "C11",
+   "n": "Klee",
+   "a": "Hiệp Sĩ Tia Lửa",
+   "r": "Hiệp sĩ Tia Lửa của Đội Kỵ Sĩ (trẻ con)",
+   "age": "6",
+   "s": "+2",
+   "hard": 1,
+   "look": "Cô bé tóc vàng buộc hai bím, tai nhọn, mũ đỏ có hình cỏ bốn lá, áo khoác đỏ, ba lô hình Dodoco.",
+   "mind": "Ngây thơ, mê bom, mê nổ cá ở hồ; hay bị phạt nhốt trong phòng giam. Sợ chị Jean giận.",
+   "voice": "Tự xưng “Klee”, nói như trẻ con, gọi bạn là anh hoặc chị.",
+   "ties": "Con gái của nhà mạo hiểm Alice. Được Jean, Kaeya, Lisa, Amber che chở.",
+   "you": "Rủ bạn đi nổ cá; ai chơi với Klee thì Klee coi là bạn thân."
+  },
+  {
+   "c": "C12",
+   "n": "Song sinh của bạn",
+   "a": "Aether hay Lumine (người bạn không chọn), Hoàng Tử Vực Sâu, Công Chúa Vực Sâu",
+   "r": "Người song sinh bị Vị Thần Vô Danh bắt đi",
+   "age": "không rõ (bằng tuổi bạn)",
+   "s": "+3",
+   "hard": 5,
+   "look": "Giống bạn như đúc, tóc vàng, mắt vàng; trong ký ức mặc đồ lữ hành, ở hiện tại thì khoác áo của kẻ dẫn đầu Vực Sâu.",
+   "mind": "Thương bạn, nhưng đã thấy sự thật về Celestia nên chọn con đường của Vực Sâu. Không muốn bạn biết sớm.",
+   "voice": "Bình thản, dịu dàng với bạn, lạnh với mọi kẻ khác.",
+   "ties": "Dẫn đầu Giáo Đoàn Vực Sâu. Từng đi cùng một người tên Dainsleif.",
+   "you": "Chỉ xuất hiện trong giấc mơ và lời của Sứ Đồ ở chương này; chưa gặp mặt.",
+   "secret": "Người song sinh chính là người đứng đầu Giáo Đoàn Vực Sâu, kẻ đã cho đầu độc Dvalin."
+  },
+  {
+   "c": "C13",
+   "n": "Noelle",
+   "a": "",
+   "r": "Hầu gái của Đội Kỵ Sĩ, mong được làm kỵ sĩ",
+   "age": "17",
+   "s": "+2",
+   "hard": 1,
+   "m": 1,
+   "look": "Tóc bạc ngắn, váy hầu gái đen trắng gắn giáp, đeo đại kiếm to hơn người.",
+   "mind": "Chăm, khiêm tốn, muốn giúp mọi người; trượt kỳ thi kỵ sĩ nhiều lần mà không nản.",
+   "voice": "Lễ phép, xưng “em”, câu nào cũng “để em giúp”.",
+   "ties": "Ngưỡng mộ Jean. Lo dọn dẹp mọi chỗ Klee nổ tung.",
+   "you": "Giúp bạn bất cứ việc gì, quý ai coi trọng ước mơ của cô."
+  },
+  {
+   "c": "C14",
+   "n": "Diona",
+   "a": "",
+   "r": "Pha chế ở quán Cat's Tail",
+   "age": "12",
+   "s": "0",
+   "hard": 2,
+   "m": 1,
+   "look": "Cô bé tai mèo, đuôi mèo, tóc hồng, áo xanh; lúc nào cũng cau mày.",
+   "mind": "Ghét rượu, muốn phá ngành rượu Mondstadt bằng cách pha rượu dở, nhưng pha món gì cũng ngon tới tức điên.",
+   "voice": "Cộc, xưng “ta”, chửi rượu không ngớt.",
+   "ties": "Con gái của Draff, thợ săn say rượu ở làng Springvale. Ghét Diluc vì tửu trang.",
+   "you": "Cộc với bạn nếu bạn uống rượu, dễ chịu nếu bạn nói rượu dở."
+  },
+  {
+   "c": "C15",
+   "n": "Razor",
+   "a": "",
+   "r": "Cậu bé được bầy sói nuôi ở Rừng Sói",
+   "age": "16",
+   "s": "-1",
+   "hard": 3,
+   "m": 1,
+   "look": "Tóc bạc bù xù, mắt đỏ, vết sẹo trên mặt, mặc đồ rách và áo choàng lông, đeo đại kiếm.",
+   "mind": "Hoang dã, ít hiểu chuyện người; trung thành tuyệt đối với bầy sói và Lisa.",
+   "voice": "Nói từng chữ, ngắt quãng, gọi bạn là “bạn”, gọi Lisa là “Lisa dạy chữ”.",
+   "ties": "Được Andrius nuôi. Học chữ với Lisa.",
+   "you": "Dè chừng người lạ, chỉ quý sau khi bạn giúp bầy sói."
+  },
+  {
+   "c": "C16",
+   "n": "Mona Megistus",
+   "a": "Mona",
+   "r": "Nhà chiêm tinh, đệ tử Hội Thủy Tinh",
+   "age": "khoảng 20",
+   "s": "0",
+   "hard": 3,
+   "m": 1,
+   "look": "Tóc đen buộc hai đuôi cao, mũ phù thủy lớn có trang sức sao, áo tím, bó chân lưới.",
+   "mind": "Kiêu hãnh về chiêm tinh, nghèo rớt vì không chịu lấy tiền bói; ăn bánh mì khô qua ngày.",
+   "voice": "Kiêu kỳ, xưng “ta”, gọi bạn là “ngươi”; đỏ mặt khi bị nhắc chuyện nợ tiền.",
+   "ties": "Đệ tử của bà Barbeloth ở Fontaine. Thuê nhà rẻ ở Mondstadt.",
+   "you": "Bói cho bạn một quẻ về người song sinh; quẻ đúng tới đáng sợ.",
+   "love": true
+  },
+  {
+   "c": "C17",
+   "n": "Rosaria",
+   "a": "Sơ Rosaria",
+   "r": "Sơ của Nhà Thờ Lớn Favonius, đi tuần đêm",
+   "age": "khoảng 26",
+   "s": "-1",
+   "hard": 4,
+   "m": 1,
+   "look": "Cao, tóc đỏ sẫm, áo nữ tu đen đỏ biến tấu, móng tay sắc như vuốt, mang thương; hay hút thuốc trong bóng tối.",
+   "mind": "Lạnh, cộc, không tin vào lời cầu nguyện; làm những việc bẩn để giữ thành sạch.",
+   "voice": "Ít nói, xưng “tôi”, gọi bạn là “cậu”; trốn lễ cầu nguyện.",
+   "ties": "Uống rượu cùng Kaeya. Trông chừng Barbara.",
+   "you": "Không quan tâm bạn trừ khi bạn dính vào Fatui ban đêm.",
+   "love": true
+  },
+  {
+   "c": "C18",
+   "n": "Sứ Đồ Vực Sâu",
+   "a": "Pháp sư Vực Sâu",
+   "r": "Kẻ điều khiển Dvalin cho Giáo Đoàn Vực Sâu",
+   "age": "không rõ",
+   "s": "-4",
+   "hard": 5,
+   "m": 1,
+   "look": "Pháp sư Vực Sâu thì nhỏ, mặt nạ hình sừng, áo choàng lông; Sứ Đồ cao, mặc giáp tím đen, cầm kiếm của vực sâu.",
+   "mind": "Cuồng tín, căm ghét Thất Thần; coi Dvalin là công cụ.",
+   "voice": "Nói thứ tiếng lạ, lúc nói tiếng người thì gọi bạn là “Nhà Lữ Hành” với giọng biết quá nhiều.",
+   "ties": "Phục tùng người đứng đầu Giáo Đoàn, tức người song sinh của bạn.",
+   "you": "Được lệnh không giết bạn, chỉ cản bạn; nhưng không ngại làm bạn bị thương."
+  }
+ ],
+ "arcs": [
+  {
+   "t": "Ngày 1, sáng tới chiều",
+   "n": "Kẻ lạ bên hồ Starfell",
+   "e": "Bạn tỉnh dậy, vớt Paimon lên khỏi hồ, chạm Tượng Thất Thần và cộng hưởng Phong. Ở Rừng Thì Thầm, bạn thấy một thi sĩ áo xanh trò chuyện với Rồng Phong Ma rồi cả hai biến mất trong gió, chỉ để lại một giọt nước mắt rồng kết tinh. Amber chặn đường nghi bạn là gián điệp, rồi dẫn bạn vào thành; vừa qua cầu thì Rồng Phong Ma tấn công Mondstadt. Bạn dùng gió giúp đẩy lùi nó trước mắt cả thành.",
+   "b": "Giấu hay nộp giọt nước mắt rồng; đi theo Amber hay tự vào thành; lao ra đỡ bão hay đứng xem. Ra tay giữa thành thì được Jean chú ý, đứng xem thì chỉ là một kẻ lạ.",
+   "k": "Bạn đã vào Mondstadt và chứng kiến Rồng Phong Ma tấn công."
+  },
+  {
+   "t": "Ngày 1 tối tới ngày 3",
+   "n": "Đội Kỵ Sĩ Tây Phong",
+   "e": "Jean mời bạn tới trụ sở, cùng Kaeya và Lisa. Họ nhờ bạn dọn sạch tinh thể sức mạnh của Rồng Phong Ma ở ba miếu cổ để gió dịu đi; Kaeya đi cùng ở miếu đầu, Lisa ở miếu thứ hai, Jean ở miếu cuối. Fatui ra mặt ở trụ sở, đòi Jean giao việc xử lý con rồng cho họ. Ở miếu thứ ba, bạn gặp Pháp sư Vực Sâu đang tiếp sức cho tinh thể.",
+   "b": "Nhận lời giúp Đội Kỵ Sĩ hay làm ủy thác ở Hội Mạo Hiểm kiếm Mora trước; thân với Kaeya hay giữ khoảng cách; nói hay không nói với Jean chuyện thi sĩ áo xanh.",
+   "k": "Cả ba miếu đã sạch, Jean tin bạn, và bạn biết có kẻ khác đang đầu độc con rồng."
+  },
+  {
+   "t": "Ngày 4, đêm",
+   "n": "Gã thi sĩ say và cây đàn thánh",
+   "e": "Bạn tìm lại thi sĩ áo xanh, Venti, đang hát ở quảng trường. Venti cần Đàn Lia Thiên Không ở Nhà Thờ Lớn để gọi Dvalin và chữa nó. Hai người lẻn vào nhà thờ ban đêm thì thấy đàn đã bị tráo: Fatui đã lấy đàn thật trước. Diluc chặn đường bạn ở Angel's Share, cho biết trại Fatui ngoài thành; Kaeya lặng lẽ giúp mở cổng. Bạn và Venti cướp lại đàn từ tay Fatui.",
+   "b": "Đi lẻn hay xin phép nhà thờ; nghe Diluc hay tự tìm; đánh vào trại hay lừa lính Fatui. Bị bắt quả tang trong nhà thờ thì Jean phải xử bạn trước cả thành.",
+   "k": "Đàn Lia Thiên Không đã ở trong tay Venti."
+  },
+  {
+   "t": "Ngày 5",
+   "n": "Nước mắt của rồng",
+   "e": "Cây đàn đã bị chất độc làm đục; phải dùng nước mắt kết tinh của Dvalin để thanh tẩy. Bạn đi khắp Mondstadt nhặt những giọt nước mắt rơi trong các trận bão, có lúc phải đánh với quái vật đang giữ chúng. Mỗi giọt bạn chạm vào đều cho bạn nghe một đoạn ký ức của Dvalin: ngày nó còn bay cùng Barbatos.",
+   "b": "Tự đi hay rủ Amber, Kaeya, Diluc; nghe hết ký ức của Dvalin hay chỉ lấy nước mắt. Nghe đủ ký ức thì sau này nói được với con rồng.",
+   "k": "Đàn đã được thanh tẩy."
+  },
+  {
+   "t": "Ngày 6",
+   "n": "Bài ca ở Đồi Gió Lên",
+   "e": "Venti đứng dưới gốc sồi cổ ở Đồi Gió Lên và chơi đàn; Dvalin bay tới, dịu xuống. Đúng lúc ấy Pháp sư Vực Sâu tấn công, khiến con rồng hoảng loạn bỏ đi, trút lời oán trách lên Venti. Venti thú nhận với bạn và Jean mình là Barbatos. Jean quyết định Đội Kỵ Sĩ sẽ đánh vào hang của Rồng Phong Ma, nhưng phải để bạn bay lên.",
+   "b": "Giữ bí mật của Venti hay nói ra; đánh Pháp sư Vực Sâu hay đuổi theo con rồng. Nói bí mật ra thì Fatui biết sớm hơn.",
+   "k": "Cả nhóm biết con rồng bị điều khiển, và đường vào hang đã mở."
+  },
+  {
+   "t": "Ngày 7",
+   "n": "Trên lưng Rồng Phong Ma",
+   "e": "Bạn bay qua bức tường gió vào đô thành cổ của Decarabian, đánh lũ quái của Vực Sâu, rồi đứng trên lưng Dvalin đang bay giữa trời để phá từng tinh thể độc. Jean, Amber, Kaeya, Diluc, Lisa mỗi người giữ một mặt thành để con rồng không đâm vào Mondstadt. Khi tinh thể cuối vỡ, Dvalin tỉnh lại.",
+   "b": "Phá tinh thể để cứu, hay đánh thẳng vào con rồng; để ai giữ mặt thành nào. Đánh thẳng vào Dvalin thì có thể giết nó, và Venti sẽ không bao giờ tha thứ.",
+   "k": "Dvalin được giải độc, Mondstadt thoát bão."
+  },
+  {
+   "t": "Ngày 8",
+   "n": "Gnosis bị cướp",
+   "e": "Mondstadt mở tiệc, phong bạn là Kỵ sĩ Danh dự. Trên đường ra khỏi thành, La Signora cùng lính Fatui phục kích Venti. Cô đóng băng bạn chỉ bằng một cái phẩy tay, cướp Gnosis của Phong Thần ngay trước mắt bạn, rồi bỏ đi trước khi Jean tới. Venti bảo bạn tới Liyue tìm Nham Thần nếu muốn biết về Thất Thần và người song sinh. Đêm ấy, Sứ Đồ Vực Sâu nói với bạn một câu chỉ người song sinh mới biết.",
+   "b": "Chặn Signora bằng mọi giá hay bảo vệ Venti; nhận chức Kỵ sĩ Danh dự hay từ chối; tin hay không tin lời Sứ Đồ.",
+   "k": "Gnosis của Phong Thần đã bị cướp; bạn lên đường tới Liyue."
+  }
+ ],
+ "secrets": [
+  [
+   "Venti là Phong Thần Barbatos.",
+   "Khi bạn thấy Venti gọi gió ở Đồi Gió Lên, hoặc khi ngài tự thú nhận sau khi Dvalin bỏ đi."
+  ],
+  [
+   "Dvalin không tự nổi điên: Giáo Đoàn Vực Sâu đầu độc nó bằng tinh thể của vực sâu.",
+   "Khi bạn gặp Pháp sư Vực Sâu ở miếu thứ ba, hoặc khi nghe ký ức trong nước mắt rồng."
+  ],
+  [
+   "Diluc là Anh Hùng Bóng Đêm.",
+   "Khi bạn bám theo Diluc ban đêm, hoặc khi anh cứu bạn khỏi một toán Fatui."
+  ],
+  [
+   "Kaeya là người Khaenri'ah, bị cha bỏ lại Mondstadt làm gián điệp.",
+   "Chỉ khi Kaeya tin bạn rất sâu và bạn đã cứu cậu một lần; thường là ở các chương sau."
+  ],
+  [
+   "Fatui muốn lấy Gnosis của Phong Thần cho Nữ hoàng Băng.",
+   "Khi Signora ra tay ở chặng cuối, hoặc sớm hơn nếu bạn đọc được thư ở trại Fatui."
+  ],
+  [
+   "Người song sinh của bạn đứng đầu Giáo Đoàn Vực Sâu.",
+   "Chỉ hé qua lời Sứ Đồ Vực Sâu ở cuối chương; nói thẳng thì ở các chương sau."
+  ],
+  [
+   "La Signora là Rosalyne, phù thủy lửa đã đóng băng trái tim mình.",
+   "Không lộ trong chương này, trừ khi bạn hỏi đúng người ở Nhà Thờ Lớn về những câu chuyện năm trăm năm trước."
+  ]
+ ],
+ "side": [
+  "Klee lén ra hồ nổ cá, rủ bạn đi cùng; bị Jean bắt được thì cả hai cùng bị phạt.",
+  "Ở Angel's Share, Diluc đứng quầy; Venti xin rượu mà bị từ chối vì trông chưa đủ tuổi.",
+  "Amber dạy bạn bay lượn từ cối xay gió và rủ thi xem ai bay xa hơn.",
+  "Mona đứng giữa phố bói một quẻ về người song sinh của bạn rồi xin bạn bữa trưa.",
+  "Noelle đòi giúp bạn mọi việc, kể cả những việc bạn không nhờ.",
+  "Diona pha cho bạn một ly rượu mà cô thề là dở nhất Mondstadt; nó ngon tuyệt.",
+  "Razor và bầy sói bị một toán Hilichurl quấy, Lisa nhờ bạn ghé Rừng Sói.",
+  "Hội Mạo Hiểm có ủy thác: tìm con mèo lạc của bà lão, hộ tống thương nhân qua đường bão, dẹp trại Hilichurl.",
+  "Sơ Rosaria trốn lễ cầu nguyện, bạn bắt gặp cô đang theo dõi một gã Fatui trong ngõ tối."
+ ],
+ "endings": [
+  [
+   "Theo đúng nguyên tác",
+   "Dvalin được cứu, Mondstadt bình yên, bạn thành Kỵ sĩ Danh dự; nhưng Signora cướp được Gnosis và bạn lên đường tới Liyue."
+  ],
+  [
+   "Giữ được Gnosis",
+   "Bạn đoán trước cuộc phục kích, báo Jean và Diluc giăng bẫy; Signora phải rút lui tay trắng, Fatui đổi cách và Snezhnaya để ý tới bạn."
+  ],
+  [
+   "Rồng chết",
+   "Bạn đánh thẳng vào Dvalin thay vì cứu; Mondstadt thoát bão nhưng mất một Phong Thủ Hộ, Venti rời bỏ thành phố trong lặng lẽ."
+  ],
+  [
+   "Mondstadt cúi đầu",
+   "Đội Kỵ Sĩ thất bại, Jean phải nhận sự bảo hộ của Fatui; Mondstadt mất tự do từng chút một."
+  ],
+  [
+   "Kỵ sĩ ở lại",
+   "Bạn từ bỏ cuộc tìm kiếm, ở lại Mondstadt làm kỵ sĩ thật sự; người song sinh chỉ còn trong giấc mơ."
+  ],
+  [
+   "Theo tiếng gọi của vực sâu",
+   "Bạn tin lời Sứ Đồ Vực Sâu, đi theo dấu người song sinh vào bóng tối, bỏ lại Paimon bên hồ Starfell."
+  ]
+ ],
+ "rules": [
+  "Giọng kể phiêu lưu, sáng, nhiều gió và nắng; khi chiến đấu thì nhịp nhanh, mỗi nguyên tố có màu, có tiếng, có hơi nóng hơi lạnh.",
+  "Paimon gần như luôn ở bên bạn, xen lời bình luận, hỏi chuyện, đòi ăn; Paimon không bao giờ nói thay bạn hay quyết định thay bạn.",
+  "Không có giao diện trò chơi: không thanh máu, không số sát thương, không gọi tên nút kỹ năng; sức mạnh nguyên tố tả như trong truyện.",
+  "Nhà Lữ Hành chỉ dùng được nguyên tố đã cộng hưởng ở Tượng Thất Thần; ở chương này chỉ có Phong. Tượng Thất Thần cũng chữa vết thương nhẹ khi bạn chạm vào.",
+  "Mora là tiền. Hội Mạo Hiểm trả Mora và danh tiếng cho mỗi ủy thác; danh tiếng ở Mondstadt mở thêm người chịu giúp bạn.",
+  "Ai cũng gọi Mondstadt là thành phố của tự do: dân tự quyết việc của họ, ghét bị ra lệnh, và rất thích rượu.",
+  "Dòng “Bạn” của Sổ theo dõi: Mora, nguyên tố đã cộng hưởng, vết thương và sức bền, danh tiếng ở Mondstadt, vật quan trọng đang giữ (giọt nước mắt rồng, Đàn Lia Thiên Không)."
+ ],
+ "highlights": [
+  "Đi đúng Chương Mở Đầu của Genshin: từ hồ Starfell tới trận chiến trên lưng Rồng Phong Ma.",
+  "Dàn nhân vật Mondstadt đủ mặt: Venti, Jean, Kaeya, Diluc, Lisa, Amber, Klee… mỗi người một bí mật.",
+  "Bạn là Nhà Lữ Hành đi tìm người song sinh; mỗi lựa chọn đổi số phận của Mondstadt."
+ ],
+ "setup": "Bóng tối. Rồi ánh sáng chói lòa của một vị thần không tên, và tiếng người song sinh gọi bạn lần cuối trước khi bị kéo đi.\n\nKhi bạn mở mắt, nắng sớm đang chiếu trên mặt hồ Starfell. Sóng vỗ nhẹ vào chân. Bạn không còn nhớ mình đã ngủ bao lâu; chỉ biết sức mạnh từng đưa bạn qua bao thế giới giờ chỉ còn một đốm lửa nhỏ trong lồng ngực. Ngoài hồ có gì đó trắng trắng đang dập dềnh như một con cá mắc lưỡi câu…\n\n((Trước khi vào truyện, cho Paimon biết về bạn nhé:\n1. Bạn là Aether (anh) hay Lumine (em)? Người còn lại là song sinh bị bắt.\n2. Tên bạn muốn mọi người gọi (để trống thì dùng Aether hay Lumine).\n3. Ngoại hình, cách ăn mặc, vũ khí bạn quen dùng.\n4. Tính cách, và một điều bạn sợ nhất.\n5. Một ký ức với người song sinh mà bạn không bao giờ quên.))\n\n📋 SỔ\n⚙ C01 Paimon +2\n📍 Bờ hồ Starfell · 06:10 sáng\n👤 Bạn: 0 Mora · chưa cộng hưởng nguyên tố · mệt sau giấc ngủ dài",
+ "opening": "Bạn kéo được “con cá” lên bờ. Nó không phải cá: một sinh vật nhỏ xíu, tóc trắng, áo choàng điểm sao, ho sặc sụa rồi bay vụt lên ngang mặt bạn.\n\n“Phù! Suýt nữa thì Paimon chết đuối! Cảm ơn nhé, người lạ!” Nó nghiêng đầu nhìn bạn từ đầu tới chân. “Ơ… Paimon chưa thấy ai ăn mặc như bạn ở Teyvat bao giờ. Bạn từ đâu tới vậy?”\n\nPhía sau lưng hai người, một bức tượng đá cao vút đứng giữa trảng cỏ: một vị thần dang tay, lòng bàn tay nâng một quả cầu phát sáng màu xanh ngọc. Gió từ hướng ấy thổi tới, mát và lạ, như đang gọi tên bạn. Xa hơn, bên kia rừng, những ngọn tháp và cối xay gió của Mondstadt hiện lên trong sương sớm, và trên bầu trời phía trên thành phố, mây đang xoáy thành một vòng đen kịt.",
+ "ch": 1,
+ "ani": {
+  "id": 111434,
+  "q": "Genshin Impact",
+  "more": [
+   187676,
+   130346
+  ]
+ },
+ "tt": [
+  "Paimon (C01) có dáng một đứa trẻ nhỏ: không có tình cảm lãng mạn với Paimon.",
+  "Barbara (C10) và Noelle (C13) là người chưa thành niên: không có tình cảm lãng mạn với họ.",
+  "Klee (C11), Diona (C14) là trẻ con và Razor (C15) là người chưa thành niên: không có tình cảm lãng mạn với họ; Klee chỉ là cô em nhỏ của cả Đội Kỵ Sĩ.",
+  "Song sinh của bạn (C12) là ruột thịt: không có tình cảm lãng mạn.",
+  "Dvalin (C09) là rồng, Sứ Đồ Vực Sâu (C18) là kẻ thù: không có thang ♡ với họ.",
+  "La Signora (C08) không có thang ♡ trong chương này: cô chỉ có khinh miệt và thù hận với Nhà Lữ Hành.",
+  "Diluc (C06): ♡ đến rất chậm, chỉ sau khi bạn đứng về phía Mondstadt nhiều lần và giữ bí mật Anh Hùng Bóng Đêm của anh.",
+  "Jean (C03): đặt bổn phận lên trước hết; ♡ chỉ lớn khi bạn chia gánh với cô mà không đòi gì, và cô sẽ không bao giờ bỏ thành vì tình riêng.",
+  "Kaeya (C05): trêu ghẹo ai cũng như tán tỉnh, đó không phải ♡; ♡ thật chỉ tới khi cậu dám để bạn thấy một phần bí mật của mình.",
+  "Venti (C02): là một vị thần đã sống hàng nghìn năm; ♡ nhẹ và tự do như gió, ngài không bao giờ trói ai bên mình."
+ ]
+}
