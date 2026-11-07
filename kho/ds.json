@@ -1,7 +1,7 @@
 {
  "v": 1,
- "n": 23,
- "at": 1793942068104,
+ "n": 24,
+ "at": 1794061823976,
  "ids": {
   "tr-full": "mw3nitbw",
   "tr-2008": "mw3nitbw",
@@ -44,7 +44,9 @@
   "nar-cuoi-18": "mw4irnyn",
   "nar-chunin-18": "mw4iseq0",
   "nar-sasuke-18": "mw4iseq0",
-  "nar-pain-18": "mw4iseq0"
+  "nar-pain-18": "mw4iseq0",
+  "nar-langda": "mw6i36y0",
+  "nar-langda-18": "mw6i36y0"
  },
  "khuon": ""
 }
