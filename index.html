@@ -13576,7 +13576,13 @@ html[data-kit] .w-art img:not(.tall) { object-fit: contain; object-position: 50%
     else if (h || p.ride || p.moon || p.fly) { /* hướng nhìn do cowHideStep, rideStep đặt */ }
     else if (!p.on && !p.tw) { if (Math.abs(p.vx) > 40) p.dir = Math.sign(p.vx); }
     else if (onSurf) {
-      if (sp > 6) p.dir = Math.sign(p.v);
+      /* Bước đi có dặn nhìn về bạn (lùi ra cho đủ chỗ chơi): đi giật lùi mà vẫn quay mặt vào nhau, không quay lưng lại.
+         Giữa đường mà cảnh chủ ý cho quay đi chỗ khác (giận dỗi, nhìn lên trời) thì thôi không ép nhìn bạn nữa */
+      const st = p.route[0] && p.route[0].t === 'walk' && p.route[0].face ? p.route[0] : null;
+      if (st && st.fd && p.dir !== st.fd) st.face = null;
+      const fc = st && st.face && st.face.live() ? st.face : null;
+      if (fc) { if (Math.abs(fc.px - p.px) > 2) p.dir = Math.sign(fc.px - p.px); st.fd = p.dir; }
+      else if (sp > 6) p.dir = Math.sign(p.v);
       else if (p.tgt != null && Math.abs(p.tgt - p.s) > 2) p.dir = Math.sign(p.tgt - p.s);
     }
     if (onSurf && upright(p.on) && ((sp > 110 && t - p.dustAt > 260) || (Math.abs(a) > 250 && sp > 30 && t - p.dustAt > 120))) { p.dustAt = t; cowDust(1); }
@@ -15244,11 +15250,13 @@ html[data-kit] .w-art img:not(.tall) { object-fit: contain; object-position: 50%
   function faceTo(p, q) { if (Math.abs(q.px - p.px) > 2) p.dir = Math.sign(q.px - p.px); }
   function jumpUp(p, power, vx) { withPet(p, () => { if (cowHop(power) && vx) p.vx = vx; }); }
   function leanIn(p, k) { p.tv += p.dir * (k || 2.4); }
-  function walkTo(p, s, v) {
+  function walkTo(p, s, v, face) {
     if (!p.on || p.tw) return;
     const sp = cowSpan(cowSeg(p.on) || {});
-    if (sp) p.route = [{ t: 'walk', s: clampN(s, sp[0], sp[1]), v }];
+    if (sp) p.route = [{ t: 'walk', s: clampN(s, sp[0], sp[1]), v, face }];
   }
+  /* Đã đứng yên đúng chỗ (hết đường đi, hết đà) */
+  const petStill = (p) => !p.route.length && Math.abs(p.v) < 8;
   function hearts(p, n) { for (let i = 0; i < (n || 2); i++) setTimeout(() => pfx(p, 'heart', '♥', { jx: 16, dx: (Math.random() - 0.5) * 24 }), i * 220); }
   /* ---- Cảnh: chuỗi việc theo giờ cho hai đứa; dừng ngay khi một đứa bị nhấc lên, AI bắt đầu viết, hay tắt một con ---- */
   const scene = { on: null, timers: [], next: Date.now() + 90000 + Math.random() * 90000, casual: Date.now() + 25000, last: [] };
@@ -15306,8 +15314,8 @@ html[data-kit] .w-art img:not(.tall) { object-fit: contain; object-position: 50%
     if (!sameSurf(a, b)) return;
     const mid = (a.s + b.s) / 2;
     const l = a.s <= b.s ? a : b;
-    walkTo(l, mid - gap / 2, 'slow');
-    walkTo(other(l), mid + gap / 2, 'slow');
+    walkTo(l, mid - gap / 2, 'slow', other(l));
+    walkTo(other(l), mid + gap / 2, 'slow', l);
     sceneAt(900, () => { faceTo(a, b); faceTo(b, a); });
   }
   const PLAY = {
@@ -17463,14 +17471,16 @@ html[data-kit] .w-art img:not(.tall) { object-fit: contain; object-position: 50%
       closeIn(a, b, 130);
       talkAt(300, L);
       const t1 = 300 + talkMs(L) + 300;
-      sceneAt(t1, () => {
+      const play = () => {
+        faceTo(a, b);
+        faceTo(b, a);
         const g = groundOf(a, b);
         const ball = toy('ball', ballSvg);
         const sh = toy('tshadow');
         const R = 9;
         let spin = 0;
         const put = (x, y) => { toyAt(ball, x - R, y - 2 * R, ' rotate(' + spin.toFixed(0) + 'deg)'); const hgt = Math.max(0, g - y); const k = Math.max(0.35, 1 - hgt / 160); toyAt(sh, x - 10, g - 3, ' scale(' + k.toFixed(2) + ')'); sh.style.opacity = (0.15 + 0.5 * k).toFixed(2); };
-        const feet = (p) => p.px + p.dir * (p.sp.half - 2);
+        const feet = (p) => p.px + (Math.sign(other(p).px - p.px) || p.dir) * (p.sp.half - 2);
         const legs = [];
         let from = { x: (a.px + b.px) / 2, y: g - 190 };
         legs.push({ to: { x: (a.px + b.px) / 2, y: g }, d: 0.75, h: 0, drop: true });
@@ -17486,6 +17496,7 @@ html[data-kit] .w-art img:not(.tall) { object-fit: contain; object-position: 50%
           if (leg.kick) {
             const kp = leg.kick;
             faceTo(kp, other(kp));
+            faceTo(other(kp), kp);
             withPet(kp, () => { cowSquash(0.5); cowDust(3); });
             pfx(kp, 'word', i === legs.length - 1 ? 'Đội đầu!' : pick(['Bụp!', 'Sút!', 'Chuyền nè!', 'Đỡ nè!']), { up: 46 });
             if (leg.header) jumpUp(kp, 330);
@@ -17520,9 +17531,17 @@ html[data-kit] .w-art img:not(.tall) { object-fit: contain; object-position: 50%
           }
           return true;
         });
-      });
-      sceneAt(t1 + 8200, () => { ptag(a, 'happy', 1500); ptag(b, 'happy', 1500); psay(a, lineOf(a, 'cheer')); hearts(b, 2); });
-      sceneAt(t1 + 9800, () => sceneEnd(true));
+        sceneAt(8200, () => { ptag(a, 'happy', 1500); ptag(b, 'happy', 1500); psay(a, lineOf(a, 'cheer')); hearts(b, 2); });
+        sceneAt(9800, () => sceneEnd(true));
+      };
+      /* Chưa đứng yên đối mặt nhau thì chưa thả bóng (máy chậm thì hai đứa lùi ra lâu hơn); chờ tối đa 6 giây */
+      let waited = 0;
+      const ready = () => {
+        if ((petStill(a) && petStill(b)) || waited >= 6000) { play(); return; }
+        waited += 150;
+        sceneAt(150, ready);
+      };
+      sceneAt(t1, ready);
     },
     /* Thổi bong bóng: vịt thổi một chuỗi bong bóng xà phòng bay lên, bò nhảy lên đớp; Cậu bấm vào bong bóng cũng vỡ */
     bubbles(a, b) {
