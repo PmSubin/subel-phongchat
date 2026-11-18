@@ -37,7 +37,8 @@
    "r": "Geo · kiếm · Kreideprinz; Chief Alchemist, đội trưởng Investigation Team của Knights of Favonius (Đội Kỵ sĩ Tây Phong)",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/30/Albedo_Icon.png/revision/latest"
   },
   {
    "c": "C02",
@@ -46,7 +47,8 @@
    "r": "Pyro · cung · Outrider duy nhất còn lại của Knights",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/7/75/Amber_Icon.png/revision/latest"
   },
   {
    "c": "C03",
@@ -55,7 +57,8 @@
    "r": "Hydro · pháp khí · Deaconess của Church of Favonius, \"idol\"; em gái Jean",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Barbara_Icon.png/revision/latest"
   },
   {
    "c": "C04",
@@ -64,7 +67,8 @@
    "r": "Pyro · kiếm · trẻ mồ côi (lore: gốc Natlan), một mình lập Benny's Adventure Team, rất xui",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/7/79/Bennett_Icon.png/revision/latest"
   },
   {
    "c": "C05",
@@ -73,7 +77,8 @@
    "r": "Hydro · kiếm · deacon Church of Favonius, Herald of Barbatos, biết Venti là Archon",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/6/6d/Dahlia_Icon.png/revision/latest"
   },
   {
    "c": "C06",
@@ -82,7 +87,8 @@
    "r": "Pyro · đại kiếm · chủ Dawn Winery, gia chủ Ragnvindr; cựu Knight; \"Owl\" của Northern Intelligence Network",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/3d/Diluc_Icon.png/revision/latest"
   },
   {
    "c": "C07",
@@ -91,7 +97,8 @@
    "r": "Cryo · cung · bartender quán Cat's Tail (huyết thống Kätzlein), ghét rượu; con gái Draff",
    "s": "0",
    "hard": 2,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/4/40/Diona_Icon.png/revision/latest"
   },
   {
    "c": "C08",
@@ -100,7 +107,8 @@
    "r": "Pyro · kiếm · rồng do phù thủy Andersdotter (Hexenzirkel) viết ra ở Simulanka; Albedo cho thân người nhân tạo",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/Durin_Icon.png/revision/latest"
   },
   {
    "c": "C09",
@@ -109,7 +117,8 @@
    "r": "Cryo · đại kiếm · Spindrift Knight, đội trưởng Reconnaissance Company; đã cắt đứt với gia tộc Lawrence",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Eula_Icon.png/revision/latest"
   },
   {
    "c": "C10",
@@ -118,7 +127,8 @@
    "r": "Electro · cung · \"Prinzessin der Verurteilung\", điều tra viên Adventurers' Guild, đi cùng quạ Oz",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9a/Fischl_Icon.png/revision/latest"
   },
   {
    "c": "C11",
@@ -127,7 +137,8 @@
    "r": "Anemo · kiếm · Acting Grand Master (Quyền Đoàn trưởng) Knights, gia tộc Gunnhildr; chị Barbara",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/6/64/Jean_Icon.png/revision/latest"
   },
   {
    "c": "C12",
@@ -136,7 +147,8 @@
    "r": "Cryo · kiếm · Cavalry Captain của Knights; gốc Khaenri'ah (gia tộc Alberich); em nuôi Diluc",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/b6/Kaeya_Icon.png/revision/latest"
   },
   {
    "c": "C13",
@@ -145,7 +157,8 @@
    "r": "Pyro · pháp khí · Spark Knight, con gái nhỏ của Alice (Hexenzirkel)",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9c/Klee_Icon.png/revision/latest"
   },
   {
    "c": "C14",
@@ -154,7 +167,8 @@
    "r": "Electro · pháp khí · Librarian của Knights; sinh viên xuất sắc nhất Akademiya trong 200 năm; thầy của Razor",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/6/65/Lisa_Icon.png/revision/latest"
   },
   {
    "c": "C15",
@@ -163,7 +177,8 @@
    "r": "Cryo · thương · Vice Captain của Fifth Company (Ranged Company) Knights; mê chiến đấu; từng ở Adventurers' Guild",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/86/Lohen_Icon.png/revision/latest"
   },
   {
    "c": "C16",
@@ -172,7 +187,8 @@
    "r": "Cryo · thương · người đo đạc tiền tuyến của Reconnaissance Company (dưới quyền Eula); em trai Huffman",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/dd/Mika_Icon.png/revision/latest"
   },
   {
    "c": "C17",
@@ -181,7 +197,8 @@
    "r": "Hydro · pháp khí · nhà chiêm tinh Megistus, sống ở Mondstadt để trốn sư phụ; viết chuyên mục cho The Steambird",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/4/41/Mona_Icon.png/revision/latest"
   },
   {
    "c": "C18",
@@ -190,7 +207,8 @@
    "r": "Geo · đại kiếm · Maid of Favonius, muốn được làm hiệp sĩ",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/8e/Noelle_Icon.png/revision/latest"
   },
   {
    "c": "C19",
@@ -199,7 +217,8 @@
    "r": "Anemo · pháp khí · \"Witch Hunter\" nhỏ nhất (lore: từ Nod-Krai)",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/99/Prune_Icon.png/revision/latest"
   },
   {
    "c": "C20",
@@ -208,7 +227,8 @@
    "r": "Electro · đại kiếm · cậu bé sói, bầy sói của Boreas nuôi ở Wolvendom; Varka tìm thấy; Lisa dạy",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/b8/Razor_Icon.png/revision/latest"
   },
   {
    "c": "C21",
@@ -217,7 +237,8 @@
    "r": "Cryo · thương · nữ tu Church of Favonius, hành động trong bóng tối",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/35/Rosaria_Icon.png/revision/latest"
   },
   {
    "c": "C22",
@@ -226,7 +247,8 @@
    "r": "Anemo · pháp khí · nhà giả kim sinh học, trợ lý Albedo",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/0/0e/Sucrose_Icon.png/revision/latest"
   },
   {
    "c": "C23",
@@ -235,7 +257,8 @@
    "r": "Anemo · đại kiếm · Grand Master Knights, Knight of Boreas; viễn chinh tới Nod-Krai rồi về Mondstadt",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/98/Varka_Icon.png/revision/latest"
   },
   {
    "c": "C24",
@@ -244,7 +267,8 @@
    "r": "Anemo · cung · thi sĩ lang thang, thực ra là Barbatos (Anemo Archon); 7.2 vào Celestia",
    "s": "+1",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Venti_Icon.png/revision/latest"
   },
   {
    "c": "C25",
@@ -253,7 +277,8 @@
    "r": "Dendro · pháp khí · chủ Bubu Pharmacy, người giám hộ Qiqi; có khế ước với rắn trắng Changsheng; tìm cách bất tử",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/c/cb/Baizhu_Icon.png/revision/latest"
   },
   {
    "c": "C26",
@@ -262,7 +287,8 @@
    "r": "Electro · đại kiếm · thuyền trưởng hạm đội The Crux",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/e/e1/Beidou_Icon.png/revision/latest"
   },
   {
    "c": "C27",
@@ -271,7 +297,8 @@
    "r": "Cryo · đại kiếm · thầy trừ tà, thừa dương khí",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/35/Chongyun_Icon.png/revision/latest"
   },
   {
    "c": "C28",
@@ -280,7 +307,8 @@
    "r": "Pyro · đại kiếm · múa Wushou; hộ tống ở tiêu cục \"Sword and Strongbox\"",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/7/77/Gaming_Icon.png/revision/latest"
   },
   {
    "c": "C29",
@@ -289,7 +317,8 @@
    "r": "Cryo · cung · tiên nhân nửa kỳ lân (qilin), thư ký Liyue Qixing theo khế ước với Morax",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/7/79/Ganyu_Icon.png/revision/latest"
   },
   {
    "c": "C30",
@@ -298,7 +327,8 @@
    "r": "Pyro · thương · đường chủ đời 77 của Wangsheng Funeral Parlor",
    "s": "+1",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/e/e9/Hu_Tao_Icon.png/revision/latest"
   },
   {
    "c": "C31",
@@ -307,7 +337,8 @@
    "r": "Electro · kiếm · Yuheng của Liyue Qixing",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/52/Keqing_Icon.png/revision/latest"
   },
   {
    "c": "C32",
@@ -316,7 +347,8 @@
    "r": "Anemo · pháp khí · thợ đan mây ở Chenyu Vale, dùng Qimen Arts",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/e/e6/Lan_Yan_Icon.png/revision/latest"
   },
   {
    "c": "C33",
@@ -325,7 +357,8 @@
    "r": "Geo · pháp khí · Tianquan, chủ Jade Chamber; 7.2 đại diện Liyue ở hội nghị Snezhnaya, cùng vào Celestia",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/e/e0/Ningguang_Icon.png/revision/latest"
   },
   {
    "c": "C34",
@@ -334,7 +367,8 @@
    "r": "Cryo · kiếm · zombie được tiên nhân hồi sinh, dược đồng ở Bubu Pharmacy",
    "s": "0",
    "hard": 2,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/b3/Qiqi_Icon.png/revision/latest"
   },
   {
    "c": "C35",
@@ -343,7 +377,8 @@
    "r": "Cryo · thương · đệ tử của Cloud Retainer",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Shenhe_Icon.png/revision/latest"
   },
   {
    "c": "C36",
@@ -352,7 +387,8 @@
    "r": "Pyro · thương · bếp trưởng Wanmin Restaurant",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/39/Xiangling_Icon.png/revision/latest"
   },
   {
    "c": "C37",
@@ -361,7 +397,8 @@
    "r": "Anemo · pháp khí · tiên nhân Cloud Retainer, sống ở Liyue Harbor; 7.2 cho biết điều kiện của Trial of Usurpation",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/d3/Xianyun_Icon.png/revision/latest"
   },
   {
    "c": "C38",
@@ -370,7 +407,8 @@
    "r": "Anemo · thương · Yaksha Alatus, người cuối cùng còn sống trong năm Yaksha; ở Wangshu Inn",
    "s": "-1",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/f/fd/Xiao_Icon.png/revision/latest"
   },
   {
    "c": "C39",
@@ -379,7 +417,8 @@
    "r": "Hydro · kiếm · con trai thứ của chủ Feiyun Commerce Guild; kiếm pháp Guhua; bút danh Zhenyu",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/d4/Xingqiu_Icon.png/revision/latest"
   },
   {
    "c": "C40",
@@ -388,7 +427,8 @@
    "r": "Pyro · đại kiếm · nghệ sĩ rock duy nhất ở Liyue",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/24/Xinyan_Icon.png/revision/latest"
   },
   {
    "c": "C41",
@@ -397,7 +437,8 @@
    "r": "Pyro · pháp khí · cố vấn pháp luật, mang nửa dòng máu illuminated beast",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/54/Yanfei_Icon.png/revision/latest"
   },
   {
    "c": "C42",
@@ -406,7 +447,8 @@
    "r": "Dendro · thương · đệ tử của Streetward Rambler",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/83/Yaoyao_Icon.png/revision/latest"
   },
   {
    "c": "C43",
@@ -415,7 +457,8 @@
    "r": "Hydro · cung · gián điệp làm việc với Ningguang; \"Orchid\" của Northern Intelligence Network",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/d3/Yelan_Icon.png/revision/latest"
   },
   {
    "c": "C44",
@@ -424,7 +467,8 @@
    "r": "Geo · thương · trưởng gánh Yun-Han Opera Troupe, kiêm soạn tuồng",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9c/Yun_Jin_Icon.png/revision/latest"
   },
   {
    "c": "C45",
@@ -433,7 +477,8 @@
    "r": "Geo · thương · khách khanh Wangsheng; thực ra là Morax / Rex Lapis (Geo Archon) đã giả chết",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/a6/Zhongli_Icon.png/revision/latest"
   },
   {
    "c": "C46",
@@ -442,7 +487,8 @@
    "r": "Geo · kiếm · White Horse Adeptus; vốn là Angel, Moon Envoy của Lunar Palace, cai quản nền văn minh Lang-Gan",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/22/Zibai_Icon.png/revision/latest"
   },
   {
    "c": "C47",
@@ -451,7 +497,8 @@
    "r": "Geo · đại kiếm · hậu duệ oni đỏ, lập Arataki Gang",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/7/7b/Arataki_Itto_Icon.png/revision/latest"
   },
   {
    "c": "C48",
@@ -460,7 +507,8 @@
    "r": "Geo · kiếm · nhà thiết kế người Inazuma, mở tiệm Chioriya Boutique ở Fontaine (lore: sống ở Fontaine)",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/88/Chiori_Icon.png/revision/latest"
   },
   {
    "c": "C49",
@@ -469,7 +517,8 @@
    "r": "Geo · cung · tướng quân của Watatsumi Army",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/f/fe/Gorou_Icon.png/revision/latest"
   },
   {
    "c": "C50",
@@ -478,7 +527,8 @@
    "r": "Anemo · kiếm · samurai lang thang, tạm làm thủy thủ The Crux",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/e/e3/Kaedehara_Kazuha_Icon.png/revision/latest"
   },
   {
    "c": "C51",
@@ -487,7 +537,8 @@
    "r": "Cryo · kiếm · Shirasagi Himegimi; em gái Ayato",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/51/Kamisato_Ayaka_Icon.png/revision/latest"
   },
   {
    "c": "C52",
@@ -496,7 +547,8 @@
    "r": "Hydro · kiếm · gia chủ Kamisato, Yashiro Commissioner",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Kamisato_Ayato_Icon.png/revision/latest"
   },
   {
    "c": "C53",
@@ -505,7 +557,8 @@
    "r": "Dendro · kiếm · youkai nekomata, courier của Komaniya Express",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/b6/Kirara_Icon.png/revision/latest"
   },
   {
    "c": "C54",
@@ -514,7 +567,8 @@
    "r": "Electro · cung · tengu, tướng quân Tenryou Commission, con nuôi gia tộc Kujou",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/df/Kujou_Sara_Icon.png/revision/latest"
   },
   {
    "c": "C55",
@@ -523,7 +577,8 @@
    "r": "Electro · kiếm · phó thủ lĩnh Arataki Gang, cựu miko",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/b3/Kuki_Shinobu_Icon.png/revision/latest"
   },
   {
    "c": "C56",
@@ -532,7 +587,8 @@
    "r": "Electro · thương · Ei (Electro Archon) cùng con rối Shogun chung một thân; 7.2 vào Celestia",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/24/Raiden_Shogun_Icon.png/revision/latest"
   },
   {
    "c": "C57",
@@ -541,7 +597,8 @@
    "r": "Hydro · pháp khí · Divine Priestess của Watatsumi",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/f/ff/Sangonomiya_Kokomi_Icon.png/revision/latest"
   },
   {
    "c": "C58",
@@ -550,7 +607,8 @@
    "r": "Anemo · đại kiếm · ninja Shuumatsuban, ngủ nhiều cho cao lên",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/22/Sayu_Icon.png/revision/latest"
   },
   {
    "c": "C59",
@@ -559,7 +617,8 @@
    "r": "Anemo · pháp khí · thám tử của Tenryou Commission",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/20/Shikanoin_Heizou_Icon.png/revision/latest"
   },
   {
    "c": "C60",
@@ -568,7 +627,8 @@
    "r": "Pyro · thương · quản gia của gia tộc Kamisato (lore: gốc Mondstadt)",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Thoma_Icon.png/revision/latest"
   },
   {
    "c": "C61",
@@ -577,7 +637,8 @@
    "r": "Electro · pháp khí · kitsune, Guuji của Grand Narukami Shrine, chủ Yae Publishing House; bạn thân Ei",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/Yae_Miko_Icon.png/revision/latest"
   },
   {
    "c": "C62",
@@ -586,7 +647,8 @@
    "r": "Pyro · cung · chủ tiệm Naganohara Fireworks",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/88/Yoimiya_Icon.png/revision/latest"
   },
   {
    "c": "C63",
@@ -595,7 +657,8 @@
    "r": "Anemo · pháp khí · yumekui-baku (ăn ác mộng), nhà tâm lý học, cổ đông Aisa Bathhouse",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/f/f6/Yumemizuki_Mizuki_Icon.png/revision/latest"
   },
   {
    "c": "C64",
@@ -604,7 +667,8 @@
    "r": "Dendro · kiếm · Scribe của Akademiya (Haravatat); ở chung nhà với Kaveh",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/2c/Alhaitham_Icon.png/revision/latest"
   },
   {
    "c": "C65",
@@ -613,7 +677,8 @@
    "r": "Hydro · thương · hậu duệ Al-Ahmar, người gác Aaru Village",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/dd/Candace_Icon.png/revision/latest"
   },
   {
    "c": "C66",
@@ -622,7 +687,8 @@
    "r": "Dendro · cung · Forest Ranger; từng là vật thí nghiệm của Fatui (Eleazar); học trò Tighnari",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/a2/Collei_Icon.png/revision/latest"
   },
   {
    "c": "C67",
@@ -631,7 +697,8 @@
    "r": "Electro · thương · General Mahamatra, đứng đầu Matra",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/31/Cyno_Icon.png/revision/latest"
   },
   {
    "c": "C68",
@@ -640,7 +707,8 @@
    "r": "Pyro · đại kiếm · lính đánh thuê Eremite, biệt danh \"Flame-Mane\"",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/3f/Dehya_Icon.png/revision/latest"
   },
   {
    "c": "C69",
@@ -649,7 +717,8 @@
    "r": "Electro · đại kiếm · thương nhân \"Sangemah Bay\", chủ Palace of Alcazarzaray",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/54/Dori_Icon.png/revision/latest"
   },
   {
    "c": "C70",
@@ -658,7 +727,8 @@
    "r": "Anemo · cung · giáo sư Haravatat, kẹt trăm năm trong di tích",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/b2/Faruzan_Icon.png/revision/latest"
   },
   {
    "c": "C71",
@@ -667,7 +737,8 @@
    "r": "Dendro · đại kiếm · kiến trúc sư \"Light of Kshahrewar\", vỡ nợ nên ở nhờ Alhaitham",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/1/1f/Kaveh_Icon.png/revision/latest"
   },
   {
    "c": "C72",
@@ -676,7 +747,8 @@
    "r": "Cryo · kiếm · sinh viên Rtawahist, mất ngủ, hay mộng du",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/1/1a/Layla_Icon.png/revision/latest"
   },
   {
    "c": "C73",
@@ -685,7 +757,8 @@
    "r": "Dendro · pháp khí · Lesser Lord Kusanali (Buer, Dendro Archon)",
    "s": "0",
    "hard": 5,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/f/f9/Nahida_Icon.png/revision/latest"
   },
   {
    "c": "C74",
@@ -694,7 +767,8 @@
    "r": "Hydro · kiếm · vũ công Zubayr Theater",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/58/Nilou_Icon.png/revision/latest"
   },
   {
    "c": "C75",
@@ -703,7 +777,8 @@
    "r": "Electro · cung · thủ lĩnh Temple of Silence, từng là vật chứa của Hermanubis",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/90/Sethos_Icon.png/revision/latest"
   },
   {
    "c": "C76",
@@ -712,7 +787,8 @@
    "r": "Dendro · cung · trưởng Forest Rangers, thầy của Collei",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/87/Tighnari_Icon.png/revision/latest"
   },
   {
    "c": "C77",
@@ -721,7 +797,8 @@
    "r": "Anemo · pháp khí · Ei tạo; từng là Scaramouche, Harbinger số 6; tự xóa khỏi Irminsul",
    "s": "-1",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/f/f8/Wanderer_Icon.png/revision/latest"
   },
   {
    "c": "C78",
@@ -730,7 +807,8 @@
    "r": "Cryo · pháp khí · phóng viên báo The Steambird",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/d2/Charlotte_Icon.png/revision/latest"
   },
   {
    "c": "C79",
@@ -739,7 +817,8 @@
    "r": "Pyro · thương · đội trưởng Special Security and Surveillance Patrol",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/8a/Chevreuse_Icon.png/revision/latest"
   },
   {
    "c": "C80",
@@ -748,7 +827,8 @@
    "r": "Electro · kiếm · Champion Duelist mạnh nhất, từng làm cận vệ Furina",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Clorinde_Icon.png/revision/latest"
   },
   {
    "c": "C81",
@@ -757,7 +837,8 @@
    "r": "Dendro · thương · thợ làm nước hoa, kiêm \"forensic cleanser\" (dọn hiện trường) cho cảnh sát",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/aa/Emilie_Icon.png/revision/latest"
   },
   {
    "c": "C82",
@@ -766,7 +847,8 @@
    "r": "Cryo · thương · đầu bếp nổi tiếng (cựu bếp trưởng Hotel Debord, cựu tù Meropide)",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/2a/Escoffier_Icon.png/revision/latest"
   },
   {
    "c": "C83",
@@ -775,7 +857,8 @@
    "r": "Cryo · đại kiếm · thợ lặn; \"con\" của House of the Hearth (Fatui); 7.1 đang ở Snezhnaya làm việc cho Fatui",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/e/ee/Freminet_Icon.png/revision/latest"
   },
   {
    "c": "C84",
@@ -784,7 +867,8 @@
    "r": "Hydro · kiếm · đóng vai Hydro Archon 500 năm; Focalors tạo ra; nay là người thường, diễn viên",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/e/e6/Furina_Icon.png/revision/latest"
   },
   {
    "c": "C85",
@@ -793,7 +877,8 @@
    "r": "Anemo · kiếm · trợ lý ảo thuật, em sinh đôi Lyney; House of the Hearth; 7.1 có mặt ở Snezhnaya",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/ad/Lynette_Icon.png/revision/latest"
   },
   {
    "c": "C86",
@@ -802,7 +887,8 @@
    "r": "Pyro · cung · ảo thuật gia; House of the Hearth (gọi Arlecchino là \"Father\"); 7.1 có mặt ở Snezhnaya",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/b2/Lyney_Icon.png/revision/latest"
   },
   {
    "c": "C87",
@@ -811,7 +897,8 @@
    "r": "Geo · đại kiếm · thủ lĩnh Spina di Rosula, kế vị người cha đã mất Callas",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/c/c0/Navia_Icon.png/revision/latest"
   },
   {
    "c": "C88",
@@ -820,7 +907,8 @@
    "r": "Hydro · pháp khí · Iudex của Fontaine; là Hydro Sovereign (rồng)",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/21/Neuvillette_Icon.png/revision/latest"
   },
   {
    "c": "C89",
@@ -829,7 +917,8 @@
    "r": "Hydro · cung · Melusine, y tá trưởng Fortress of Meropide",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/37/Sigewinne_Icon.png/revision/latest"
   },
   {
    "c": "C90",
@@ -838,7 +927,8 @@
    "r": "Cryo · pháp khí · người quản lý Fortress of Meropide; từng bị đày vì giết cha mẹ nuôi bạo hành",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/bb/Wriothesley_Icon.png/revision/latest"
   },
   {
    "c": "C91",
@@ -847,7 +937,8 @@
    "r": "Anemo · cung · Peacemaker của Flower-Feather Clan; Ancient Name Vuka",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/0/03/Chasca_Icon.png/revision/latest"
   },
   {
    "c": "C92",
@@ -856,7 +947,8 @@
    "r": "Cryo · pháp khí · pháp sư \"Granny Itztli\" của Masters of the Night-Wind; Ancient Name Ukumbuko",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/dd/Citlali_Icon.png/revision/latest"
   },
   {
    "c": "C93",
@@ -865,7 +957,8 @@
    "r": "Electro · thương · huấn luyện viên thể lực của Collective of Plenty; Ancient Name Uwezo",
    "s": "0",
    "hard": 2,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/38/Iansan_Icon.png/revision/latest"
   },
   {
    "c": "C94",
@@ -874,7 +967,8 @@
    "r": "Anemo · pháp khí · bác sĩ thú y cho Saurian, Flower-Feather Clan; bạn của Ororon",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/5f/Ifa_Icon.png/revision/latest"
   },
   {
    "c": "C95",
@@ -883,7 +977,8 @@
    "r": "Geo · thương · chiến binh nhỏ của Children of Echoes; Ancient Name Uthabiti",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/1/1a/Kachina_Icon.png/revision/latest"
   },
   {
    "c": "C96",
@@ -892,7 +987,8 @@
    "r": "Dendro · đại kiếm · thợ săn Saurian của Scions of the Canopy (Malipo); luôn đi cùng K'uhul Ajaw",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9a/Kinich_Icon.png/revision/latest"
   },
   {
    "c": "C97",
@@ -901,7 +997,8 @@
    "r": "Pyro · đại kiếm · Haborym, Pyro Archon (God of War); Capitano chết thay cô; Pyro Gnosis đã mất; 7.2 vào Celestia",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/da/Mavuika_Icon.png/revision/latest"
   },
   {
    "c": "C98",
@@ -910,7 +1007,8 @@
    "r": "Hydro · pháp khí · hướng dẫn viên, dân lướt sóng của People of the Springs (Umoja)",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/0/0b/Mualani_Icon.png/revision/latest"
   },
   {
    "c": "C99",
@@ -919,7 +1017,8 @@
    "r": "Electro · cung · Masters of the Night-Wind, linh hồn \"khuyết\" (Bidii); từng hợp tác với Capitano",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/5e/Ororon_Icon.png/revision/latest"
   },
   {
    "c": "C100",
@@ -928,7 +1027,8 @@
    "r": "Electro · pháp khí · chủ vườn cây ở Collective of Plenty, trẻ con gọi là \"Masked Hero\"",
    "s": "+1",
    "hard": 1,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/dd/Varesa_Icon.png/revision/latest"
   },
   {
    "c": "C101",
@@ -937,7 +1037,8 @@
    "r": "Geo · kiếm · thợ rèn, Name Engraver của Children of Echoes (Baraka)",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/ab/Xilonen_Icon.png/revision/latest"
   },
   {
    "c": "C102",
@@ -946,7 +1047,8 @@
    "r": "Hydro · đại kiếm · thần đồng mồ côi, lập Clink-Clank Krumkake Craftshop, chế tạo Ineffa",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/a3/Aino_Icon.png/revision/latest"
   },
   {
    "c": "C103",
@@ -955,7 +1057,8 @@
    "r": "Hydro · pháp khí · Columbina Hyposelenia; cựu Harbinger số 3 \"Damselette\"; Moon Goddess Nod-Krai (Kuutar); giết Dottore",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/35/Columbina_Icon.png/revision/latest"
   },
   {
    "c": "C104",
@@ -964,7 +1067,8 @@
    "r": "Electro · thương · Kyryll Chudomirovich Flins; Lightkeeper gác hải đăng và nghĩa trang",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Flins_Icon.png/revision/latest"
   },
   {
    "c": "C105",
@@ -973,7 +1077,8 @@
    "r": "Geo · thương · đội trưởng Nightmare Orioles (Lightkeepers); được Flins khuyên làm đại diện Lightkeepers trong League mới",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/96/Illuga_Icon.png/revision/latest"
   },
   {
    "c": "C106",
@@ -982,7 +1087,8 @@
    "r": "Electro · thương · robot hầu gái kiêm chiến đấu do Aino làm",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/0/0b/Ineffa_Icon.png/revision/latest"
   },
   {
    "c": "C107",
@@ -991,7 +1097,8 @@
    "r": "Anemo · cung · tự xưng thợ săn tiền thưởng; người đứng mặt tiền Curatorium of Secrets cho Nefer; cựu Seahook Gang",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/bf/Jahoda_Icon.png/revision/latest"
   },
   {
    "c": "C108",
@@ -1000,7 +1107,8 @@
    "r": "Dendro · pháp khí · Moonchanter của Frostmoon Scions; giữ Eternal Moon Marrow",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Lauma_Icon.png/revision/latest"
   },
   {
    "c": "C109",
@@ -1009,7 +1117,8 @@
    "r": "Geo · cung · một trong những Snowland Fae và Augury Bird cuối cùng",
    "s": "+1",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Linnea_Icon.png/revision/latest"
   },
   {
    "c": "C110",
@@ -1018,7 +1127,8 @@
    "r": "Dendro · pháp khí · chủ Curatorium of Secrets; thuộc Voynich Guild và Northern Intelligence Network; gốc Sumeru",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Nefer_Icon.png/revision/latest"
   },
   {
    "c": "C111",
@@ -1027,7 +1137,8 @@
    "r": "Tội Nhân “Rächer of Solnari”, cựu chủ Wild Hunt; đã tỉnh táo, bỏ Vực Sâu; trạng thái hiện tại chưa rõ",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/e/e5/Blasphemy_Against_Death_Icon.png/revision/latest"
   },
   {
    "c": "C112",
@@ -1036,7 +1147,8 @@
    "r": "cựu Frostmoon Scion theo Fatui, tự cắt sừng chuộc tội",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/3b/NPC_Vilemina.png/revision/latest/window-crop/width/256/x-offset/189/y-offset/44/window-width/494/window-height/494"
   },
   {
    "c": "C113",
@@ -1045,7 +1157,8 @@
    "r": "Frostmoon Scion, mẹ của Kaarina",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/1/12/NPC_Kapy.png/revision/latest/window-crop/width/256/x-offset/200/y-offset/12/window-width/388/window-height/388"
   },
   {
    "c": "C114",
@@ -1054,7 +1167,8 @@
    "r": "Electro · thương · thợ săn tundra, chó săn Tugarin; thành viên Rokot (đối đầu Fatui), đưa Traveler vào Rokot",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/1/1d/Alyosha_Icon.png/revision/latest"
   },
   {
    "c": "C115",
@@ -1063,7 +1177,8 @@
    "r": "Pyro · thương · Peruere, Harbinger số 4 \"Knave\", \"Father\" của House of the Hearth; hậu duệ Crimson Moon",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9a/Arlecchino_Icon.png/revision/latest"
   },
   {
    "c": "C116",
@@ -1072,7 +1187,8 @@
    "r": "Electro · pháp khí · nhà khoa học Royal Energy Commission (Armory Palace); khăn quàng có ý thức; mang mark of death",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/f/fd/Mitya_Icon.png/revision/latest"
   },
   {
    "c": "C117",
@@ -1081,7 +1197,8 @@
    "r": "Cryo · kiếm · Odette Spessiva; Prima Ballerina Korolevskiy Troupe, Fatui; học trò Signora, ứng viên kế ghế số 8",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/87/Odette_Icon.png/revision/latest"
   },
   {
    "c": "C118",
@@ -1090,7 +1207,8 @@
    "r": "Cryo · đại kiếm · Marionette Guillotin, Harbinger số 7, trưởng Armory Palace; robot Alain Guillotin làm theo hình em gái",
    "s": "-1",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/c/c8/Sandrone_Icon.png/revision/latest"
   },
   {
    "c": "C119",
@@ -1099,7 +1217,8 @@
    "r": "Hydro · cung · Ajax \"Childe\", Harbinger số 11; nay là councilor của Snezhnograd Veche (Capitano chỉ định)",
    "s": "+1",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/8/85/Tartaglia_Icon.png/revision/latest"
   },
   {
    "c": "C120",
@@ -1108,7 +1227,8 @@
    "r": "Electro · kiếm · Valeriy Ivanovich Denisov",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/3/32/Valeriy_Icon.png/revision/latest"
   },
   {
    "c": "C121",
@@ -1117,7 +1237,8 @@
    "r": "Anemo · kiếm · Vesna Strivozha; chỉ huy Druzhna (cận vệ Tsaritsa), cánh tay phải Tsaritsa",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/95/Vesna_Icon.png/revision/latest"
   },
   {
    "c": "C122",
@@ -1126,7 +1247,8 @@
    "r": "Hydro · pháp khí · Water Imp; Prima Donna của Korolevskiy Troupe; thành viên Rokot",
    "s": "0",
    "hard": 3,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/97/Vodyanitsa_Icon.png/revision/latest"
   },
   {
    "c": "C123",
@@ -1136,7 +1258,8 @@
    "s": "0",
    "hard": 5,
    "love": true,
-   "aq": "Tsaritsa"
+   "aq": "Tsaritsa",
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/ac/Anastasya_Icon.png/revision/latest"
   },
   {
    "c": "C124",
@@ -1145,7 +1268,8 @@
    "r": "Director của Fatui, “Jester”; người Khaenri'ah, cựu pháp sư hoàng gia; ở Snezhnograd",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/6/66/Pierro_Icon.png/revision/latest"
   },
   {
    "c": "C125",
@@ -1154,7 +1278,8 @@
    "r": "Harbinger số 5 “Rooster”; Domovoy; thị trưởng Snezhnograd, Speaker của Veche",
    "s": "+1",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/4/47/Pulcinella_Icon.png/revision/latest"
   },
   {
    "c": "C126",
@@ -1163,7 +1288,8 @@
    "r": "Harbinger số 9 “Regrator”; chủ Northland Bank; từng giúp Dottore",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/c/ca/Pantalone_Icon.png/revision/latest"
   },
   {
    "c": "C127",
@@ -1172,7 +1298,8 @@
    "r": "Harbinger số 1; hiệp sĩ Khaenri'ah; hợp nhất với Lord of the Night, ngủ trên Throne of the Primal Fire ở Natlan",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9e/Il_Capitano_Icon.png/revision/latest"
   },
   {
    "c": "C128",
@@ -1181,7 +1308,8 @@
    "r": "Electro · trưởng hầu Zapolyarny Palace, cánh tay phải Tsaritsa, học trò Capitano",
    "s": "0",
    "hard": 4,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/2d/Danica_Icon.png/revision/latest"
   },
   {
    "c": "C129",
@@ -1190,7 +1318,8 @@
    "r": "fae cổ của Hyperborea (Tysyatsky); đang giúp Mitya",
    "s": "0",
    "hard": 4,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/92/Noy_Icon.png/revision/latest"
   },
   {
    "c": "C130",
@@ -1199,7 +1328,8 @@
    "r": "em trai Tartaglia",
    "s": "0",
    "hard": 2,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/4/4e/NPC_Teucer.png/revision/latest/window-crop/width/256/x-offset/95/y-offset/12/window-width/202/window-height/202"
   },
   {
    "c": "C131",
@@ -1208,7 +1338,8 @@
    "r": "em gái Tartaglia, ở Morepesok",
    "s": "0",
    "hard": 2,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Tonia_Icon.png/revision/latest"
   },
   {
    "c": "C132",
@@ -1217,7 +1348,8 @@
    "r": "chủ nhà máy Iskra, đã đóng cửa nhà máy",
    "s": "0",
    "hard": 2,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/d/d3/NPC_Chugunov.png/revision/latest/window-crop/width/256/x-offset/197/y-offset/39/window-width/447/window-height/447"
   },
   {
    "c": "C133",
@@ -1226,7 +1358,8 @@
    "r": "Pyro · pháp khí · Nicole Reeyn, \"N\" của Hexenzirkel; angel câm, từng thuộc Celestia và Hyperborea",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Nicole_Icon.png/revision/latest"
   },
   {
    "c": "C134",
@@ -1235,7 +1368,8 @@
    "r": "Cryo · kiếm · kiếm sĩ \"từ biển sao\", thầy của Tartaglia ở Abyss; đệ tử của Surtalogi (một trong Năm Sinner)",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/0/03/Skirk_Icon.png/revision/latest"
   },
   {
    "c": "C135",
@@ -1245,7 +1379,8 @@
    "s": "0",
    "hard": 3,
    "love": true,
-   "aq": "Lumine"
+   "aq": "Lumine",
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9c/Lumine_Icon.png/revision/latest"
   },
   {
    "c": "C136",
@@ -1254,7 +1389,8 @@
    "r": "bạn đồng hành của Nhà Lữ Hành; theo Pierro, vốn từ Celestia; không nhớ",
    "s": "+1",
    "hard": 1,
-   "love": false
+   "love": false,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/59/Paimon_Icon.png/revision/latest"
   },
   {
    "c": "C137",
@@ -1264,7 +1400,8 @@
    "s": "0",
    "hard": 5,
    "love": true,
-   "aq": "Aether"
+   "aq": "Aether",
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/a5/Aether_Icon.png/revision/latest"
   },
   {
    "c": "C138",
@@ -1273,7 +1410,8 @@
    "r": "“Twilight Sword”, cựu cận vệ hoàng gia Khaenri'ah, bị nguyền bất tử; nơi ở hiện tại chưa rõ",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/b/b4/NPC_Dainsleif.png/revision/latest/window-crop/width/256/x-offset/153/y-offset/14/window-width/247/window-height/247"
   },
   {
    "c": "C139",
@@ -1282,7 +1420,8 @@
    "r": "“A” của Hexenzirkel, mẹ Klee; thuộc hạ Istaroth; đang ở Snezhnaya",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/7/7b/Alice_Icon.png/revision/latest"
   },
   {
    "c": "C140",
@@ -1291,7 +1430,8 @@
    "r": "Tội Nhân “Gold”, “R” của Hexenzirkel; nay là Ruler of Life",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/5/53/Rhinedottir_Icon.png/revision/latest"
   },
   {
    "c": "C141",
@@ -1300,7 +1440,8 @@
    "r": "Ruler of Space; đã bỏ Celestia theo người thân Nhà Lữ Hành",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Asmoday_Icon.png/revision/latest"
   },
   {
    "c": "C142",
@@ -1309,7 +1450,8 @@
    "r": "Ruler of Time; còn hoạt động",
    "s": "0",
    "hard": 5,
-   "love": true
+   "love": true,
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Istaroth_Icon.png/revision/latest"
   }
  ],
  "highlights": [
