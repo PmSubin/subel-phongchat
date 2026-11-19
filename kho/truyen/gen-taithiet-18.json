@@ -1380,7 +1380,8 @@
    "hard": 3,
    "love": true,
    "aq": "Lumine",
-   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9c/Lumine_Icon.png/revision/latest"
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/9/9c/Lumine_Icon.png/revision/latest",
+   "twin": "C137"
   },
   {
    "c": "C136",
@@ -1401,7 +1402,8 @@
    "hard": 5,
    "love": true,
    "aq": "Aether",
-   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/a5/Aether_Icon.png/revision/latest"
+   "img": "https://static.wikia.nocookie.net/gensin-impact/images/a/a5/Aether_Icon.png/revision/latest",
+   "twin": "C135"
   },
   {
    "c": "C138",
